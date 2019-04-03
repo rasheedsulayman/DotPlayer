@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/buttom_controller_container"
+    android:layout_width="match_parent"
+    android:layout_height="?actionBarSize"
+    android:orientation="vertical">
+
+    <ProgressBar
+        android:id="@+id/npc_song_progressbar"
+        style="@android:style/Widget.ProgressBar.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="8dp"
+        android:layout_marginTop="-2.5dp"
+        android:layout_marginBottom="-2.5dp"
+        android:maxHeight="3dp"
+        android:minHeight="3dp"
+        android:progress="30"
+        android:progressDrawable="@drawable/progressbar_progress_drawable"
+        android:scaleY="0.38"
+        android:tag=":aesthetic_ignore" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/npc_album_art"
+            android:layout_width="52dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="4dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/album_holdertest" />
+
+        <LinearLayout
+            android:id="@+id/content"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="2dp"
+            android:layout_marginBottom="1dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/npc_song_title"
+                style="@style/TextAppearance.AppCompat.Body1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textSize="15sp"
+                tools:text="Demons" />
+
+            <TextView
+                android:id="@+id/npc_song_artist"
+                style="@style/TextAppearance.AppCompat.Widget.ActionMode.Subtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textSize="13sp"
+                tools:text="John Doe and Band" />
+        </LinearLayout>
+
+        <com.r4sh33d.musicslam.customviews.WidthFitFrameLayout
+            android:id="@+id/bc_play_pause_wrapper"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="4dp"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/circular_ripple">
+            <com.r4sh33d.musicslam.customviews.playpause.PlayIconView
+                android:id="@+id/npc_play_pause"
+                android:layout_width="28dp"
+                android:layout_height="34dp"
+                android:layout_gravity="center"
+
+                android:padding="5dp"/>
+        </com.r4sh33d.musicslam.customviews.WidthFitFrameLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

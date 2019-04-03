@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/container_constraint_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:tag=":aesthetic_ignore">
+
+        <android.support.v7.widget.RecyclerView
+            android:tag=":aesthetic_ignore"
+            android:id="@+id/recyclerview"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:clipToPadding="false"
+            android:paddingBottom="8dp"
+            android:paddingTop="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.r4sh33d.musicslam.customviews.AutoDismissFastScrollerView
+            android:tag=":aesthetic_ignore"
+            android:id="@+id/fastscroller"
+            android:layout_width="32dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.r4sh33d.musicslam.customviews.ColoredFastScrollerThumbView
+            android:textColor="@android:color/white"
+            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+            android:tag=":aesthetic_ignore"
+            android:id="@+id/fastscroller_thumb"
+            android:layout_width="60dp"
+            android:layout_height="0dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintBottom_toBottomOf="@+id/fastscroller"
+            app:layout_constraintEnd_toStartOf="@+id/fastscroller"
+            app:layout_constraintTop_toTopOf="@+id/fastscroller" />
+
+    </android.support.constraint.ConstraintLayout>
+
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/empty_data_textview"
+        android:textSize="18sp"
+        android:layout_gravity="center"
+        tools:text="No data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+</FrameLayout>
+

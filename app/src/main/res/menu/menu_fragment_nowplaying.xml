@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/menu_playing_queue"
+        android:icon="@drawable/ic_ic_playing_list"
+        android:title="playing Queue"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/menu_add_to_playlist"
+        android:title="Add to playlist"
+        app:showAsAction="never" />
+
+
+    <item
+        android:id="@+id/menu_sleep_timer"
+        android:title="Sleep timer"
+        app:showAsAction="never" />
+
+
+    <item
+        android:id="@+id/menu_song_info"
+        android:title="Song info"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/menu_save_queue"
+        android:title="Save queue"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/menu_clear_queue"
+        android:icon="@drawable/ic_timer_white_24dp"
+        android:title="Clear queue"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/menu_song_share"
+        android:icon="@drawable/ic_timer_white_24dp"
+        android:title="Share"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/menu_song_delete"
+        android:icon="@drawable/ic_timer_white_24dp"
+        android:title="Delete"
+        app:showAsAction="never" />
+
+    <item android:id="@+id/settings"
+        android:title="Settings"
+        app:showAsAction="never"/>
+
+
+
+</menu>

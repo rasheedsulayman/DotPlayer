@@ -1,0 +1,19 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="detail_backdrop_height">250dp</dimen>
+
+    <dimen name="now_playing_album_art_size">300dp</dimen>
+
+    <!--App Widgets dimensions-->
+
+    <!--Transparent and White Large App widgets -->
+    <dimen name="app_widget_standard_image_size">110dp</dimen>
+    <dimen name="app_widget_standard_min_width">250dp</dimen>
+    <dimen name="app_widget_standard_min_height">40dp</dimen>
+
+    <!--small app widget-->
+    <dimen name="app_widget_small_image_size">56dp</dimen>
+    <dimen name="app_widget_small_min_width">250dp</dimen>
+    <dimen name="app_widget_small_min_height">40dp</dimen>
+</resources>
+

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/menu_song_play"
+        android:title="@string/play" />
+
+    <item
+        android:id="@+id/menu_song_play_next"
+        android:title="@string/play_next" />
+
+    <item
+        android:id="@+id/menu_song_add_to_queue"
+        android:title="@string/enqueue" />
+
+    <item
+        android:id="@+id/menu_song_add_to_playlist"
+        android:title="@string/add_to_playlist" />
+
+    <item
+        android:id="@+id/menu_song_go_to_album"
+        android:title="@string/go_to_album" />
+
+    <item
+        android:id="@+id/menu_song_go_to_artist"
+        android:title="@string/go_to_artist" />
+
+    <item
+        android:id="@+id/menu_song_details"
+        android:title="Details" />
+
+    <item
+        android:id="@+id/menu_song_ringtone"
+        android:title="@string/use_ase_ringtone" />
+    <item
+        android:id="@+id/menu_song_share"
+        android:title="@string/share" />
+    <item
+        android:id="@+id/menu_song_delete"
+        android:title="@string/delete" />
+
+
+</menu>

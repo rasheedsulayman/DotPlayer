@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<transitionSet
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:interpolator="@android:interpolator/decelerate_quad">
+
+    <transitionSet>
+
+        <targets>
+            <target android:excludeId="@id/toolbar"/>
+        </targets>
+
+        <changeImageTransform/>
+        <changeBounds/>
+        <arcMotion
+            android:minimumHorizontalAngle="15"
+            android:minimumVerticalAngle="15">
+        </arcMotion>
+        <changeTransform/>
+
+    </transitionSet>
+
+    <transitionSet>
+
+        <targets>
+            <target android:targetId="@id/toolbar"/>
+        </targets>
+
+        <changeBounds/>
+        <changeTransform/>
+
+    </transitionSet>
+
+
+</transitionSet>

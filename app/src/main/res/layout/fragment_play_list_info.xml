@@ -1,0 +1,156 @@
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:tag=":aesthetic_ignore">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:background="@android:color/transparent"
+        android:tag=":aesthetic_ignore">
+
+        <com.r4sh33d.musicslam.customviews.FixedMinimumHeightCollapsingToolBar
+            android:id="@+id/collapsing_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:minHeight="130dp"
+            android:orientation="vertical"
+            android:tag=":aesthetic_ignore"
+            app:contentScrim="@android:color/transparent"
+            app:expandedTitleMarginEnd="64dp"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:scrimAnimationDuration="250"
+            app:scrimVisibleHeightTrigger="130dp"
+            app:titleEnabled="false">
+
+            <ImageView
+                android:id="@+id/backdrop"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity=""
+                android:scaleType="centerCrop"
+                android:visibility="invisible"
+                app:layout_collapseMode="parallax" />
+
+            <FrameLayout
+                android:id="@+id/upper_black_shade"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:alpha="0"
+                android:background="@drawable/upper_black_background_shade"
+                android:scaleType="centerCrop"
+                android:tag=":aesthetic_ignore"
+                app:layout_collapseMode="parallax" />
+
+            <FrameLayout
+                android:id="@+id/lower_black_shade"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:alpha="0"
+                android:background="@drawable/lower_black_background_shade"
+                android:scaleType="centerCrop"
+                android:tag=":aesthetic_ignore"
+                app:layout_collapseMode="parallax" />
+
+            <FrameLayout
+                android:id="@+id/parallax_color_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:tag=":aesthetic_ignore"
+                app:layout_collapseMode="parallax" />
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:tag=":aesthetic_ignore"
+                android:theme="@style/ThemeOverlay.AppCompat.Light"
+                app:layout_collapseMode="pin"
+                app:titleTextAppearance="@style/Toolbartitle" />
+
+            <LinearLayout
+                android:id="@+id/playlist_details_background"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center"
+                android:paddingBottom="10dp"
+                android:tag=":aesthetic_ignore"
+                android:visibility="invisible">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:paddingTop="4dp"
+                    android:paddingBottom="4dp"
+                    android:src="@drawable/ic_music_note_white_24dp" />
+
+                <TextView
+                    android:id="@+id/song_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:tag=":aesthetic_ignore"
+                    tools:text="10"
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginRight="4dp"
+                    android:tag=":aesthetic_ignore"
+                    android:text="|"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:paddingTop="4dp"
+                    android:paddingBottom="4dp"
+                    android:src="@drawable/ic_timer_white_24dp" />
+
+                <TextView
+                    android:id="@+id/duration"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:tag=":aesthetic_ignore"
+                    tools:text=" 2 : 45"
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
+
+
+        </com.r4sh33d.musicslam.customviews.FixedMinimumHeightCollapsingToolBar>
+    </android.support.design.widget.AppBarLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+        <TextView
+            android:visibility="gone"
+            android:paddingTop="150dp"
+            android:id="@+id/empty_data_textview"
+            android:textSize="18sp"
+            android:layout_gravity="center"
+            tools:text="No data"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </FrameLayout>
+</android.support.design.widget.CoordinatorLayout>

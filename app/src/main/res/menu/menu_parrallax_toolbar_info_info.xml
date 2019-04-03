@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:icon="@drawable/ic_shuffle_white_24dp"
+        app:showAsAction="always"
+        android:id="@+id/menu_shuffle"
+        android:title="Shuffle" />
+
+    <item
+        app:showAsAction="never"
+        android:id="@+id/menu_album_play"
+        android:title="Play All" />
+
+    <item
+        app:showAsAction="never"
+        android:id="@+id/menu_album_play_next"
+        android:title="Play Next" />
+
+    <item
+        app:showAsAction="never"
+        android:id="@+id/menu_add_to_queue"
+        android:title="Enqueue" />
+
+    <item
+        app:showAsAction="never"
+        android:id="@+id/menu_add_to_playlist"
+        android:title="Add to Playlist" />
+
+    <item android:id="@+id/settings"
+        android:title="Settings"
+        app:showAsAction="never"/>
+
+
+</menu>

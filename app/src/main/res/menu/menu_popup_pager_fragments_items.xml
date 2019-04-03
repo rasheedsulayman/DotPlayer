@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/menu_song_play"
+        android:title="@string/play" />
+
+    <item
+        android:id="@+id/menu_song_play_next"
+        android:title="@string/play_next" />
+
+    <item
+        android:id="@+id/menu_song_add_to_queue"
+        android:title="@string/enqueue" />
+
+    <item
+        android:id="@+id/menu_song_add_to_playlist"
+        android:title="@string/add_to_playlist" />
+    <item
+        android:visible="false"
+        android:enabled="false"
+        android:id="@+id/menu_rename"
+        android:title="@string/rename" />
+    <item
+        android:id="@+id/menu_song_delete"
+        android:title="@string/delete" />
+
+</menu>

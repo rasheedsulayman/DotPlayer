@@ -1,0 +1,115 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="AppThemeDark" parent="Theme.AppCompat.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
+        <item name="searchViewStyle">@style/MySearchViewStyle</item>
+        <item name="android:windowBackground">@color/dark_theme_windows_bg</item>
+        <item name="android:colorBackground">@color/dark_theme_windows_bg</item>
+        <item name="md_background_color">@color/dark_theme_windows_bg</item>
+    </style>
+
+    <style name="AppThemeLight" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
+        <item name="searchViewStyle">@style/MySearchViewStyle</item>
+        <item name="autoCompleteTextViewStyle">@style/SearchAutoCompleteTextView</item>
+
+        <item name="android:textAppearanceLargePopupMenu">@style/BlackTextAppearanceLargePopup
+        </item>
+        <item name="android:textAppearanceSmallPopupMenu">@style/BlackTextAppearanceSmallPopup
+        </item>
+        <item name="android:popupMenuStyle">@style/WhiteBackgroundPopupMenu</item>
+
+    </style>
+
+    <style name="AppTheme.TextAppearance.Title" parent="TextAppearance.AppCompat.Headline">
+        <item name="fontFamily">@font/lato_bold</item>
+        <item name="android:fontFamily">@font/lato_bold</item>
+    </style>
+
+    <style name="AppThemeBlack" parent="AppThemeDark">
+        <item name="md_background_color">@color/black_theme_windows_bg</item>
+        <item name="android:windowBackground">@color/black_theme_windows_bg</item>
+        <item name="android:colorBackground">@color/black_theme_windows_bg</item>
+    </style>
+
+    <style name="AppThemeBlue" parent="AppThemeDark">
+        <item name="md_background_color">@color/blue_theme_windows_bg</item>
+        <item name="android:windowBackground">@color/blue_theme_windows_bg</item>
+        <item name="android:colorBackground">@color/blue_theme_windows_bg</item>
+    </style>
+
+    <!-- AlbumArtTheme -->
+    <style name="AlbumArtTheme" parent="AppThemeLight">
+        <item name="android:textColorTertiary">@color/white</item>
+        <item name="android:textColorPrimary">@color/white</item>
+        <item name="android:textColorSecondary">@color/secondary_text_dark</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="md_dark_theme">false</item>
+    </style>
+
+    <style name="MusicPreviewTheme" parent="AppThemeLight">
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:backgroundDimEnabled">true</item>
+    </style>
+
+    <style name="SearchAutoCompleteTextView" parent="Widget.AppCompat.Light.AutoCompleteTextView">
+        <item name="android:textColor">@color/md_white_1000</item>
+        <item name="android:textColorHint">@color/md_white_1000</item>
+    </style>
+
+    <style name="Toolbartitle">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+
+    <style name="MySearchViewStyle" parent="Widget.AppCompat.SearchView">
+        <item name="searchIcon">@null</item>
+        <item name="android:textColorHint">@color/md_white_1000</item>
+    </style>
+
+    <style name="BlackTextAppearanceSmallPopup" parent="@style/TextAppearance.AppCompat.Light.Widget.PopupMenu.Large">
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="BlackTextAppearanceLargePopup" parent="@style/TextAppearance.AppCompat.Light.Widget.PopupMenu.Small">
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+
+    <style name="WhiteOverflowButtonStyle" parent="ThemeOverlay.AppCompat.Light">
+        <item name="android:textColorSecondary">@color/black</item>
+        <item name="android:textColorPrimary">@color/black</item>
+    </style>
+
+    <style name="BlackOverflowButtonStyle" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="android:textColorSecondary">@android:color/white</item>
+        <item name="android:colorBackground">@color/dark_theme_windows_bg</item>
+    </style>
+
+    <style name="WhiteBackgroundPopupMenu" parent="@style/Widget.AppCompat.PopupMenu">
+        <item name="android:popupBackground">@color/white</item>
+    </style>
+
+    <attr name="cardStyle" format="reference" />
+    <attr name="accentColor" format="reference" />
+
+    <attr name="windowBackground" format="reference" />
+    <attr name="progressBackgroundColor" format="reference" />
+    <attr name="progressDrawable" format="reference" />
+    <attr name="progressDrawableWithBackground" format="reference" />
+    <attr name="stateSelector" format="reference" />
+
+    <style name="AlbumArtWhiteDialog" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:textColorPrimary">@color/black</item>
+        <item name="android:textColorSecondary">@color/secondary_text_white</item>
+    </style>
+</resources>

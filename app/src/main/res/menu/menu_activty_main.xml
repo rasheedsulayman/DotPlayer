@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:enabled="false"
+        android:visible="false"
+        android:id="@+id/menu_new_playlist"
+        android:title="New Playlist" />
+
+    <item
+        android:id="@+id/action_search"
+        android:icon="@drawable/ic_search_white_24dp"
+        android:title="@string/search"
+        app:showAsAction="always" />
+
+    <item
+        android:enabled="false"
+        android:visible="false"
+        android:id="@+id/menu_shuffle_all"
+        android:title="Shuffle All"
+        app:showAsAction="never"/>
+
+    <item android:id="@+id/menu_sleep_timer"
+        android:title="Sleep timer"
+        app:showAsAction="never"/>
+
+    <item android:id="@+id/settings"
+        android:title="Settings"
+        app:showAsAction="never"/>
+
+</menu>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?android:attr/selectableItemBackground"
+    android:orientation="vertical">
+
+    <com.r4sh33d.musicslam.customviews.WidthFitSquareImageView
+        android:id="@+id/album_art"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@drawable/round_stroke_background"
+        android:scaleType="centerCrop"
+        android:src="@drawable/album_holdertest" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="6dp"
+            android:layout_marginTop="4dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/line_one_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="?android:textColorPrimary"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textSize="13sp"
+                tools:text="Test Header" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/line_two_text_one"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:textColor="?android:textColorSecondary"
+                    android:maxLines="1"
+                    android:textSize="12sp"
+                    tools:text="test" />
+
+                <TextView
+                    android:id="@+id/line_two_text_two"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="?android:textColorSecondary"
+                    android:layout_marginTop="2dp"
+                    android:maxLines="1"
+                    android:textSize="12sp"
+                    tools:text="(2)" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <com.r4sh33d.musicslam.customviews.BlackAndWhiteImageView
+            android:id="@+id/overflow_menu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="8dp"
+            android:src="@drawable/ic_more_vert_black_24dp" />
+    </LinearLayout>
+
+
+</LinearLayout>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    tools:context=".fragments.nowplaying.ArtworkPagerAdapter$ArtworkFragment"
+    tools:src="@drawable/album_holdertest"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <com.r4sh33d.musicslam.customviews.SquareImageView
+        android:background="@drawable/round_stroke_background"
+        android:layout_margin="35dp"
+        android:layout_gravity="center"
+        android:scaleType="fitXY"
+        android:id="@+id/album_art"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</FrameLayout>
