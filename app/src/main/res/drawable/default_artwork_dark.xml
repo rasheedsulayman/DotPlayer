@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/album_art_bg_color_dark"/>
+        </shape>
+    </item>
+    <item
+        android:drawable="@drawable/ic_music_note_black_24dp"
+        android:bottom="30dp"
+        android:left="30dp"
+        android:right="30dp"
+        android:top="30dp"/>
+</layer-list>

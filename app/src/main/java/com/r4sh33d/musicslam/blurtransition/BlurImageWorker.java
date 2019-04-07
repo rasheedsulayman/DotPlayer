@@ -26,8 +26,8 @@ import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.TransitionDrawable;
 
-import com.r4sh33d.musicslam.utils.RenderScriptHelper;
 import com.r4sh33d.musicslam.playback.MusicPlayer;
+import com.r4sh33d.musicslam.utils.RenderScriptHelper;
 
 import java.util.concurrent.RejectedExecutionException;
 
@@ -42,36 +42,43 @@ public class BlurImageWorker {
      *
      * @param resources    Android Resources!
      * @param fromDrawable the drawable to transition from
-     * @param bitmap       the bitmap to transition to
+     * @param toBitmap       the bitmap to transition to
      * @param fadeTime     the fade time in MS to fade in
-     * @param dither       setting
-     * @param force        force create a transition even if bitmap == null (fade to transparent)
      * @return the drawable if created, null otherwise
      */
-    public static TransitionDrawable createImageTransitionDrawable(final Resources resources,
-                                                                   final Drawable fromDrawable,
-                                                                   final Bitmap bitmap, final int fadeTime,
-                                                                   final boolean dither, final boolean force) {
-        if (bitmap != null || force) {
+    public static TransitionDrawable createImageTransitionDrawable(Resources resources,
+                                                                   Drawable fromDrawable,
+                                                                   Bitmap toBitmap, int fadeTime) {
+        if (toBitmap != null) {
             final Drawable[] arrayDrawable = new Drawable[2];
             arrayDrawable[0] = getTopDrawable(fromDrawable);
 
             // Add the transition to drawable
             Drawable layerTwo;
-            if (bitmap != null) {
-                layerTwo = new BitmapDrawable(resources, bitmap);
-                //  layerTwo.setFilterBitmap(false);
-                // layerTwo.setDither(dither);
-            } else {
-                // if no bitmap (forced) then transition to transparent
-                layerTwo = new ColorDrawable(Color.TRANSPARENT);
-            }
 
+            layerTwo = new BitmapDrawable(resources, toBitmap);
             arrayDrawable[1] = layerTwo;
 
             // Finally, return the image
             final TransitionDrawable result = new TransitionDrawable(arrayDrawable);
             //result.setCrossFadeEnabled(true);
+            result.startTransition(fadeTime);
+            return result;
+        }
+        return null;
+    }
+
+    public static TransitionDrawable createImageTransitionDrawable(Drawable fromDrawable,
+                                                                   Drawable toDrawable, int fadeTime) {
+        if (toDrawable != null) {
+            final Drawable[] arrayDrawable = new Drawable[2];
+            arrayDrawable[0] = getTopDrawable(fromDrawable);
+
+            // Add the transition to drawable
+            arrayDrawable[1] = toDrawable;
+
+            // Finally, return the image
+            final TransitionDrawable result = new TransitionDrawable(arrayDrawable);
             result.startTransition(fadeTime);
             return result;
         }

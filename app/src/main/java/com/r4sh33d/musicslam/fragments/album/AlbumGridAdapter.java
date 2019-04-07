@@ -65,8 +65,8 @@ public class AlbumGridAdapter extends RecyclerView.Adapter<AlbumGridAdapter.MyVi
         GlideApp.with(context)
                 .load(new AudioCoverImage(album.firstSongPath))
                 .centerCrop()
+                .placeholder(context.getDrawable(R.drawable.default_artwork))
                 .transition(DrawableTransitionOptions.withCrossFade(100))
-                .placeholder(R.drawable.album_holdertest)
                 .into(holder.albumArtImageView);
     }
 

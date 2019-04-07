@@ -174,7 +174,6 @@ public class NowplayingFragment extends BaseListenerFragment implements
         setUpToolbar();
         songtitle.setSelected(true);
         songartist.setSelected(true);
-        bcControllerContainer.setBackgroundColor(ColorHelper.getWindowBackgroundColor(getContext()));
         if (isAlbumArtTheme) {
             blurImageView.setVisibility(View.GONE);
             albumartShadeBlack.setVisibility(View.GONE);
@@ -323,7 +322,7 @@ public class NowplayingFragment extends BaseListenerFragment implements
                 .asBitmap()
                 .load(audioCoverImage)
                 .transition(BitmapTransitionOptions.withCrossFade())
-                .placeholder(R.drawable.album_holdertest)
+                .placeholder(getContext().getDrawable(R.drawable.def))
                 .into(bcAlbumart);
     }
 

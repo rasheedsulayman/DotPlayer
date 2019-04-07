@@ -1,8 +1,6 @@
 package com.r4sh33d.musicslam.fragments.songlist;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
@@ -13,11 +11,7 @@ import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 
-import com.bumptech.glide.load.DataSource;
-import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
-import com.bumptech.glide.request.RequestListener;
-import com.bumptech.glide.request.target.Target;
 import com.r4sh33d.musicslam.GlideApp;
 import com.r4sh33d.musicslam.R;
 import com.r4sh33d.musicslam.dialogs.SongDetailsDialog;
@@ -37,7 +31,6 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import timber.log.Timber;
 
 
 public class SongsListAdapter extends RecyclerView.Adapter<SongsListAdapter.Holder>
@@ -64,7 +57,7 @@ public class SongsListAdapter extends RecyclerView.Adapter<SongsListAdapter.Hold
         holder.songArtistTextView.setText(tempSong.artistName);
         GlideApp.with(context)
                 .load(new AudioCoverImage(tempSong.data))
-                .placeholder(R.drawable.album_holdertest)
+                .placeholder(context.getDrawable(R.drawable.default_artwork))
                 .transition(DrawableTransitionOptions.withCrossFade(100))
                 .into(holder.albumArtImageView);
     }
@@ -103,6 +96,7 @@ public class SongsListAdapter extends RecyclerView.Adapter<SongsListAdapter.Hold
             super(itemView);
             ButterKnife.bind(this, itemView);
             itemView.setOnClickListener(this);
+            albumArtImageView.setClipToOutline(true);
             setUpPopUpMenu();
         }
 

@@ -2,6 +2,7 @@ package com.r4sh33d.musicslam.fragments.artist;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
@@ -62,7 +63,7 @@ public class ArtistGridAdapter extends RecyclerView.Adapter<ArtistGridAdapter.My
         GlideApp.with(context)
                 .load(new ArtistImage(artist.name))
                 .transition(DrawableTransitionOptions.withCrossFade(100))
-                .placeholder(R.drawable.album_holdertest)
+                .placeholder(context.getDrawable(R.drawable.default_artwork))
                 .into(holder.albumArtImageView);
     }
 

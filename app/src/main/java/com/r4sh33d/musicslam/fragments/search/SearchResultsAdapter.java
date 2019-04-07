@@ -162,7 +162,7 @@ public class SearchResultsAdapter extends RecyclerView.Adapter<RecyclerView.View
             GlideApp.with(context)
                     .load(new ArtistImage(artist.name))
                     .transition(DrawableTransitionOptions.withCrossFade(100))
-                    .placeholder(R.drawable.album_holdertest)
+                    .placeholder(context.getDrawable(R.drawable.default_artwork))
                     .into(artistArtImageView);
         }
 
@@ -243,7 +243,7 @@ public class SearchResultsAdapter extends RecyclerView.Adapter<RecyclerView.View
             songArtistTextView.setText(song.artistName);
             GlideApp.with(context)
                     .load(new AudioCoverImage(song.data))
-                    .placeholder(R.drawable.album_holdertest)
+                    .placeholder(context.getDrawable(R.drawable.default_artwork))
                     .transition(DrawableTransitionOptions.withCrossFade(100))
                     .into(albumArtImageView);
         }
@@ -331,7 +331,7 @@ public class SearchResultsAdapter extends RecyclerView.Adapter<RecyclerView.View
                     .load(new AudioCoverImage(album.firstSongPath))
                     .centerCrop()
                     .transition(DrawableTransitionOptions.withCrossFade(100))
-                    .placeholder(R.drawable.album_holdertest)
+                    .placeholder(context.getDrawable(R.drawable.default_artwork))
                     .into(albumArtImageView);
         }
 

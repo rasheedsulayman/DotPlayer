@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="emptyAlbumArtBg" format="color" />
+
+    <attr name="slidingUpQuickControlBg" format="color" />
+
+<!--
+    <attr name="cardStyle" format="reference" />
+    <attr name="accentColor" format="reference" />
+    <attr name="windowBackground" format="reference" />
+    <attr name="progressBackgroundColor" format="reference" />
+    <attr name="progressDrawable" format="reference" />
+    <attr name="progressDrawableWithBackground" format="reference" />
+    <attr name="stateSelector" format="reference" />-->
+
+</resources>

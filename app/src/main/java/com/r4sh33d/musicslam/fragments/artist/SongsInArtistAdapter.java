@@ -58,7 +58,7 @@ public class SongsInArtistAdapter extends RecyclerView.Adapter<SongsInArtistAdap
         holder.songDuration.setText(MusicUtils.makeShortTimeString(context, tempSong.duration / 1000));
         GlideApp.with(context)
                 .load(new AudioCoverImage(tempSong.data))
-                .placeholder(R.drawable.album_holdertest)
+                .placeholder(context.getDrawable(R.drawable.default_artwork))
                 .transition(DrawableTransitionOptions.withCrossFade())
                 .into(holder.albumArtImageView);
     }

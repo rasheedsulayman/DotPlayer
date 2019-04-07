@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <ImageView
+        android:src="@drawable/ic_music_note_black_24dp"
+        android:background="#FFF0F0F0"
+        android:layout_gravity="center"
+        android:layout_width="250dp"
+        android:layout_height="250dp" />
+
+</FrameLayout>

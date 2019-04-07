@@ -86,7 +86,7 @@ public class TransparentWidgetSmall extends BaseAppWidget {
                             if (bitmap != null) {
                                 remoteViews.setImageViewBitmap(R.id.album_art, bitmap);
                             } else {
-                                remoteViews.setImageViewResource(R.id.album_art, R.drawable.album_holdertest);
+                                remoteViews.setImageViewResource(R.id.album_art, R.drawable.default_artwork);
                             }
                             pushUpdate(service, appWidgetIds, remoteViews);
                         }

@@ -2,6 +2,7 @@ package com.r4sh33d.musicslam.blurtransition;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
@@ -36,6 +37,8 @@ public class BlurImageView extends android.support.v7.widget.AppCompatImageView 
     }
 
     void doInitSetup() {
+        Bitmap blurredBitmap = BitmapFactory.decodeResource(getContext().getResources(),
+                R.drawable.default_artwork_blur);
         isCurrentlyOnScreen = true;
         isUsingDefaultBlur = true;
     }
@@ -60,15 +63,10 @@ public class BlurImageView extends android.support.v7.widget.AppCompatImageView 
             return;
         }
 
-        Bitmap blurredBitmap = ((BitmapDrawable) getResources()
-                .getDrawable(R.drawable.default_artwork_blur_square)).getBitmap();
+        Drawable drawable = getContext().getDrawable(R.drawable.default_artwork_blur);
 
-        Drawable drawable;
         if (animate) {
-            drawable = BlurImageWorker.createImageTransitionDrawable(getResources(),
-                    getDrawable(), blurredBitmap, BlurImageWorker.FADE_IN_TIME, true, true);
-        } else {
-            drawable = new BitmapDrawable(getResources(), blurredBitmap);
+            drawable = BlurImageWorker.createImageTransitionDrawable(getDrawable(), drawable , BlurImageWorker.FADE_IN_TIME);
         }
 
         setTransitionDrawable(drawable);

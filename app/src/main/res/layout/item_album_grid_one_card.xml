@@ -16,11 +16,11 @@
         android:orientation="vertical">
 
         <com.r4sh33d.musicslam.customviews.WidthFitSquareImageView
+            android:src="@drawable/default_artwork"
             android:id="@+id/album_art"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/album_holdertest" />
+            android:scaleType="centerCrop"/>
 
         <LinearLayout
             android:background="?android:colorBackground"

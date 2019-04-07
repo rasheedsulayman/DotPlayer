@@ -325,6 +325,10 @@
     <color name="md_blue_grey_700">#455A64</color>
     <color name="md_blue_grey_800">#37474F</color>
     <color name="md_blue_grey_900">#263238</color>
+
+    <!--F321B3-->
     <color name="bg_white_shade">#27ffffff</color>
+    <color name="album_art_bg_color_dark">#444444</color>
+    <color name="album_art_bg_color_light">#FFF0F0F0</color>
 
 </resources>

@@ -43,14 +43,14 @@ public class BlurBitmapWorkerTask extends AsyncTask<Bitmap, Void, Bitmap> {
     Resources mResources;
 
 
-    private final WeakReference<BlurImageView> mBlurScrimImage;
+    private final WeakReference<BlurImageView> mBlurImageView;
 
     protected final RenderScript mRenderScript;
 
 
     public BlurBitmapWorkerTask(final BlurImageView blurImageView,
                                 final Context context, final RenderScript renderScript, boolean animate) {
-        mBlurScrimImage = new WeakReference<>(blurImageView);
+        mBlurImageView = new WeakReference<>(blurImageView);
         mRenderScript = renderScript;
         mResources = context.getResources();
         // use the existing image as the drawable and if it doesn't exist fallback to transparent
@@ -60,7 +60,6 @@ public class BlurBitmapWorkerTask extends AsyncTask<Bitmap, Void, Bitmap> {
             mFromDrawable = new ColorDrawable(Color.TRANSPARENT);
         }
     }
-
 
     @Override
     protected Bitmap doInBackground(Bitmap... bitmaps) {
@@ -77,7 +76,6 @@ public class BlurBitmapWorkerTask extends AsyncTask<Bitmap, Void, Bitmap> {
                         inputAlloc.getType());
                 final ScriptIntrinsicBlur script = ScriptIntrinsicBlur.create(mRenderScript,
                         Element.U8_4(mRenderScript));
-
                 script.setRadius(BLUR_RADIUS);
                 script.setInput(inputAlloc);
                 script.forEach(outputAlloc);
@@ -92,7 +90,7 @@ public class BlurBitmapWorkerTask extends AsyncTask<Bitmap, Void, Bitmap> {
 
     @Override
     protected void onPostExecute(Bitmap result) {
-        BlurImageView blurImageView = mBlurScrimImage.get();
+        BlurImageView blurImageView = mBlurImageView.get();
         if (blurImageView != null) {
             if (result == null) {
                 // if we have no image, then signal the transition to the default state
@@ -101,7 +99,7 @@ public class BlurBitmapWorkerTask extends AsyncTask<Bitmap, Void, Bitmap> {
                 if (animate) {
                     blurImageView.setTransitionDrawable(BlurImageWorker.createImageTransitionDrawable(mResources,
                             mFromDrawable, result,
-                            BlurImageWorker.FADE_IN_TIME, false, true));
+                            BlurImageWorker.FADE_IN_TIME));
                 } else {
                     blurImageView.setTransitionDrawable(new BitmapDrawable(mResources, result));
                 }

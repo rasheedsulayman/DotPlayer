@@ -92,7 +92,7 @@ public class ArtworkPagerAdapter extends FragmentStatePagerAdapter {
             GlideApp.with(getContext().getApplicationContext())
                     .load(new AudioCoverImage(currentSong.data))
                     .override(artWorkImageSizeDP, artWorkImageSizeDP)
-                    .placeholder(R.drawable.default_artwork_blur)
+                    .placeholder(getContext().getDrawable( R.drawable.default_artwork_dark))
                     .into(albumArtImageView);
         }
     }
