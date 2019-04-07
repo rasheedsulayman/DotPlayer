@@ -14,10 +14,6 @@ import android.widget.TextView;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.r4sh33d.musicslam.GlideApp;
 import com.r4sh33d.musicslam.R;
-import com.r4sh33d.musicslam.dialogs.SongDetailsDialog;
-import com.r4sh33d.musicslam.utils.MusicUtils;
-import com.r4sh33d.musicslam.utils.NavigationUtil;
-import com.r4sh33d.musicslam.utils.SlamUtils;
 import com.r4sh33d.musicslam.customglide.artist.ArtistImage;
 import com.r4sh33d.musicslam.customglide.audiocover.AudioCoverImage;
 import com.r4sh33d.musicslam.dataloaders.AlbumLoader;
@@ -26,10 +22,14 @@ import com.r4sh33d.musicslam.dataloaders.SongIdsLoader;
 import com.r4sh33d.musicslam.dataloaders.SongLoader;
 import com.r4sh33d.musicslam.dialogs.AddToPlaylistDialog;
 import com.r4sh33d.musicslam.dialogs.DeleteSongsDialog;
-import com.r4sh33d.musicslam.playback.MusicPlayer;
+import com.r4sh33d.musicslam.dialogs.SongDetailsDialog;
 import com.r4sh33d.musicslam.models.Album;
 import com.r4sh33d.musicslam.models.Artist;
 import com.r4sh33d.musicslam.models.Song;
+import com.r4sh33d.musicslam.playback.MusicPlayer;
+import com.r4sh33d.musicslam.utils.MusicUtils;
+import com.r4sh33d.musicslam.utils.NavigationUtil;
+import com.r4sh33d.musicslam.utils.SlamUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -150,6 +150,7 @@ public class SearchResultsAdapter extends RecyclerView.Adapter<RecyclerView.View
             super(itemView);
             ButterKnife.bind(this, itemView);
             itemView.setOnClickListener(this);
+            artistArtImageView.setClipToOutline(true);
             setUpPopUpMenu();
         }
 
@@ -174,7 +175,6 @@ public class SearchResultsAdapter extends RecyclerView.Adapter<RecyclerView.View
             return SongIdsLoader.getSongIdsListForArtist(context, ((Artist) resultList.get(getAdapterPosition())).id);
         }
 
-
         private void setUpPopUpMenu() {
             popupMenuImageView.setOnClickListener(v -> {
                 android.widget.PopupMenu popUpmenu = new android.widget.PopupMenu(context, v);
@@ -191,7 +191,6 @@ public class SearchResultsAdapter extends RecyclerView.Adapter<RecyclerView.View
                             DeleteSongsDialog.newInstance(getSongIdsForArtist(), artist.name)
                                     .show(((AppCompatActivity) context).getSupportFragmentManager(), DeleteSongsDialog.DELETE_FRAG_TAG);
                             break;
-
                         case R.id.menu_song_add_to_playlist:
                             AddToPlaylistDialog.newInstance(getSongIdsForArtist())
                                     .show(((AppCompatActivity) context).getSupportFragmentManager(),
@@ -200,7 +199,6 @@ public class SearchResultsAdapter extends RecyclerView.Adapter<RecyclerView.View
                         case R.id.menu_song_add_to_queue:
                             MusicPlayer.addToQueue(context, getSongsForArtist());
                             break;
-
                         case R.id.menu_rename:
                             //TODO comeback and rename
                             break;
@@ -234,6 +232,7 @@ public class SearchResultsAdapter extends RecyclerView.Adapter<RecyclerView.View
             super(itemView);
             ButterKnife.bind(this, itemView);
             itemView.setOnClickListener(this);
+            albumArtImageView.setClipToOutline(true);
             setUpPopUpMenu();
         }
 
@@ -294,7 +293,7 @@ public class SearchResultsAdapter extends RecyclerView.Adapter<RecyclerView.View
                             break;
                         case R.id.menu_song_details:
                             SongDetailsDialog.newInstance(song)
-                                    .show(((AppCompatActivity)context).getSupportFragmentManager(),
+                                    .show(((AppCompatActivity) context).getSupportFragmentManager(),
                                             SongDetailsDialog.SONG_DETAILS_DIALOG);
                             break;
                     }
@@ -320,6 +319,7 @@ public class SearchResultsAdapter extends RecyclerView.Adapter<RecyclerView.View
             super(itemView);
             ButterKnife.bind(this, itemView);
             itemView.setOnClickListener(this);
+            albumArtImageView.setClipToOutline(true);
             setUpPopUpMenu();
         }
 

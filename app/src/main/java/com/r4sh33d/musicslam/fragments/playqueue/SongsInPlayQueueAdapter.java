@@ -104,6 +104,7 @@ public class SongsInPlayQueueAdapter extends RecyclerView.Adapter<SongsInPlayQue
             super(itemView);
             ButterKnife.bind(this, itemView);
             itemView.setOnClickListener(this);
+            albumArtImageView.setClipToOutline(true);
             setUpPopUpMenu();
             dragHandleImageView.setOnTouchListener((v, event) -> {
                 if (event.getActionMasked() == MotionEvent.ACTION_DOWN) {

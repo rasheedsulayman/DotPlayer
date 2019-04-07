@@ -322,7 +322,7 @@ public class NowplayingFragment extends BaseListenerFragment implements
                 .asBitmap()
                 .load(audioCoverImage)
                 .transition(BitmapTransitionOptions.withCrossFade())
-                .placeholder(getContext().getDrawable(R.drawable.def))
+                .placeholder(getContext().getDrawable(R.drawable.default_artwork))
                 .into(bcAlbumart);
     }
 

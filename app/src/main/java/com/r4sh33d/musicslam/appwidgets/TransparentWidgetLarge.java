@@ -5,6 +5,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -17,6 +18,7 @@ import com.r4sh33d.musicslam.R;
 import com.r4sh33d.musicslam.activities.MainActivity;
 import com.r4sh33d.musicslam.customglide.audiocover.AudioCoverImage;
 import com.r4sh33d.musicslam.playback.MusicService;
+import com.r4sh33d.musicslam.utils.SlamUtils;
 
 import static com.r4sh33d.musicslam.playback.Constants.NEXT_ACTION;
 import static com.r4sh33d.musicslam.playback.Constants.PREVIOUS_ACTION;
@@ -79,7 +81,8 @@ public class TransparentWidgetLarge extends BaseAppWidget {
                             if (bitmap != null) {
                                 remoteViews.setImageViewBitmap(R.id.album_art, bitmap);
                             } else {
-                                remoteViews.setImageViewResource(R.id.album_art, R.drawable.default_artwork);
+
+                                remoteViews.setImageViewResource(R.id.album_art,R.drawable.default_artwork_dark);
                             }
                             pushUpdate(service, appWidgetIds, remoteViews);
                         }

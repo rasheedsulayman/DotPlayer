@@ -108,14 +108,15 @@ public class NotificationHelper {
                             super.onLoadFailed(errorDrawable);
                             //TODO make sure the placeholder you're passing here is small.
                             //BitmapFactory.decodeResource() can be expensive
-                            updateNotification(BitmapFactory.decodeResource(service.getResources(),
-                                    R.drawable.ic_action_playback_schuffle));
+                            /*updateNotification(BitmapFactory.decodeResource(service.getResources(),
+                                    R.drawable.default_artwork_dark));*/
                         }
 
                         void updateNotification(Bitmap bitmap) {
                             if (isNotificationCancelled) {
                                 return;
                             }
+
                             notificationBuilder.setLargeIcon(bitmap);
                             postNotification(notificationBuilder.build());
                         }

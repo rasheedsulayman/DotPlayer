@@ -27,10 +27,6 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-/**
- * Created by r4sh33d on 4/30/17.
- */
-
 public class GeneresListAdapter extends RecyclerView.Adapter<GeneresListAdapter.MyHolder> implements
         FastScrollerAdapter {
     private Context context;
@@ -46,7 +42,6 @@ public class GeneresListAdapter extends RecyclerView.Adapter<GeneresListAdapter.
         notifyDataSetChanged();
     }
 
-
     @Override
     public MyHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.item_list_two_line_no_image_big_margin, parent, false);
@@ -57,7 +52,7 @@ public class GeneresListAdapter extends RecyclerView.Adapter<GeneresListAdapter.
     public void onBindViewHolder(MyHolder holder, int position) {
         Genres genres = genresArrayList.get(position);
         holder.genresNameTextView.setText(genres.name);
-        holder.songCountTextView.setText(String.valueOf(genres.songCount) + " Songs");
+        holder.songCountTextView.setText(String.format("%d Songs", genres.songCount));
     }
 
     @Override
@@ -124,7 +119,7 @@ public class GeneresListAdapter extends RecyclerView.Adapter<GeneresListAdapter.
                             break;
 
                         case R.id.menu_rename:
-                            //TODO comeback and rename
+                            //TODO rename
                             break;
                     }
                     return true;

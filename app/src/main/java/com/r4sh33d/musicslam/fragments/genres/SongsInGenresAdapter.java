@@ -105,6 +105,7 @@ public class SongsInGenresAdapter extends RecyclerView.Adapter<SongsInGenresAdap
             super(itemView);
             ButterKnife.bind(this, itemView);
             itemView.setOnClickListener(this);
+            albumArtImageView.setClipToOutline(true);
             setUpPopUpMenu();
 
         }

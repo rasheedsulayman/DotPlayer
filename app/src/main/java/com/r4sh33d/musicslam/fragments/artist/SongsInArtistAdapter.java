@@ -107,6 +107,7 @@ public class SongsInArtistAdapter extends RecyclerView.Adapter<SongsInArtistAdap
             super(itemView);
             ButterKnife.bind(this, itemView);
             itemView.setOnClickListener(this);
+            albumArtImageView.setClipToOutline(true);
             setUpPopUpMenu();
         }
 

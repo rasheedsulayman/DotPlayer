@@ -5,6 +5,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -86,7 +87,9 @@ public class TransparentWidgetSmall extends BaseAppWidget {
                             if (bitmap != null) {
                                 remoteViews.setImageViewBitmap(R.id.album_art, bitmap);
                             } else {
-                                remoteViews.setImageViewResource(R.id.album_art, R.drawable.default_artwork);
+
+                                remoteViews.setImageViewResource(R.id.album_art,
+                                        R.drawable.default_artwork_dark);
                             }
                             pushUpdate(service, appWidgetIds, remoteViews);
                         }
