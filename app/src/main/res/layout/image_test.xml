@@ -5,7 +5,7 @@
 
 
     <ImageView
-        android:src="@drawable/ic_music_note_black_24dp"
+        android:src="@drawable/ic_music_note_24dp"
         android:background="#FFF0F0F0"
         android:layout_gravity="center"
         android:layout_width="250dp"

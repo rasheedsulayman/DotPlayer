@@ -6,7 +6,7 @@
         </shape>
     </item>
     <item
-        android:drawable="@drawable/ic_music_note_black_24dp"
+        android:drawable="@drawable/ic_music_note_24dp"
         android:bottom="30dp"
         android:left="30dp"
         android:right="30dp"
