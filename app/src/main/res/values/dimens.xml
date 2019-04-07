@@ -1,6 +1,5 @@
 <resources>
     <!-- Default screen margins, per the Android Design guidelines. -->
-    <dimen name="detail_backdrop_height">250dp</dimen>
 
     <dimen name="now_playing_album_art_size">300dp</dimen>
 

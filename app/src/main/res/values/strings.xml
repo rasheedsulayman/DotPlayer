@@ -8,8 +8,6 @@
 
     <string name="durationformatshort" translatable="false"><xliff:g id="format">%2$d:%3$02d</xliff:g></string>
     <string name="durationformatlong" translatable="false"><xliff:g id="format">%1$d:%2$02d:%3$02d</xliff:g></string>
-    <string name="duration_format"><xliff:g id="hours">%1$s</xliff:g> <xliff:g id="minutes">%2$s</xliff:g></string>
-    <string name="error_playing_track">Unable to play track %1$s</string>
 
     <string name="enqueue">Enqueue</string>
     <string name="go_to_album">Go to Album</string>
@@ -29,8 +27,6 @@
     <string name="color_accent">Color Accent</string>
     <string name="search">Search</string>
     <string name="pause">Pause</string>
-
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <string-array name="themes_titles">
         <item>Light Theme</item>

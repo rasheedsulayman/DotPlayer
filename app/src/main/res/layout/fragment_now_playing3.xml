@@ -2,7 +2,6 @@
 
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/layout_root_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -25,7 +24,6 @@
         android:orientation="vertical">
 
         <FrameLayout
-            android:id="@+id/toolbar_quick_control_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:tag=":aesthetic_ignore">
@@ -45,7 +43,6 @@
         </FrameLayout>
 
         <FrameLayout
-            android:id="@+id/pager_container"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="18">
@@ -60,7 +57,6 @@
         </FrameLayout>
 
         <LinearLayout
-            android:id="@+id/menu_linear_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
@@ -156,7 +152,6 @@
             android:layout_weight="1" />
 
         <LinearLayout
-            android:id="@+id/progress_linear_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
@@ -204,7 +199,6 @@
             android:layout_weight="1" />
 
         <LinearLayout
-            android:id="@+id/playback_action_linear_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
