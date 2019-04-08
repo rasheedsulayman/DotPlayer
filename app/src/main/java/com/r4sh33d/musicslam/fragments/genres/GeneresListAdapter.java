@@ -44,7 +44,8 @@ public class GeneresListAdapter extends RecyclerView.Adapter<GeneresListAdapter.
 
     @Override
     public MyHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.item_list_two_line_no_image_big_margin, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.item_list_two_line_no_image_big_margin,
+                parent, false);
         return new MyHolder(view);
     }
 

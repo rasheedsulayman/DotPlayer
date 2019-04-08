@@ -35,10 +35,8 @@ public class SongsInArtistAdapter extends RecyclerView.Adapter<SongsInArtistAdap
 
     private List<Song> songsInArtistArrayList;
     private Context context;
-    private Artist artist;
 
-    public SongsInArtistAdapter(ArrayList<Song> songsInArtistArrayList, Context context, Artist artist) {
-        this.artist = artist;
+    public SongsInArtistAdapter(ArrayList<Song> songsInArtistArrayList, Context context) {
         this.songsInArtistArrayList = songsInArtistArrayList;
         this.context = context;
     }
@@ -58,21 +56,9 @@ public class SongsInArtistAdapter extends RecyclerView.Adapter<SongsInArtistAdap
         holder.songDuration.setText(MusicUtils.makeShortTimeString(context, tempSong.duration / 1000));
         GlideApp.with(context)
                 .load(new AudioCoverImage(tempSong.data))
-                .placeholder(context.getDrawable(R.drawable.default_artwork))
+                .placeholder(context.getDrawable(R.drawable.default_artwork_small))
                 .transition(DrawableTransitionOptions.withCrossFade())
                 .into(holder.albumArtImageView);
-    }
-
-
-    public long[] getSongIds() {
-        if (songsInArtistArrayList != null) {
-            long[] ret = new long[getItemCount()];
-            for (int i = 0; i < songsInArtistArrayList.size(); i++) {
-                ret[i] = songsInArtistArrayList.get(i).id;
-            }
-            return ret;
-        }
-        return null;
     }
 
     public List<Song> getData(){

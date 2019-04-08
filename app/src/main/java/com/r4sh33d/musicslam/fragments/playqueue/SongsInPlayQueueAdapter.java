@@ -57,7 +57,7 @@ public class SongsInPlayQueueAdapter extends RecyclerView.Adapter<SongsInPlayQue
         holder.songTitleTextView.setText(localSong.title);
         GlideApp.with(context)
                 .load(new AudioCoverImage(localSong.data))
-                .placeholder(context.getDrawable(R.drawable.default_artwork))
+                .placeholder(context.getDrawable(R.drawable.default_artwork_small))
                 .transition(DrawableTransitionOptions.withCrossFade())
                 .into(holder.albumArtImageView);
     }

@@ -16,7 +16,7 @@
         android:orientation="vertical">
 
         <com.r4sh33d.musicslam.customviews.WidthFitSquareImageView
-            android:src="@drawable/default_artwork"
+            android:src="@drawable/default_artwork_large"
             android:id="@+id/album_art"
             android:layout_width="match_parent"
             android:layout_height="0dp"

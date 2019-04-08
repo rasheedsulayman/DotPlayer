@@ -12,8 +12,8 @@ import android.view.ViewGroup;
 
 import com.r4sh33d.musicslam.GlideApp;
 import com.r4sh33d.musicslam.R;
-import com.r4sh33d.musicslam.customviews.SquareImageView;
 import com.r4sh33d.musicslam.customglide.audiocover.AudioCoverImage;
+import com.r4sh33d.musicslam.customviews.SquareImageView;
 import com.r4sh33d.musicslam.models.Song;
 
 import java.util.List;
@@ -92,7 +92,7 @@ public class ArtworkPagerAdapter extends FragmentStatePagerAdapter {
             GlideApp.with(getContext().getApplicationContext())
                     .load(new AudioCoverImage(currentSong.data))
                     .override(artWorkImageSizeDP, artWorkImageSizeDP)
-                    .placeholder(getContext().getDrawable( R.drawable.default_artwork_dark))
+                    .placeholder(getContext().getDrawable(R.drawable.default_artwork_dark))
                     .into(albumArtImageView);
         }
     }

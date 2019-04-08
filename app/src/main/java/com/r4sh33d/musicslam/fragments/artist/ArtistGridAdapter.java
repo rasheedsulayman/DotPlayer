@@ -63,7 +63,7 @@ public class ArtistGridAdapter extends RecyclerView.Adapter<ArtistGridAdapter.My
         GlideApp.with(context)
                 .load(new ArtistImage(artist.name))
                 .transition(DrawableTransitionOptions.withCrossFade(100))
-                .placeholder(context.getDrawable(R.drawable.default_artwork))
+                .placeholder(context.getDrawable(R.drawable.default_artwork_large))
                 .into(holder.albumArtImageView);
     }
 

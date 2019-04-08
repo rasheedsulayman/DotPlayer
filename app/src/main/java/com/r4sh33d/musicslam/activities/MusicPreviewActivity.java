@@ -148,7 +148,7 @@ public class MusicPreviewActivity extends MusicEventsListenerActivity implements
         GlideApp.with(this)
                 .load(new AudioCoverImage(song.data))
                 .transition(DrawableTransitionOptions.withCrossFade(100))
-                .error(getDrawable(R.drawable.default_artwork))
+                .error(getDrawable(R.drawable.default_artwork_small))
                 .into(albumArtImageView);
     }
 

@@ -60,7 +60,7 @@ public class SongsInArtistFragment extends BaseListenerFragment implements
 
     private void setUpPageDetails() {
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        mSongsInArtistAdapter = new SongsInArtistAdapter(new ArrayList<>(), getActivity(), mArtist);
+        mSongsInArtistAdapter = new SongsInArtistAdapter(new ArrayList<>(), getActivity());
         recyclerView.setAdapter(mSongsInArtistAdapter);
     }
 

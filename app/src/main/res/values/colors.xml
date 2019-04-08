@@ -26,47 +26,6 @@
     <color name="black_theme_windows_bg">#000000</color>
     <color name="white_theme_windows_bg">#FFFFFFFF</color>
 
-
-    <!-- ....................... . .  aesthetics color  . . .............................. -->
-
-    <!-- google's material design colours from
-    http://www.google.com/design/spec/style/color.html#color-ui-color-palette -->
-
-    <!--reds-->
-
-    <!-- pinks -->
-
-    <!-- purples -->
-
-    <!-- deep purples -->
-
-    <!-- indigo -->
-
-    <!--blue-->
-
-    <!-- light blue-->
-
-    <!-- cyan -->
-
-    <!-- teal -->
-
-    <!-- green -->
-
-    <!--light green-->
-
-    <!-- lime-->
-
-    <!--yellow -->
-
-    <!--amber-->
-
-    <!--orange-->
-
-    <!--deep orange-->
-
-    <!--brown -->
-
-    <!--grey-->
     <color name="md_white_1000">#ffffff</color>
 
     <!--blue grey-->
@@ -74,6 +33,6 @@
     <!--F321B3-->
     <color name="bg_white_shade">#27ffffff</color>
     <color name="album_art_bg_color_dark">#444444</color>
-    <color name="album_art_bg_color_light">#FFF0F0F0</color>
+    <color name="album_art_bg_color_light">#F0F0F0</color>
 
 </resources>

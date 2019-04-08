@@ -16,7 +16,7 @@
 
         <ImageView
             android:background="@drawable/round_stroke_small_radius_background"
-            android:src="@drawable/default_artwork"
+            android:src="@drawable/default_artwork_small"
             android:id="@+id/album_art"
             android:layout_width="56dp"
             android:layout_height="56dp" />

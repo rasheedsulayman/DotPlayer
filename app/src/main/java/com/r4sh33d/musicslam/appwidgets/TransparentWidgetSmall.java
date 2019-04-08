@@ -89,7 +89,7 @@ public class TransparentWidgetSmall extends BaseAppWidget {
                             } else {
 
                                 remoteViews.setImageViewResource(R.id.album_art,
-                                        R.drawable.default_artwork_dark);
+                                        R.drawable.default_artwork_dark_small);
                             }
                             pushUpdate(service, appWidgetIds, remoteViews);
                         }

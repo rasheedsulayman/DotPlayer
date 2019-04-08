@@ -8,7 +8,8 @@
         <item name="android:windowBackground">@color/dark_theme_windows_bg</item>
         <item name="android:colorBackground">@color/dark_theme_windows_bg</item>
         <item name="md_background_color">@color/dark_theme_windows_bg</item>
-        <item name="emptyAlbumArtBg">@color/album_art_bg_color_dark</item>
+        <item name="emptyAlbumArtResource">@drawable/default_artwork_dark</item>
+        <item name="emptyAlbumArtSmallResource">@drawable/default_artwork_dark_small</item>
         <item name="slidingUpQuickControlBg">@color/dark_theme_windows_bg</item>
     </style>
 
@@ -23,7 +24,8 @@
         <item name="android:popupMenuStyle">@style/WhiteBackgroundPopupMenu</item>
         <item name="android:windowBackground">@color/white_theme_windows_bg</item>
         <item name="android:colorBackground">@color/white_theme_windows_bg</item>
-        <item name="emptyAlbumArtBg">@color/album_art_bg_color_light</item>
+        <item name="emptyAlbumArtResource">@drawable/default_artwork_light</item>
+        <item name="emptyAlbumArtSmallResource">@drawable/default_artwork_light_small</item>
         <item name="slidingUpQuickControlBg">@color/white_theme_windows_bg</item>
     </style>
 
@@ -47,7 +49,8 @@
         <item name="android:textColorSecondary">@color/secondary_text_dark</item>
         <item name="android:windowFullscreen">true</item>
         <item name="md_dark_theme">false</item>
-        <item name="emptyAlbumArtBg">@color/album_art_bg_color_dark</item>
+        <item name="emptyAlbumArtResource">@drawable/default_artwork_dark</item>
+        <item name="emptyAlbumArtSmallResource">@drawable/default_artwork_dark_small</item>
         <item name="slidingUpQuickControlBg">@color/bg_white_shade</item>
     </style>
 

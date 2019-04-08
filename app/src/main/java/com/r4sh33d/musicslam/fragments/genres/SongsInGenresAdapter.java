@@ -54,7 +54,7 @@ public class SongsInGenresAdapter extends RecyclerView.Adapter<SongsInGenresAdap
         holder.songArtistTextView.setText(tempSong.artistName);
         GlideApp.with(context)
                 .load(new AudioCoverImage( tempSong.data))
-                .placeholder(context.getDrawable(R.drawable.default_artwork))
+                .placeholder(context.getDrawable(R.drawable.default_artwork_small))
                 .transition(DrawableTransitionOptions.withCrossFade())
                 .into(holder.albumArtImageView);
     }
@@ -79,12 +79,6 @@ public class SongsInGenresAdapter extends RecyclerView.Adapter<SongsInGenresAdap
         return songsInGenresArrayList.size();
     }
 
-   /* @NonNull
-    @Override
-    public String getSectionName(int position) {
-        return songsInGenresArrayList.get(position).title.toUpperCase().substring(0, 1);
-    }
-*/
     public void updateData(List<Song> data) {
         this.songsInGenresArrayList = data;
         notifyDataSetChanged();
