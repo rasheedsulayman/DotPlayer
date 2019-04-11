@@ -12,10 +12,6 @@ import com.r4sh33d.musicslam.utils.PrefsUtils;
 import com.r4sh33d.musicslam.activities.MainActivity;
 import com.r4sh33d.musicslam.interfaces.PaletteListener;
 
-/**
- * We don't want to overcrowd our fragments with callbacks
- */
-
 public abstract class BaseListenerFragment extends Fragment implements MusicStateListener, PaletteListener {
     protected MainActivity mActivity;
     public boolean isAlbumArtTheme;

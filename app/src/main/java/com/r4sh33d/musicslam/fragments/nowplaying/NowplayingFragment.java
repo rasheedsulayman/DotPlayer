@@ -52,7 +52,6 @@ import butterknife.OnClick;
 import butterknife.Unbinder;
 import io.reactivex.disposables.Disposable;
 
-
 public class NowplayingFragment extends BaseListenerFragment implements
         Toolbar.OnMenuItemClickListener, SlidingPanelEventsListener, PaletteListener,
         ProgressUpdateHelper.OnProgressUpdateListener {
@@ -99,8 +98,6 @@ public class NowplayingFragment extends BaseListenerFragment implements
 
     @BindView(R.id.open_equalizer)
     ImageView menuEqualizer;
-
-    //---------------------------------------------------------------------------------
 
     @BindView(R.id.npc_album_art)
     ImageView bcAlbumart;

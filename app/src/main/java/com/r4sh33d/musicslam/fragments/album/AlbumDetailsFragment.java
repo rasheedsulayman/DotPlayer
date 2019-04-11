@@ -173,12 +173,13 @@ public class AlbumDetailsFragment extends AbsParallaxArtworkDetailsFragment
     public void loadAlbumArt() {
         GlideApp.with(this).asBitmap()
                 .load(new AudioCoverImage(mAlbum.firstSongPath))
-                .error(R.drawable.ic_music_note_24dp)
                 .transition(BitmapTransitionOptions.withCrossFade(150))
                 .into(new BitmapImageViewTarget(albumArt) {
                     @Override
                     public void onLoadFailed(@Nullable Drawable errorDrawable) {
                         super.onLoadFailed(errorDrawable);
+                        albumArt.setScaleType(ImageView.ScaleType.CENTER);
+                        albumArt.setImageResource(R.drawable.ic_music_note_24dp);
                         fadeInViews();
                     }
 

@@ -106,8 +106,6 @@ public class NotificationHelper {
                         @Override
                         public void onLoadFailed(@Nullable Drawable errorDrawable) {
                             super.onLoadFailed(errorDrawable);
-                            //TODO make sure the placeholder you're passing here is small.
-                            //BitmapFactory.decodeResource() can be expensive
                             updateNotification(BitmapFactory.decodeResource(service.getResources(),
                                     R.drawable.default_artwork_dark_small));
                         }
@@ -116,7 +114,6 @@ public class NotificationHelper {
                             if (isNotificationCancelled) {
                                 return;
                             }
-
                             notificationBuilder.setLargeIcon(bitmap);
                             postNotification(notificationBuilder.build());
                         }

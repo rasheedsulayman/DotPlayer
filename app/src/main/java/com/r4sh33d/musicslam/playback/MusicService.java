@@ -63,7 +63,7 @@ import java.util.List;
 
 import timber.log.Timber;
 
-//TODO rewrite the background playing pattern. Too many hacky solutions..
+//TODO rewrite the background playing service. Too many hacky solutions..
 //TODO use only one Background Thread Handler.
 //TODO remove unnecessary asyncxxx - methods
 
@@ -75,7 +75,6 @@ public class MusicService extends Service {
     private final IBinder mBinder = new MusicBinder();
 
     private static final String TAG = "MusicPlaybackService";
-    private static final boolean D = true;
 
     private static final int IDLE_DELAY = 5 * 60 * 1000;
     private static final long REWIND_INSTEAD_PREVIOUS_THRESHOLD = 3000;
@@ -133,7 +132,6 @@ public class MusicService extends Service {
 
     @Override
     public IBinder onBind(final Intent intent) {
-        if (D) Log.d(TAG, "Service bound, intent = " + intent);
         cancelShutdown();
         mServiceInUse = true;
         return mBinder;
@@ -141,7 +139,6 @@ public class MusicService extends Service {
 
     @Override
     public boolean onUnbind(final Intent intent) {
-        if (D) Log.d(TAG, "Service unbound");
         mServiceInUse = false;
         saveQueue(true);
         if (mReadGranted) {
@@ -303,7 +300,6 @@ public class MusicService extends Service {
             return;
         }
 
-        if (D) Log.d(TAG, "Nothing is playing anymore, releasing notification");
         notificationHelper.cancelNotification();
         mAudioManager.abandonAudioFocus(mAudioFocusListener);
         mediaSessionCompat.setActive(false);
@@ -522,7 +518,6 @@ public class MusicService extends Service {
     }
 
     private void scheduleDelayedShutdown() {
-        if (D) Log.v(TAG, "Scheduling shutdown in " + IDLE_DELAY + " ms");
         if (!mReadGranted) {
             return;
         }
@@ -532,7 +527,6 @@ public class MusicService extends Service {
     }
 
     private void cancelShutdown() {
-        if (D) Log.d(TAG, "Cancelling delayed shutdown, scheduled = " + mShutdownScheduled);
         if (mShutdownScheduled) {
             mAlarmManager.cancel(mShutdownIntent);
             mShutdownScheduled = false;
@@ -540,7 +534,6 @@ public class MusicService extends Service {
     }
 
     private void stop(final boolean goToIdle) {
-        if (D) Log.d(TAG, "Stopping playback, goToIdle = " + goToIdle);
         if (mPlayer.isInitialized()) {
             mPlayer.stop();
         }
@@ -850,7 +843,6 @@ public class MusicService extends Service {
     }
 
     public boolean openFile(final String path) {
-        if (D) Log.d(TAG, "openFile: path = " + path);
         synchronized (this) {
             if (path == null) {
                 return false;
@@ -1169,7 +1161,6 @@ public class MusicService extends Service {
 
     public void pause() {
         if (mPlayerHandler == null) return;
-        if (D) Log.d(TAG, "Pausing playback");
         synchronized (this) {
             mPlayerHandler.removeMessages(Constants.FADEUP);
             if (mIsSupposedToBePlaying) {
@@ -1234,7 +1225,6 @@ public class MusicService extends Service {
                     (position() < REWIND_INSTEAD_PREVIOUS_THRESHOLD || forcePrevious);
 
             if (goPrevious) {
-                if (D) Log.d(TAG, "Going to previous track");
                 int pos = getPreviousPlayPosition(true);
                 // if we have no more previous tracks, quit
                 if (pos < 0) {
@@ -1247,7 +1237,6 @@ public class MusicService extends Service {
                 play(false);
                 notifyChange(Constants.META_CHANGED);
             } else {
-                if (D) Log.d(TAG, "Going to beginning of track");
                 seek(0);
                 play(false);
             }
@@ -1381,7 +1370,7 @@ public class MusicService extends Service {
     }
 
     private void addToPlayList(final List<Song> list, int position) {
-        synchronized (this){
+        synchronized (this) {
             if (position < 0) {
                 playingQueue.clear();
                 playingQueueBackup.clear();
@@ -1541,7 +1530,6 @@ public class MusicService extends Service {
                         }
                         break;
                     case Constants.FOCUSCHANGE:
-                        if (D) Log.d(TAG, "Received audio focus change event " + msg.arg1);
                         switch (msg.arg1) {
                             case AudioManager.AUDIOFOCUS_LOSS:
                             case AudioManager.AUDIOFOCUS_LOSS_TRANSIENT:

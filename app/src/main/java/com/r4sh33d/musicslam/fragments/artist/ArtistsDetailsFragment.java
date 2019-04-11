@@ -125,11 +125,12 @@ public class ArtistsDetailsFragment extends AbsParallaxArtworkDetailsFragment {
                 .load(new ArtistImage(mArtist.name))
                 .transition(BitmapTransitionOptions.withCrossFade(150))
                 .fitCenter()
-                .error(R.drawable.ic_music_note_24dp)
                 .into(new BitmapImageViewTarget(artistArt) {
                     @Override
                     public void onLoadFailed(@Nullable Drawable errorDrawable) {
                         super.onLoadFailed(errorDrawable);
+                        artistArt.setScaleType(ImageView.ScaleType.CENTER);
+                        artistArt.setImageResource(R.drawable.ic_music_note_24dp);
                         fadeInViews();
                     }
 

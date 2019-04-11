@@ -21,6 +21,6 @@ public enum SmartPlaylistType {
                 return type;
             }
         }
-        return null; // if null , it's not a smart place :: Yeah , you're right
+        return null;
     }
 }

@@ -36,7 +36,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
     public static final String PREF_THEME_VALUE_BlACK = "black";
     public static final String PREF_THEME_VALUE_BLUE = "blue";
 
-    SwitchPreferenceCompat albumArtPrefrence;
+    SwitchPreferenceCompat albumArtPreference;
     ListPreference themesListPreference, startPageListPreference;
     boolean isAlbumArtTheme;
 
@@ -48,12 +48,12 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         addPreferencesFromResource(R.xml.preferences);
-        albumArtPrefrence = (SwitchPreferenceCompat) findPreference(PREF_KEY_ALBUM_ART_THEME);
+        albumArtPreference = (SwitchPreferenceCompat) findPreference(PREF_KEY_ALBUM_ART_THEME);
         prefsUtils = PrefsUtils.getInstance(getContext());
         isAlbumArtTheme = prefsUtils.isAlbumArtTheme();
-        albumArtPrefrence.setChecked(isAlbumArtTheme);
+        albumArtPreference.setChecked(isAlbumArtTheme);
         themesListPreference = (ListPreference) findPreference(PREF_KEY_THEME);
-        themesListPreference.setEnabled(!isAlbumArtTheme);
+       // themesListPreference.setEnabled(!isAlbumArtTheme);
         startPageListPreference = (ListPreference) findPreference(PREF_KEY_START_PAGE);
         startPageListPreference.setSummary(startPageListPreference.getEntry());
         prepareColorPreferenceClickListeners();
@@ -95,26 +95,26 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
             return true;
         });
 
-        albumArtPrefrence.setOnPreferenceClickListener(preference -> {
-            if (albumArtPrefrence.isChecked()) {
+        albumArtPreference.setOnPreferenceClickListener(preference -> {
+            if (albumArtPreference.isChecked()) {
                 //noinspection ConstantConditions
                 new MaterialDialog.Builder(getContext())
-                        .title("Enable Albumart theme?")
+                        .title("Enable Album art theme?")
                         .content("This theme is experimental but usable!.\n" +
                                 "You need to have correct artworks for greater visual experience")
                         .positiveText("Okay")
                         .negativeText("Cancel")
                         .onPositive((dialog, which) -> {
                             prefsUtils.setCurrentTheme(PrefsUtils.ThemesTypes.AlbumArtTheme);
-                            albumArtPrefrence.setChecked(true);
+                            albumArtPreference.setChecked(true);
                             startActivity(NavigationUtil.getAppRestartIntent(getContext()));
                         })
-                        .onNegative((dialog, which) -> albumArtPrefrence.setChecked(false))
-                        .dismissListener(dialog -> albumArtPrefrence.setChecked(false))
+                        .onNegative((dialog, which) -> albumArtPreference.setChecked(false))
+                        .dismissListener(dialog -> albumArtPreference.setChecked(false))
                         .show();
             } else {
                 prefsUtils.setCurrentTheme(getThemeType(themesListPreference.getValue()));
-                albumArtPrefrence.setChecked(false);
+                albumArtPreference.setChecked(false);
                 startActivity(NavigationUtil.getAppRestartIntent(getContext()));
             }
             return true;
@@ -123,6 +123,48 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
         Preference equalizerPreference = findPreference(PREF_KEY_EQUALIZER);
         equalizerPreference.setOnPreferenceClickListener(preference -> {
             NavigationUtil.openEqualizer(getActivity(), NavigationUtil.OPEN_EQUALIZER_REQUEST);
+            return true;
+        });
+
+        themesListPreference.setOnPreferenceChangeListener((preference, newValue) -> {
+            if (isAlbumArtTheme) {
+                new MaterialDialog.Builder(getContext())
+                        .title("Disable Album art theme")
+                        .content("You are currently using the album art theme. You need to disable it to continue.")
+                        .show();
+                return false;
+            }
+            switch ((String) newValue) {
+                case PREF_THEME_VALUE_WHITE:
+                    Aesthetic.get()
+                            .activityTheme(R.style.AppThemeLight)
+                            .isDark(false)
+                            .apply();
+                    prefsUtils.setCurrentTheme(PrefsUtils.ThemesTypes.LightTheme);
+                    break;
+                case PREF_THEME_VALUE_DARK:
+                    Aesthetic.get()
+                            .activityTheme(R.style.AppThemeDark)
+                            .isDark(true)
+                            .apply();
+                    prefsUtils.setCurrentTheme(PrefsUtils.ThemesTypes.DarkTheme);
+                    //We just enabled the dark theme
+                    break;
+                case PREF_THEME_VALUE_BlACK:
+                    Aesthetic.get()
+                            .activityTheme(R.style.AppThemeBlack)
+                            .isDark(true)
+                            .apply();
+                    prefsUtils.setCurrentTheme(PrefsUtils.ThemesTypes.BlackTheme);
+                    break;
+                case PREF_THEME_VALUE_BLUE:
+                    Aesthetic.get()
+                            .activityTheme(R.style.AppThemeBlue)
+                            .isDark(true)
+                            .apply();
+                    prefsUtils.setCurrentTheme(PrefsUtils.ThemesTypes.BlueTheme);
+                    break;
+            }
             return true;
         });
     }
@@ -145,39 +187,6 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         switch (key) {
-            case PREF_KEY_THEME:
-                switch (themesListPreference.getValue()) {
-                    case PREF_THEME_VALUE_WHITE:
-                        Aesthetic.get()
-                                .activityTheme(R.style.AppThemeLight)
-                                .isDark(false)
-                                .apply();
-                        prefsUtils.setCurrentTheme(PrefsUtils.ThemesTypes.LightTheme);
-                        break;
-                    case PREF_THEME_VALUE_DARK:
-                        Aesthetic.get()
-                                .activityTheme(R.style.AppThemeDark)
-                                .isDark(true)
-                                .apply();
-                        prefsUtils.setCurrentTheme(PrefsUtils.ThemesTypes.DarkTheme);
-                        //We just enabled the dark theme
-                        break;
-                    case PREF_THEME_VALUE_BlACK:
-                        Aesthetic.get()
-                                .activityTheme(R.style.AppThemeBlack)
-                                .isDark(true)
-                                .apply();
-                        prefsUtils.setCurrentTheme(PrefsUtils.ThemesTypes.BlackTheme);
-                        break;
-                    case PREF_THEME_VALUE_BLUE:
-                        Aesthetic.get()
-                                .activityTheme(R.style.AppThemeBlue)
-                                .isDark(true)
-                                .apply();
-                        prefsUtils.setCurrentTheme(PrefsUtils.ThemesTypes.BlueTheme);
-                        break;
-                }
-                break;
             case PREF_KEY_START_PAGE:
                 startPageListPreference.setSummary(startPageListPreference.getEntry());
                 break;

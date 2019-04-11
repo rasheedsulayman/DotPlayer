@@ -8,11 +8,13 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.DecelerateInterpolator;
 
 import com.r4sh33d.musicslam.R;
 import com.r4sh33d.musicslam.fragments.BaseListenerFragment;
 import com.r4sh33d.musicslam.playback.MusicPlayer;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 
 import butterknife.BindView;
@@ -45,6 +47,19 @@ public class ArtworkPagerFragment extends BaseListenerFragment implements ViewPa
         viewPager.setOffscreenPageLimit(2);
         viewPager.addOnPageChangeListener(this);
         viewPager.setCurrentItem(MusicPlayer.getQueuePosition());
+        setUpScroller();
+    }
+
+    void setUpScroller(){
+        try {
+            Field mScroller;
+            mScroller = ViewPager.class.getDeclaredField("mScroller");
+            mScroller.setAccessible(true);
+            FixedSpeedScroller scroller = new FixedSpeedScroller(viewPager.getContext(), new DecelerateInterpolator());
+            // scroller.setFixedDuration(5000);
+            mScroller.set(viewPager, scroller);
+        } catch (NoSuchFieldException | IllegalArgumentException | IllegalAccessException ignored) {
+        }
     }
 
     @Override

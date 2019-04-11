@@ -47,10 +47,10 @@
                 android:maxLines="1"
                 android:textSize="13sp"
                 tools:text="Kendrick Lamar" />
-
         </LinearLayout>
 
         <com.r4sh33d.musicslam.customviews.BlackAndWhiteImageView
+            android:background="@drawable/circular_ripple"
             android:id="@+id/overflow_menu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
