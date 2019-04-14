@@ -107,7 +107,7 @@ public class SlamUtils {
         }
     }
 
-    public static void showViews(View... views) {
+    public static void showViews (View... views) {
         for (View view : views) {
             view.setVisibility(View.VISIBLE);
         }

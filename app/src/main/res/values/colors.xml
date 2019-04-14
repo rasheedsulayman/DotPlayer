@@ -21,7 +21,6 @@
     <color name="secondary_text_white">#8a000000</color>
 
     <color name="blue_theme_windows_bg">#151E29</color>
-    <!--<color name="dark_theme_windows_bg">#ff303030</color>-->
     <color name="dark_theme_windows_bg">#212121</color>
     <color name="black_theme_windows_bg">#000000</color>
     <color name="white_theme_windows_bg">#FFFFFFFF</color>

@@ -2,7 +2,6 @@ package com.r4sh33d.musicslam.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,19 +9,20 @@ import android.webkit.WebView;
 import android.widget.TextView;
 
 import com.afollestad.aesthetic.Aesthetic;
+import com.afollestad.aesthetic.AestheticActivity;
 import com.afollestad.aesthetic.Util;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.r4sh33d.musicslam.BuildConfig;
 import com.r4sh33d.musicslam.R;
-import com.r4sh33d.musicslam.fragments.settings.SettingsFragment;
 import com.r4sh33d.musicslam.utils.NavigationUtil;
+import com.r4sh33d.musicslam.utils.PrefsUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import io.reactivex.disposables.Disposable;
 
-public class AboutActivity extends AppCompatActivity {
+public class AboutActivity extends AestheticActivity {
     @BindView(R.id.toolbar)
     Toolbar toolbar;
     @BindView(R.id.status_bar_view)
@@ -30,6 +30,9 @@ public class AboutActivity extends AppCompatActivity {
     Disposable colorPrimarySubscription;
     @BindView(R.id.version_textview)
     TextView versionNameTextView;
+    @BindView(R.id.app_name)
+    TextView appNameTextView;
+    PrefsUtils prefsUtils;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,9 +43,7 @@ public class AboutActivity extends AppCompatActivity {
         versionNameTextView.setText(String.format("Version %s", BuildConfig.VERSION_NAME));
         toolbar.setNavigationIcon(R.drawable.ic_arrow_white_24dp);
         toolbar.setNavigationOnClickListener(v -> finish());
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.main_content, new SettingsFragment())
-                .commit();
+        prefsUtils = PrefsUtils.getInstance(this);
         colorPrimarySubscription = Aesthetic.get()
                 .colorPrimary()
                 .subscribe((Integer color) -> {
@@ -66,8 +67,9 @@ public class AboutActivity extends AppCompatActivity {
     @OnClick(R.id.licences_button)
     public void onClickLicencesButton() {
         WebView view = (WebView) LayoutInflater.from(this).inflate(R.layout.licences_dialog, null);
-        view.loadUrl("file:///android_asset/notices.html");
+        view.loadUrl(prefsUtils.isDarkTheme() ? "file:///android_asset/notices_dark.html" : "file:///android_asset/notices.html");
         new MaterialDialog.Builder(this)
+                .title("Licences")
                 .customView(view, false)
                 .positiveText("Okay")
                 .show();

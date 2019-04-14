@@ -68,7 +68,6 @@ public class ArtworkPagerFragment extends BaseListenerFragment implements ViewPa
 
     @Override
     public void onQueueChanged() {
-        Timber.d("Update Queue length: " + MusicPlayer.getNowPlayingQueue().size());
         updatePlayQueue();
     }
 

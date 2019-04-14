@@ -16,6 +16,8 @@ import com.r4sh33d.musicslam.R;
 import com.r4sh33d.musicslam.utils.NavigationUtil;
 import com.r4sh33d.musicslam.utils.PrefsUtils;
 
+import static com.r4sh33d.musicslam.utils.PrefsUtils.*;
+
 public class SettingsFragment extends PreferenceFragmentCompat implements
         SharedPreferences.OnSharedPreferenceChangeListener, ColorChooserDialog.ColorCallback {
     ColorChooserDialog primaryColorChooserDialog, accentColorChooserDialog;
@@ -50,7 +52,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         addPreferencesFromResource(R.xml.preferences);
         albumArtPreference = (SwitchPreferenceCompat) findPreference(PREF_KEY_ALBUM_ART_THEME);
-        prefsUtils = PrefsUtils.getInstance(getContext());
+        prefsUtils = getInstance(getContext());
         isAlbumArtTheme = prefsUtils.isAlbumArtTheme();
         albumArtPreference.setChecked(isAlbumArtTheme);
         themesListPreference = (ListPreference) findPreference(PREF_KEY_THEME);
@@ -105,7 +107,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
                         .positiveText("Okay")
                         .negativeText("Cancel")
                         .onPositive((dialog, which) -> {
-                            prefsUtils.setCurrentTheme(PrefsUtils.ThemesTypes.AlbumArtTheme);
+                            prefsUtils.setCurrentTheme(ThemesTypes.AlbumArtTheme);
                             albumArtPreference.setChecked(true);
                             startActivity(NavigationUtil.getAppRestartIntent(getContext()));
                         })
@@ -141,14 +143,14 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
                             .activityTheme(R.style.AppThemeLight)
                             .isDark(false)
                             .apply();
-                    prefsUtils.setCurrentTheme(PrefsUtils.ThemesTypes.LightTheme);
+                    prefsUtils.setCurrentTheme(ThemesTypes.LightTheme);
                     break;
                 case PREF_THEME_VALUE_DARK:
                     Aesthetic.get()
                             .activityTheme(R.style.AppThemeDark)
                             .isDark(true)
                             .apply();
-                    prefsUtils.setCurrentTheme(PrefsUtils.ThemesTypes.DarkTheme);
+                    prefsUtils.setCurrentTheme(ThemesTypes.DarkTheme);
                     //We just enabled the dark theme
                     break;
                 case PREF_THEME_VALUE_BlACK:
@@ -156,20 +158,20 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
                             .activityTheme(R.style.AppThemeBlack)
                             .isDark(true)
                             .apply();
-                    prefsUtils.setCurrentTheme(PrefsUtils.ThemesTypes.BlackTheme);
+                    prefsUtils.setCurrentTheme(ThemesTypes.BlackTheme);
                     break;
                 case PREF_THEME_VALUE_BLUE:
                     Aesthetic.get()
                             .activityTheme(R.style.AppThemeBlue)
                             .isDark(true)
                             .apply();
-                    prefsUtils.setCurrentTheme(PrefsUtils.ThemesTypes.BlueTheme);
+                    prefsUtils.setCurrentTheme(ThemesTypes.BlueTheme);
                     break;
             }
             return true;
         });
 
-        Preference appInfoPreference = findPreference(PREF_KEY_COLOR_ACCENT);
+        Preference appInfoPreference = findPreference(PREF_KEY_APP_INFO);
         appInfoPreference.setOnPreferenceClickListener(preference -> {
             NavigationUtil.navigateToAboutPage(getContext());
             return true;
@@ -216,15 +218,15 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
     public static int getThemeType(String themeValue) {
         switch (themeValue) {
             case PREF_THEME_VALUE_WHITE:
-                return PrefsUtils.ThemesTypes.LightTheme;
+                return ThemesTypes.LightTheme;
             case PREF_THEME_VALUE_DARK:
-                return PrefsUtils.ThemesTypes.DarkTheme;
+                return ThemesTypes.DarkTheme;
             case PREF_THEME_VALUE_BlACK:
-                return PrefsUtils.ThemesTypes.BlackTheme;
+                return ThemesTypes.BlackTheme;
             case PREF_THEME_VALUE_BLUE:
-                return PrefsUtils.ThemesTypes.BlueTheme;
+                return ThemesTypes.BlueTheme;
         }
-        return PrefsUtils.ThemesTypes.LightTheme;
+        return ThemesTypes.LightTheme;
     }
 
     @Override

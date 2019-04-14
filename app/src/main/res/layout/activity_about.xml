@@ -49,33 +49,38 @@
             android:orientation="vertical">
 
             <ImageView
+                android:tag=":aesthetic_ignore"
                 android:layout_width="120dp"
                 android:layout_height="120dp"
                 android:layout_gravity="center"
-                android:layout_marginTop="50dp"
-                android:src="@mipmap/ic_launcher" />
+                android:layout_marginTop="35dp"
+                android:src="@drawable/launcher_icon" />
 
-            <TextView
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/app_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="16dp"
+                android:tag=":aesthetic_ignore"
+                android:textAppearance="@style/AppTheme.TextAppearance.Title"
                 android:text="Music Slam Music Player"
-                android:textAppearance="@style/AppTheme.TextAppearance.Title" />
+                android:textColor="?android:textColorPrimary"/>
 
             <TextView
+                android:tag=":aesthetic_ignore"
                 android:id="@+id/version_textview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="16dp"
                 tools:text="Version 1.2.1 Debug" />
 
             <Button
+                android:tag=":aesthetic_ignore"
                 android:id="@+id/send_feedback_button"
                 android:layout_marginRight="20dp"
                 android:layout_marginLeft="20dp"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="30dp"
                 android:textColor="@android:color/white"
                 android:text= "Send Feedback"
                 android:background="@drawable/roundedbutton"
@@ -83,6 +88,7 @@
                 android:layout_height="wrap_content"/>
 
             <Button
+                android:tag=":aesthetic_ignore"
                 android:id="@+id/licences_button"
                 android:layout_marginRight="20dp"
                 android:layout_marginLeft="20dp"
@@ -94,6 +100,7 @@
                 android:layout_height="wrap_content"/>
 
             <Button
+                android:tag=":aesthetic_ignore"
                 android:id="@+id/rate_on_playstore_button"
                 android:layout_marginRight="20dp"
                 android:layout_marginLeft="20dp"
