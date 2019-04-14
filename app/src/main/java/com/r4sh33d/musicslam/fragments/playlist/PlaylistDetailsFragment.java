@@ -1,7 +1,5 @@
 package com.r4sh33d.musicslam.fragments.playlist;
 
-
-import android.animation.Animator;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -26,17 +24,17 @@ import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.r4sh33d.musicslam.GlideApp;
 import com.r4sh33d.musicslam.R;
-import com.r4sh33d.musicslam.utils.AnimationUtils;
-import com.r4sh33d.musicslam.utils.MusicUtils;
-import com.r4sh33d.musicslam.utils.SlamUtils;
-import com.r4sh33d.musicslam.fragments.AbsParallaxArtworkDetailsFragment;
 import com.r4sh33d.musicslam.customglide.audiocover.AudioCoverImage;
 import com.r4sh33d.musicslam.dataloaders.SongIdsLoader;
 import com.r4sh33d.musicslam.dataloaders.SongLoader;
 import com.r4sh33d.musicslam.dialogs.AddToPlaylistDialog;
-import com.r4sh33d.musicslam.playback.MusicPlayer;
+import com.r4sh33d.musicslam.fragments.AbsParallaxArtworkDetailsFragment;
 import com.r4sh33d.musicslam.models.Playlist;
 import com.r4sh33d.musicslam.models.Song;
+import com.r4sh33d.musicslam.playback.MusicPlayer;
+import com.r4sh33d.musicslam.utils.AnimationUtils;
+import com.r4sh33d.musicslam.utils.MusicUtils;
+import com.r4sh33d.musicslam.utils.SlamUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,7 +42,6 @@ import java.util.Random;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import timber.log.Timber;
 
 public class PlaylistDetailsFragment extends AbsParallaxArtworkDetailsFragment
         implements LoaderManager.LoaderCallbacks<List<Song>> {

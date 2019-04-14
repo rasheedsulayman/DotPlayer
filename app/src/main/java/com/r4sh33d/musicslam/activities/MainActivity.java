@@ -147,6 +147,9 @@ public class MainActivity extends ThemedSlidingPanelActivity implements
                 new SleepTimerDialog()
                         .show(getSupportFragmentManager(), SleepTimerDialog.SLEEP_DIALOG_ARG);
                 return true;
+            case R.id.menu_about:
+                NavigationUtil.navigateToAboutPage(this);
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }

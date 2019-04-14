@@ -28,6 +28,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
     public static final String PREF_KEY_AUTO_DONWLOAD_ARTWORK = "pref_key_auto_donwload";
     public static final String PREF_KEY_DOWNLOAD_ON_WIFI_ONLY = "pref_key_download_via_wifi_only";
     public static final String PREF_KEY_START_PAGE = "pref_key_start_page";
+    public static final String PREF_KEY_APP_INFO = "pref_key_app_info";
 
     public static final String PREF_KEY_EQUALIZER = "pref_key_equalizer";
 
@@ -53,7 +54,6 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
         isAlbumArtTheme = prefsUtils.isAlbumArtTheme();
         albumArtPreference.setChecked(isAlbumArtTheme);
         themesListPreference = (ListPreference) findPreference(PREF_KEY_THEME);
-       // themesListPreference.setEnabled(!isAlbumArtTheme);
         startPageListPreference = (ListPreference) findPreference(PREF_KEY_START_PAGE);
         startPageListPreference.setSummary(startPageListPreference.getEntry());
         prepareColorPreferenceClickListeners();
@@ -131,6 +131,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
                 new MaterialDialog.Builder(getContext())
                         .title("Disable Album art theme")
                         .content("You are currently using the album art theme. You need to disable it to continue.")
+                        .positiveText("Okay")
                         .show();
                 return false;
             }
@@ -165,6 +166,12 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
                     prefsUtils.setCurrentTheme(PrefsUtils.ThemesTypes.BlueTheme);
                     break;
             }
+            return true;
+        });
+
+        Preference appInfoPreference = findPreference(PREF_KEY_COLOR_ACCENT);
+        appInfoPreference.setOnPreferenceClickListener(preference -> {
+            NavigationUtil.navigateToAboutPage(getContext());
             return true;
         });
     }
@@ -222,5 +229,6 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
 
     @Override
     public void onColorChooserDismissed(@NonNull ColorChooserDialog dialog) {
+
     }
 }

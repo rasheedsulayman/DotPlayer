@@ -6,20 +6,15 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <!-- Used to keep the service running when the phone sleeps -->
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <!-- The main service uses a sticky broadcast -->
-    <uses-permission android:name="android.permission.BROADCAST_STICKY" />
-    <!-- Lower or raise the music based on the phone state -->
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <!-- Used to set the devices's ringtone -->
-    <uses-permission android:name="android.permission.WRITE_SETTINGS"
-        tools:ignore="ProtectedPermissions" />
-    <!-- Used to create launcher shortcuts -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /> <!-- Used to keep the service running when the phone sleeps -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" /> <!-- The main service uses a sticky broadcast -->
+    <uses-permission android:name="android.permission.BROADCAST_STICKY" /> <!-- Lower or raise the music based on the phone state -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" /> <!-- Used to set the devices's ringtone -->
+    <uses-permission
+        android:name="android.permission.WRITE_SETTINGS"
+        tools:ignore="ProtectedPermissions" /> <!-- Used to create launcher shortcuts -->
     <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
-
 
     <application
         android:name=".MusicSlamApplication"
@@ -29,6 +24,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppThemeLight"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".activities.AboutActivity"></activity>
 
         <provider
             android:name="android.support.v4.content.FileProvider"
@@ -41,22 +37,24 @@
         </provider>
 
         <activity
-            android:screenOrientation="portrait"
             android:name=".activities.MainActivity"
-            android:launchMode="singleTop">
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
+
                 <action android:name="android.intent.action.MUSIC_PLAYER" />
+
                 <category android:name="android.intent.category.APP_MUSIC" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".activities.MusicPreviewActivity"
-            android:launchMode="singleTask"
             android:excludeFromRecents="true"
+            android:launchMode="singleTask"
             android:taskAffinity=""
             android:theme="@style/MusicPreviewTheme">
             <intent-filter>
@@ -83,8 +81,6 @@
             </intent-filter>
         </activity>
 
-
-
         <service android:name=".playback.MusicService">
             <intent-filter>
                 <action android:name="android.intent.action.MEDIA_BUTTON" />
@@ -97,34 +93,39 @@
             </intent-filter>
         </receiver>
 
-
         <activity android:name=".activities.SettingsActivity" />
 
-
-        <receiver android:name=".appwidgets.TransparentWidgetLarge"
+        <receiver
+            android:name=".appwidgets.TransparentWidgetLarge"
             android:label="Transparent Widget">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
-            <meta-data android:name="android.appwidget.provider"
+
+            <meta-data
+                android:name="android.appwidget.provider"
                 android:resource="@xml/transparent_widget_large_info" />
         </receiver>
-
-        <receiver android:name=".appwidgets.TransparentWidgetSmall"
+        <receiver
+            android:name=".appwidgets.TransparentWidgetSmall"
             android:label="Small Widget">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
-            <meta-data android:name="android.appwidget.provider"
+
+            <meta-data
+                android:name="android.appwidget.provider"
                 android:resource="@xml/transparent_widget_small_info" />
         </receiver>
-
-        <receiver android:name=".appwidgets.WhiteWidgetLargeWidgetLarge"
-            android:label="White Widget" >
+        <receiver
+            android:name=".appwidgets.WhiteWidgetLargeWidgetLarge"
+            android:label="White Widget">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
-            <meta-data android:name="android.appwidget.provider"
+
+            <meta-data
+                android:name="android.appwidget.provider"
                 android:resource="@xml/white_widget_large_info" />
         </receiver>
 
@@ -135,6 +136,5 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
     </application>
-
 
 </manifest>

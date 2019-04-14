@@ -6,6 +6,7 @@ import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.media.audiofx.AudioEffect;
+import android.net.Uri;
 import android.os.Build;
 import android.support.transition.Transition;
 import android.support.transition.TransitionInflater;
@@ -16,18 +17,19 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.r4sh33d.musicslam.R;
+import com.r4sh33d.musicslam.activities.AboutActivity;
 import com.r4sh33d.musicslam.activities.MainActivity;
-import com.r4sh33d.musicslam.playback.MusicPlayer;
-import com.r4sh33d.musicslam.fragments.playqueue.PlayQueueFragment;
 import com.r4sh33d.musicslam.fragments.album.AlbumDetailsFragment;
 import com.r4sh33d.musicslam.fragments.artist.ArtistsDetailsFragment;
 import com.r4sh33d.musicslam.fragments.genres.GenresDetailsFragment;
 import com.r4sh33d.musicslam.fragments.playlist.PlaylistDetailsFragment;
+import com.r4sh33d.musicslam.fragments.playqueue.PlayQueueFragment;
 import com.r4sh33d.musicslam.fragments.search.SearchFragment;
 import com.r4sh33d.musicslam.models.Album;
 import com.r4sh33d.musicslam.models.Artist;
 import com.r4sh33d.musicslam.models.Genres;
 import com.r4sh33d.musicslam.models.Playlist;
+import com.r4sh33d.musicslam.playback.MusicPlayer;
 
 public class NavigationUtil {
 
@@ -136,10 +138,36 @@ public class NavigationUtil {
     }
 
 
-    public  static Intent getAppRestartIntent(Context context) {
+    public static Intent getAppRestartIntent(Context context) {
         Intent intent = new Intent(context, MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK |
                 Intent.FLAG_ACTIVITY_NO_ANIMATION);
         return intent;
+    }
+
+    public static void launchPlayStore(Context context) {
+        Uri uri = Uri.parse("market://details?id=" + context.getPackageName());
+        Intent goToMarket = new Intent(Intent.ACTION_VIEW, uri);
+        goToMarket.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY |
+                Intent.FLAG_ACTIVITY_NEW_DOCUMENT |
+                Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
+        try {
+            context.startActivity(goToMarket);
+        } catch (ActivityNotFoundException e) {
+            context.startActivity(new Intent(Intent.ACTION_VIEW,
+                    Uri.parse("http://play.google.com/store/apps/details?id=" + context.getPackageName())));
+        }
+    }
+
+    public static Intent getFeedbackEmailIntent() {
+        Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
+                "mailto", "sulaymanraheed@gmail.com", null));
+        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Music Slam Feedback");
+        emailIntent.putExtra(Intent.EXTRA_TEXT, "");
+        return emailIntent;
+    }
+
+    public static void navigateToAboutPage(Context context) {
+        context.startActivity(new Intent(context, AboutActivity.class));
     }
 }

@@ -56,7 +56,6 @@ public class ArtworkPagerFragment extends BaseListenerFragment implements ViewPa
             mScroller = ViewPager.class.getDeclaredField("mScroller");
             mScroller.setAccessible(true);
             FixedSpeedScroller scroller = new FixedSpeedScroller(viewPager.getContext(), new DecelerateInterpolator());
-            // scroller.setFixedDuration(5000);
             mScroller.set(viewPager, scroller);
         } catch (NoSuchFieldException | IllegalArgumentException | IllegalAccessException ignored) {
         }
@@ -115,6 +114,5 @@ public class ArtworkPagerFragment extends BaseListenerFragment implements ViewPa
 
     @Override
     public void onPageScrollStateChanged(int state) {
-
     }
 }
