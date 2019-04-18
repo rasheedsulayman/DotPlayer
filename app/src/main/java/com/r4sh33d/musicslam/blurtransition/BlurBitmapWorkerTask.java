@@ -63,6 +63,9 @@ public class BlurBitmapWorkerTask extends AsyncTask<Bitmap, Void, Bitmap> {
 
     @Override
     protected Bitmap doInBackground(Bitmap... bitmaps) {
+        if (isCancelled()) {
+            return null;
+        }
         Bitmap bitmap = bitmaps[0];
         Bitmap output;
 
@@ -82,8 +85,9 @@ public class BlurBitmapWorkerTask extends AsyncTask<Bitmap, Void, Bitmap> {
                 outputAlloc.copyTo(output);
                 input = output;
             }
-
-            return output;
+            if (!isCancelled()) {
+                return output;
+            }
         }
         return null;
     }
@@ -91,18 +95,13 @@ public class BlurBitmapWorkerTask extends AsyncTask<Bitmap, Void, Bitmap> {
     @Override
     protected void onPostExecute(Bitmap result) {
         BlurImageView blurImageView = mBlurImageView.get();
-        if (blurImageView != null) {
-            if (result == null) {
-                // if we have no image, then signal the transition to the default state
-                blurImageView.transitionToDefaultState(animate);
+        if (blurImageView != null && result != null) {
+            if (animate) {
+                blurImageView.setTransitionDrawable(BlurImageWorker.createImageTransitionDrawable(mResources,
+                        mFromDrawable, result,
+                        BlurImageWorker.FADE_IN_TIME));
             } else {
-                if (animate) {
-                    blurImageView.setTransitionDrawable(BlurImageWorker.createImageTransitionDrawable(mResources,
-                            mFromDrawable, result,
-                            BlurImageWorker.FADE_IN_TIME));
-                } else {
-                    blurImageView.setTransitionDrawable(new BitmapDrawable(mResources, result));
-                }
+                blurImageView.setTransitionDrawable(new BitmapDrawable(mResources, result));
             }
         }
     }

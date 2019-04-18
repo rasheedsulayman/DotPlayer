@@ -5,6 +5,7 @@ import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 
 import java.lang.ref.WeakReference;
 
@@ -38,6 +39,7 @@ class MultiPlayer implements MediaPlayer.OnErrorListener,
      *             you want to play
      */
     public void setDataSource(final String path) {
+        mIsInitialized = false;
         mIsInitialized = setDataSourceImpl(mCurrentMediaPlayer, path);
         if (mIsInitialized) {
             setNextDataSource(null);
@@ -134,7 +136,6 @@ class MultiPlayer implements MediaPlayer.OnErrorListener,
 
     public void stop() {
         mCurrentMediaPlayer.reset();
-        //    mSrtManager.reset();
         mIsInitialized = false;
     }
 
@@ -147,7 +148,6 @@ class MultiPlayer implements MediaPlayer.OnErrorListener,
      */
     public void pause() {
         mCurrentMediaPlayer.pause();
-        //mSrtManager.pause();
     }
 
     /**
@@ -219,6 +219,7 @@ class MultiPlayer implements MediaPlayer.OnErrorListener,
      */
     @Override
     public boolean onError(final MediaPlayer mp, final int what, final int extra) {
+        Log.e("MediaPlayer","Slam - Error what: " + what);
         switch (what) {
             case MediaPlayer.MEDIA_ERROR_SERVER_DIED:
                 final MusicService service = mService.get();
@@ -242,8 +243,10 @@ class MultiPlayer implements MediaPlayer.OnErrorListener,
     @Override
     public void onCompletion(final MediaPlayer mp) {
         if (mp == mCurrentMediaPlayer && mNextMediaPlayer != null) {
+            mIsInitialized = false;
             mCurrentMediaPlayer.release();
             mCurrentMediaPlayer = mNextMediaPlayer;
+            mIsInitialized = true;
             mNextMediaPath = null;
             mNextMediaPlayer = null;
             mHandler.sendEmptyMessage(TRACK_WENT_TO_NEXT);

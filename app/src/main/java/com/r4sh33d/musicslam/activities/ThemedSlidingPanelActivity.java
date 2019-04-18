@@ -54,14 +54,12 @@ public abstract class ThemedSlidingPanelActivity extends MusicEventsListenerActi
     @Override
     public void onMetaChanged() {
         super.onMetaChanged();
-        Timber.d("OnMetacanged");
         loadAlbumArtAndExtractPalette();
     }
 
     @Override
     public void onServiceConnected() {
         super.onServiceConnected();
-        Timber.d("OnService connected");
         loadAlbumArtAndExtractPalette();
     }
 

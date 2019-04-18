@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -95,6 +96,7 @@ public class ArtworkPagerFragment extends BaseListenerFragment implements ViewPa
 
     @Override
     public void onMetaChanged() {
+        Log.d("MusicService", "Adapter - onMetaChanged: " + MusicPlayer.getQueuePosition());
         viewPager.setCurrentItem(MusicPlayer.getQueuePosition());
     }
 
@@ -106,6 +108,7 @@ public class ArtworkPagerFragment extends BaseListenerFragment implements ViewPa
 
     @Override
     public void onPageSelected(int position) {
+        Log.d("MusicService", "Adapter - onPageSelected: " + position);
         if (MusicPlayer.getQueuePosition() != position) {
             MusicPlayer.playSongAt(position);
         }

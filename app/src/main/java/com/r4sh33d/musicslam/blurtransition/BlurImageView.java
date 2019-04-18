@@ -3,12 +3,12 @@ package com.r4sh33d.musicslam.blurtransition;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 
+import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.r4sh33d.musicslam.GlideApp;
@@ -66,7 +66,7 @@ public class BlurImageView extends android.support.v7.widget.AppCompatImageView 
         Drawable drawable = getContext().getDrawable(R.drawable.default_artwork_blur);
 
         if (animate) {
-            drawable = BlurImageWorker.createImageTransitionDrawable(getDrawable(), drawable , BlurImageWorker.FADE_IN_TIME);
+            drawable = BlurImageWorker.createImageTransitionDrawable(getDrawable(), drawable, BlurImageWorker.FADE_IN_TIME);
         }
 
         setTransitionDrawable(drawable);
@@ -98,7 +98,7 @@ public class BlurImageView extends android.support.v7.widget.AppCompatImageView 
 
                     @Override
                     public void onLoadFailed(@Nullable Drawable errorDrawable) {
-                       transitionToDefaultState(isCurrentlyOnScreen);
+                        transitionToDefaultState(isCurrentlyOnScreen);
                     }
                 });
     }

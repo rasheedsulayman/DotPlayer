@@ -299,7 +299,6 @@ public class MusicService extends Service {
                 || mPlayerHandler.hasMessages(Constants.TRACK_ENDED)) {
             return;
         }
-
         notificationHelper.cancelNotification();
         mAudioManager.abandonAudioFocus(mAudioFocusListener);
         mediaSessionCompat.setActive(false);
@@ -537,7 +536,6 @@ public class MusicService extends Service {
         if (mPlayer.isInitialized()) {
             mPlayer.stop();
         }
-
         mFileToPlay = null;
         if (goToIdle) {
             setIsSupposedToBePlaying(false, false);
@@ -630,12 +628,11 @@ public class MusicService extends Service {
     }
 
     private void openCurrentAndMaybeNext(final boolean openNext) {
-        Timber.d("open current and maybe next called");
         synchronized (this) {
             if (playingQueue.size() == 0) {
                 return;
             }
-            stop(false);
+            //stop(false);
             boolean shutdown = false;
 
             while (true) {
@@ -708,7 +705,6 @@ public class MusicService extends Service {
     private boolean isLastTrack() {
         return getQueuePosition() == getPlayingQueue().size() - 1;
     }
-
 
     private void setNextTrack() {
         setNextTrack(getNextPosition(false));
@@ -795,12 +791,10 @@ public class MusicService extends Service {
         return null;
     }
 
-
     private void saveQueue(final boolean full) {
         if (!mQueueIsSaveable || mPreferences == null) {
             return;
         }
-
         final SharedPreferences.Editor editor = mPreferences.edit();
         if (full) {
             mPlaybackStateStore.saveQueues(playingQueue, playingQueueBackup);
@@ -815,7 +809,6 @@ public class MusicService extends Service {
         editor.apply();
     }
 
-
     private String PREF_KEY_PLAY_POSITION = "PREF_KEY_PLAY_POSITION";
     private String PREF_KEY_SEEK_POSITION = "PREF_KEY_SEEK_POSITION";
 
@@ -827,7 +820,6 @@ public class MusicService extends Service {
         if (id != mCardId) {
             return;
         }
-
         ArrayList<Song> savedPlayingQueue = mPlaybackStateStore.getSavedPlayingQueue();
         ArrayList<Song> savedOriginalPlayingQueue = mPlaybackStateStore.getSavedOriginalPlayingQueue();
         final int playPosition = mPreferences.getInt(PREF_KEY_PLAY_POSITION, -1);
@@ -853,7 +845,6 @@ public class MusicService extends Service {
                 mOpenFailedCounter = 0;
                 return true;
             }
-
             String trackName = getTrackName();
             if (TextUtils.isEmpty(trackName)) {
                 trackName = path;
@@ -1004,7 +995,6 @@ public class MusicService extends Service {
                 position = mPlayer.duration();
             }
             long result = mPlayer.seek(position);
-            // notifyChange(POSITION_CHANGED);
             return result;
         }
         return -1;
@@ -1195,7 +1185,6 @@ public class MusicService extends Service {
     public void gotoNext(final boolean force) {
         synchronized (this) {
             if (playingQueue.size() <= 0) {
-
                 scheduleDelayedShutdown();
                 return;
             }
@@ -1208,11 +1197,11 @@ public class MusicService extends Service {
                 setIsSupposedToBePlaying(false, true);
                 return;
             }
-            stop(false);
+           // stop(false);
             setAndRecordPlayPos(pos);
             openCurrentAndNext();
-            play();
             notifyChange(Constants.META_CHANGED);
+            play();
         }
     }
 
@@ -1515,13 +1504,12 @@ public class MusicService extends Service {
                         }
                         break;
                     case Constants.TRACK_WENT_TO_NEXT:
-                        Log.d(TAG, "Track went to next");
                         service.mPlayPos = service.mNextPlayPos;
                         service.notifyChange(Constants.META_CHANGED); // notifiy  that meta has changed.
                         service.setNextTrack(); //set new Next track
                         break;
                     case Constants.TRACK_ENDED:
-                        Log.d(TAG, "Track Ended ");
+                        Timber.d("Track Ended");
                         if (service.mRepeatMode == Constants.REPEAT_CURRENT) {
                             service.seek(0);
                             service.play();
@@ -1579,7 +1567,6 @@ public class MusicService extends Service {
             if (service == null) {
                 return;
             }
-
             synchronized (service) {
                 switch (msg.what) {
                     case Constants.GOTO_NEXT_ASYNC:
@@ -1662,6 +1649,7 @@ public class MusicService extends Service {
     }
 
     public void asyncNext(boolean force) {
+        musicRemotePlayerHandler.removeMessages(Constants.GOTO_NEXT_ASYNC, force);
         musicRemotePlayerHandler.obtainMessage(Constants.GOTO_NEXT_ASYNC, force).sendToTarget();
     }
 

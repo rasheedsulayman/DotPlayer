@@ -82,7 +82,6 @@ public abstract class BaseActivity extends AppCompatActivity {
         }
     }
 
-
     public void openAppSettings() {
         Intent myAppSettings = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
                 Uri.parse("package:" + getPackageName()));
@@ -98,5 +97,4 @@ public abstract class BaseActivity extends AppCompatActivity {
                 View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                         | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
     }
-
 }

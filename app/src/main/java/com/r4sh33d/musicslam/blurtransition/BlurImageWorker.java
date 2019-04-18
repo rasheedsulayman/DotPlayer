@@ -20,16 +20,15 @@ package com.r4sh33d.musicslam.blurtransition;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
-import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.TransitionDrawable;
+import android.view.View;
 
 import com.r4sh33d.musicslam.playback.MusicPlayer;
 import com.r4sh33d.musicslam.utils.RenderScriptHelper;
 
-import java.util.concurrent.RejectedExecutionException;
+import timber.log.Timber;
 
 public class BlurImageWorker {
 
@@ -42,7 +41,7 @@ public class BlurImageWorker {
      *
      * @param resources    Android Resources!
      * @param fromDrawable the drawable to transition from
-     * @param toBitmap       the bitmap to transition to
+     * @param toBitmap     the bitmap to transition to
      * @param fadeTime     the fade time in MS to fade in
      * @return the drawable if created, null otherwise
      */
@@ -104,12 +103,21 @@ public class BlurImageWorker {
         if (blurImageView == null) {
             return;
         }
+        cancelWork(blurImageView);
         final BlurBitmapWorkerTask blurWorkerTask = new BlurBitmapWorkerTask(blurImageView,
                 context, RenderScriptHelper.getRenderScript(context), animate);
-        try {
-            blurWorkerTask.execute(toBitmap);
-        } catch (RejectedExecutionException e) {
-            blurImageView.transitionToDefaultState(animate);
+        blurImageView.setTag(blurWorkerTask);
+        blurWorkerTask.execute(toBitmap);
+    }
+
+    public static void cancelWork(final View image) {
+        Object tag = image.getTag();
+        if (tag instanceof BlurBitmapWorkerTask) {
+            BlurBitmapWorkerTask bitmapWorkerTask = (BlurBitmapWorkerTask) tag;
+            bitmapWorkerTask.cancel(true);
+            Timber.d("Canceled succesfully");
+            // clear out the tag
+            image.setTag(null);
         }
     }
 
