@@ -20,6 +20,7 @@ public class BlurImageView extends android.support.v7.widget.AppCompatImageView 
     private boolean isUsingDefaultBlur;
     private boolean isCurrentlyOnScreen;
     String albumArtKey = "no_key";
+    private SimpleTarget<Bitmap> target;
 
     public BlurImageView(Context context) {
         super(context);
@@ -84,7 +85,10 @@ public class BlurImageView extends android.support.v7.widget.AppCompatImageView 
             return;
         }
         albumArtKey = key;
-        GlideApp.with(getContext().getApplicationContext()).
+        if (target != null) {
+            Glide.with(getContext().getApplicationContext()).clear(target);
+        }
+        target = GlideApp.with(getContext().getApplicationContext()).
                 asBitmap().
                 centerCrop().
                 load(new AudioCoverImage(MusicPlayer.getCurrentSong().data))
