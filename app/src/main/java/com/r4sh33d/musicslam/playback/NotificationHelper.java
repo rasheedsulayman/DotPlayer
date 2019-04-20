@@ -8,8 +8,6 @@ import android.app.PendingIntent;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -20,9 +18,9 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.r4sh33d.musicslam.R;
-import com.r4sh33d.musicslam.utils.SlamUtils;
 import com.r4sh33d.musicslam.activities.MainActivity;
 import com.r4sh33d.musicslam.customglide.audiocover.AudioCoverImage;
+import com.r4sh33d.musicslam.utils.SlamUtils;
 
 import static android.content.Context.NOTIFICATION_SERVICE;
 import static com.r4sh33d.musicslam.playback.Constants.NEXT_ACTION;
@@ -64,7 +62,7 @@ public class NotificationHelper {
                 .setMediaSession(service.getMediasSessionToken())
                 .setShowActionsInCompactView(0, 1, 2);
         Intent nowPlayingIntent = new Intent(service, MainActivity.class);
-               nowPlayingIntent .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        nowPlayingIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
         PendingIntent clickIntent = PendingIntent.getActivity(service, 0, nowPlayingIntent, 0);
         if (mNotificationPostTime == 0) {
@@ -97,19 +95,12 @@ public class NotificationHelper {
             target = Glide.with(service)
                     .asBitmap()
                     .load(new AudioCoverImage(service.getCurrentSongPath()))
+                    .error(Glide.with(service).asBitmap().load(R.drawable.default_artwork_dark_small))
                     .into(new SimpleTarget<Bitmap>(imageSize, imageSize) {
                         @Override
                         public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
                             updateNotification(resource);
                         }
-
-                        @Override
-                        public void onLoadFailed(@Nullable Drawable errorDrawable) {
-                            super.onLoadFailed(errorDrawable);
-                            updateNotification(BitmapFactory.decodeResource(service.getResources(),
-                                    R.drawable.default_artwork_dark_small));
-                        }
-
                         void updateNotification(Bitmap bitmap) {
                             if (isNotificationCancelled) {
                                 return;

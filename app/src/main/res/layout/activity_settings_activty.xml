@@ -30,7 +30,7 @@
                 android:layout_height="?actionBarSize"
                 android:layout_marginLeft="64dp"
                 android:gravity="start|center_vertical"
-                android:text="Settings"
+                android:text="@string/settings"
                 android:textAppearance="@style/AppTheme.TextAppearance.Title"
                 tools:textColor="@color/white" />
 

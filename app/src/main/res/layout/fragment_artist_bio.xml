@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:textSize="18sp"
-            android:text="No data" />
+            android:text="@string/no_data" />
     </FrameLayout>
 
 </android.support.v4.widget.NestedScrollView>

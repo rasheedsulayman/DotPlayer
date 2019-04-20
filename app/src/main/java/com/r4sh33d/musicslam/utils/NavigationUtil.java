@@ -90,7 +90,7 @@ public class NavigationUtil {
         FragmentTransaction transaction = ((AppCompatActivity) context).getSupportFragmentManager().beginTransaction();
         ArtistsDetailsFragment artistsDetailsFragment = ArtistsDetailsFragment.newInstance(artist);
 
-        Transition moveTransition = TransitionInflater.from(context).inflateTransition(R.transition.transition_s);
+        Transition moveTransition = TransitionInflater.from(context).inflateTransition(R.transition.change_image_trans);
         artistsDetailsFragment.setSharedElementEnterTransition(moveTransition);
         artistsDetailsFragment.setSharedElementReturnTransition(moveTransition);
 

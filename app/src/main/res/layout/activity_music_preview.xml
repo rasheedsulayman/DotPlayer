@@ -145,7 +145,7 @@
             android:background="?attr/selectableItemBackground"
             android:padding="4dp"
             android:tag=":aesthetic_ignore"
-            android:text="Open Music Slam"
+            android:text="@string/open_music_slam"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
             android:textColor="?colorAccent"
             android:textStyle="bold" />

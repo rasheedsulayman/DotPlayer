@@ -2,16 +2,16 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
     android:background="?android:colorBackground"
+    android:orientation="vertical"
     android:padding="16dp">
 
     <TextView
-        android:textAppearance="@style/TextAppearance.AppCompat.Title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="Sleep Timer"
+        android:text="@string/sleep_timer"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
         android:textSize="22sp" />
 
     <LinearLayout
@@ -32,7 +32,7 @@
                 android:layout_gravity="center"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:text="Hours"
+                android:text="@string/hours"
                 android:textSize="16sp" />
 
             <EditText
@@ -41,8 +41,7 @@
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:inputType="number"
-                android:text="00"
-                />
+                android:text="00" />
 
         </LinearLayout>
 
@@ -67,7 +66,7 @@
                 android:layout_gravity="center"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:text="Minutes"
+                android:text="@string/minutes"
                 android:textSize="16sp" />
 
             <EditText
@@ -77,8 +76,7 @@
                 android:gravity="center"
                 android:inputType="number"
                 android:maxLength="2"
-                android:text="00"
-             />
+                android:text="00" />
 
         </LinearLayout>
 
@@ -103,7 +101,7 @@
                 android:layout_gravity="center"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:text="Seconds"
+                android:text="@string/seconds"
                 android:textSize="16sp" />
 
             <EditText
@@ -131,7 +129,7 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="16dp"
             android:layout_weight="1"
-            android:text="Reset" />
+            android:text="@string/reset" />
 
         <Button
             android:id="@+id/start_button"
@@ -139,7 +137,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Start" />
+            android:text="@string/start" />
     </LinearLayout>
 
 </LinearLayout>

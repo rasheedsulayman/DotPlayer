@@ -21,5 +21,4 @@ public class SquareImageView extends AppCompatImageView {
     public void requestLayout() {
         forceLayout();
     }
-
 }

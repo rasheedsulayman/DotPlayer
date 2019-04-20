@@ -23,6 +23,6 @@
         android:layout_width="wrap_content"
         android:layout_height="?actionBarSize"
         android:gravity="start|center_vertical"
-        android:text="Music Slam"
+        android:text="@string/music_slam"
         android:textAppearance="@style/AppTheme.TextAppearance.Title" />
 </FrameLayout>

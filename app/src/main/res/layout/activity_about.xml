@@ -30,7 +30,7 @@
                 android:layout_height="?actionBarSize"
                 android:layout_marginLeft="64dp"
                 android:gravity="start|center_vertical"
-                android:text="About"
+                android:text="@string/about"
                 android:textAppearance="@style/AppTheme.TextAppearance.Title"
                 tools:textColor="@color/white" />
 
@@ -64,7 +64,7 @@
                 android:layout_marginTop="16dp"
                 android:tag=":aesthetic_ignore"
                 android:textAppearance="@style/AppTheme.TextAppearance.Title"
-                android:text="Music Slam Music Player"
+                android:text="@string/music_slam_music_player"
                 android:textColor="?android:textColorPrimary"/>
 
             <TextView
@@ -82,7 +82,7 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="30dp"
                 android:textColor="@android:color/white"
-                android:text= "Send Feedback"
+                android:text= "@string/send__feedback"
                 android:background="@drawable/roundedbutton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
@@ -94,7 +94,7 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="16dp"
                 android:textColor="@android:color/white"
-                android:text= "Licences"
+                android:text= "@string/licences"
                 android:background="@drawable/roundedbutton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
@@ -106,7 +106,7 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="16dp"
                 android:textColor="@android:color/white"
-                android:text= "Rate on PlayStore"
+                android:text= "@string/rate_on_playstore"
                 android:background="@drawable/roundedbutton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>

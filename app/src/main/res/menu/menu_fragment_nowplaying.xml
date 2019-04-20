@@ -5,51 +5,51 @@
     <item
         android:id="@+id/menu_playing_queue"
         android:icon="@drawable/ic_ic_playing_list"
-        android:title="playing Queue"
-        app:showAsAction="always" />
+        android:title="@string/playing_queue"
+        app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/menu_add_to_playlist"
-        android:title="Add to playlist"
+        android:title="@string/add_to_playlist"
         app:showAsAction="never" />
 
 
     <item
         android:id="@+id/menu_sleep_timer"
-        android:title="Sleep timer"
+        android:title="@string/sleep_timer"
         app:showAsAction="never" />
 
 
     <item
         android:id="@+id/menu_song_info"
-        android:title="Song info"
+        android:title="@string/song_info"
         app:showAsAction="never" />
 
     <item
         android:id="@+id/menu_save_queue"
-        android:title="Save queue"
+        android:title="@string/save_queue"
         app:showAsAction="never" />
 
     <item
         android:id="@+id/menu_clear_queue"
         android:icon="@drawable/ic_timer_white_24dp"
-        android:title="Clear queue"
+        android:title="@string/clear_queue"
         app:showAsAction="never" />
 
     <item
         android:id="@+id/menu_song_share"
         android:icon="@drawable/ic_timer_white_24dp"
-        android:title="Share"
+        android:title="@string/share"
         app:showAsAction="never" />
 
     <item
         android:id="@+id/menu_song_delete"
         android:icon="@drawable/ic_timer_white_24dp"
-        android:title="Delete"
+        android:title="@string/delete"
         app:showAsAction="never" />
 
     <item android:id="@+id/settings"
-        android:title="Settings"
+        android:title="@string/settings"
         app:showAsAction="never"/>
 
 

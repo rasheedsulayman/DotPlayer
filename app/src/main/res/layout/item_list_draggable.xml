@@ -28,8 +28,7 @@
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:background="@drawable/round_stroke_small_radius_background"
-            android:src="@drawable/default_artwork_small"
-            />
+            android:src="@drawable/default_artwork_small" />
 
         <LinearLayout
             android:layout_width="0dp"
@@ -43,8 +42,8 @@
                 android:id="@+id/line_one_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="?android:textColorPrimary"
                 android:maxLines="1"
+                android:textColor="?android:textColorPrimary"
                 android:textSize="15sp"
                 tools:text="Alright" />
 
@@ -52,9 +51,9 @@
                 android:id="@+id/line_two_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="?android:textColorSecondary"
                 android:layout_marginTop="2dp"
                 android:maxLines="1"
+                android:textColor="?android:textColorSecondary"
                 android:textSize="13sp"
                 tools:text="Kendrick Lamar" />
 

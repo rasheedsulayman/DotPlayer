@@ -85,8 +85,6 @@
             android:key="pref_key_app_info"
             android:summary="Licences, Feedback etc"
             android:title="App info" />
-
-
     </android.support.v7.preference.PreferenceCategory>
 
 </android.support.v7.preference.PreferenceScreen>

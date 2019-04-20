@@ -32,10 +32,9 @@
             android:layout_width="52dp"
             android:layout_height="match_parent"
             android:layout_marginRight="4dp"
-            android:scaleType="centerCrop"
             android:background="@drawable/round_stroke_small_radius_background"
-            android:src="@drawable/default_artwork_small"
-            />
+            android:scaleType="centerCrop"
+            android:src="@drawable/default_artwork_small" />
 
 
         <LinearLayout

@@ -6,5 +6,5 @@
         android:icon="@drawable/ic_shuffle_white_24dp"
         app:showAsAction="always"
         android:id="@+id/menu_shuffle_all"
-        android:title="Shuffle" />
+        android:title="@string/shuffle" />
 </menu>

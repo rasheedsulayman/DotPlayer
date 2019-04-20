@@ -19,7 +19,7 @@
 
     <item
         android:id="@+id/menu_song_details"
-        android:title="Details" />
+        android:title="@string/details" />
 
     <item
         android:id="@+id/menu_song_ringtone"

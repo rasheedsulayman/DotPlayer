@@ -6,32 +6,32 @@
         android:enabled="false"
         android:visible="false"
         android:id="@+id/menu_new_playlist"
-        android:title="New Playlist" />
+        android:title="@string/new_playlist" />
 
     <item
         android:id="@+id/action_search"
         android:icon="@drawable/ic_search_white_24dp"
         android:title="@string/search"
-        app:showAsAction="always" />
+        app:showAsAction="ifRoom" />
 
     <item
         android:enabled="false"
         android:visible="false"
         android:id="@+id/menu_shuffle_all"
-        android:title="Shuffle All"
+        android:title="@string/shuffle_all"
         app:showAsAction="never"/>
 
     <item android:id="@+id/menu_sleep_timer"
-        android:title="Sleep timer"
+        android:title="@string/sleep_timer"
         app:showAsAction="never"/>
 
     <item android:id="@+id/settings"
-        android:title="Settings"
+        android:title="@string/settings"
         app:showAsAction="never"/>
 
 
     <item android:id="@+id/menu_about"
-        android:title="About"
+        android:title="@string/about"
         app:showAsAction="never"/>
 
 </menu>

@@ -14,7 +14,7 @@
     <string name="go_to_artist">Go to Artist</string>
     <string name="play">Play</string>
     <string name="add_to_playlist">Add to Playlist</string>
-    <string name="play_next">Play next</string>
+    <string name="play_next">Play Next</string>
     <string name="use_ase_ringtone">Use as Ringtone</string>
     <string name="share">Share</string>
     <string name="dequeue">Dequeue</string>
@@ -31,7 +31,6 @@
     <string name="grant">Grant</string>
     <string name="enable_permission">Enable Permission</string>
     <string name="manual_permission_grant_instruction"><![CDATA[Go to settings -> Permissions to grant access to the storage]]></string>
-    <string name="settings">Settings</string>
     <string name="permission_denied">Permission denied</string>
     <string name="artists">Artists</string>
     <string name="albums">Albums</string>
@@ -73,7 +72,51 @@
     <string name="no_equalizer_found">No Equalizer found on your phone</string>
     <string name="playlist_successfully_removed">Playlist successfully removed</string>
     <string name="share_music">Share Music</string>
-
+    <string name="about">About</string>
+    <string name="music_slam_music_player">Music Slam Music Player</string>
+    <string name="send__feedback">Send Feedback</string>
+    <string name="licences">Licences</string>
+    <string name="rate_on_playstore">Rate on PlayStore</string>
+    <string name="open_music_slam">Open Music Slam</string>
+    <string name="settings">Settings</string>
+    <string name="no_data">No data</string>
+    <string name="sleep_timer">Sleep Timer</string>
+    <string name="hours">Hours</string>
+    <string name="minutes">Minutes</string>
+    <string name="seconds">Seconds</string>
+    <string name="reset">Reset</string>
+    <string name="start">Start</string>
+    <string name="title_colon">Title:</string>
+    <string name="file_path_colon">File path:</string>
+    <string name="artist_colon">Artist:</string>
+    <string name="album_colon">Album:</string>
+    <string name="length_colon">Length:</string>
+    <string name="file_size_colon">File size:</string>
+    <string name="mime_type_colon">MIME Type:</string>
+    <string name="track_no_colon">Track No:</string>
+    <string name="music_slam">Music Slam</string>
+    <string name="music_slam">Music Slam</string>
+    <string name="new_playlist">New Playlist</string>
+    <string name="shuffle_all">Shuffle All</string>
+    <string name="settings">Settings</string>
+    <string name="about">About</string>
+    <string name="playing_queue">Playing Queue</string>
+    <string name="add_to_playlist">Add to Playlist</string>
+    <string name="song_info">Song Info</string>
+    <string name="save_queue">Save Queue</string>
+    <string name="clear_queue">Clear Queue</string>
+    <string name="share">Share</string>
+    <string name="delete">Delete</string>
+    <string name="settings">Settings</string>
+    <string name="search">Search</string>
+    <string name="shuffle">Shuffle</string>
+    <string name="shuffle">Shuffle</string>
+    <string name="play_all">Play All</string>
+    <string name="enqueue">Enqueue</string>
+    <string name="add_to_playlist">Add to Playlist</string>
+    <string name="settings">Settings</string>
+    <string name="details">Details</string>
+    <string name="details">Details</string>
 
     <string-array name="main_pager_tab_titles">
         <item>SONGS</item>
@@ -83,13 +126,11 @@
         <item>PLAYLISTS</item>
     </string-array>
 
-
     <string-array name="artist_details_tab_titles">
         <item>SONGS</item>
         <item>ALBUMS</item>
         <item>BIO</item>
     </string-array>
-
 
     <string-array name="themes_titles">
         <item>Light Theme</item>

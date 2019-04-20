@@ -75,7 +75,7 @@ public class TransparentWidgetLarge extends BaseAppWidget {
                             updateWidget(null);
                         }
 
-                        void updateWidget(Bitmap bitmap) {
+                        void updateWidget(@Nullable Bitmap bitmap) {
                             if (bitmap != null) {
                                 remoteViews.setImageViewBitmap(R.id.album_art, bitmap);
                             } else {
