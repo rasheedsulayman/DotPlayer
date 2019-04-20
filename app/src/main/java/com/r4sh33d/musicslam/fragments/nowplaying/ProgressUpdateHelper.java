@@ -9,9 +9,9 @@ import java.lang.ref.WeakReference;
 
 public class ProgressUpdateHelper extends Handler {
     private static final int UPDATE_PROGRESS_COMMAND = 1;
-    public static final long PAUSED_UPDATE_FREQUENCY = 500;
-    public static final long PLAYING_UPDATE_FREQUENCY = 1000;
-    public static final long MINIMUM_UPDATE_FREQUENCY = 20;
+    private static final long PAUSED_UPDATE_FREQUENCY = 500;
+    private static final long PLAYING_UPDATE_FREQUENCY = 1000;
+    private static final long MINIMUM_UPDATE_FREQUENCY = 20;
 
     private WeakReference<OnProgressUpdateListener> onProgressUpdateListener;
 

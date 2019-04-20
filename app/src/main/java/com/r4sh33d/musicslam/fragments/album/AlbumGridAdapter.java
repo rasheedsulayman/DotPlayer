@@ -60,7 +60,7 @@ public class AlbumGridAdapter extends RecyclerView.Adapter<AlbumGridAdapter.MyVi
         Album album = albumArrayList.get(position);
         holder.albumNameTextView.setText(album.title);
         holder.artistNameTextView.setText(album.artistName);
-        holder.songCountTextView.setText(String.format("(%d)", album.songCount));
+        holder.songCountTextView.setText(String.format(context.getString(R.string.number_in_parentheses_format), album.songCount));
 
         GlideApp.with(context)
                 .load(new AudioCoverImage(album.firstSongPath))

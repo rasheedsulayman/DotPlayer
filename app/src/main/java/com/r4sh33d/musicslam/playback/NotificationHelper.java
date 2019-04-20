@@ -39,7 +39,7 @@ public class NotificationHelper {
     private static final int NOTIFY_MODE_BACKGROUND = 2;
     private SimpleTarget<Bitmap> target;
 
-    private static final String NOTIFICATION_CHANEL_ID = "music_playback_notification";
+    private static final String NOTIFICATION_CHANEL_ID = "music_slam_playback_notification";
     private MusicService service;
     private NotificationManager mNotificationManager;
 
@@ -82,12 +82,12 @@ public class NotificationHelper {
                         .setStyle(style)
                         .setVisibility(android.support.v4.app.NotificationCompat.VISIBILITY_PUBLIC)
                         .addAction(R.drawable.ic_skip_previous_24dp,
-                                "Prev",
+                                service.getString(R.string.prev),
                                 retrievePlaybackAction(PREVIOUS_ACTION))
                         .addAction(playButtonResId, service.getString(playButtonTitleResId),
                                 retrievePlaybackAction(TOGGLEPAUSE_ACTION))
                         .addAction(R.drawable.ic_skip_next_24dp,
-                                "Next",
+                                service.getString(R.string.next),
                                 retrievePlaybackAction(NEXT_ACTION));
         service.runOnUiThread(() -> {
             if (target != null) {
@@ -160,8 +160,8 @@ public class NotificationHelper {
 
     @TargetApi(Build.VERSION_CODES.O)
     private void setUPNotificationChannel() {
-        CharSequence name = "Music Slam Playing Notification";
-        String description = "The playing notification provides shortcut for quick playback actions like pause, play, next etc.";
+        CharSequence name = service.getString(R.string.notification_channel_name);
+        String description = service.getString(R.string.notification_channel_description);
         NotificationChannel channel = new NotificationChannel(NOTIFICATION_CHANEL_ID, name,
                 NotificationManager.IMPORTANCE_LOW);
         channel.setDescription(description);

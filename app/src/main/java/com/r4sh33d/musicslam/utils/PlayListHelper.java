@@ -69,16 +69,9 @@ public class PlayListHelper {
             makeInsertItems(ids, offSet, 1000, base);
             numinserted += resolver.bulkInsert(uri, mContentValuesCache);
         }
-        String song = "song";
-        if (numinserted > 1) {
-            song = song.concat("s");
-        }
-        Toast.makeText(context, numinserted + " " + song + " added to playlist", Toast.LENGTH_SHORT).show();
-
-      /*  final String message = context.getResources().
-                getQuantityString(R.plurals.NNNtrackstoplaylist, numinserted, numinserted);*/
-
-        //Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
+        String message = context.getResources().
+                getQuantityString(R.plurals.n_tracks_were_added_to_playlist, numinserted, numinserted);
+        Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
         playlistChanged();
     }
 
@@ -96,12 +89,11 @@ public class PlayListHelper {
         resolver.delete(uri, MediaStore.Audio.Playlists.Members.AUDIO_ID + " = ? ", new String[]{
                 Long.toString(id)
         });
-        final String message = "Playlist successfully removed";
+        final String message = context.getString(R.string.playlist_successfully_removed);
         Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
         playlistChanged();
     }
 
-    /*  */
     public static void makeInsertItems(final long[] ids, final int offset, int len, final int base) {
         if (offset + len > ids.length) {
             len = ids.length - offset;

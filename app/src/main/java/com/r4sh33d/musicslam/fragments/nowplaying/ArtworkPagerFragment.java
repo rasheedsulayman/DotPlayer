@@ -96,7 +96,6 @@ public class ArtworkPagerFragment extends BaseListenerFragment implements ViewPa
 
     @Override
     public void onMetaChanged() {
-        Log.d("MusicService", "Adapter - onMetaChanged: " + MusicPlayer.getQueuePosition());
         viewPager.setCurrentItem(MusicPlayer.getQueuePosition());
     }
 
@@ -108,7 +107,6 @@ public class ArtworkPagerFragment extends BaseListenerFragment implements ViewPa
 
     @Override
     public void onPageSelected(int position) {
-        Log.d("MusicService", "Adapter - onPageSelected: " + position);
         if (MusicPlayer.getQueuePosition() != position) {
             MusicPlayer.playSongAt(position);
         }

@@ -101,11 +101,10 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
             if (albumArtPreference.isChecked()) {
                 //noinspection ConstantConditions
                 new MaterialDialog.Builder(getContext())
-                        .title("Enable Album art theme?")
-                        .content("This theme is experimental but usable!.\n" +
-                                "You need to have correct artworks for greater visual experience")
-                        .positiveText("Okay")
-                        .negativeText("Cancel")
+                        .title(R.string.enable_album_art_theme)
+                        .content(R.string.enable_album_art_theme_disclaimer_message)
+                        .positiveText(R.string.okay)
+                        .negativeText(R.string.cancel)
                         .onPositive((dialog, which) -> {
                             prefsUtils.setCurrentTheme(ThemesTypes.AlbumArtTheme);
                             albumArtPreference.setChecked(true);
@@ -131,9 +130,9 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
         themesListPreference.setOnPreferenceChangeListener((preference, newValue) -> {
             if (isAlbumArtTheme) {
                 new MaterialDialog.Builder(getContext())
-                        .title("Disable Album art theme")
-                        .content("You are currently using the album art theme. You need to disable it to continue.")
-                        .positiveText("Okay")
+                        .title(R.string.disable_album_art_theme)
+                        .content(R.string.disable_album_art_theme_warning_message)
+                        .positiveText(R.string.okay)
                         .show();
                 return false;
             }

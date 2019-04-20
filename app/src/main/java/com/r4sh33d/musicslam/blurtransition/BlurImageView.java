@@ -38,8 +38,6 @@ public class BlurImageView extends android.support.v7.widget.AppCompatImageView 
     }
 
     void doInitSetup() {
-        Bitmap blurredBitmap = BitmapFactory.decodeResource(getContext().getResources(),
-                R.drawable.default_artwork_blur);
         isCurrentlyOnScreen = true;
         isUsingDefaultBlur = true;
     }

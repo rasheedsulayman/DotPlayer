@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
+import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.r4sh33d.musicslam.GlideApp;
@@ -38,10 +39,12 @@ public abstract class ThemedSlidingPanelActivity extends MusicEventsListenerActi
     public SlidingUpPanelLayout mSlidingUpPanelLayout;
 
     //We can have more than one listener
-    int currentPaletteColor;
-    ArrayList<SlidingPanelEventsListener> mslidingPanelEventsListeners = new ArrayList<>();
-    ArrayList<PaletteListener> mPlaletteListeners = new ArrayList<>();
-    String paletteKey = "no_key";
+    private int currentPaletteColor;
+    private ArrayList<SlidingPanelEventsListener> mslidingPanelEventsListeners = new ArrayList<>();
+    private ArrayList<PaletteListener> mPlaletteListeners = new ArrayList<>();
+    private String paletteKey = "no_key";
+    private SimpleTarget<Bitmap> target;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -172,7 +175,10 @@ public abstract class ThemedSlidingPanelActivity extends MusicEventsListenerActi
             return;
         }
         paletteKey = key;
-        GlideApp.with(getApplicationContext())
+        if (target != null) {
+            Glide.with(getApplicationContext()).clear(target);
+        }
+        target = GlideApp.with(getApplicationContext())
                 .asBitmap()
                 .load(new AudioCoverImage(MusicPlayer.getCurrentSong().data))
                 .into(new SimpleTarget<Bitmap>(64, 64) {

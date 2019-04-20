@@ -72,7 +72,7 @@ public class SleepTimerDialog extends DialogFragment implements SleepTimer.Sleep
     @OnClick(R.id.start_button)
     public void onStartButtonClicked() {
         if (!isViewsActivated) {
-            Toast.makeText(getContext(), "Please reset an ongoing timer to start a new one", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), R.string.reset_ongoing_timer, Toast.LENGTH_SHORT).show();
             return;
         }
         long hours = 0, minutes = 0, seconds = 0;
@@ -84,12 +84,12 @@ public class SleepTimerDialog extends DialogFragment implements SleepTimer.Sleep
         }
         long totalDurationMillis = (hours + minutes + seconds) * 1000;
         if (totalDurationMillis <= 0) {
-            Toast.makeText(getContext(), "Please set a valid duration", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), R.string.set_a_valid_duration, Toast.LENGTH_SHORT).show();
             return;
         }
         if (MusicPlayer.getSleepTimer() != null) {
             MusicPlayer.getSleepTimer().startTimer((int) totalDurationMillis);
-            Toast.makeText(getContext(), "Sleep timer started", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), R.string.sleep_timer_started, Toast.LENGTH_SHORT).show();
             getDialog().dismiss();
         }
     }

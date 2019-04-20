@@ -25,9 +25,6 @@ import retrofit2.Response;
 
 import static com.r4sh33d.musicslam.network.LastFmService.ARTIST_METHOD;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class ArtistBioFragment extends Fragment {
     private static final String ARG_ARTIST_NAME = "artistName";
     @BindView(R.id.artist_bio)
@@ -57,7 +54,7 @@ public class ArtistBioFragment extends Fragment {
     }
 
     public void setEmptyState() {
-        emptyDataTextView.setText("Artist bio not availaible");
+        emptyDataTextView.setText(R.string.artist_bio_not_available);
         emptyDataTextView.setVisibility(View.VISIBLE);
     }
 

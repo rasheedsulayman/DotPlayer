@@ -37,7 +37,7 @@ public class MainViewFragment extends BaseListenerFragment {
     @BindView(R.id.toolbar)
     Toolbar toolbar;
 
-    String tabTitles[] = new String[]{"SONGS", "ALBUMS", "ARTISTS", "GENRES", "PLAYLISTS"};
+    String[] tabTitles;
 
     public MainViewFragment() {
     }
@@ -59,6 +59,7 @@ public class MainViewFragment extends BaseListenerFragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        tabTitles = getResources().getStringArray(R.array.main_pager_tab_titles);
         setToolbarAndViewPager();
         if (isAlbumArtTheme) {
             Util.setOverflowButtonColor(toolbar, Color.WHITE);

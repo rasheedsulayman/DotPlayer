@@ -60,7 +60,7 @@ public class AboutActivity extends AestheticActivity {
 
     @OnClick(R.id.send_feedback_button)
     public void onClickSendFeedbackButton() {
-        startActivity(Intent.createChooser(NavigationUtil.getFeedbackEmailIntent(), "Send Feedback..."));
+        startActivity(Intent.createChooser(NavigationUtil.getFeedbackEmailIntent(), getString(R.string.send_feedback)));
     }
 
 

@@ -1,6 +1,5 @@
 package com.r4sh33d.musicslam.fragments.search;
 
-
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
@@ -18,6 +17,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.TextView;
 
 import com.r4sh33d.musicslam.R;
 import com.r4sh33d.musicslam.customviews.ColoredStatusBarView;
@@ -30,9 +30,6 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class SearchFragment extends BaseListenerFragment implements SearchView.OnQueryTextListener,
         LoaderManager.LoaderCallbacks<List<Object>> {
 
@@ -42,6 +39,8 @@ public class SearchFragment extends BaseListenerFragment implements SearchView.O
     RecyclerView recyclerView;
     @BindView(R.id.status_bar_view)
     ColoredStatusBarView statusBarView;
+    @BindView(R.id.empty_data_textview)
+    TextView emptyDataTextView;
 
     private String queryEntered;
     private SearchResultsAdapter  searchResultsAdapter;
@@ -68,7 +67,7 @@ public class SearchFragment extends BaseListenerFragment implements SearchView.O
         searchResultsAdapter = new SearchResultsAdapter(getContext(), new ArrayList<>());
         recyclerView.setAdapter(searchResultsAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-
+        addAdapterDataObserver();
         recyclerView.setOnTouchListener((v, event) -> {
             hideKeyboard();
             return false;
@@ -111,6 +110,16 @@ public class SearchFragment extends BaseListenerFragment implements SearchView.O
         searchView.setQueryHint("Search");
         searchView.setOnQueryTextListener(this);
         searchItem.expandActionView();
+    }
+
+    public void addAdapterDataObserver() {
+        searchResultsAdapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
+            @Override
+            public void onChanged() {
+                super.onChanged();
+                emptyDataTextView.setVisibility(searchResultsAdapter.getItemCount() == 0 ? View.VISIBLE : View.GONE);
+            }
+        });
     }
 
 

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <plurals name="delete_songs_warning">
+        <item quantity="one">This operation will remove %d song</item>
+        <item quantity="other">This operation will remove %d songs</item>
+    </plurals>
+
+    <plurals name="n_albums">
+        <item quantity="one">%d Album</item>
+        <item quantity="other">%d Albums</item>
+    </plurals>
+
+    <plurals name="n_songs">
+        <item quantity="one">%d Song</item>
+        <item quantity="other">%d Songs</item>
+    </plurals>
+
+    <plurals name="n_tracks_were_deleted">
+        <item quantity="one">%d  track was deleted.</item>
+        <item quantity="other">%d  tracks were deleted.</item>
+    </plurals>
+
+    <plurals name="n_tracks_were_added_to_playlist">
+        <item quantity="one">%d  track was added to the playlist.</item>
+        <item quantity="other">%d  tracks were added to the playlist.</item>
+    </plurals>
+
+</resources>

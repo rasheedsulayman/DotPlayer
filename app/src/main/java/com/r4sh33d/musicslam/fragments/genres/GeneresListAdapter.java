@@ -53,7 +53,7 @@ public class GeneresListAdapter extends RecyclerView.Adapter<GeneresListAdapter.
     public void onBindViewHolder(MyHolder holder, int position) {
         Genres genres = genresArrayList.get(position);
         holder.genresNameTextView.setText(genres.name);
-        holder.songCountTextView.setText(String.format("%d Songs", genres.songCount));
+        holder.songCountTextView.setText(context.getResources().getQuantityString(R.plurals.n_songs, genres.songCount, genres.songCount));
     }
 
     @Override

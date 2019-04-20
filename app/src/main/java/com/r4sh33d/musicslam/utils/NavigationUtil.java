@@ -45,7 +45,7 @@ public class NavigationUtil {
         try {
             context.startActivityForResult(createEffectsIntent(), requestCode);
         } catch (final ActivityNotFoundException notFound) {
-            Toast.makeText(context, "No Equalizer found on your phone",
+            Toast.makeText(context, R.string.no_equalizer_found,
                     Toast.LENGTH_SHORT).show();
         }
     }

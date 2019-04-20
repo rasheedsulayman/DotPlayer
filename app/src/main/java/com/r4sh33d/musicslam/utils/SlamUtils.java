@@ -74,7 +74,7 @@ public class SlamUtils {
             shareIntent.setType("audio/*");
             Uri fileUri = FileProvider.getUriForFile(context, context.getPackageName(), new File(song.data));
             shareIntent.putExtra(Intent.EXTRA_STREAM, fileUri);
-            context.startActivity(Intent.createChooser(shareIntent, "Share Music"));
+            context.startActivity(Intent.createChooser(shareIntent, context.getString(R.string.share_music)));
         } catch (IllegalArgumentException e) {
             Timber.d(e);
         }
@@ -128,10 +128,6 @@ public class SlamUtils {
 
     public static Bitmap getBitmapFromVectorDrawable(Context context, int drawableId) {
         Drawable drawable = ContextCompat.getDrawable(context, drawableId);
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-            drawable = (DrawableCompat.wrap(drawable)).mutate();
-        }
-
         Bitmap bitmap = Bitmap.createBitmap(drawable.getIntrinsicWidth(),
                 drawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(bitmap);

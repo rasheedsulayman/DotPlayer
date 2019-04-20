@@ -36,12 +36,12 @@ public class AddToPlaylistDialog extends DialogFragment {
                 getContext(), false);
 
         String[] playlistTitles = new String[playlists.size() + 1];
-        playlistTitles[0] = "New Playlist";
+        playlistTitles[0] = getString(R.string.new_playlist);
         for (int i = 1; i < playlists.size(); i++) {
             playlistTitles[i] = playlists.get(i - 1).name;
         }
         return new MaterialDialog.Builder(getContext())
-                .title("Add to playlist")
+                .title(getString(R.string.add_to_playlist))
                 .items(playlistTitles)
                 .titleColor(Color.BLACK)
                 .contentColor(getResources().getColor(R.color.grey_800))

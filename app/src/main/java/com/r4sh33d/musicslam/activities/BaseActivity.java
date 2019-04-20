@@ -60,20 +60,20 @@ public abstract class BaseActivity extends AppCompatActivity {
                     if (ActivityCompat.shouldShowRequestPermissionRationale(this,
                             Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
                         Snackbar.make(getWindow().getDecorView().getRootView(),
-                                "External storage permission is needed to read Music files from the storage",
+                                R.string.external_storage_permission_is_needed,
                                 Snackbar.LENGTH_INDEFINITE)
-                                .setAction("Grant", v -> checkPermissions()).show();
+                                .setAction(R.string.grant, v -> checkPermissions()).show();
                     } else {
                         new MaterialDialog.Builder(this)
-                                .title("Enable Permission")
-                                .content("Go to settings -> Permissions to grant access to the storage")
-                                .positiveText("Settings")
+                                .title(R.string.enable_permission)
+                                .content(R.string.manual_permission_grant_instruction)
+                                .positiveText(R.string.settings)
                                 .onPositive((dialog, which) -> {
                                     openAppSettings();
                                     finish();
-                                }).negativeText("Cancel")
+                                }).negativeText(R.string.cancel)
                                 .onNegative((dialog, which) -> {
-                                    Toast.makeText(this, "Permission denied", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(this, R.string.permission_denied, Toast.LENGTH_SHORT).show();
                                     finish();
                                 }).show();
                     }

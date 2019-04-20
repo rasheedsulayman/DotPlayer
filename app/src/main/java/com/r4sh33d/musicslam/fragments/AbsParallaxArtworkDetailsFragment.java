@@ -144,7 +144,6 @@ public abstract class AbsParallaxArtworkDetailsFragment extends BaseListenerFrag
                 public void onChanged() {
                     super.onChanged();
                     if (emptyDataTextView != null) {
-                        Timber.d("Entered observer");
                         emptyDataTextView.setText(getEmptyDataMessage());
                         emptyDataTextView.setVisibility(getAdapter().getItemCount() == 0 ? View.VISIBLE : View.GONE);
                     }

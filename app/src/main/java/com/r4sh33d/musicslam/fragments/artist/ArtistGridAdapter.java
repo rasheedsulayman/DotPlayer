@@ -58,8 +58,8 @@ public class ArtistGridAdapter extends RecyclerView.Adapter<ArtistGridAdapter.My
     public void onBindViewHolder(MyViewHolder holder, int position) {
         Artist artist = artistArrayList.get(position);
         holder.artistNameTextView.setText(artist.name);
-        holder.albumCountTextView.setText(String.format("%d %s", artist.albumCount, artist.albumCount > 1 ? "Albums" : "Album"));
-        holder.songCounttextView.setText(String.format("(%d)", artist.songCount));
+        holder.albumCountTextView.setText(context.getResources().getQuantityString(R.plurals.n_albums, artist.albumCount, artist.albumCount));
+        holder.songCounttextView.setText(String.format(context.getString(R.string.number_in_parentheses_format), artist.songCount));
         GlideApp.with(context)
                 .load(new ArtistImage(artist.name))
                 .transition(DrawableTransitionOptions.withCrossFade(100))

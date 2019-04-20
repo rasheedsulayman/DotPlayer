@@ -12,9 +12,8 @@
     <string name="enqueue">Enqueue</string>
     <string name="go_to_album">Go to Album</string>
     <string name="go_to_artist">Go to Artist</string>
-    <string name="delete">Delete</string>
     <string name="play">Play</string>
-    <string name="add_to_playlist">Add to playlist</string>
+    <string name="add_to_playlist">Add to Playlist</string>
     <string name="play_next">Play next</string>
     <string name="use_ase_ringtone">Use as Ringtone</string>
     <string name="share">Share</string>
@@ -27,6 +26,70 @@
     <string name="color_accent">Color Accent</string>
     <string name="search">Search</string>
     <string name="pause">Pause</string>
+    <string name="send_feedback">Send Feedback…</string>
+    <string name="external_storage_permission_is_needed">External storage permission is needed to read Music files from the storage</string>
+    <string name="grant">Grant</string>
+    <string name="enable_permission">Enable Permission</string>
+    <string name="manual_permission_grant_instruction"><![CDATA[Go to settings -> Permissions to grant access to the storage]]></string>
+    <string name="settings">Settings</string>
+    <string name="permission_denied">Permission denied</string>
+    <string name="artists">Artists</string>
+    <string name="albums">Albums</string>
+    <string name="songs">Songs</string>
+    <string name="this_can_not_be_undone">This can not be undone</string>
+    <string name="delete">Delete</string>
+    <string name="delete_songs_format">Delete %d songs?</string>
+    <string name="delete_question_mark_format">Delete %s?</string>
+    <string name="new_playlist">New Playlist</string>
+    <string name="save">Save</string>
+    <string name="enter_playlist_name">Enter playlist name</string>
+    <string name="playlist_exists_warning">Playlist Exists, Please remove the existing playlist first</string>
+    <string name="unable_to_create_playlist">Unable to create playlist</string>
+    <string name="playlist_successfully_created_format">Playlist %s Successfully created</string>
+    <string name="rename_playlist">Rename playlist</string>
+    <string name="song_details">Song Details</string>
+    <string name="okay">Okay</string>
+    <string name="number_in_parentheses_format">(%d)</string>
+    <string name="no_albums">No Albums</string>
+    <string name="artist_bio_not_available">Artist bio not available</string>
+    <string name="no_artists">No Artists</string>
+    <string name="play_queue">Play Queue</string>
+    <string name="no_result">No Result</string>
+    <string name="enable_album_art_theme">Enable Album art theme?</string>
+    <string name="enable_album_art_theme_disclaimer_message">This theme is experimental but usable!. You need to have correct artworks for greater visual experience</string>
+    <string name="disable_album_art_theme">Disable Album art theme</string>
+    <string name="disable_album_art_theme_warning_message">You are currently using the album art theme. You need to disable it to continue.</string>
+    <string name="no_songs">No Songs</string>
+    <string name="prev">Prev</string>
+    <string name="next">Next</string>
+    <string name="notification_channel_name">Music Slam Playing Notification</string>
+    <string name="notification_channel_description">The playing notification provides shortcut for quick playback actions like pause, play, next etc.</string>
+    <string name="reset_ongoing_timer">Please reset an ongoing timer to start a new one</string>
+    <string name="set_a_valid_duration">Please set a valid duration</string>
+    <string name="sleep_timer_started">Sleep timer started</string>
+    <string name="app_needs_settings_permission">The app needs settings permission to set the ringtone. After setting the permission, try to set the the ringtone again</string>
+    <string name="song_set_as_your_ringtone_format">%s is set as your ringtone</string>
+    <string name="grant_settings_permission">Grant Settings Permission</string>
+    <string name="no_equalizer_found">No Equalizer found on your phone</string>
+    <string name="playlist_successfully_removed">Playlist successfully removed</string>
+    <string name="share_music">Share Music</string>
+
+
+    <string-array name="main_pager_tab_titles">
+        <item>SONGS</item>
+        <item>ALBUMS</item>
+        <item>ARTISTS</item>
+        <item>GENRES</item>
+        <item>PLAYLISTS</item>
+    </string-array>
+
+
+    <string-array name="artist_details_tab_titles">
+        <item>SONGS</item>
+        <item>ALBUMS</item>
+        <item>BIO</item>
+    </string-array>
+
 
     <string-array name="themes_titles">
         <item>Light Theme</item>

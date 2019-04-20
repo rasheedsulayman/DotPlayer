@@ -4,6 +4,8 @@ import android.content.Context;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 
+import com.r4sh33d.musicslam.R;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,22 +34,22 @@ public class SearchResultsLoader extends WrappedAsyncTaskLoader<List<Object>> {
             //Artists
             List artists = ArtistLoader.searchArtists(getContext(), queryText);
             if (!artists.isEmpty()) {
-                arrayList.add("Artists");
+                arrayList.add(getContext().getString(R.string.artists));
                 arrayList.addAll(artists);
             }
             //Albums
             List albums = AlbumLoader.searchAlbums(getContext(), queryText);
             if (!albums.isEmpty()) {
-                arrayList.add("Albums");
+                arrayList.add(getContext().getString(R.string.albums));
                 arrayList.addAll(albums);
             }
             //Songs
             List songs = SongLoader.searchSongs(getContext(), queryText);
             if (!songs.isEmpty()) {
-                arrayList.add("Songs");
+                arrayList.add(getContext().getString(R.string.songs));
                 arrayList.addAll(songs);
             }
-        }
+        } 
         return arrayList;
     }
 }

@@ -9,6 +9,7 @@ import android.text.TextUtils;
 import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.r4sh33d.musicslam.R;
 import com.r4sh33d.musicslam.utils.PlayListHelper;
 
 public class NewPlaylistDialog extends DialogFragment {
@@ -28,24 +29,24 @@ public class NewPlaylistDialog extends DialogFragment {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         return new MaterialDialog.Builder(getContext())
-                .title("New Playlist")
-                .negativeText("Cancel")
-                .positiveText("Save")
+                .title(R.string.new_playlist)
+                .negativeText(R.string.cancel)
+                .positiveText(R.string.save)
                 .inputType(InputType.TYPE_CLASS_TEXT)
-                .input("Enter playlist name", "", false, (dialog, input) -> {
+                .input(getString(R.string.enter_playlist_name), "", false, (dialog, input) -> {
                     long[] sondIds = getArguments().getLongArray(ARG_SONG_IDS);
                     if (!TextUtils.isEmpty(input)) {
                         final long playlistId = PlayListHelper.getIdForPlaylist(getActivity(),
                                 input.toString());
                         if (playlistId >= 0) {
                             //We have playlist
-                            Toast.makeText(getContext(), "Playlist Exists", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), R.string.playlist_exists_warning, Toast.LENGTH_SHORT).show();
                         } else {
                             long newId = PlayListHelper.createPlaylist(getActivity(), input.toString());
                             if (newId == -1) {
-                                Toast.makeText(getContext(), "Unable to Create Playlist", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getContext(), R.string.unable_to_create_playlist, Toast.LENGTH_SHORT).show();
                             } else {
-                                Toast.makeText(getContext(), "Created playlist " + input, Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getContext(), String.format(getString(R.string.playlist_successfully_created_format), input), Toast.LENGTH_SHORT).show();
                                 if (sondIds != null && sondIds.length > 0) {
                                     PlayListHelper.addToPlaylist(getActivity(), sondIds, newId);
                                 }

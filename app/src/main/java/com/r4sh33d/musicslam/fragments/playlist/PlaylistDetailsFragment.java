@@ -213,10 +213,7 @@ public class PlaylistDetailsFragment extends AbsParallaxArtworkDetailsFragment
 
     @Override
     public void playSongs() {
-        MusicPlayer.playAll(
-                mSongsInPlayListAdapter.getData(),
-                0,
-                false);
+        MusicPlayer.playAll(mSongsInPlayListAdapter.getData(), 0, false);
     }
 
     @Override

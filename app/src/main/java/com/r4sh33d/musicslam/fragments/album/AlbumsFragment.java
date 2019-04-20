@@ -48,7 +48,7 @@ public class AlbumsFragment extends PagerFragment implements LoaderManager.Loade
 
     @Override
     public String getEmptyDataMessage() {
-        return "No Albums";
+        return getString(R.string.no_albums);
     }
 
     @Override

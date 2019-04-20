@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.r4sh33d.musicslam.R;
 import com.r4sh33d.musicslam.utils.PlayListHelper;
 import com.r4sh33d.musicslam.models.Playlist;
 
@@ -24,10 +25,10 @@ public class DeletePlaylistDialog extends DialogFragment {
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         Playlist playlist = getArguments().getParcelable(PLAYLIST_ARGS);
         return new MaterialDialog.Builder(getContext())
-                .title("Delete " + playlist.name)
-                .content("This can not be undone")
-                .positiveText("Delete")
-                .negativeText("Cancel")
+                .title(String.format("%s %s", getString(R.string.delete), playlist.name))
+                .content(R.string.this_can_not_be_undone)
+                .positiveText(R.string.delete)
+                .negativeText(R.string.cancel)
                 .onPositive((dialog, which) -> PlayListHelper.deletePlayList(playlist.id, getContext()))
                 .onNegative((dialog, which) -> {
                     //Nothing

@@ -51,7 +51,7 @@ public class ArtistsFragment extends PagerFragment implements LoaderManager.Load
 
     @Override
     public String getEmptyDataMessage() {
-        return "No Artists";
+        return getString(R.string.no_artists);
     }
 
     @Override

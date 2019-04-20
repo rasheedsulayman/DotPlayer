@@ -32,8 +32,7 @@ public class MusicUtils {
     public static void setRingtone(final Context context, final long id) {
         if (!checkSystemWritePermission(context)) {
             showWriteSettingsPermissionDialog(context,
-                    "The app needs settings permission to set the ringtone." +
-                            " After setting the permission, try to set the the ringtone again");
+                    context.getString(R.string.app_needs_settings_permission));
             return;
         }
 
@@ -59,7 +58,7 @@ public class MusicUtils {
             if (cursor != null && cursor.getCount() == 1) {
                 cursor.moveToFirst();
                 Settings.System.putString(resolver, Settings.System.RINGTONE, uri.toString());
-                final String toastMessageToshow = String.format("%s is set as your ringtone",
+                final String toastMessageToshow = String.format(context.getString(R.string.song_set_as_your_ringtone_format),
                         cursor.getString(1));
                 Toast.makeText(context, toastMessageToshow, Toast.LENGTH_SHORT).show();
             }
@@ -84,12 +83,12 @@ public class MusicUtils {
     @SuppressLint("NewApi")
     public static void showWriteSettingsPermissionDialog(Context context, String reason) {
         new MaterialDialog.Builder(context)
-                .title("Grant Settings Permission")
+                .title(R.string.grant_settings_permission)
                 .content(reason)
-                .positiveText("Settings")
+                .positiveText(R.string.settings)
                 .onPositive((dialog, which) -> {
                     openAndroidPermissionsMenu(context);
-                }).negativeText("Cancel")
+                }).negativeText(R.string.cancel)
                 .onNegative((dialog, which) -> {
                     dialog.dismiss();
                 }).show();
@@ -153,9 +152,8 @@ public class MusicUtils {
             }
             c.close();
         }
-
-        String song = list.length > 1 ? "songs" : "song";
-        Toast.makeText(context, song + " songs were deleted.", Toast.LENGTH_SHORT).show();
+        String message = context.getResources().getQuantityString(R.plurals.n_tracks_were_deleted, list.length, list.length);
+        Toast.makeText(context, message , Toast.LENGTH_SHORT).show();
         // We deleted a number of tracks, which could affect any number o things
         // in the media content domain, so update everything.
         context.getContentResolver().notifyChange(Uri.parse("content://media"), null);

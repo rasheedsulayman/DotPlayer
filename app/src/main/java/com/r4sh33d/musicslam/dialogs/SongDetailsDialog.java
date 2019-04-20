@@ -61,9 +61,9 @@ public class SongDetailsDialog extends DialogFragment {
         song = getArguments().getParcelable(SONG_KEY);
         populateFields();
         return builder
-                .setTitle("Song Details")
+                .setTitle(R.string.song_details)
                 .setView(view)
-                .setPositiveButton("Okay", (dialog, which) -> {
+                .setPositiveButton(R.string.okay, (dialog, which) -> {
                     dismiss();
                 })
                 .create();

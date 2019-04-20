@@ -30,10 +30,6 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-/**
- * Created by r4sh33d on 6/21/17.
- */
-
 public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.MyHolder> implements FastScrollerAdapter {
 
     private Context context;
@@ -58,7 +54,7 @@ public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.MyHold
         holder.playListNameTextView.setText(playList.name);
         if (playList.id > 0) {
             holder.songCountTextView.setVisibility(View.VISIBLE);
-            holder.songCountTextView.setText(String.valueOf(playList.songCount) + " tracks");
+            holder.songCountTextView.setText(context.getResources().getQuantityString(R.plurals.n_songs, playList.songCount, playList.songCount));
         } else {
             holder.songCountTextView.setVisibility(View.GONE);
         }

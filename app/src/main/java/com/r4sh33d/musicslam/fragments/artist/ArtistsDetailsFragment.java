@@ -27,14 +27,14 @@ import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.r4sh33d.musicslam.GlideApp;
 import com.r4sh33d.musicslam.R;
-import com.r4sh33d.musicslam.fragments.AbsParallaxArtworkDetailsFragment;
 import com.r4sh33d.musicslam.customglide.artist.ArtistImage;
 import com.r4sh33d.musicslam.dataloaders.SongIdsLoader;
 import com.r4sh33d.musicslam.dataloaders.SongLoader;
 import com.r4sh33d.musicslam.dialogs.AddToPlaylistDialog;
-import com.r4sh33d.musicslam.playback.MusicPlayer;
+import com.r4sh33d.musicslam.fragments.AbsParallaxArtworkDetailsFragment;
 import com.r4sh33d.musicslam.models.Artist;
 import com.r4sh33d.musicslam.models.Song;
+import com.r4sh33d.musicslam.playback.MusicPlayer;
 
 import java.util.List;
 
@@ -64,7 +64,7 @@ public class ArtistsDetailsFragment extends AbsParallaxArtworkDetailsFragment {
 
     Artist mArtist;
 
-    String tabTitles[] = new String[]{"SONGS", "ALBUMS", "BIO"};
+    String[] tabTitles;
 
     private static final String ARG_ARTIST = "artist";
 
@@ -100,6 +100,7 @@ public class ArtistsDetailsFragment extends AbsParallaxArtworkDetailsFragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        tabTitles = getResources().getStringArray(R.array.artist_details_tab_titles);
         postponeEnterTransition();
         PagerAdapter pagerAdapter = new PagerAdapter(getChildFragmentManager(), getContext());
         viewPager.setAdapter(pagerAdapter);

@@ -70,7 +70,6 @@ public class AlbumDetailsFragment extends AbsParallaxArtworkDetailsFragment
     @BindView(R.id.duration)
     TextView durationTextView;
 
-
     @BindView(R.id.album_details_background)
     LinearLayout albumDetailContainer;
 
@@ -204,12 +203,10 @@ public class AlbumDetailsFragment extends AbsParallaxArtworkDetailsFragment
         return albumArt;
     }
 
-
     @Override
     public AppBarLayout getAppbarLayout() {
         return appBarLayout;
     }
-
 
     @Override
     public String getToolbarTitle() {

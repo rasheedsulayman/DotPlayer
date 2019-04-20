@@ -27,7 +27,6 @@ public class ColoredFastScrollRecyclerView extends FastScrollRecyclerView implem
         super(context, attrs, defStyleAttr);
     }
 
-
     @Override
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
@@ -46,7 +45,6 @@ public class ColoredFastScrollRecyclerView extends FastScrollRecyclerView implem
             ((ThemedSlidingPanelActivity) getContext()).subscribeToPaletteColors(this);
         }
     }
-
 
     @Override
     protected void onDetachedFromWindow() {

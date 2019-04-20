@@ -46,7 +46,7 @@ public class SongsFragment extends PagerFragment implements LoaderManager.Loader
 
     @Override
     public String getEmptyDataMessage() {
-        return "No Songs";
+        return getString(R.string.no_songs);
     }
 
     @Override
