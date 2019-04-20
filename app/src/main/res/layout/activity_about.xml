@@ -28,7 +28,7 @@
                 android:id="@+id/toolbar_title"
                 android:layout_width="wrap_content"
                 android:layout_height="?actionBarSize"
-                android:layout_marginLeft="64dp"
+                android:layout_marginStart="64dp"
                 android:gravity="start|center_vertical"
                 android:text="@string/about"
                 android:textAppearance="@style/AppTheme.TextAppearance.Title"
@@ -49,12 +49,12 @@
             android:orientation="vertical">
 
             <ImageView
-                android:tag=":aesthetic_ignore"
                 android:layout_width="120dp"
                 android:layout_height="120dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="35dp"
-                android:src="@drawable/launcher_icon" />
+                android:src="@drawable/launcher_icon"
+                android:tag=":aesthetic_ignore" />
 
             <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/app_name"
@@ -63,53 +63,53 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="16dp"
                 android:tag=":aesthetic_ignore"
-                android:textAppearance="@style/AppTheme.TextAppearance.Title"
                 android:text="@string/music_slam_music_player"
-                android:textColor="?android:textColorPrimary"/>
+                android:textAppearance="@style/AppTheme.TextAppearance.Title"
+                android:textColor="?android:textColorPrimary" />
 
             <TextView
-                android:tag=":aesthetic_ignore"
                 android:id="@+id/version_textview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:tag=":aesthetic_ignore"
                 tools:text="Version 1.2.1 Debug" />
 
             <Button
-                android:tag=":aesthetic_ignore"
                 android:id="@+id/send_feedback_button"
-                android:layout_marginRight="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="30dp"
-                android:textColor="@android:color/white"
-                android:text= "@string/send__feedback"
+                android:layout_marginRight="20dp"
                 android:background="@drawable/roundedbutton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:tag=":aesthetic_ignore"
+                android:text="@string/send__feedback"
+                android:textColor="@android:color/white" />
 
             <Button
-                android:tag=":aesthetic_ignore"
                 android:id="@+id/licences_button"
-                android:layout_marginRight="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="16dp"
-                android:textColor="@android:color/white"
-                android:text= "@string/licences"
+                android:layout_marginRight="20dp"
                 android:background="@drawable/roundedbutton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:tag=":aesthetic_ignore"
+                android:text="@string/licences"
+                android:textColor="@android:color/white" />
 
             <Button
-                android:tag=":aesthetic_ignore"
                 android:id="@+id/rate_on_playstore_button"
-                android:layout_marginRight="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="16dp"
-                android:textColor="@android:color/white"
-                android:text= "@string/rate_on_playstore"
+                android:layout_marginRight="20dp"
                 android:background="@drawable/roundedbutton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:tag=":aesthetic_ignore"
+                android:text="@string/rate_on_playstore"
+                android:textColor="@android:color/white" />
 
         </LinearLayout>
 

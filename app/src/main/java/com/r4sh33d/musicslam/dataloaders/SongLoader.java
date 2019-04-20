@@ -26,7 +26,7 @@ public class SongLoader {
     public static String ARTIST_SELECTION = MediaStore.Audio.Media.ARTIST_ID + " = ?";
     public static String ALBUM_SELECTION = MediaStore.Audio.Media.ALBUM_ID + " = ?";
 
-    public static String projection[] = {
+    public static String[] projection = {
             MediaStore.Audio.Media.TITLE,
             MediaStore.Audio.Media._ID,
             MediaStore.Audio.Media.ALBUM,
@@ -128,23 +128,27 @@ public class SongLoader {
 
         @Override
         public List<Song> loadInBackground() {
-            if (playListId < 0) {
-                //noinspection ConstantConditions
-                switch (SmartPlaylistType.getTypeById(playListId)) {
-                    case LastAdded:
-                        return LastAddedLoader.getLastAddedSongs(getContext());
-                    case RecentlyPlayed:
-                        TopTracksLoader recentPlayedLoader = new TopTracksLoader(getContext(),
-                                TopTracksLoader.QueryType.RecentSongs);
-                        return recentPlayedLoader.getTracks();
-                    case TopTracks:
-                        TopTracksLoader topTracksLoader = new TopTracksLoader(getContext(),
-                                TopTracksLoader.QueryType.TopTracks);
-                        return topTracksLoader.getTracks();
-                }
-            }
-            return getSongsListFromCursor(makePlayListSongCursor(getContext(), playListId, null, null));
+            return SongLoader.getSongsInPlaylist(playListId, getContext());
         }
+    }
+
+    public static List<Song> getSongsInPlaylist(long playListId, Context context) {
+        if (playListId < 0) {
+            //noinspection ConstantConditions
+            switch (SmartPlaylistType.getTypeById(playListId)) {
+                case LastAdded:
+                    return LastAddedLoader.getLastAddedSongs(context);
+                case RecentlyPlayed:
+                    TopTracksLoader recentPlayedLoader = new TopTracksLoader(context,
+                            TopTracksLoader.QueryType.RecentSongs);
+                    return recentPlayedLoader.getTracks();
+                case TopTracks:
+                    TopTracksLoader topTracksLoader = new TopTracksLoader(context,
+                            TopTracksLoader.QueryType.TopTracks);
+                    return topTracksLoader.getTracks();
+            }
+        }
+        return getSongsListFromCursor(makePlayListSongCursor(context, playListId, null, null));
     }
 
     public static Cursor makeSongsCursor(String selection, String[] selectionArgs, String sortOrder, Context context) {
@@ -233,7 +237,7 @@ public class SongLoader {
         );
     }
 
-    public static ArrayList<Song> getSongsInPlaylist(long playlistId, Context context) {
+    public static ArrayList<Song> getSongsInNormalPlaylist(long playlistId, Context context) {
         return getSongsListFromCursor(
                 makePlayListSongCursor(
                         context,

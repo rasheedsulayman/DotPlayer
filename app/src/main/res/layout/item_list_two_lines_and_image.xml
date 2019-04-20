@@ -6,7 +6,7 @@
     android:layout_marginLeft="16dp"
     android:layout_marginRight="16dp"
     android:orientation="vertical"
-    android:background="?attr/selectableItemBackground"
+    android:background="?android:attr/selectableItemBackground"
     android:paddingTop="8dp">
 
     <LinearLayout
@@ -25,7 +25,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp"
             android:layout_weight="1"
             android:orientation="vertical">
 
@@ -36,15 +36,15 @@
                 android:maxLines="1"
                 android:textColor="?android:textColorPrimary"
                 android:textSize="15sp"
-                tools:text="Alright"/>
+                tools:text="Alright" />
 
             <TextView
                 android:id="@+id/line_two_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
-                android:textColor="?android:textColorSecondary"
                 android:maxLines="1"
+                android:textColor="?android:textColorSecondary"
                 android:textSize="13sp"
                 tools:text="Kendrick Lamar" />
         </LinearLayout>
@@ -62,8 +62,8 @@
     <com.r4sh33d.musicslam.customviews.DividerView
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
-        android:layout_marginLeft="72dp"
-        android:layout_marginRight="10dp"
+        android:layout_marginStart="72dp"
+        android:layout_marginEnd="10dp"
         android:layout_marginTop="8dp" />
 
 </LinearLayout>

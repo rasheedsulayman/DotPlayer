@@ -21,15 +21,15 @@
             tools:text="Artist bio" />
 
         <TextView
-            tools:visibility="visible"
-            android:visibility="gone"
-            android:paddingTop="150dp"
             android:id="@+id/empty_data_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:paddingTop="150dp"
+            android:text="@string/no_data"
             android:textSize="18sp"
-            android:text="@string/no_data" />
+            android:visibility="gone"
+            tools:visibility="visible" />
     </FrameLayout>
 
 </android.support.v4.widget.NestedScrollView>

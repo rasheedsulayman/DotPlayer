@@ -21,8 +21,13 @@
     </plurals>
 
     <plurals name="n_tracks_were_added_to_playlist">
-        <item quantity="one">%d  track was added to the playlist.</item>
-        <item quantity="other">%d  tracks were added to the playlist.</item>
+        <item quantity="one">%d  track added to the playlist.</item>
+        <item quantity="other">%d  tracks added to the playlist.</item>
+    </plurals>
+
+    <plurals name="n_tracks_were_added_to_queue">
+        <item quantity="one">%d  track added to the queue.</item>
+        <item quantity="other">%d  tracks added to the queue.</item>
     </plurals>
 
 </resources>

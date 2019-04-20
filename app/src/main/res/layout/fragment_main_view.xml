@@ -8,12 +8,12 @@
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
-        android:elevation="0dp"
-        app:elevation="0dp"
         android:layout_height="wrap_content"
-        android:background="@android:color/transparent">
+        android:background="@android:color/transparent"
+        android:elevation="0dp"
+        app:elevation="0dp">
 
-        <include layout="@layout/toolbar_layout_album_art"/>
+        <include layout="@layout/toolbar_layout_album_art" />
 
         <android.support.design.widget.TabLayout
             android:id="@id/tab_layout"

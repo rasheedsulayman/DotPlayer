@@ -19,7 +19,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="4dp"
+                android:layout_marginEnd="4dp"
                 android:text="@string/title_colon"
                 android:textColor="?android:textColorSecondary"
                 android:textSize="16sp" />
@@ -43,7 +43,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="4dp"
+                android:layout_marginEnd="4dp"
                 android:text="@string/file_path_colon"
                 android:textColor="?android:textColorSecondary"
                 android:textSize="16sp" />
@@ -67,7 +67,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="4dp"
+                android:layout_marginEnd="4dp"
                 android:text="@string/artist_colon"
                 android:textColor="?android:textColorSecondary"
                 android:textSize="16sp" />
@@ -91,7 +91,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="4dp"
+                android:layout_marginEnd="4dp"
                 android:text="@string/album_colon"
                 android:textColor="?android:textColorSecondary"
                 android:textSize="16sp" />
@@ -115,7 +115,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="4dp"
+                android:layout_marginEnd="4dp"
                 android:text="@string/length_colon"
                 android:textColor="?android:textColorSecondary"
                 android:textSize="16sp" />
@@ -139,7 +139,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="4dp"
+                android:layout_marginEnd="4dp"
                 android:text="@string/file_size_colon"
                 android:textColor="?android:textColorSecondary"
                 android:textSize="16sp" />
@@ -163,7 +163,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="4dp"
+                android:layout_marginEnd="4dp"
                 android:text="@string/mime_type_colon"
                 android:textColor="?android:textColorSecondary"
                 android:textSize="16sp" />
@@ -187,7 +187,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="4dp"
+                android:layout_marginEnd="4dp"
                 android:text="@string/track_no_colon"
                 android:textColor="?android:textColorSecondary"
                 android:textSize="16sp" />

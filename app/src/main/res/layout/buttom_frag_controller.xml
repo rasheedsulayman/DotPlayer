@@ -31,7 +31,7 @@
             android:id="@+id/npc_album_art"
             android:layout_width="52dp"
             android:layout_height="match_parent"
-            android:layout_marginRight="4dp"
+            android:layout_marginEnd="4dp"
             android:background="@drawable/round_stroke_small_radius_background"
             android:scaleType="centerCrop"
             android:src="@drawable/default_artwork_small" />
@@ -41,7 +41,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginLeft="2dp"
+            android:layout_marginStart="2dp"
             android:layout_marginBottom="1dp"
             android:layout_weight="1"
             android:orientation="vertical">

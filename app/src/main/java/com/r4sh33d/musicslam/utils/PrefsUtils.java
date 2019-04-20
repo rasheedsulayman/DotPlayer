@@ -36,14 +36,27 @@ public class PrefsUtils {
         return sharedPref.getString(key, defaultValue);
     }
 
+    public boolean contains(String key){
+        return sharedPref.contains(key);
+    }
+
 
     public void putInt(String key, int value) {
         sharedPref.edit().putInt(key, value).apply();
     }
 
+    public void putLong(String key, long value) {
+        sharedPref.edit().putLong(key, value).apply();
+    }
+
     public int getInt(String key, int defaultValue) {
         return sharedPref.getInt(key, defaultValue);
     }
+
+    public long getLong(String key, long defaultValue) {
+        return sharedPref.getLong(key, defaultValue);
+    }
+
 
     public boolean getBoolean(String key, boolean defaultValue) {
         return sharedPref.getBoolean(key, defaultValue);

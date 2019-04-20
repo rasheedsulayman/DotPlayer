@@ -11,6 +11,7 @@ import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.widget.Toast;
 
+import com.r4sh33d.musicslam.R;
 import com.r4sh33d.musicslam.models.Song;
 import com.r4sh33d.musicslam.sleeptimer.SleepTimer;
 
@@ -279,7 +280,8 @@ public final class MusicPlayer {
             return;
         }
         mService.asyncEnqueue(list, NEXT);
-        String message = list.size() + " songs added to the queue";
+        String message = context.getResources().
+                getQuantityString(R.plurals.n_tracks_were_added_to_queue, list.size(), list.size());
         Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
     }
 
@@ -290,7 +292,8 @@ public final class MusicPlayer {
         ArrayList<Song> list = new ArrayList<>(1);
         list.add(song);
         mService.asyncEnqueue(list, NEXT);
-        String message = song.title + " added to the queue";
+        String message = context.getResources().
+                getQuantityString(R.plurals.n_tracks_were_added_to_queue, list.size(), list.size());
         Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
     }
 
@@ -301,7 +304,8 @@ public final class MusicPlayer {
         ArrayList<Song> list = new ArrayList<>(1);
         list.add(song);
         mService.asyncEnqueue(list, LAST);
-        String message = song.title + " songs added to the queue";
+        String message = context.getResources().
+                getQuantityString(R.plurals.n_tracks_were_added_to_queue, list.size(), list.size());
         Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
     }
 
@@ -310,7 +314,8 @@ public final class MusicPlayer {
             return;
         }
         mService.asyncEnqueue(list, LAST);
-        final String message = list.size() + " songs added to the queue";
+        String message = context.getResources().
+                getQuantityString(R.plurals.n_tracks_were_added_to_queue, list.size(), list.size());
         Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
     }
 

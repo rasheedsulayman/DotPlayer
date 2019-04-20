@@ -18,7 +18,7 @@
         app:elevation="0dp" />
 
     <com.afollestad.aesthetic.ToolbarTitleTextView
-        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
         tools:textColor="@color/white"
         android:id="@+id/toolbar_title"
         android:layout_width="wrap_content"

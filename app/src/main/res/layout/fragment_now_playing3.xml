@@ -163,7 +163,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginRight="6dp"
+                android:layout_marginEnd="6dp"
                 android:tag=":aesthetic_ignore"
                 android:textColor="#ffffff"
                 android:textSize="10sp"
@@ -184,9 +184,8 @@
                 android:id="@+id/song_duration"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
                 android:layout_gravity="center"
-                android:layout_marginLeft="6dp"
+                android:layout_marginStart="6dp"
                 android:tag=":aesthetic_ignore"
                 android:textColor="#ffffff"
                 android:textSize="10sp"
@@ -258,7 +257,7 @@
                     android:layout_width="28dp"
                     android:layout_height="34dp"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="1dp"
+                    android:layout_marginStart="1dp"
                     android:padding="5dp" />
             </com.r4sh33d.musicslam.customviews.WidthFitFrameLayout>
 

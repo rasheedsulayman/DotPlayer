@@ -95,7 +95,7 @@ public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.MyHold
         }
 
         private List<Song> getSongsForPlaylist() {
-            return SongLoader.getSongsForArtist(playListArrayList.get(getAdapterPosition()).id, context);
+            return SongLoader.getSongsInPlaylist(playListArrayList.get(getAdapterPosition()).id, context);
         }
 
         private void setUpPopUpMenu() {

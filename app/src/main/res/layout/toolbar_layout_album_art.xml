@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout android:layout_width="match_parent"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:elevation="0dp"
     android:gravity="center"
-    tools:ignore="Overdraw"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    tools:ignore="Overdraw">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/transparent"
-        app:layout_scrollFlags="scroll|enterAlways"
-        app:elevation="0dp" />
+        app:elevation="0dp"
+        app:layout_scrollFlags="scroll|enterAlways" />
 
     <TextView
-        android:layout_marginLeft="16dp"
-        android:textColor="@color/white"
         android:id="@+id/toolbar_title"
         android:layout_width="wrap_content"
         android:layout_height="?actionBarSize"
+        android:layout_marginStart="16dp"
         android:gravity="start|center_vertical"
         android:text="@string/music_slam"
-        android:textAppearance="@style/AppTheme.TextAppearance.Title" />
+        android:textAppearance="@style/AppTheme.TextAppearance.Title"
+        android:textColor="@color/white" />
 </FrameLayout>

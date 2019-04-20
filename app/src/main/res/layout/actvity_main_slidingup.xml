@@ -8,7 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
-        android:src="@drawable/default_artwork_blur"/>
+        android:src="@drawable/default_artwork_blur" />
 
     <ImageView
         android:id="@+id/bg_black_shade"
@@ -20,9 +20,9 @@
         android:id="@+id/sliding_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="bottom"
         android:clickable="false"
         android:focusable="false"
+        android:gravity="bottom"
         sothree:umanoDragView="@+id/dragView"
         sothree:umanoOverlay="false"
         sothree:umanoPanelHeight="?actionBarSize"
@@ -33,8 +33,8 @@
             android:id="@+id/mainViewContainer"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:layout_marginBottom="?actionBarSize"/>
+            android:layout_marginBottom="?actionBarSize"
+            android:orientation="vertical" />
         <!-- SLIDING LAYOUT -->
 
         <FrameLayout

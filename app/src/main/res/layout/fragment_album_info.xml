@@ -69,24 +69,23 @@
                 android:tag=":aesthetic_ignore"
                 android:theme="@style/ThemeOverlay.AppCompat.Light"
                 app:layout_collapseMode="pin"
-                app:titleTextAppearance="@style/Toolbartitle"
-                />
+                app:titleTextAppearance="@style/Toolbartitle" />
 
             <LinearLayout
-                android:visibility="gone"
                 android:id="@+id/album_details_background"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom|center"
                 android:paddingBottom="10dp"
-                android:tag=":aesthetic_ignore">
+                android:tag=":aesthetic_ignore"
+                android:visibility="gone">
 
                 <ImageView
                     android:id="@+id/calender_imageview"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:paddingBottom="4dp"
                     android:paddingTop="4dp"
+                    android:paddingBottom="4dp"
                     android:src="@drawable/ic_calender_white_24dp" />
 
                 <TextView
@@ -95,9 +94,9 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:tag=":aesthetic_ignore"
-                    android:text="2017"
                     android:textColor="@color/white"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    tools:text="2017" />
 
                 <TextView
                     android:id="@+id/first_album_detail_separator"
@@ -114,8 +113,8 @@
                 <ImageView
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:paddingBottom="4dp"
                     android:paddingTop="4dp"
+                    android:paddingBottom="4dp"
                     android:src="@drawable/ic_music_note_white_24dp" />
 
                 <TextView
@@ -123,9 +122,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:tag=":aesthetic_ignore"
-                    tools:text="10"
                     android:textColor="@color/white"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    tools:text="10" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -141,8 +140,8 @@
                 <ImageView
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:paddingBottom="4dp"
                     android:paddingTop="4dp"
+                    android:paddingBottom="4dp"
                     android:src="@drawable/ic_timer_white_24dp" />
 
                 <TextView
@@ -150,9 +149,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:tag=":aesthetic_ignore"
-                    tools:text=" 2 : 45"
                     android:textColor="@color/white"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    tools:text=" 2 : 45" />
             </LinearLayout>
 
 
@@ -174,13 +173,13 @@
             app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
         <TextView
-            android:visibility="gone"
-            android:paddingTop="150dp"
             android:id="@+id/empty_data_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:paddingTop="150dp"
             android:textSize="18sp"
+            android:visibility="gone"
             tools:text="No data" />
     </FrameLayout>
 
