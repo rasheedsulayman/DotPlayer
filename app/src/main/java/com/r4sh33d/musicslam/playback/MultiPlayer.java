@@ -80,7 +80,6 @@ class MultiPlayer implements MediaPlayer.OnErrorListener,
      *             you want to play
      */
     public void setNextDataSource(final String path) {
-        Timber.d("About to set the next data source: " + path);
         mNextMediaPath = null;
         try {
             mCurrentMediaPlayer.setNextMediaPlayer(null);
@@ -130,7 +129,6 @@ class MultiPlayer implements MediaPlayer.OnErrorListener,
      * Starts or resumes playback.
      */
     public void start() {
-        Timber.d("mCurrentMediaPlayer.start() called : Inside Thread %s", Thread.currentThread().toString());
         mCurrentMediaPlayer.start();
     }
 

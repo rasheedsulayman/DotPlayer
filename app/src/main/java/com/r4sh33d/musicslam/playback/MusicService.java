@@ -119,8 +119,6 @@ public class MusicService extends Service {
 
     private MusicPlayerHandler mPlayerHandler;
     private HandlerThread mHandlerThread;
-    private MusicRemotePlayerHandler musicRemotePlayerHandler;
-    private HandlerThread musicRemotePlayerHandlerThread;
     private Handler uiHandler;
     private PlayingQueueSaverHandler playingQueueSaverHandler;
     private HandlerThread playingQueueSaverHandlerThread;
@@ -178,14 +176,10 @@ public class MusicService extends Service {
         //Threads and Handlers
         mHandlerThread = new HandlerThread("MusicPlayerHandler", android.os.Process.THREAD_PRIORITY_BACKGROUND);
         mHandlerThread.start();
-        musicRemotePlayerHandlerThread = new HandlerThread("MusicRemotePlayerHandler", android.os.Process.THREAD_PRIORITY_BACKGROUND);
-        musicRemotePlayerHandlerThread.start();
         mPlayerHandler = new MusicPlayerHandler(this, mHandlerThread.getLooper());
-        musicRemotePlayerHandler = new MusicRemotePlayerHandler(this,
-                musicRemotePlayerHandlerThread.getLooper());
         uiHandler = new Handler(Looper.getMainLooper());
 
-        playingQueueSaverHandlerThread = new HandlerThread("QueueSaveHandler", Process.THREAD_PRIORITY_BACKGROUND);
+        playingQueueSaverHandlerThread = new HandlerThread("PlayingQueueSaveHandler", Process.THREAD_PRIORITY_BACKGROUND);
         playingQueueSaverHandlerThread.start();
         playingQueueSaverHandler = new PlayingQueueSaverHandler(this, playingQueueSaverHandlerThread.getLooper());
 
@@ -254,8 +248,6 @@ public class MusicService extends Service {
 
         mPlayerHandler.removeCallbacksAndMessages(null);
         mHandlerThread.quitSafely();
-        musicRemotePlayerHandler.removeCallbacksAndMessages(null);
-        musicRemotePlayerHandlerThread.quitSafely();
         playingQueueSaverHandler.removeCallbacksAndMessages(null);
         playingQueueSaverHandlerThread.quitSafely();
 
@@ -352,7 +344,6 @@ public class MusicService extends Service {
             case Constants.QUEUE_CHANGED:
                 asyncSaveQueues();
                 asyncSetNextTrack();
-                Timber.d("After calls to save queue,next track, Thread: " + Thread.currentThread().getName());
                 break;
         }
 
@@ -633,9 +624,7 @@ public class MusicService extends Service {
             if (playingQueue.size() == 0) {
                 return;
             }
-            //stop(false);
             boolean shutdown = false;
-
             while (true) {
                 if (openFile(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI + "/"
                         + getSongAt(mPlayPos).id)) {
@@ -713,7 +702,6 @@ public class MusicService extends Service {
 
     private void setNextTrack(int position) {
         mNextPlayPos = position;
-        Timber.d("About to set Next track to: " + position);
         if (mNextPlayPos >= 0 && playingQueue != null && mNextPlayPos < playingQueue.size()) {
             final long id = playingQueue.get(mNextPlayPos).id;
             mPlayer.setNextDataSource(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI + "/" + id);
@@ -800,7 +788,6 @@ public class MusicService extends Service {
 
         if (full) {
             mPlaybackStateStore.saveQueues(playingQueue, playingQueueBackup);
-            Timber.d("Just finished saving Queues in thread: " + Thread.currentThread().getName());
             prefsUtils.putInt("cardid", mCardId);
         }
         prefsUtils.putInt(PREF_KEY_PLAY_POSITION, mPlayPos);
@@ -1086,7 +1073,6 @@ public class MusicService extends Service {
             }
             asyncPrepareAndPlay();
             notifyChange(Constants.QUEUE_CHANGED);
-            Timber.d("Open should really return now: " + Thread.currentThread().getName());
         }
     }
 
@@ -1506,7 +1492,6 @@ public class MusicService extends Service {
                         service.setNextTrack(); //set new Next track
                         break;
                     case Constants.TRACK_ENDED:
-                        Timber.d("Track Ended");
                         if (service.mRepeatMode == Constants.REPEAT_CURRENT) {
                             service.seek(0);
                             service.play();
@@ -1544,31 +1529,7 @@ public class MusicService extends Service {
                         }
                         break;
 
-                        //Playbacks
-
-                    default:
-                        break;
-                }
-            }
-        }
-    }
-
-    private static final class MusicRemotePlayerHandler extends Handler {
-        private final WeakReference<MusicService> mService;
-
-        public MusicRemotePlayerHandler(final MusicService service, final Looper looper) {
-            super(looper);
-            mService = new WeakReference<>(service);
-        }
-
-        @Override
-        public void handleMessage(final Message msg) {
-            final MusicService service = mService.get();
-            if (service == null) {
-                return;
-            }
-            synchronized (service) {
-                switch (msg.what) {
+                    //Playback
                     case Constants.SET_NEXT_TRACK:
                         service.setNextTrack();
                         break;
@@ -1665,101 +1626,100 @@ public class MusicService extends Service {
         }
     }
 
-
     public void asyncTogglePlayPause() {
-        musicRemotePlayerHandler.obtainMessage(Constants.TOGGLE_PLAY_PAUSE_ASYNC).sendToTarget();
+        mPlayerHandler.obtainMessage(Constants.TOGGLE_PLAY_PAUSE_ASYNC).sendToTarget();
     }
 
     public void asyncNext(boolean force) {
-        musicRemotePlayerHandler.removeMessages(Constants.GOTO_NEXT_ASYNC, force);
-        musicRemotePlayerHandler.obtainMessage(Constants.GOTO_NEXT_ASYNC, force).sendToTarget();
+        mPlayerHandler.removeMessages(Constants.GOTO_NEXT_ASYNC, force);
+        mPlayerHandler.obtainMessage(Constants.GOTO_NEXT_ASYNC, force).sendToTarget();
     }
 
     public void asyncPrevious(boolean force) {
-        musicRemotePlayerHandler.obtainMessage(Constants.GOTO_PREVIOUS_ASYNC, force).sendToTarget();
+        mPlayerHandler.obtainMessage(Constants.GOTO_PREVIOUS_ASYNC, force).sendToTarget();
     }
 
     public void asyncPlay() {
-        musicRemotePlayerHandler.removeMessages(Constants.PLAY_ASYNC);
-        musicRemotePlayerHandler.obtainMessage(Constants.PLAY_ASYNC).sendToTarget();
+        mPlayerHandler.removeMessages(Constants.PLAY_ASYNC);
+        mPlayerHandler.obtainMessage(Constants.PLAY_ASYNC).sendToTarget();
     }
 
     public void asyncPause() {
-        musicRemotePlayerHandler.obtainMessage(Constants.PAUSE_ASYNC).sendToTarget();
+        mPlayerHandler.obtainMessage(Constants.PAUSE_ASYNC).sendToTarget();
     }
 
     public void asyncSetRepeatMode(final int repeatmode) {
-        musicRemotePlayerHandler.obtainMessage(Constants.SET_REPEAT_MODE_ASYNC, repeatmode, 0).sendToTarget();
+        mPlayerHandler.obtainMessage(Constants.SET_REPEAT_MODE_ASYNC, repeatmode, 0).sendToTarget();
     }
 
     public void asyncSetShuffleMode(final int shufflemode) {
-        musicRemotePlayerHandler.obtainMessage(Constants.SET_SHUFFLE_MODE_ASYNC, shufflemode, 0).sendToTarget();
+        mPlayerHandler.obtainMessage(Constants.SET_SHUFFLE_MODE_ASYNC, shufflemode, 0).sendToTarget();
     }
 
     public void asyncStop(final boolean goToIdle) {
-        musicRemotePlayerHandler.obtainMessage(Constants.STOP_ASYNC).sendToTarget();
+        mPlayerHandler.obtainMessage(Constants.STOP_ASYNC).sendToTarget();
     }
 
     public void asyncOpenFile(String filename) {
-        musicRemotePlayerHandler.obtainMessage(Constants.SET_SHUFFLE_MODE_ASYNC, filename).sendToTarget();
+        mPlayerHandler.obtainMessage(Constants.SET_SHUFFLE_MODE_ASYNC, filename).sendToTarget();
     }
 
     public void asyncOpen(List<Song> list, int position, boolean forceShuffle) {
-        musicRemotePlayerHandler.removeMessages(Constants.OPEN_ASYNC);
+        mPlayerHandler.removeMessages(Constants.OPEN_ASYNC);
         PlaylistForPlayback playListForPlayback = new PlaylistForPlayback(
                 list, position, 0, forceShuffle);
-        musicRemotePlayerHandler.obtainMessage(Constants.OPEN_ASYNC, playListForPlayback).sendToTarget();
+        mPlayerHandler.obtainMessage(Constants.OPEN_ASYNC, playListForPlayback).sendToTarget();
     }
 
     public void asyncEnqueue(List<Song> list, int action) {
         PlaylistForPlayback playListForPlayback = new PlaylistForPlayback(list, 0, action, false);
-        musicRemotePlayerHandler.obtainMessage(Constants.ENQUEUE_ASYNC, playListForPlayback).sendToTarget();
+        mPlayerHandler.obtainMessage(Constants.ENQUEUE_ASYNC, playListForPlayback).sendToTarget();
     }
 
     public void asyncMoveQueueItem(int index1, int index2) {
-        musicRemotePlayerHandler.obtainMessage(Constants.MOVE_QUEUE_ITEM_ASYNC, index1, index2).sendToTarget();
+        mPlayerHandler.obtainMessage(Constants.MOVE_QUEUE_ITEM_ASYNC, index1, index2).sendToTarget();
     }
 
     public void asyncRefresh() {
-        musicRemotePlayerHandler.obtainMessage(Constants.REFRESH_ASYNC).sendToTarget();
+        mPlayerHandler.obtainMessage(Constants.REFRESH_ASYNC).sendToTarget();
     }
 
     public void asyncPlaylistChanged() {
-        musicRemotePlayerHandler.obtainMessage(Constants.PLAYLIST_CHANGED_ASYNC).sendToTarget();
+        mPlayerHandler.obtainMessage(Constants.PLAYLIST_CHANGED_ASYNC).sendToTarget();
     }
 
     public void asyncSeek(long position) {
-        musicRemotePlayerHandler.obtainMessage(Constants.SEEK_ASYNC, position).sendToTarget();
+        mPlayerHandler.obtainMessage(Constants.SEEK_ASYNC, position).sendToTarget();
     }
 
     public void asyncSeekRelative(long deltaInMs) {
-        musicRemotePlayerHandler.obtainMessage(Constants.SEEK_RELATIVE_ASYNC, deltaInMs).sendToTarget();
+        mPlayerHandler.obtainMessage(Constants.SEEK_RELATIVE_ASYNC, deltaInMs).sendToTarget();
     }
 
     public void asyncPlaySongAt(int position) {
-        musicRemotePlayerHandler.obtainMessage(Constants.PLAY_SONG_AT_ASYNC, position, 0).sendToTarget();
+        mPlayerHandler.obtainMessage(Constants.PLAY_SONG_AT_ASYNC, position, 0).sendToTarget();
     }
 
     public void asyncPlaySongsFromUri(ArrayList<Song> songs) {
-        musicRemotePlayerHandler.obtainMessage(Constants.PLAY_SONG_FROM_URI_ASYNC, songs).sendToTarget();
+        mPlayerHandler.obtainMessage(Constants.PLAY_SONG_FROM_URI_ASYNC, songs).sendToTarget();
     }
 
     public void asyncCycleShuffle() {
-        musicRemotePlayerHandler.obtainMessage(Constants.CYCLE_SHUFFLE_ASYNC).sendToTarget();
+        mPlayerHandler.obtainMessage(Constants.CYCLE_SHUFFLE_ASYNC).sendToTarget();
     }
 
     public void asyncCycleRepeat() {
-        musicRemotePlayerHandler.obtainMessage(Constants.CYCLE_REPEAT_ASYNC).sendToTarget();
+        mPlayerHandler.obtainMessage(Constants.CYCLE_REPEAT_ASYNC).sendToTarget();
     }
 
     public void asyncSetShuffleModeLight(int shuffleMode) {
-        musicRemotePlayerHandler.obtainMessage(Constants.SET_SHUFFLE_MODE_LIGHT_ASYNC, shuffleMode,
+        mPlayerHandler.obtainMessage(Constants.SET_SHUFFLE_MODE_LIGHT_ASYNC, shuffleMode,
                 0).sendToTarget();
     }
 
     public void asyncPrepareAndPlay() {
-        musicRemotePlayerHandler.removeMessages(Constants.PREPARE_AND_PLAY_ASYNC);
-        musicRemotePlayerHandler.obtainMessage(Constants.PREPARE_AND_PLAY_ASYNC).sendToTarget();
+        mPlayerHandler.removeMessages(Constants.PREPARE_AND_PLAY_ASYNC);
+        mPlayerHandler.obtainMessage(Constants.PREPARE_AND_PLAY_ASYNC).sendToTarget();
     }
 
     public void asyncSaveQueues() {
@@ -1768,8 +1728,7 @@ public class MusicService extends Service {
     }
 
     public void asyncSetNextTrack() {
-        Timber.d("Async set next track");
-        musicRemotePlayerHandler.removeMessages(Constants.SET_NEXT_TRACK);
-        musicRemotePlayerHandler.obtainMessage(Constants.SET_NEXT_TRACK).sendToTarget();
+        mPlayerHandler.removeMessages(Constants.SET_NEXT_TRACK);
+        mPlayerHandler.obtainMessage(Constants.SET_NEXT_TRACK).sendToTarget();
     }
 }

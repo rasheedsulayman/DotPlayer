@@ -104,6 +104,28 @@
     <string name="add_to_playlist">Add to Playlist</string>
     <string name="details">Details</string>
 
+    <string name="theme">Themes</string>
+    <string name="use_blur_artwork_disclaimer">This will use Blurred Artworks for App background</string>
+    <string name="enable_albumart_theme">Enable AlbumArt Theme (Beta)</string>
+    <string name="choose_theme_pref_summary">Choose from Light, Dark, Black or Blue.\nDisable Albumart theme to activate.</string>
+    <string name="change_color_primary">Change Primary Color</string>
+    <string name="change_color_accent">Change Accent Color</string>
+    <string name="adjust_audio_settings">Adjust audio settings</string>
+    <string name="equalizer">Equalizer</string>
+    <string name="select_start_page">Select start page</string>
+    <string name="start_page">Start page</string>
+    <string name="playback">Playback</string>
+    <string name="display">Display</string>
+    <string name="album_on_lock_screen_pref_summary">Enables/Disables album art on lock screen</string>
+    <string name="album_on_lock_screen_pref_title">Show album art on lock screen</string>
+    <string name="artworks">Artworks</string>
+    <string name="auto_download_artwork_pref_summary">Allow the app to automatically fetch artworks from the internet</string>
+    <string name="auto_download_artwork_pref_title">Automatically download Artworks</string>
+    <string name="artwork_on_wifi_only_pref_summary">Artworks will only be downloaded via Wi-Fi</string>
+    <string name="artwork_on_wifi_only_pref_title">Wi-Fi only</string>
+    <string name="app_info_pref_summary">Licences, Feedback, build info etc</string>
+    <string name="app_info_pref_title">App info</string>
+
     <string-array name="main_pager_tab_titles">
         <item>SONGS</item>
         <item>ALBUMS</item>

@@ -1,91 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_width="match_parent">
     <android.support.v7.preference.PreferenceCategory
         android:key="pref_key_change_themes"
         android:title="@string/theme">
         <android.support.v7.preference.SwitchPreferenceCompat
             android:defaultValue="true"
             android:key="pref_key_album_art_theme"
-            android:summary="@string/use_blur_artwork_disclaimer"
-            android:title="@string/enable_albumart_theme" />
+            android:summary="This will use Blurred Artworks for App background"
+            android:title="Enable AlbumArt Theme (Beta)" />
 
         <android.support.v7.preference.ListPreference
             android:defaultValue="white"
             android:entries="@array/themes_titles"
             android:entryValues="@array/themes_values"
             android:key="pref_key_theme"
-            android:summary="@string/choose_theme_pref_summary"
-            android:title="@string/theme" />
+            android:summary="Choose from Light, Dark, Black or Blue.\nDisable Albumart theme to activate. "
+            android:title="Theme" />
 
         <android.support.v7.preference.Preference
             android:key="pref_key_color_primary"
-            android:summary="@string/change_color_primary"
-            android:title="@string/color_primary" />
-
+            android:summary="Change Primary Color"
+            android:title="Color Primary" />
         <android.support.v7.preference.Preference
             android:key="pref_key_color_accent"
-            android:summary="@string/change_color_accent"
-            android:title="@string/color_accent" />
+            android:summary="Change Accent Color"
+            android:title="Color Accent" />
     </android.support.v7.preference.PreferenceCategory>
 
 
     <android.support.v7.preference.PreferenceCategory
         android:key="pref_key_play_back"
-        android:title="@string/playback">
+        android:title="Playback">
 
         <android.support.v7.preference.Preference
             android:key="pref_key_equalizer"
-            android:summary="@string/adjust_audio_settings"
-            android:title="@string/equalizer" />
+            android:summary="Adjust audio settings"
+            android:title="Equalizer" />
 
     </android.support.v7.preference.PreferenceCategory>
 
 
     <android.support.v7.preference.PreferenceCategory
         android:key="pref_key_change_themes"
-        android:title="@string/display">
+        android:title="Display">
 
         <android.support.v7.preference.ListPreference
             android:defaultValue="-1"
             android:entries="@array/start_page_titles"
             android:entryValues="@array/start_page_values"
             android:key="pref_key_start_page"
-            android:summary="@string/select_start_page"
-            android:title="@string/start_page" />
+            android:summary="Select start page"
+            android:title="Start page" />
 
         <android.support.v7.preference.SwitchPreferenceCompat
             android:defaultValue="true"
             android:key="pref_key_album_art_on_lock_screen"
-            android:summary="@string/album_on_lock_screen_pref_summary"
-            android:title="@string/album_on_lock_screen_pref_title" />
+            android:summary="Enables/Disables album art on lock screen"
+            android:title="Show album art on lock screen" />
 
     </android.support.v7.preference.PreferenceCategory>
 
     <android.support.v7.preference.PreferenceCategory
         android:key="pref_key_artwork"
-        android:title="@string/artworks">
+        android:title="Artworks">
 
         <android.support.v7.preference.SwitchPreferenceCompat
             android:defaultValue="true"
             android:key="pref_key_auto_donwload"
-            android:summary="@string/auto_download_artwork_pref_summary"
-            android:title="@string/auto_download_artwork_pref_title" />
+            android:summary="Allow the app to automatically fetch artworks from the internet"
+            android:title="Automatically donwload Artworks" />
 
         <android.support.v7.preference.SwitchPreferenceCompat
             android:defaultValue="false"
             android:key="pref_key_download_via_wifi_only"
-            android:summary="@string/artwork_on_wifi_only_pref_summary"
-            android:title="@string/artwork_on_wifi_only_pref_summary" />
+            android:summary="Artworks will only be downloaded via Wi-Fi"
+            android:title="Wi-Fi only" />
     </android.support.v7.preference.PreferenceCategory>
 
     <android.support.v7.preference.PreferenceCategory
-        android:key="pref_category_key_about"
-        android:title="@string/about">
+        android:key="pref_categegory_key_about"
+        android:title="About">
 
         <android.support.v7.preference.Preference
             android:key="pref_key_app_info"
-            android:summary="@string/app_info_pref_summary"
-            android:title="@string/app_info_pref_title" />
+            android:summary="Licences, Feedback etc"
+            android:title="App info" />
     </android.support.v7.preference.PreferenceCategory>
 
-</android.support.v7.preference.PreferenceScreen>
+</LinearLayout>
