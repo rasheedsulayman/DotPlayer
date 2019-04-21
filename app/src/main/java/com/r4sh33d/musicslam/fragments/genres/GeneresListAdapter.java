@@ -12,15 +12,15 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import com.r4sh33d.musicslam.R;
-import com.r4sh33d.musicslam.utils.NavigationUtil;
 import com.r4sh33d.musicslam.dataloaders.SongIdsLoader;
 import com.r4sh33d.musicslam.dataloaders.SongLoader;
 import com.r4sh33d.musicslam.dialogs.AddToPlaylistDialog;
 import com.r4sh33d.musicslam.dialogs.DeleteSongsDialog;
-import com.r4sh33d.musicslam.playback.MusicPlayer;
 import com.r4sh33d.musicslam.interfaces.FastScrollerAdapter;
 import com.r4sh33d.musicslam.models.Genres;
 import com.r4sh33d.musicslam.models.Song;
+import com.r4sh33d.musicslam.playback.MusicPlayer;
+import com.r4sh33d.musicslam.utils.NavigationUtil;
 
 import java.util.List;
 
@@ -100,7 +100,7 @@ public class GeneresListAdapter extends RecyclerView.Adapter<GeneresListAdapter.
                     Genres genres = genresArrayList.get(getAdapterPosition());
                     switch (item.getItemId()) {
                         case R.id.menu_song_play:
-                            MusicPlayer.playAll(getSongsForGenres(), 0,  false);
+                            MusicPlayer.playAll(getSongsForGenres(), 0, false);
                             break;
                         case R.id.menu_song_play_next:
                             MusicPlayer.playNext(getSongsForGenres(), context);

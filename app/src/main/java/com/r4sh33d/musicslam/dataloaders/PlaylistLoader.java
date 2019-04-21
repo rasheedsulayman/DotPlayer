@@ -1,4 +1,3 @@
-
 package com.r4sh33d.musicslam.dataloaders;
 
 import android.content.Context;
@@ -22,32 +21,6 @@ public class PlaylistLoader {
             BaseColumns._ID,
             PlaylistsColumns.NAME
     };
-
-    public static class PlayListAsynctaskLoader extends WrappedAsyncTaskLoader<List<Playlist>> {
-        private final String selection;
-        private final String sortOrder;
-
-        /**
-         * Constructor of <code>WrappedAsyncTaskLoader</code>
-         *
-         * @param context The {@link Context} to use.
-         */
-        public PlayListAsynctaskLoader(Context context, String selection, String sortOrder) {
-            super(context);
-            this.selection = selection;
-            this.sortOrder = sortOrder;
-        }
-
-        public PlayListAsynctaskLoader(Context context) {
-            this(context, null, null);
-        }
-
-        @Override
-        public List<Playlist> loadInBackground() {
-            return loadPlayLists(makePlaylistCursor(getContext(), selection, sortOrder), getContext(), true);
-        }
-    }
-
 
     public static ArrayList<Playlist> loadPlayLists(Cursor cursor, Context context, boolean withSmartPlaylists) {
         ArrayList<Playlist> playlistArrayList = new ArrayList<>();
@@ -86,7 +59,6 @@ public class PlaylistLoader {
         }
     }
 
-
     private static void makeDefaultPlaylists(ArrayList<Playlist> playlistArrayList, Context context) {
         final Resources resources = context.getResources();
 
@@ -117,7 +89,6 @@ public class PlaylistLoader {
 
     }
 
-
     public static final int getSongCountForPlaylist(final Context context, final long playlistId) {
         Cursor c = context.getContentResolver().query(
                 MediaStore.Audio.Playlists.Members.getContentUri("external", playlistId),
@@ -131,5 +102,30 @@ public class PlaylistLoader {
             return count;
         }
         return 0;
+    }
+
+    public static class PlayListAsynctaskLoader extends WrappedAsyncTaskLoader<List<Playlist>> {
+        private final String selection;
+        private final String sortOrder;
+
+        /**
+         * Constructor of <code>WrappedAsyncTaskLoader</code>
+         *
+         * @param context The {@link Context} to use.
+         */
+        public PlayListAsynctaskLoader(Context context, String selection, String sortOrder) {
+            super(context);
+            this.selection = selection;
+            this.sortOrder = sortOrder;
+        }
+
+        public PlayListAsynctaskLoader(Context context) {
+            this(context, null, null);
+        }
+
+        @Override
+        public List<Playlist> loadInBackground() {
+            return loadPlayLists(makePlaylistCursor(getContext(), selection, sortOrder), getContext(), true);
+        }
     }
 }

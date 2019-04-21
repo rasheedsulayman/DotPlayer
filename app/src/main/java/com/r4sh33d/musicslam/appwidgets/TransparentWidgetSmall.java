@@ -25,10 +25,10 @@ import static com.r4sh33d.musicslam.playback.Constants.TOGGLEPAUSE_ACTION;
 
 public class TransparentWidgetSmall extends BaseAppWidget {
 
-    private static TransparentWidgetSmall sInstance;
-    private SimpleTarget<Bitmap> artworkTarget;
     public static final String TYPE = "small_widget";
+    private static TransparentWidgetSmall sInstance;
     int artWorkImageSizeDP = 0;
+    private SimpleTarget<Bitmap> artworkTarget;
 
     public static synchronized TransparentWidgetSmall getInstance() {
         if (sInstance == null) {

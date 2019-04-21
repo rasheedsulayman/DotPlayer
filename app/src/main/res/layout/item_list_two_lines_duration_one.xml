@@ -3,12 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingTop="8dp"
     android:layout_marginLeft="16dp"
     android:layout_marginRight="16dp"
     android:background="?android:attr/selectableItemBackground"
+    android:orientation="vertical"
 
-    android:orientation="vertical">
+    android:paddingTop="8dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -20,7 +20,7 @@
             android:layout_width="54dp"
             android:layout_height="56dp"
             android:background="@drawable/round_stroke_small_radius_background"
-            tools:src="@drawable/default_artwork_small"            />
+            tools:src="@drawable/default_artwork_small" />
 
         <LinearLayout
             android:layout_width="0dp"
@@ -34,8 +34,8 @@
                 android:id="@+id/line_one_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="?android:textColorPrimary"
                 android:maxLines="1"
+                android:textColor="?android:textColorPrimary"
                 android:textSize="14sp"
                 tools:text="Alright" />
 
@@ -43,9 +43,9 @@
                 android:id="@+id/line_two_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="?android:textColorSecondary"
                 android:layout_marginTop="2dp"
                 android:maxLines="1"
+                android:textColor="?android:textColorSecondary"
                 android:textSize="12sp"
                 tools:text="Good kid maad city" />
 
@@ -73,9 +73,9 @@
 
     <com.r4sh33d.musicslam.customviews.DividerView
         android:layout_width="match_parent"
-        android:layout_marginStart="72dp"
         android:layout_height="0.5dp"
-        android:layout_marginEnd="10dp"
+        android:layout_marginStart="72dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="10dp"
         android:background="@color/line_seperator_color" />
 </LinearLayout>

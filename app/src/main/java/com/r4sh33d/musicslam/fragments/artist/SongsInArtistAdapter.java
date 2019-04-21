@@ -12,17 +12,16 @@ import android.widget.TextView;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.r4sh33d.musicslam.GlideApp;
 import com.r4sh33d.musicslam.R;
-import com.r4sh33d.musicslam.dialogs.SongDetailsDialog;
-import com.r4sh33d.musicslam.utils.MusicUtils;
-import com.r4sh33d.musicslam.utils.NavigationUtil;
-import com.r4sh33d.musicslam.utils.SlamUtils;
 import com.r4sh33d.musicslam.customglide.audiocover.AudioCoverImage;
 import com.r4sh33d.musicslam.dataloaders.AlbumLoader;
 import com.r4sh33d.musicslam.dialogs.AddToPlaylistDialog;
 import com.r4sh33d.musicslam.dialogs.DeleteSongsDialog;
-import com.r4sh33d.musicslam.playback.MusicPlayer;
-import com.r4sh33d.musicslam.models.Artist;
+import com.r4sh33d.musicslam.dialogs.SongDetailsDialog;
 import com.r4sh33d.musicslam.models.Song;
+import com.r4sh33d.musicslam.playback.MusicPlayer;
+import com.r4sh33d.musicslam.utils.MusicUtils;
+import com.r4sh33d.musicslam.utils.NavigationUtil;
+import com.r4sh33d.musicslam.utils.SlamUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -61,7 +60,7 @@ public class SongsInArtistAdapter extends RecyclerView.Adapter<SongsInArtistAdap
                 .into(holder.albumArtImageView);
     }
 
-    public List<Song> getData(){
+    public List<Song> getData() {
         return songsInArtistArrayList;
     }
 
@@ -106,7 +105,7 @@ public class SongsInArtistAdapter extends RecyclerView.Adapter<SongsInArtistAdap
                     Song currentSong = songsInArtistArrayList.get(position);
                     switch (item.getItemId()) {
                         case R.id.menu_song_play:
-                            MusicPlayer.playAll( songsInArtistArrayList, position, false);
+                            MusicPlayer.playAll(songsInArtistArrayList, position, false);
                             break;
                         case R.id.menu_song_play_next:
                             MusicPlayer.playNext(currentSong, context);
@@ -134,7 +133,7 @@ public class SongsInArtistAdapter extends RecyclerView.Adapter<SongsInArtistAdap
                             break;
                         case R.id.menu_song_details:
                             SongDetailsDialog.newInstance(currentSong)
-                                    .show(((AppCompatActivity)context).getSupportFragmentManager(),
+                                    .show(((AppCompatActivity) context).getSupportFragmentManager(),
                                             SongDetailsDialog.SONG_DETAILS_DIALOG);
                             break;
                     }
@@ -149,7 +148,7 @@ public class SongsInArtistAdapter extends RecyclerView.Adapter<SongsInArtistAdap
 
         @Override
         public void onClick(View v) {
-            MusicPlayer.playAll( songsInArtistArrayList, getAdapterPosition(),  false);
+            MusicPlayer.playAll(songsInArtistArrayList, getAdapterPosition(), false);
         }
     }
 }

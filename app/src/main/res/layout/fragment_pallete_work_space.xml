@@ -8,9 +8,9 @@
     tools:context=".fragments.PaletteWorkSpaceFragment">
 
     <LinearLayout
-        android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:layout_marginTop="100dp">
 
         <TextView
@@ -21,10 +21,10 @@
             android:text="Light Vibrant" />
 
         <TextView
-            android:layout_marginLeft="20dp"
             android:id="@+id/vibrant"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
             android:padding="20dp"
             android:text="Vibrant" />
 
@@ -32,9 +32,9 @@
 
 
     <LinearLayout
-        android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:layout_marginTop="20dp">
 
         <TextView
@@ -45,19 +45,19 @@
             android:text="Dark Vibrant" />
 
         <TextView
-            android:layout_marginLeft="20dp"
             android:id="@+id/light_muted"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
             android:padding="20dp"
             android:text="Light Muted" />
 
     </LinearLayout>
 
     <LinearLayout
-        android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:layout_marginTop="20dp">
 
         <TextView
@@ -68,10 +68,10 @@
             android:text="Muted" />
 
         <TextView
-            android:layout_marginLeft="20dp"
             android:id="@+id/dark_muted"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
             android:padding="20dp"
             android:text="Dark Muted" />
 

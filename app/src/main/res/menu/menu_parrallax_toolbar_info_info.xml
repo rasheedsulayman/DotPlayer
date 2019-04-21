@@ -2,34 +2,35 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:icon="@drawable/ic_shuffle_white_24dp"
-        app:showAsAction="ifRoom"
         android:id="@+id/menu_shuffle"
-        android:title="@string/shuffle" />
+        android:icon="@drawable/ic_shuffle_white_24dp"
+        android:title="@string/shuffle"
+        app:showAsAction="ifRoom" />
 
     <item
-        app:showAsAction="never"
         android:id="@+id/menu_album_play"
-        android:title="@string/play_all" />
+        android:title="@string/play_all"
+        app:showAsAction="never" />
 
     <item
-        app:showAsAction="never"
         android:id="@+id/menu_album_play_next"
-        android:title="@string/play_next" />
+        android:title="@string/play_next"
+        app:showAsAction="never" />
 
     <item
-        app:showAsAction="never"
         android:id="@+id/menu_add_to_queue"
-        android:title="@string/enqueue" />
+        android:title="@string/enqueue"
+        app:showAsAction="never" />
 
     <item
-        app:showAsAction="never"
         android:id="@+id/menu_add_to_playlist"
-        android:title="@string/add_to_playlist" />
+        android:title="@string/add_to_playlist"
+        app:showAsAction="never" />
 
-    <item android:id="@+id/settings"
+    <item
+        android:id="@+id/settings"
         android:title="@string/settings"
-        app:showAsAction="never"/>
+        app:showAsAction="never" />
 
 
 </menu>

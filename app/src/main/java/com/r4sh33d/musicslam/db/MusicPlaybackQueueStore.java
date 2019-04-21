@@ -22,7 +22,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.provider.BaseColumns;
-import android.provider.MediaStore;
 import android.provider.MediaStore.Audio.AudioColumns;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -33,20 +32,18 @@ import com.r4sh33d.musicslam.models.Song;
 import java.util.ArrayList;
 import java.util.List;
 
-import timber.log.Timber;
-
 /**
  * @author Andrew Neal, Karim Abou Zeid, r4sh33d
  * <p/>
  * This keeps track of the music playback and history state of the playback service
  */
 public class MusicPlaybackQueueStore extends SQLiteOpenHelper {
-    @Nullable
-    private static MusicPlaybackQueueStore sInstance = null;
     public static final String DATABASE_NAME = "music_playback_state.db";
     public static final String PLAYING_QUEUE_TABLE_NAME = "playing_queue";
     public static final String ORIGINAL_PLAYING_QUEUE_TABLE_NAME = "original_playing_queue";
     private static final int VERSION = 1;
+    @Nullable
+    private static MusicPlaybackQueueStore sInstance = null;
 
     /**
      * Constructor of <code>MusicPlaybackState</code>
@@ -55,6 +52,18 @@ public class MusicPlaybackQueueStore extends SQLiteOpenHelper {
      */
     public MusicPlaybackQueueStore(final Context context) {
         super(context, DATABASE_NAME, null, VERSION);
+    }
+
+    /**
+     * @param context The {@link Context} to use
+     * @return A new instance of this class.
+     */
+    @NonNull
+    public static synchronized MusicPlaybackQueueStore getInstance(@NonNull final Context context) {
+        if (sInstance == null) {
+            sInstance = new MusicPlaybackQueueStore(context.getApplicationContext());
+        }
+        return sInstance;
     }
 
     @Override
@@ -104,7 +113,7 @@ public class MusicPlaybackQueueStore extends SQLiteOpenHelper {
         builder.append(" STRING NOT NULL);");
 
         db.execSQL(builder.toString());
-        }
+    }
 
     @Override
     public void onUpgrade(@NonNull final SQLiteDatabase db, final int oldVersion, final int newVersion) {
@@ -120,18 +129,6 @@ public class MusicPlaybackQueueStore extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + PLAYING_QUEUE_TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + ORIGINAL_PLAYING_QUEUE_TABLE_NAME);
         onCreate(db);
-    }
-
-    /**
-     * @param context The {@link Context} to use
-     * @return A new instance of this class.
-     */
-    @NonNull
-    public static synchronized MusicPlaybackQueueStore getInstance(@NonNull final Context context) {
-        if (sInstance == null) {
-            sInstance = new MusicPlaybackQueueStore(context.getApplicationContext());
-        }
-        return sInstance;
     }
 
     public synchronized void saveQueues(@NonNull final List<Song> playingQueue, @NonNull final List<Song> originalPlayingQueue) {
@@ -175,7 +172,7 @@ public class MusicPlaybackQueueStore extends SQLiteOpenHelper {
                     values.put(AudioColumns.ALBUM, song.albumName);
                     values.put(AudioColumns.ARTIST_ID, song.artistId);
                     values.put(AudioColumns.ARTIST, song.artistName);
-                    values.put(AudioColumns.MIME_TYPE , song.mimeType);
+                    values.put(AudioColumns.MIME_TYPE, song.mimeType);
                     values.put(AudioColumns.SIZE, song.fileSize);
 
                     database.insert(tableName, null, values);

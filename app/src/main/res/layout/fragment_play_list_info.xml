@@ -95,9 +95,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:tag=":aesthetic_ignore"
-                    tools:text="10"
                     android:textColor="@color/white"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    tools:text="10" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -122,9 +122,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:tag=":aesthetic_ignore"
-                    tools:text=" 2 : 45"
                     android:textColor="@color/white"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    tools:text=" 2 : 45" />
 
             </LinearLayout>
 
@@ -144,13 +144,13 @@
             app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
         <TextView
-            android:visibility="gone"
-            android:paddingTop="150dp"
             android:id="@+id/empty_data_textview"
-            android:textSize="18sp"
-            android:layout_gravity="center"
-            tools:text="No data"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:paddingTop="150dp"
+            android:textSize="18sp"
+            android:visibility="gone"
+            tools:text="No data" />
     </FrameLayout>
 </android.support.design.widget.CoordinatorLayout>

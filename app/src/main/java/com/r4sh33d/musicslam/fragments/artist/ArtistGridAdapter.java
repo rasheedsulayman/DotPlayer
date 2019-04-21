@@ -2,7 +2,6 @@ package com.r4sh33d.musicslam.fragments.artist;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
@@ -16,17 +15,17 @@ import android.widget.TextView;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.r4sh33d.musicslam.GlideApp;
 import com.r4sh33d.musicslam.R;
-import com.r4sh33d.musicslam.utils.NavigationUtil;
-import com.r4sh33d.musicslam.utils.PrefsUtils;
 import com.r4sh33d.musicslam.customglide.artist.ArtistImage;
 import com.r4sh33d.musicslam.dataloaders.SongIdsLoader;
 import com.r4sh33d.musicslam.dataloaders.SongLoader;
 import com.r4sh33d.musicslam.dialogs.AddToPlaylistDialog;
 import com.r4sh33d.musicslam.dialogs.DeleteSongsDialog;
-import com.r4sh33d.musicslam.playback.MusicPlayer;
 import com.r4sh33d.musicslam.interfaces.FastScrollerAdapter;
 import com.r4sh33d.musicslam.models.Artist;
 import com.r4sh33d.musicslam.models.Song;
+import com.r4sh33d.musicslam.playback.MusicPlayer;
+import com.r4sh33d.musicslam.utils.NavigationUtil;
+import com.r4sh33d.musicslam.utils.PrefsUtils;
 
 import java.util.List;
 

@@ -13,8 +13,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.r4sh33d.musicslam.R;
-import com.r4sh33d.musicslam.customviews.ColoredFastScrollerThumbView;
 import com.r4sh33d.musicslam.customviews.AutoDismissFastScrollerView;
+import com.r4sh33d.musicslam.customviews.ColoredFastScrollerThumbView;
 import com.r4sh33d.musicslam.fragments.BaseListenerFragment;
 import com.r4sh33d.musicslam.interfaces.FastScrollerAdapter;
 import com.reddit.indicatorfastscroll.FastScrollItemIndicator;

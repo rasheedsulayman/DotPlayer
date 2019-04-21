@@ -12,9 +12,9 @@ import com.r4sh33d.musicslam.utils.MusicUtils;
 import java.util.Locale;
 
 public class DeleteSongsDialog extends DialogFragment {
+    public static final String DELETE_FRAG_TAG = "delete_dialog_frag";
     private static final String ARG_SONG_IDS = "song_ids";
     private static final String ARG_DIALOG_TITILE = "song_title";
-    public static final String DELETE_FRAG_TAG = "delete_dialog_frag";
 
     public static DeleteSongsDialog newInstance(final long[] items, String title) {
         Bundle args = new Bundle();
@@ -33,7 +33,7 @@ public class DeleteSongsDialog extends DialogFragment {
         String title = getArguments().getString(ARG_DIALOG_TITILE, "");
         String content = getResources().getQuantityString(R.plurals.delete_songs_warning, length, length);
         if (songIds.length > 1) {
-            title = String.format(Locale.getDefault(),getString(R.string.delete_songs_format), songIds.length);
+            title = String.format(Locale.getDefault(), getString(R.string.delete_songs_format), songIds.length);
         } else {
             title = String.format(getString(R.string.delete_question_mark_format), title);
         }

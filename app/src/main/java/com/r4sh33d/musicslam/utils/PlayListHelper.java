@@ -32,9 +32,8 @@ import static com.r4sh33d.musicslam.playback.MusicPlayer.mService;
 
 
 public class PlayListHelper {
-    private static ContentValues[] mContentValuesCache = null;
     public final static String SLAM_FAVOURITE_PLAYLIST_NAME = "Slam Favourites";
-
+    private static ContentValues[] mContentValuesCache = null;
 
     /**
      * @param context    The {@link Context} to use.

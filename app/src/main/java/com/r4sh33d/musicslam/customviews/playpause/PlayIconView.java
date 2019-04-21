@@ -38,15 +38,15 @@ public final class PlayIconView extends android.support.v7.widget.AppCompatImage
         }
     }
 
-    @Override
-    public void setIconState(@NonNull PlayIconDrawable.IconState state) {
-        playIconDrawable.setIconState(state);
-    }
-
     @NonNull
     @Override
     public PlayIconDrawable.IconState getIconState() {
         return playIconDrawable.getIconState();
+    }
+
+    @Override
+    public void setIconState(@NonNull PlayIconDrawable.IconState state) {
+        playIconDrawable.setIconState(state);
     }
 
     @Override

@@ -10,7 +10,6 @@ import android.view.View;
 import com.afollestad.aesthetic.Aesthetic;
 import com.afollestad.aesthetic.Util;
 import com.r4sh33d.musicslam.utils.PrefsUtils;
-import com.r4sh33d.musicslam.utils.ColorHelper;
 
 import io.reactivex.disposables.Disposable;
 

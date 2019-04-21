@@ -5,7 +5,6 @@ import android.database.Cursor;
 import android.provider.MediaStore;
 import android.provider.MediaStore.Audio.AudioColumns;
 
-import com.r4sh33d.musicslam.dataloaders.SongLoader;
 import com.r4sh33d.musicslam.models.Song;
 
 import java.util.ArrayList;
@@ -28,6 +27,6 @@ public class LastAddedLoader {
                 " AND " + MediaStore.Audio.Media.DATE_ADDED + ">" +
                 cuttoff;
         return SongLoader.makeSongsCursor(selection, null,
-                        MediaStore.Audio.Media.DATE_ADDED + " DESC", context );
+                MediaStore.Audio.Media.DATE_ADDED + " DESC", context);
     }
 }

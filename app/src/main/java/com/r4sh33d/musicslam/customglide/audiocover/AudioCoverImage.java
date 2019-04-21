@@ -7,7 +7,7 @@ public class AudioCoverImage {
     String filePath;
 
     public AudioCoverImage(@Nullable String filePath) {
-        this.filePath = !TextUtils.isEmpty(filePath)? filePath: "";
+        this.filePath = !TextUtils.isEmpty(filePath) ? filePath : "";
     }
 
     @Override
@@ -25,6 +25,6 @@ public class AudioCoverImage {
 
     @Override
     public int hashCode() {
-        return  filePath.hashCode();
+        return filePath.hashCode();
     }
 }

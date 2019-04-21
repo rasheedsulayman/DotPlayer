@@ -5,6 +5,17 @@ import android.os.Parcelable;
 
 public class Genres implements Parcelable {
 
+    public static final Creator<Genres> CREATOR = new Creator<Genres>() {
+        @Override
+        public Genres createFromParcel(Parcel in) {
+            return new Genres(in);
+        }
+
+        @Override
+        public Genres[] newArray(int size) {
+            return new Genres[size];
+        }
+    };
     public String name;
     public long id;
     public int songCount;
@@ -32,16 +43,4 @@ public class Genres implements Parcelable {
     public int describeContents() {
         return 0;
     }
-
-    public static final Creator<Genres> CREATOR = new Creator<Genres>() {
-        @Override
-        public Genres createFromParcel(Parcel in) {
-            return new Genres(in);
-        }
-
-        @Override
-        public Genres[] newArray(int size) {
-            return new Genres[size];
-        }
-    };
 }

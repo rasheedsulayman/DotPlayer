@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,7 +19,6 @@ import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import timber.log.Timber;
 
 public class ArtworkPagerFragment extends BaseListenerFragment implements ViewPager.OnPageChangeListener {
     @BindView(R.id.viewpager)
@@ -51,7 +49,7 @@ public class ArtworkPagerFragment extends BaseListenerFragment implements ViewPa
         setUpScroller();
     }
 
-    void setUpScroller(){
+    void setUpScroller() {
         try {
             Field mScroller;
             mScroller = ViewPager.class.getDeclaredField("mScroller");

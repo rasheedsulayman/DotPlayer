@@ -35,48 +35,9 @@ public class TopTracksLoader {
     private Context mContext;
     private QueryType mQueryType;
 
-    public enum QueryType {
-        TopTracks,
-        RecentSongs,
-    }
-
     public TopTracksLoader(final Context context, QueryType type) {
         mContext = context;
         mQueryType = type;
-    }
-
-    public ArrayList<Song> getTracks() {
-        return SongLoader.getSongsListFromCursor(getCursor());
-    }
-
-
-    protected Cursor getCursor() {
-        SortedCursor retCursor = null;
-        if (mQueryType == QueryType.TopTracks) {
-            retCursor = makeTopTracksCursor(mContext);
-        } else if (mQueryType == QueryType.RecentSongs) {
-            retCursor = makeRecentTracksCursor(mContext);
-        }
-
-        // clean up the databases with any ids not found
-        if (retCursor != null) {
-            ArrayList<Long> missingIds = retCursor.getMissingIds();
-            if (missingIds != null && missingIds.size() > 0) {
-                // for each unfound id, remove it from the database
-                // this codepath should only really be hit if the user removes songs
-                // outside of the Music  app
-                //Id is in our database but not in media store.
-                for (long id : missingIds) {
-                    if (mQueryType == QueryType.TopTracks) {
-                        SongPlayCount.getInstance(mContext).removeItem(id);
-                    } else if (mQueryType == QueryType.RecentSongs) {
-                        RecentStore.getInstance(mContext).removeItem(id);
-                    }
-                }
-            }
-        }
-
-        return retCursor;
     }
 
     /**
@@ -156,5 +117,43 @@ public class TopTracksLoader {
         }
 
         return null;
+    }
+
+    public ArrayList<Song> getTracks() {
+        return SongLoader.getSongsListFromCursor(getCursor());
+    }
+
+    protected Cursor getCursor() {
+        SortedCursor retCursor = null;
+        if (mQueryType == QueryType.TopTracks) {
+            retCursor = makeTopTracksCursor(mContext);
+        } else if (mQueryType == QueryType.RecentSongs) {
+            retCursor = makeRecentTracksCursor(mContext);
+        }
+
+        // clean up the databases with any ids not found
+        if (retCursor != null) {
+            ArrayList<Long> missingIds = retCursor.getMissingIds();
+            if (missingIds != null && missingIds.size() > 0) {
+                // for each unfound id, remove it from the database
+                // this codepath should only really be hit if the user removes songs
+                // outside of the Music  app
+                //Id is in our database but not in media store.
+                for (long id : missingIds) {
+                    if (mQueryType == QueryType.TopTracks) {
+                        SongPlayCount.getInstance(mContext).removeItem(id);
+                    } else if (mQueryType == QueryType.RecentSongs) {
+                        RecentStore.getInstance(mContext).removeItem(id);
+                    }
+                }
+            }
+        }
+
+        return retCursor;
+    }
+
+    public enum QueryType {
+        TopTracks,
+        RecentSongs,
     }
 }

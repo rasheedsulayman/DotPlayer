@@ -5,7 +5,6 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
 import android.support.v7.widget.LinearLayoutManager;
@@ -43,7 +42,7 @@ public class SearchFragment extends BaseListenerFragment implements SearchView.O
     TextView emptyDataTextView;
 
     private String queryEntered;
-    private SearchResultsAdapter  searchResultsAdapter;
+    private SearchResultsAdapter searchResultsAdapter;
 
     public SearchFragment() {
         // Required empty public constructor
@@ -148,11 +147,12 @@ public class SearchFragment extends BaseListenerFragment implements SearchView.O
 
     @Override
     public void onLoadFinished(@NonNull Loader<List<Object>> loader, List<Object> data) {
-         searchResultsAdapter.updateResultsLists(data);
+        searchResultsAdapter.updateResultsLists(data);
     }
 
     @Override
-    public void onLoaderReset(@NonNull Loader<List<Object>> loader) { }
+    public void onLoaderReset(@NonNull Loader<List<Object>> loader) {
+    }
 
 
     public void hideKeyboard() {

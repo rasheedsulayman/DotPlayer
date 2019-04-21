@@ -18,9 +18,9 @@ import com.r4sh33d.musicslam.customviews.ColoredFastScrollRecyclerView;
 import com.r4sh33d.musicslam.customviews.ColoredStatusBarView;
 import com.r4sh33d.musicslam.dataloaders.SongLoader;
 import com.r4sh33d.musicslam.fragments.BaseListenerFragment;
-import com.r4sh33d.musicslam.playback.MusicPlayer;
 import com.r4sh33d.musicslam.models.Genres;
 import com.r4sh33d.musicslam.models.Song;
+import com.r4sh33d.musicslam.playback.MusicPlayer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,18 +31,14 @@ import butterknife.ButterKnife;
 
 public class GenresDetailsFragment extends BaseListenerFragment
         implements LoaderManager.LoaderCallbacks<List<Song>>, Toolbar.OnMenuItemClickListener {
+    private static final String ARG_GENRES = "genres";
     @BindView(R.id.recyclerview)
     ColoredFastScrollRecyclerView recyclerView;
-
-    private static final String ARG_GENRES = "genres";
-    private Genres genres;
-
     @BindView(R.id.toolbar)
     Toolbar toolbar;
-
     @BindView(R.id.status_bar_view)
     ColoredStatusBarView statusBarView;
-
+    private Genres genres;
     private SongsInGenresAdapter mSongsInGenresAdapter;
 
     public GenresDetailsFragment() {

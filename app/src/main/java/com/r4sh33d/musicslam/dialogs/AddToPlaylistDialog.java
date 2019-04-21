@@ -7,10 +7,10 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
 
 import com.afollestad.materialdialogs.MaterialDialog;
-import com.r4sh33d.musicslam.utils.PlayListHelper;
 import com.r4sh33d.musicslam.R;
 import com.r4sh33d.musicslam.dataloaders.PlaylistLoader;
 import com.r4sh33d.musicslam.models.Playlist;
+import com.r4sh33d.musicslam.utils.PlayListHelper;
 
 import java.util.ArrayList;
 

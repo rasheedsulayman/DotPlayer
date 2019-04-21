@@ -14,9 +14,9 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class LastFmRetrofitClient {
-    private static int VALID_CACHE_DURATION = 60 * 24 * 60 * 60; //60 days
     public static String API_KEY = "0bc709225c814b576681ff35ca7ea054";
     public static String Base_URL = "http://ws.audioscrobbler.com/";
+    private static int VALID_CACHE_DURATION = 60 * 24 * 60 * 60; //60 days
     private static Retrofit sRetrofitInstance;
 
     public static Retrofit getsRetrofitInstance(Context context, long networkTimeout) {
@@ -26,6 +26,29 @@ public class LastFmRetrofitClient {
         return sRetrofitInstance;
     }
 
+    public static LastFmService getLastFmRetrofitService(Context context, long networkTimeout) {
+        return LastFmRetrofitClient.getsRetrofitInstance(context, networkTimeout).create(LastFmService.class);
+    }
+
+    public static OkHttpClient getHttpClient() {
+        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+        return new OkHttpClient.Builder()
+                //  .addInterceptor(interceptor)
+                .addInterceptor(chain -> {
+                    Request original = chain.request();
+                    HttpUrl originalHttpUrl = original.url();
+                    HttpUrl url = originalHttpUrl.newBuilder()
+                            .addQueryParameter("api_key", API_KEY)
+                            .addQueryParameter("format", "json")
+                            .build();
+                    Request.Builder requestBuilder = original.newBuilder()
+                            .url(url);
+                    Request request = requestBuilder.build();
+                    return chain.proceed(request);
+                })
+                .build();
+    }
 
     private Retrofit build(Context context, long networkTimeout) {
         return new Retrofit.Builder()
@@ -33,11 +56,6 @@ public class LastFmRetrofitClient {
                 .client(getCacheEnabledHttClient(context, networkTimeout))
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-    }
-
-
-    public static LastFmService getLastFmRetrofitService(Context context, long networkTimeout) {
-        return LastFmRetrofitClient.getsRetrofitInstance(context, networkTimeout).create(LastFmService.class);
     }
 
     private OkHttpClient getCacheEnabledHttClient(Context context, long networkTimeOut) {
@@ -69,26 +87,5 @@ public class LastFmRetrofitClient {
 
         }
         return builder.build();
-    }
-
-
-    public static  OkHttpClient getHttpClient() {
-        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
-        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-        return new OkHttpClient.Builder()
-              //  .addInterceptor(interceptor)
-                .addInterceptor(chain -> {
-                    Request original = chain.request();
-                    HttpUrl originalHttpUrl = original.url();
-                    HttpUrl url = originalHttpUrl.newBuilder()
-                            .addQueryParameter("api_key", API_KEY)
-                            .addQueryParameter("format", "json")
-                            .build();
-                    Request.Builder requestBuilder = original.newBuilder()
-                            .url(url);
-                    Request request = requestBuilder.build();
-                    return chain.proceed(request);
-                })
-                .build();
     }
 }

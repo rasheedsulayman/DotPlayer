@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/white"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@color/white"
     android:orientation="horizontal">
 
     <ImageView
@@ -14,9 +14,9 @@
         tools:src="@drawable/default_artwork_large" />
 
     <LinearLayout
-        android:layout_gravity="center"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_gravity="center"
         android:layout_marginStart="10dp"
         android:orientation="vertical">
 
@@ -26,59 +26,60 @@
             android:layout_weight="1" />
 
         <TextView
-            android:layout_gravity="center_vertical"
-            android:textSize="16sp"
             android:id="@+id/song_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
             android:maxLines="1"
             android:textColor="@color/black"
+            android:textSize="16sp"
             tools:text="Song Title" />
+
         <FrameLayout
-            android:layout_weight="1"
             android:layout_width="match_parent"
-            android:layout_height="0dp"/>
+            android:layout_height="0dp"
+            android:layout_weight="1" />
 
         <TextView
-            android:layout_gravity="center_vertical"
-            android:textSize="14sp"
             android:id="@+id/song_artist"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
             android:maxLines="1"
             android:textColor="@color/black"
+            android:textSize="14sp"
             tools:text="Song Artist" />
 
         <FrameLayout
-            android:layout_weight="3"
             android:layout_width="match_parent"
-            android:layout_height="0dp"/>
+            android:layout_height="0dp"
+            android:layout_weight="3" />
 
         <LinearLayout
-            android:layout_gravity="bottom"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
             android:orientation="horizontal">
 
             <ImageView
-                android:layout_weight="1"
                 android:id="@+id/previous"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:src="@drawable/ic_skip_previous_black_24dp" />
 
             <ImageView
-                android:layout_weight="1"
                 android:id="@+id/play_pause"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:src="@drawable/ic_play_arrow_black_24dp" />
 
             <ImageView
-                android:layout_weight="1"
                 android:id="@+id/next"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:src="@drawable/ic_skip_next_black_24dp" />
 
         </LinearLayout>

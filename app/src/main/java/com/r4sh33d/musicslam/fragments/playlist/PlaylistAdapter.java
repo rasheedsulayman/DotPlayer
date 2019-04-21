@@ -14,16 +14,16 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import com.r4sh33d.musicslam.R;
-import com.r4sh33d.musicslam.utils.NavigationUtil;
 import com.r4sh33d.musicslam.dataloaders.SongIdsLoader;
 import com.r4sh33d.musicslam.dataloaders.SongLoader;
 import com.r4sh33d.musicslam.dialogs.AddToPlaylistDialog;
 import com.r4sh33d.musicslam.dialogs.DeletePlaylistDialog;
 import com.r4sh33d.musicslam.dialogs.RenamePlaylistDialog;
-import com.r4sh33d.musicslam.playback.MusicPlayer;
 import com.r4sh33d.musicslam.interfaces.FastScrollerAdapter;
 import com.r4sh33d.musicslam.models.Playlist;
 import com.r4sh33d.musicslam.models.Song;
+import com.r4sh33d.musicslam.playback.MusicPlayer;
+import com.r4sh33d.musicslam.utils.NavigationUtil;
 
 import java.util.List;
 

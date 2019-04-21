@@ -46,6 +46,7 @@ import butterknife.ButterKnife;
 public class PlaylistDetailsFragment extends AbsParallaxArtworkDetailsFragment
         implements LoaderManager.LoaderCallbacks<List<Song>> {
 
+    private static final String ARG_PLAYLIST = "playlist";
     @BindView(R.id.backdrop)
     ImageView albumArt;
     @BindView(R.id.toolbar)
@@ -58,19 +59,13 @@ public class PlaylistDetailsFragment extends AbsParallaxArtworkDetailsFragment
     CoordinatorLayout rootView;
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
-
     @BindView(R.id.song_count)
     TextView songCountTextView;
-
     @BindView(R.id.duration)
     TextView durationTextView;
-
     @BindView(R.id.playlist_details_background)
     LinearLayout playlistDetailContainer;
-
     Random random = new Random();
-
-    private static final String ARG_PLAYLIST = "playlist";
     Playlist mPlaylist;
     private SongsInPlaylistAdapter mSongsInPlayListAdapter;
 

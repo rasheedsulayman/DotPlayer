@@ -190,18 +190,9 @@ class MultiPlayer implements MediaPlayer.OnErrorListener,
     public void setVolume(final float vol) {
         try {
             mCurrentMediaPlayer.setVolume(vol, vol);
-        }catch (IllegalStateException e){
+        } catch (IllegalStateException e) {
             e.printStackTrace();
         }
-    }
-
-    /**
-     * Sets the audio session ID.
-     *
-     * @param sessionId The audio session ID
-     */
-    public void setAudioSessionId(final int sessionId) {
-        mCurrentMediaPlayer.setAudioSessionId(sessionId);
     }
 
     /**
@@ -214,11 +205,20 @@ class MultiPlayer implements MediaPlayer.OnErrorListener,
     }
 
     /**
+     * Sets the audio session ID.
+     *
+     * @param sessionId The audio session ID
+     */
+    public void setAudioSessionId(final int sessionId) {
+        mCurrentMediaPlayer.setAudioSessionId(sessionId);
+    }
+
+    /**
      * {@inheritDoc}
      */
     @Override
     public boolean onError(final MediaPlayer mp, final int what, final int extra) {
-        Log.e("MediaPlayer","Slam - Error what: " + what);
+        Log.e("MediaPlayer", "Slam - Error what: " + what);
         switch (what) {
             case MediaPlayer.MEDIA_ERROR_SERVER_DIED:
                 final MusicService service = mService.get();

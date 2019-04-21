@@ -19,31 +19,6 @@ public class ArtistLoader {
             MediaStore.Audio.Artists.NUMBER_OF_ALBUMS,
     };
 
-    public static class ArtistAsynctaskLoader extends WrappedAsyncTaskLoader<List<Artist>> {
-        private final String sortOrder;
-        private final String selection;
-
-        /**
-         * Constructor of <code>WrappedAsyncTaskLoader</code>
-         *
-         * @param context The {@link Context} to use.
-         */
-        public ArtistAsynctaskLoader(Context context, String sortOrder, String selection) {
-            super(context);
-            this.sortOrder = sortOrder;
-            this.selection = selection;
-        }
-
-        public ArtistAsynctaskLoader(Context context) {
-            this(context, null, null);
-        }
-
-        @Override
-        public List<Artist> loadInBackground() {
-            return getArtistsFromCursor(makeArtistsCursor(getContext(), sortOrder, selection));
-        }
-    }
-
     public static ArrayList<Artist> getArtistsFromCursor(Cursor cursor) {
         ArrayList<Artist> arrayList = new ArrayList<>();
         if (cursor != null) {
@@ -74,7 +49,7 @@ public class ArtistLoader {
         try {
             return context.getContentResolver().query(MediaStore.Audio.Artists.EXTERNAL_CONTENT_URI,
                     projection, selection, selectionArgs, sortOrder);
-        }catch (SecurityException ignored){
+        } catch (SecurityException ignored) {
             return null;
         }
 
@@ -108,5 +83,30 @@ public class ArtistLoader {
                 MediaStore.Audio.AudioColumns.ARTIST + " LIKE ?",
                 new String[]{"%" + searchQuery + "%"}
         ));
+    }
+
+    public static class ArtistAsynctaskLoader extends WrappedAsyncTaskLoader<List<Artist>> {
+        private final String sortOrder;
+        private final String selection;
+
+        /**
+         * Constructor of <code>WrappedAsyncTaskLoader</code>
+         *
+         * @param context The {@link Context} to use.
+         */
+        public ArtistAsynctaskLoader(Context context, String sortOrder, String selection) {
+            super(context);
+            this.sortOrder = sortOrder;
+            this.selection = selection;
+        }
+
+        public ArtistAsynctaskLoader(Context context) {
+            this(context, null, null);
+        }
+
+        @Override
+        public List<Artist> loadInBackground() {
+            return getArtistsFromCursor(makeArtistsCursor(getContext(), sortOrder, selection));
+        }
     }
 }

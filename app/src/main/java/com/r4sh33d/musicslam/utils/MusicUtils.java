@@ -153,7 +153,7 @@ public class MusicUtils {
             c.close();
         }
         String message = context.getResources().getQuantityString(R.plurals.n_tracks_were_deleted, list.length, list.length);
-        Toast.makeText(context, message , Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
         // We deleted a number of tracks, which could affect any number o things
         // in the media content domain, so update everything.
         context.getContentResolver().notifyChange(Uri.parse("content://media"), null);

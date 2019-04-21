@@ -14,7 +14,6 @@ import org.jaudiotagger.audio.exceptions.CannotReadException;
 import org.jaudiotagger.audio.exceptions.InvalidAudioFrameException;
 import org.jaudiotagger.audio.exceptions.ReadOnlyFileException;
 import org.jaudiotagger.audio.mp3.MP3File;
-import org.jaudiotagger.tag.FieldKey;
 import org.jaudiotagger.tag.TagException;
 import org.jaudiotagger.tag.images.Artwork;
 
@@ -38,9 +37,26 @@ public class AudioCoverDataFetcher implements DataFetcher<InputStream> {
         this.context = context;
     }
 
+    public static InputStream getArtworkFromMp3Tag(File musicFile) {
+        try {
+            MP3File f = (MP3File) AudioFileIO.read(musicFile);
+            if (f.hasID3v2Tag()) {
+                Artwork albumArt = f.getTag().getFirstArtwork();
+                if (albumArt != null) {
+                    return new ByteArrayInputStream(albumArt.getBinaryData());
+                }
+            }
+        } catch (CannotReadException | IOException
+                | TagException | ReadOnlyFileException
+                | InvalidAudioFrameException ignored) {
+            //Nothing for now
+        }
+        return null;
+    }
+
     @Override
     public void loadData(@NonNull Priority priority, @NonNull DataCallback<? super InputStream> callback) {
-        if (TextUtils.isEmpty(audioCoverImage.filePath)){
+        if (TextUtils.isEmpty(audioCoverImage.filePath)) {
             callback.onDataReady(null);
             return;
         }
@@ -68,24 +84,6 @@ public class AudioCoverDataFetcher implements DataFetcher<InputStream> {
             //No 2 fallback, Try again from a cover file inside the same directory as the mp3 file
             return getArtworkFromFile(path);
         }
-    }
-
-
-    public static InputStream getArtworkFromMp3Tag(File musicFile) {
-        try {
-            MP3File f = (MP3File) AudioFileIO.read(musicFile);
-            if (f.hasID3v2Tag()) {
-                Artwork albumArt = f.getTag().getFirstArtwork();
-                if (albumArt != null) {
-                    return new ByteArrayInputStream(albumArt.getBinaryData());
-                }
-            }
-        } catch (CannotReadException | IOException
-                | TagException | ReadOnlyFileException
-                | InvalidAudioFrameException ignored) {
-            //Nothing for now
-        }
-        return null;
     }
 
     private InputStream getArtworkFromFile(String path) {

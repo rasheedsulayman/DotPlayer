@@ -158,7 +158,7 @@ public class SearchResultsAdapter extends RecyclerView.Adapter<RecyclerView.View
             Artist artist = (Artist) localObject;
             artistNameTextView.setText(artist.name);
             String albums = context.getResources().getQuantityString(R.plurals.n_albums, artist.albumCount, artist.albumCount);
-            String songs =  context.getResources().getQuantityString(R.plurals.n_songs, artist.songCount, artist.songCount);
+            String songs = context.getResources().getQuantityString(R.plurals.n_songs, artist.songCount, artist.songCount);
             albumsAndSongsTextView.setText(String.format("%s • %s", albums, songs));
             GlideApp.with(context)
                     .load(new ArtistImage(artist.name))

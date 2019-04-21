@@ -23,8 +23,8 @@ import java.util.List;
 public class SongsInArtistFragment extends BaseListenerFragment implements
         LoaderManager.LoaderCallbacks<List<Song>> {
 
-    Artist mArtist;
     private static final String ARG_ARTIST = "artist";
+    Artist mArtist;
     RecyclerView recyclerView;
     private SongsInArtistAdapter mSongsInArtistAdapter;
 

@@ -29,15 +29,14 @@ import static com.r4sh33d.musicslam.playback.Constants.TOGGLEPAUSE_ACTION;
 
 public class NotificationHelper {
 
-    private boolean isNotificationCancelled = false;
-    private int mNotifyMode = NOTIFY_MODE_NONE;
-    private long mNotificationPostTime = 0;
     private static final int NOTIFY_MODE_NONE = 0;
     private static final int NOTIFY_MODE_FOREGROUND = 1;
     private static final int NOTIFY_MODE_BACKGROUND = 2;
-    private SimpleTarget<Bitmap> target;
-
     private static final String NOTIFICATION_CHANEL_ID = "music_slam_playback_notification";
+    private boolean isNotificationCancelled = false;
+    private int mNotifyMode = NOTIFY_MODE_NONE;
+    private long mNotificationPostTime = 0;
+    private SimpleTarget<Bitmap> target;
     private MusicService service;
     private NotificationManager mNotificationManager;
 
@@ -101,6 +100,7 @@ public class NotificationHelper {
                         public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
                             updateNotification(resource);
                         }
+
                         void updateNotification(Bitmap bitmap) {
                             if (isNotificationCancelled) {
                                 return;

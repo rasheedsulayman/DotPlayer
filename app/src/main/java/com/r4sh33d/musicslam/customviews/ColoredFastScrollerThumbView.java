@@ -5,9 +5,9 @@ import android.content.res.ColorStateList;
 import android.util.AttributeSet;
 
 import com.afollestad.aesthetic.Aesthetic;
-import com.r4sh33d.musicslam.utils.PrefsUtils;
 import com.r4sh33d.musicslam.activities.ThemedSlidingPanelActivity;
 import com.r4sh33d.musicslam.interfaces.PaletteListener;
+import com.r4sh33d.musicslam.utils.PrefsUtils;
 import com.reddit.indicatorfastscroll.FastScrollerThumbView;
 
 import org.jetbrains.annotations.NotNull;
@@ -44,7 +44,7 @@ public class ColoredFastScrollerThumbView extends FastScrollerThumbView implemen
         }
     }
 
-    public void cancelColorSubs(){
+    public void cancelColorSubs() {
         if (!isAlbumArtTheme) {
             subscription.dispose();
         } else {

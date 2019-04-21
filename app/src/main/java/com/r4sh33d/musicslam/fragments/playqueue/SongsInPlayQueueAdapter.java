@@ -15,15 +15,15 @@ import android.widget.TextView;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.r4sh33d.musicslam.GlideApp;
 import com.r4sh33d.musicslam.R;
-import com.r4sh33d.musicslam.dialogs.SongDetailsDialog;
-import com.r4sh33d.musicslam.utils.MusicUtils;
-import com.r4sh33d.musicslam.utils.SlamUtils;
-import com.r4sh33d.musicslam.customviews.BlackAndWhiteImageView;
 import com.r4sh33d.musicslam.customglide.audiocover.AudioCoverImage;
+import com.r4sh33d.musicslam.customviews.BlackAndWhiteImageView;
 import com.r4sh33d.musicslam.dialogs.AddToPlaylistDialog;
 import com.r4sh33d.musicslam.dialogs.DeleteSongsDialog;
-import com.r4sh33d.musicslam.playback.MusicPlayer;
+import com.r4sh33d.musicslam.dialogs.SongDetailsDialog;
 import com.r4sh33d.musicslam.models.Song;
+import com.r4sh33d.musicslam.playback.MusicPlayer;
+import com.r4sh33d.musicslam.utils.MusicUtils;
+import com.r4sh33d.musicslam.utils.SlamUtils;
 
 import java.util.List;
 
@@ -31,7 +31,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class SongsInPlayQueueAdapter extends RecyclerView.Adapter<SongsInPlayQueueAdapter.MyHolder>
-        implements  ItemViewTouchHelperCallback.OnItemMovedListener {
+        implements ItemViewTouchHelperCallback.OnItemMovedListener {
     private List<Song> songsInQueueArrayList;
     private Context context;
     private OnStartDragListener onStartDragListener;
@@ -79,12 +79,16 @@ public class SongsInPlayQueueAdapter extends RecyclerView.Adapter<SongsInPlayQue
 
     @Override
     public void onItemDropped(int from, int to) {
-         MusicPlayer.moveQueueItem(from, to);
+        MusicPlayer.moveQueueItem(from, to);
     }
 
     @Override
     public void onItemMoved(int from, int to) {
         notifyItemMoved(from, to);
+    }
+
+    public interface OnStartDragListener {
+        void onStartDrag(RecyclerView.ViewHolder viewHolder);
     }
 
     class MyHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -148,7 +152,7 @@ public class SongsInPlayQueueAdapter extends RecyclerView.Adapter<SongsInPlayQue
                             break;
                         case R.id.menu_song_details:
                             SongDetailsDialog.newInstance(currentSong)
-                                    .show(((AppCompatActivity)context).getSupportFragmentManager(),
+                                    .show(((AppCompatActivity) context).getSupportFragmentManager(),
                                             SongDetailsDialog.SONG_DETAILS_DIALOG);
                             break;
                     }
@@ -163,9 +167,5 @@ public class SongsInPlayQueueAdapter extends RecyclerView.Adapter<SongsInPlayQue
         public void onClick(View v) {
             MusicPlayer.playSongAt(getAdapterPosition());
         }
-    }
-
-    public interface OnStartDragListener {
-        void onStartDrag(RecyclerView.ViewHolder viewHolder);
     }
 }

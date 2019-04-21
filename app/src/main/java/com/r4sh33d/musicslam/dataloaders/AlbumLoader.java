@@ -20,38 +20,6 @@ public class AlbumLoader {
             MediaStore.Audio.Albums.FIRST_YEAR
     };
 
-    public static class AlbumAsyncTaskLoader extends WrappedAsyncTaskLoader<List<Album>> {
-        private Long artistId;
-        private final String sortOrder;
-        private final String selection;
-
-        /**
-         * Constructor of <code>WrappedAsyncTaskLoader</code>
-         *
-         * @param context The {@link Context} to use.
-         */
-        public AlbumAsyncTaskLoader(Context context, String sortOrder, String selection) {
-            super(context);
-            this.sortOrder = sortOrder;
-            this.selection = selection;
-            this.artistId = null;
-        }
-
-        public AlbumAsyncTaskLoader(Context context, Long artistId) {
-            this(context, null, null);
-            this.artistId = artistId;
-        }
-
-        public AlbumAsyncTaskLoader(Context context) {
-            this(context, null, null);
-        }
-
-        @Override
-        public List<Album> loadInBackground() {
-            return getAlbumsFromCursor(getContext(), makeAlbumsCursor(getContext(), artistId, selection, sortOrder));
-        }
-    }
-
     public static ArrayList<Album> getAlbumsFromCursor(Context context, Cursor cursor) {
         ArrayList<Album> arrayList = new ArrayList<>();
         if (cursor != null) {
@@ -92,7 +60,7 @@ public class AlbumLoader {
         try {
             return context.getContentResolver().query(uri,
                     projection, selection, selectionArgs, sortOrder);
-        }catch (SecurityException ignored){
+        } catch (SecurityException ignored) {
             return null;
         }
     }
@@ -121,8 +89,7 @@ public class AlbumLoader {
         return album;
     }
 
-
-    public static ArrayList<Album> searchAlbums (Context context, String searchQuery) {
+    public static ArrayList<Album> searchAlbums(Context context, String searchQuery) {
         return getAlbumsFromCursor(context, makeAlbumsCursor(
                 context,
                 null,
@@ -130,5 +97,37 @@ public class AlbumLoader {
                 new String[]{"%" + searchQuery + "%"},
                 null
         ));
+    }
+
+    public static class AlbumAsyncTaskLoader extends WrappedAsyncTaskLoader<List<Album>> {
+        private final String sortOrder;
+        private final String selection;
+        private Long artistId;
+
+        /**
+         * Constructor of <code>WrappedAsyncTaskLoader</code>
+         *
+         * @param context The {@link Context} to use.
+         */
+        public AlbumAsyncTaskLoader(Context context, String sortOrder, String selection) {
+            super(context);
+            this.sortOrder = sortOrder;
+            this.selection = selection;
+            this.artistId = null;
+        }
+
+        public AlbumAsyncTaskLoader(Context context, Long artistId) {
+            this(context, null, null);
+            this.artistId = artistId;
+        }
+
+        public AlbumAsyncTaskLoader(Context context) {
+            this(context, null, null);
+        }
+
+        @Override
+        public List<Album> loadInBackground() {
+            return getAlbumsFromCursor(getContext(), makeAlbumsCursor(getContext(), artistId, selection, sortOrder));
+        }
     }
 }

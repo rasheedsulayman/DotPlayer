@@ -12,18 +12,18 @@ import android.widget.TextView;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.r4sh33d.musicslam.GlideApp;
 import com.r4sh33d.musicslam.R;
-import com.r4sh33d.musicslam.dialogs.SongDetailsDialog;
-import com.r4sh33d.musicslam.utils.MusicUtils;
-import com.r4sh33d.musicslam.utils.NavigationUtil;
-import com.r4sh33d.musicslam.utils.SlamUtils;
 import com.r4sh33d.musicslam.customglide.audiocover.AudioCoverImage;
 import com.r4sh33d.musicslam.dataloaders.AlbumLoader;
 import com.r4sh33d.musicslam.dataloaders.ArtistLoader;
 import com.r4sh33d.musicslam.dialogs.AddToPlaylistDialog;
 import com.r4sh33d.musicslam.dialogs.DeleteSongsDialog;
-import com.r4sh33d.musicslam.playback.MusicPlayer;
+import com.r4sh33d.musicslam.dialogs.SongDetailsDialog;
 import com.r4sh33d.musicslam.models.Genres;
 import com.r4sh33d.musicslam.models.Song;
+import com.r4sh33d.musicslam.playback.MusicPlayer;
+import com.r4sh33d.musicslam.utils.MusicUtils;
+import com.r4sh33d.musicslam.utils.NavigationUtil;
+import com.r4sh33d.musicslam.utils.SlamUtils;
 
 import java.util.List;
 
@@ -53,7 +53,7 @@ public class SongsInGenresAdapter extends RecyclerView.Adapter<SongsInGenresAdap
         holder.songTitleTextView.setText(tempSong.title);
         holder.songArtistTextView.setText(tempSong.artistName);
         GlideApp.with(context)
-                .load(new AudioCoverImage( tempSong.data))
+                .load(new AudioCoverImage(tempSong.data))
                 .placeholder(context.getDrawable(R.drawable.default_artwork_small))
                 .transition(DrawableTransitionOptions.withCrossFade())
                 .into(holder.albumArtImageView);
@@ -70,7 +70,7 @@ public class SongsInGenresAdapter extends RecyclerView.Adapter<SongsInGenresAdap
         return null;
     }
 
-    public List<Song> getData(){
+    public List<Song> getData() {
         return songsInGenresArrayList;
     }
 
@@ -113,7 +113,7 @@ public class SongsInGenresAdapter extends RecyclerView.Adapter<SongsInGenresAdap
                     Song currentSong = songsInGenresArrayList.get(position);
                     switch (item.getItemId()) {
                         case R.id.menu_song_play:
-                            MusicPlayer.playAll( songsInGenresArrayList, position,  false);
+                            MusicPlayer.playAll(songsInGenresArrayList, position, false);
                             break;
                         case R.id.menu_song_play_next:
                             MusicPlayer.playNext(currentSong, context);
@@ -131,7 +131,7 @@ public class SongsInGenresAdapter extends RecyclerView.Adapter<SongsInGenresAdap
                                             AddToPlaylistDialog.ADD_TO_PLAYLIST_ARG);
                             break;
                         case R.id.menu_song_add_to_queue:
-                            MusicPlayer.addToQueue(context,currentSong);
+                            MusicPlayer.addToQueue(context, currentSong);
                             break;
                         case R.id.menu_song_ringtone:
                             MusicUtils.setRingtone(context, currentSong.id);
@@ -144,7 +144,7 @@ public class SongsInGenresAdapter extends RecyclerView.Adapter<SongsInGenresAdap
                             break;
                         case R.id.menu_song_details:
                             SongDetailsDialog.newInstance(currentSong)
-                                    .show(((AppCompatActivity)context).getSupportFragmentManager(),
+                                    .show(((AppCompatActivity) context).getSupportFragmentManager(),
                                             SongDetailsDialog.SONG_DETAILS_DIALOG);
                             break;
                     }
@@ -157,7 +157,7 @@ public class SongsInGenresAdapter extends RecyclerView.Adapter<SongsInGenresAdap
 
         @Override
         public void onClick(View v) {
-            MusicPlayer.playAll( songsInGenresArrayList, getAdapterPosition(), false);
+            MusicPlayer.playAll(songsInGenresArrayList, getAdapterPosition(), false);
         }
     }
 }

@@ -222,6 +222,7 @@
                     android:src="@drawable/ic_shuffle_white_24dp" />
 
             </com.r4sh33d.musicslam.customviews.WidthFitFrameLayout>
+
             <com.r4sh33d.musicslam.customviews.WidthFitFrameLayout
                 android:id="@+id/previous_wrapper"
                 android:layout_width="0dp"
@@ -240,7 +241,6 @@
 
 
             </com.r4sh33d.musicslam.customviews.WidthFitFrameLayout>
-
 
 
             <com.r4sh33d.musicslam.customviews.WidthFitFrameLayout

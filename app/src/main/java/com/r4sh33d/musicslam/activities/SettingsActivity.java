@@ -10,7 +10,6 @@ import com.afollestad.aesthetic.AestheticActivity;
 import com.afollestad.aesthetic.Util;
 import com.r4sh33d.musicslam.R;
 import com.r4sh33d.musicslam.fragments.settings.SettingsFragment;
-import com.r4sh33d.musicslam.utils.SlamUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

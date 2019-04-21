@@ -17,7 +17,6 @@ import com.r4sh33d.musicslam.utils.PrefsUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import timber.log.Timber;
 
 public class SongDetailsDialog extends DialogFragment {
     public static final String SONG_DETAILS_DIALOG = "SONG_DETAILS_DIALOG";

@@ -16,12 +16,11 @@ import com.r4sh33d.musicslam.R;
 import com.r4sh33d.musicslam.utils.NavigationUtil;
 import com.r4sh33d.musicslam.utils.PrefsUtils;
 
-import static com.r4sh33d.musicslam.utils.PrefsUtils.*;
+import static com.r4sh33d.musicslam.utils.PrefsUtils.ThemesTypes;
+import static com.r4sh33d.musicslam.utils.PrefsUtils.getInstance;
 
 public class SettingsFragment extends PreferenceFragmentCompat implements
         SharedPreferences.OnSharedPreferenceChangeListener, ColorChooserDialog.ColorCallback {
-    ColorChooserDialog primaryColorChooserDialog, accentColorChooserDialog;
-
     public static final String PREF_KEY_THEME = "pref_key_theme";
     public static final String PREF_KEY_COLOR_PRIMARY = "pref_key_color_primary";
     public static final String PREF_KEY_COLOR_ACCENT = "pref_key_color_accent";
@@ -31,14 +30,12 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
     public static final String PREF_KEY_DOWNLOAD_ON_WIFI_ONLY = "pref_key_download_via_wifi_only";
     public static final String PREF_KEY_START_PAGE = "pref_key_start_page";
     public static final String PREF_KEY_APP_INFO = "pref_key_app_info";
-
     public static final String PREF_KEY_EQUALIZER = "pref_key_equalizer";
-
     public static final String PREF_THEME_VALUE_WHITE = "light";
     public static final String PREF_THEME_VALUE_DARK = "dark";
     public static final String PREF_THEME_VALUE_BlACK = "black";
     public static final String PREF_THEME_VALUE_BLUE = "blue";
-
+    ColorChooserDialog primaryColorChooserDialog, accentColorChooserDialog;
     SwitchPreferenceCompat albumArtPreference;
     ListPreference themesListPreference, startPageListPreference;
     boolean isAlbumArtTheme;
@@ -46,6 +43,20 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
     PrefsUtils prefsUtils;
 
     public SettingsFragment() {
+    }
+
+    public static int getThemeType(String themeValue) {
+        switch (themeValue) {
+            case PREF_THEME_VALUE_WHITE:
+                return ThemesTypes.LightTheme;
+            case PREF_THEME_VALUE_DARK:
+                return ThemesTypes.DarkTheme;
+            case PREF_THEME_VALUE_BlACK:
+                return ThemesTypes.BlackTheme;
+            case PREF_THEME_VALUE_BLUE:
+                return ThemesTypes.BlueTheme;
+        }
+        return ThemesTypes.LightTheme;
     }
 
     @Override
@@ -191,7 +202,6 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
                 .unregisterOnSharedPreferenceChangeListener(this);
     }
 
-
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         switch (key) {
@@ -212,20 +222,6 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
                     .colorAccent(selectedColor)
                     .apply();
         }
-    }
-
-    public static int getThemeType(String themeValue) {
-        switch (themeValue) {
-            case PREF_THEME_VALUE_WHITE:
-                return ThemesTypes.LightTheme;
-            case PREF_THEME_VALUE_DARK:
-                return ThemesTypes.DarkTheme;
-            case PREF_THEME_VALUE_BlACK:
-                return ThemesTypes.BlackTheme;
-            case PREF_THEME_VALUE_BLUE:
-                return ThemesTypes.BlueTheme;
-        }
-        return ThemesTypes.LightTheme;
     }
 
     @Override

@@ -23,15 +23,19 @@ import android.util.Log;
 
 public class MusicDB extends SQLiteOpenHelper {
 
-    /* Version constant to increment when the database should be rebuilt */
-    private static final int VERSION = 1;
-
     /* Name of database file */
     public static final String DATABASENAME = "musicdb.db";
-
+    /* Version constant to increment when the database should be rebuilt */
+    private static final int VERSION = 1;
     private static MusicDB sInstance = null;
 
     private final Context mContext;
+
+    public MusicDB(final Context context) {
+        super(context, DATABASENAME, null, VERSION);
+
+        mContext = context;
+    }
 
     /**
      * @param context The {@link Context} to use
@@ -42,12 +46,6 @@ public class MusicDB extends SQLiteOpenHelper {
             sInstance = new MusicDB(context.getApplicationContext());
         }
         return sInstance;
-    }
-
-    public MusicDB(final Context context) {
-        super(context, DATABASENAME, null, VERSION);
-
-        mContext = context;
     }
 
     @Override

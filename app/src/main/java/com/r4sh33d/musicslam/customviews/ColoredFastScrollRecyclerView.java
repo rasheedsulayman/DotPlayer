@@ -4,9 +4,9 @@ import android.content.Context;
 import android.util.AttributeSet;
 
 import com.afollestad.aesthetic.Aesthetic;
-import com.r4sh33d.musicslam.utils.PrefsUtils;
 import com.r4sh33d.musicslam.activities.ThemedSlidingPanelActivity;
 import com.r4sh33d.musicslam.interfaces.PaletteListener;
+import com.r4sh33d.musicslam.utils.PrefsUtils;
 import com.simplecityapps.recyclerview_fastscroll.views.FastScrollRecyclerView;
 
 import io.reactivex.disposables.Disposable;
@@ -41,7 +41,7 @@ public class ColoredFastScrollRecyclerView extends FastScrollRecyclerView implem
                         setPopupBgColor(color);
                         setThumbColor(color);
                     });
-        }else {
+        } else {
             ((ThemedSlidingPanelActivity) getContext()).subscribeToPaletteColors(this);
         }
     }

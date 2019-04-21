@@ -4,6 +4,17 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class Playlist implements Parcelable {
+    public static final Creator<Playlist> CREATOR = new Creator<Playlist>() {
+        @Override
+        public Playlist createFromParcel(Parcel in) {
+            return new Playlist(in);
+        }
+
+        @Override
+        public Playlist[] newArray(int size) {
+            return new Playlist[size];
+        }
+    };
     public final long id;
     public final String name;
     public final int songCount;
@@ -37,16 +48,4 @@ public class Playlist implements Parcelable {
     public int describeContents() {
         return 0;
     }
-
-    public static final Creator<Playlist> CREATOR = new Creator<Playlist>() {
-        @Override
-        public Playlist createFromParcel(Parcel in) {
-            return new Playlist(in);
-        }
-
-        @Override
-        public Playlist[] newArray(int size) {
-            return new Playlist[size];
-        }
-    };
 }

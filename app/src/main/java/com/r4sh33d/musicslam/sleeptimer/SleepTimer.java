@@ -6,10 +6,25 @@ import java.util.ArrayList;
 
 public class SleepTimer {
 
-    private static final long COUNTDOWN_INTERVAL =  1000;
+    private static final long COUNTDOWN_INTERVAL = 1000;
     private ArrayList<SleepTimerListener> listeners = new ArrayList<>();
     private MusicService service;
     private long currentTimeUntilFinished = 0;
+    private CountDownTimer countDownTimer = new CountDownTimer(COUNTDOWN_INTERVAL) {
+
+        @Override
+        public void onTick(long millisUntilFinished) {
+            currentTimeUntilFinished = millisUntilFinished;
+            notifyTimeUpdate();
+        }
+
+        @Override
+        public void onFinish() {
+            service.asyncPause();
+            currentTimeUntilFinished = 0;
+            notifyTimeUpdate();
+        }
+    };
 
     public SleepTimer(MusicService service) {
         this.service = service;
@@ -40,7 +55,6 @@ public class SleepTimer {
         }
     }
 
-
     public void stopTimer() {
         countDownTimer.cancel();
         currentTimeUntilFinished = 0;
@@ -50,22 +64,6 @@ public class SleepTimer {
     public void tearDown() {
         listeners.clear();
     }
-
-    private CountDownTimer countDownTimer = new CountDownTimer(COUNTDOWN_INTERVAL) {
-
-        @Override
-        public void onTick(long millisUntilFinished) {
-            currentTimeUntilFinished = millisUntilFinished;
-            notifyTimeUpdate();
-        }
-
-        @Override
-        public void onFinish() {
-            service.asyncPause();
-            currentTimeUntilFinished = 0;
-            notifyTimeUpdate();
-        }
-    };
 
     public interface SleepTimerListener {
 

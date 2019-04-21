@@ -27,34 +27,21 @@ public class PlayIconDrawable extends Drawable implements PlayIcon {
     public static final int DEFAULT_ANIMATION_DURATION = 200;
     public static final TimeInterpolator DEFAULT_ANIMATION_INTERPOLATOR =
             new AccelerateDecelerateInterpolator();
-
-    public interface StateListener {
-        void onStateChanged(IconState state);
-    }
-
-    public enum IconState {
-        PLAY, PAUSE
-    }
-
     private static final float FRACTION_PLAY = 0F;
     private static final float FRACTION_PAUSE = 1F;
     private static final float[] ANIMATED_PATH_CONTAINER = new float[8];
-
     private final ValueAnimator iconAnimator = ValueAnimator.ofFloat(FRACTION_PLAY, FRACTION_PAUSE);
     private final Paint iconPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private final Path pathRight = new Path();
     private final Path pathLeft = new Path();
-
     private IconState currentIconState = IconState.PLAY;
     private StateListener stateListener = null;
     private boolean visible = DEFAULT_VISIBLE;
     private float currentFraction = FRACTION_PLAY;
-
     private float[] pathLeftPlay;
     private float[] pathLeftPause;
     private float[] pathRightPlay;
     private float[] pathRightPause;
-
     public PlayIconDrawable() {
         iconPaint.setColor(DEFAULT_COLOR);
 
@@ -66,6 +53,10 @@ public class PlayIconDrawable extends Drawable implements PlayIcon {
                 setCurrentFraction(valueAnimator.getAnimatedFraction());
             }
         });
+    }
+
+    public static PlayIconBuilder builder() {
+        return new PlayIconBuilder();
     }
 
     @Override
@@ -102,6 +93,12 @@ public class PlayIconDrawable extends Drawable implements PlayIcon {
         return PixelFormat.TRANSPARENT;
     }
 
+    @NonNull
+    @Override
+    public IconState getIconState() {
+        return currentIconState;
+    }
+
     @Override
     public void setIconState(@NonNull IconState state) {
         if (isRunning()) iconAnimator.cancel();
@@ -109,12 +106,6 @@ public class PlayIconDrawable extends Drawable implements PlayIcon {
         currentFraction = (state == IconState.PAUSE) ? FRACTION_PAUSE : FRACTION_PLAY;
         updateIconState(state);
         invalidateSelf();
-    }
-
-    @NonNull
-    @Override
-    public IconState getIconState() {
-        return currentIconState;
     }
 
     @Override
@@ -252,8 +243,12 @@ public class PlayIconDrawable extends Drawable implements PlayIcon {
         return getBounds().width();
     }
 
-    public static PlayIconBuilder builder() {
-        return new PlayIconBuilder();
+    public enum IconState {
+        PLAY, PAUSE
+    }
+
+    public interface StateListener {
+        void onStateChanged(IconState state);
     }
 
     public static final class PlayIconBuilder {

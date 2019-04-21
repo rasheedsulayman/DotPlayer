@@ -7,16 +7,16 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.View;
 
-import com.r4sh33d.musicslam.playback.MusicStateListener;
-import com.r4sh33d.musicslam.utils.PrefsUtils;
 import com.r4sh33d.musicslam.activities.MainActivity;
 import com.r4sh33d.musicslam.interfaces.PaletteListener;
+import com.r4sh33d.musicslam.playback.MusicStateListener;
+import com.r4sh33d.musicslam.utils.PrefsUtils;
 
 public abstract class BaseListenerFragment extends Fragment implements MusicStateListener, PaletteListener {
-    protected MainActivity mActivity;
     public boolean isAlbumArtTheme;
+    public boolean isStoragePermissionGranted;
+    protected MainActivity mActivity;
     protected PrefsUtils prefsUtils;
-    public  boolean isStoragePermissionGranted;
 
     @Override
     public void onAttach(Context context) {

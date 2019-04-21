@@ -37,15 +37,11 @@ public class BlurBitmapWorkerTask extends AsyncTask<Bitmap, Void, Bitmap> {
     private static final int MIN_BITMAP_SIZE = 500;
     private static final int NUM_BLUR_RUNS = 8;
     private static final float BLUR_RADIUS = 25f;
-
-    protected Drawable mFromDrawable;
-    private boolean animate;
-    Resources mResources;
-
-
-    private final WeakReference<BlurImageView> mBlurImageView;
-
     protected final RenderScript mRenderScript;
+    private final WeakReference<BlurImageView> mBlurImageView;
+    protected Drawable mFromDrawable;
+    Resources mResources;
+    private boolean animate;
 
 
     public BlurBitmapWorkerTask(final BlurImageView blurImageView,

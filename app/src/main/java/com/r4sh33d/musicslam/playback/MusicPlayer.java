@@ -23,17 +23,13 @@ import java.util.WeakHashMap;
 
 import static com.r4sh33d.musicslam.playback.Constants.LAST;
 import static com.r4sh33d.musicslam.playback.Constants.NEXT;
-import static com.r4sh33d.musicslam.playback.Constants.REPEAT_ALL;
-import static com.r4sh33d.musicslam.playback.Constants.REPEAT_CURRENT;
-import static com.r4sh33d.musicslam.playback.Constants.REPEAT_NONE;
-import static com.r4sh33d.musicslam.playback.Constants.SHUFFLE_AUTO;
 import static com.r4sh33d.musicslam.playback.Constants.SHUFFLE_NONE;
 import static com.r4sh33d.musicslam.playback.Constants.SHUFFLE_NORMAL;
 
 public final class MusicPlayer {
 
-    public static MusicService mService = null;
     private static final WeakHashMap<Context, ServiceBinder> mConnectionMap;
+    public static MusicService mService = null;
 
     static {
         mConnectionMap = new WeakHashMap<>();
@@ -74,44 +70,9 @@ public final class MusicPlayer {
         }
     }
 
-
-    public static final class ServiceBinder implements ServiceConnection {
-        private final ServiceConnection mCallback;
-
-        public ServiceBinder(final ServiceConnection callback) {
-            mCallback = callback;
-        }
-
-        @Override
-        public void onServiceConnected(final ComponentName className, final IBinder service) {
-            MusicService.MusicBinder musicBinder = (MusicService.MusicBinder) service;
-            mService = musicBinder.getMusicService();
-            if (mCallback != null) {
-                mCallback.onServiceConnected(className, service);
-            }
-        }
-
-        @Override
-        public void onServiceDisconnected(final ComponentName className) {
-            if (mCallback != null) {
-                mCallback.onServiceDisconnected(className);
-            }
-            mService = null;
-        }
-    }
-
-    public static final class ServiceToken {
-        public ContextWrapper mWrappedContext;
-
-        public ServiceToken(final ContextWrapper context) {
-            mWrappedContext = context;
-        }
-    }
-
     public static final boolean isPlaybackServiceConnected() {
         return mService != null;
     }
-
 
     public static Song getCurrentSong() {
         if (mService == null) {
@@ -159,13 +120,13 @@ public final class MusicPlayer {
     }
 
     public static void cycleRepeat() {
-        if(mService!=null){
+        if (mService != null) {
             mService.asyncCycleRepeat();
         }
     }
 
     public static void cycleShuffle() {
-        if (mService != null){
+        if (mService != null) {
             mService.asyncCycleShuffle();
         }
     }
@@ -198,7 +159,6 @@ public final class MusicPlayer {
         return -1;
     }
 
-
     public static final int getQueuePosition() {
         if (mService != null) {
             return mService.getQueuePosition();
@@ -220,7 +180,6 @@ public final class MusicPlayer {
         }
         return false;
     }
-
 
     public static void playFile(final Context context, final Uri uri) {
         if (uri == null || mService == null) {
@@ -252,10 +211,10 @@ public final class MusicPlayer {
         int startPosition = forceShuffle ? new Random().nextInt(list.size()) : position;
         if (forceShuffle) {
             mService.setShuffleModeLight(SHUFFLE_NORMAL);
-        }else {
+        } else {
             mService.setShuffleModeLight(SHUFFLE_NONE);
         }
-        mService.open(list, startPosition , forceShuffle);
+        mService.open(list, startPosition, forceShuffle);
     }
 
     public static void playShuffle(List<Song> list) {
@@ -273,7 +232,6 @@ public final class MusicPlayer {
         list.add(song);
         playAll(list, 0, false);
     }
-
 
     public static void playNext(List<Song> list, Context context) {
         if (mService == null) {
@@ -377,6 +335,39 @@ public final class MusicPlayer {
     public static void clearQueue() {
         if (mService != null) {
             mService.removeTracks(0, Integer.MAX_VALUE);
+        }
+    }
+
+    public static final class ServiceBinder implements ServiceConnection {
+        private final ServiceConnection mCallback;
+
+        public ServiceBinder(final ServiceConnection callback) {
+            mCallback = callback;
+        }
+
+        @Override
+        public void onServiceConnected(final ComponentName className, final IBinder service) {
+            MusicService.MusicBinder musicBinder = (MusicService.MusicBinder) service;
+            mService = musicBinder.getMusicService();
+            if (mCallback != null) {
+                mCallback.onServiceConnected(className, service);
+            }
+        }
+
+        @Override
+        public void onServiceDisconnected(final ComponentName className) {
+            if (mCallback != null) {
+                mCallback.onServiceDisconnected(className);
+            }
+            mService = null;
+        }
+    }
+
+    public static final class ServiceToken {
+        public ContextWrapper mWrappedContext;
+
+        public ServiceToken(final ContextWrapper context) {
+            mWrappedContext = context;
         }
     }
 }

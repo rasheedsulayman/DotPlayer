@@ -3,10 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:enabled="false"
-        android:visible="false"
         android:id="@+id/menu_new_playlist"
-        android:title="@string/new_playlist" />
+        android:enabled="false"
+        android:title="@string/new_playlist"
+        android:visible="false" />
 
     <item
         android:id="@+id/action_search"
@@ -15,23 +15,26 @@
         app:showAsAction="ifRoom" />
 
     <item
-        android:enabled="false"
-        android:visible="false"
         android:id="@+id/menu_shuffle_all"
+        android:enabled="false"
         android:title="@string/shuffle_all"
-        app:showAsAction="never"/>
+        android:visible="false"
+        app:showAsAction="never" />
 
-    <item android:id="@+id/menu_sleep_timer"
+    <item
+        android:id="@+id/menu_sleep_timer"
         android:title="@string/sleep_timer"
-        app:showAsAction="never"/>
+        app:showAsAction="never" />
 
-    <item android:id="@+id/settings"
+    <item
+        android:id="@+id/settings"
         android:title="@string/settings"
-        app:showAsAction="never"/>
+        app:showAsAction="never" />
 
 
-    <item android:id="@+id/menu_about"
+    <item
+        android:id="@+id/menu_about"
         android:title="@string/about"
-        app:showAsAction="never"/>
+        app:showAsAction="never" />
 
 </menu>

@@ -41,6 +41,8 @@ import static com.r4sh33d.musicslam.fragments.nowplaying.ProgressUpdateHelper.On
 public class MusicPreviewActivity extends MusicEventsListenerActivity implements
         OnProgressUpdateListener, View.OnTouchListener {
 
+    public boolean playbackAlreadyHandled;
+    public boolean isGoingToMusicPlayer;
     @BindView(R.id.song_title_textview)
     TextView songTitleTextView;
     @BindView(R.id.song_artist_textview)
@@ -59,11 +61,7 @@ public class MusicPreviewActivity extends MusicEventsListenerActivity implements
     TextView songDurationTextView;
     @BindView(R.id.container_frame_layout)
     FrameLayout containerFrameLayout;
-
     ProgressUpdateHelper progressUpdateHelper;
-
-    public boolean playbackAlreadyHandled;
-    public boolean isGoingToMusicPlayer;
 
     @SuppressLint("ClickableViewAccessibility")
     @Override

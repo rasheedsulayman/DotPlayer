@@ -10,16 +10,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.r4sh33d.musicslam.R;
-import com.r4sh33d.musicslam.dialogs.SongDetailsDialog;
-import com.r4sh33d.musicslam.utils.MusicUtils;
-import com.r4sh33d.musicslam.utils.NavigationUtil;
-import com.r4sh33d.musicslam.utils.SlamUtils;
 import com.r4sh33d.musicslam.dataloaders.ArtistLoader;
 import com.r4sh33d.musicslam.dialogs.AddToPlaylistDialog;
 import com.r4sh33d.musicslam.dialogs.DeleteSongsDialog;
-import com.r4sh33d.musicslam.playback.MusicPlayer;
+import com.r4sh33d.musicslam.dialogs.SongDetailsDialog;
 import com.r4sh33d.musicslam.models.Album;
 import com.r4sh33d.musicslam.models.Song;
+import com.r4sh33d.musicslam.playback.MusicPlayer;
+import com.r4sh33d.musicslam.utils.MusicUtils;
+import com.r4sh33d.musicslam.utils.NavigationUtil;
+import com.r4sh33d.musicslam.utils.SlamUtils;
 
 import java.util.List;
 
@@ -53,8 +53,8 @@ public class SongsInAlbumAdapter extends RecyclerView.Adapter<SongsInAlbumAdapte
     }
 
 
-    public List<Song> getData(){
-       return songsInAlbumArrayList;
+    public List<Song> getData() {
+        return songsInAlbumArrayList;
     }
 
 
@@ -130,7 +130,7 @@ public class SongsInAlbumAdapter extends RecyclerView.Adapter<SongsInAlbumAdapte
                             break;
                         case R.id.menu_song_details:
                             SongDetailsDialog.newInstance(currentSong)
-                                    .show(((AppCompatActivity)context).getSupportFragmentManager(),
+                                    .show(((AppCompatActivity) context).getSupportFragmentManager(),
                                             SongDetailsDialog.SONG_DETAILS_DIALOG);
                             break;
                     }

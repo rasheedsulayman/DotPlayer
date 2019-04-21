@@ -12,19 +12,19 @@ import android.support.annotation.Nullable;
 public interface PlayIcon {
 
     /**
-     * Change icon without animation
-     *
-     * @param state new icon state
-     */
-    void setIconState(@NonNull PlayIconDrawable.IconState state);
-
-    /**
      * Return current icon state
      *
      * @return icon state
      */
     @NonNull
     PlayIconDrawable.IconState getIconState();
+
+    /**
+     * Change icon without animation
+     *
+     * @param state new icon state
+     */
+    void setIconState(@NonNull PlayIconDrawable.IconState state);
 
     /**
      * Animate icon to given state.

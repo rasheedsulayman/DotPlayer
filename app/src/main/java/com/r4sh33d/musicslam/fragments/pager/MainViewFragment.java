@@ -104,6 +104,17 @@ public class MainViewFragment extends BaseListenerFragment {
         }
     }
 
+    @Override
+    public void onStop() {
+        super.onStop();
+        prefsUtils.putLastViewPagerFragmentId(viewPager.getCurrentItem());
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+    }
+
     class PagerAdapter extends FragmentPagerAdapter {
         public PagerAdapter(FragmentManager fm) {
             super(fm);
@@ -136,16 +147,5 @@ public class MainViewFragment extends BaseListenerFragment {
             // Generate title based on item position
             return tabTitles[position];
         }
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        prefsUtils.putLastViewPagerFragmentId(viewPager.getCurrentItem());
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
     }
 }

@@ -16,9 +16,9 @@ import com.r4sh33d.musicslam.customglide.audiocover.AudioCoverImage;
 import com.r4sh33d.musicslam.playback.MusicPlayer;
 
 public class BlurImageView extends android.support.v7.widget.AppCompatImageView {
+    String albumArtKey = "no_key";
     private boolean isUsingDefaultBlur;
     private boolean isCurrentlyOnScreen;
-    String albumArtKey = "no_key";
     private SimpleTarget<Bitmap> target;
 
     public BlurImageView(Context context) {

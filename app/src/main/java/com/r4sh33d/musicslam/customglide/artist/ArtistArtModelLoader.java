@@ -19,7 +19,7 @@ public class ArtistArtModelLoader implements ModelLoader<ArtistImage, InputStrea
     private final ModelLoader<GlideUrl, InputStream> okHttpUrlLoader;
     private Context context;
 
-    public ArtistArtModelLoader(LastFmService lastFmService, ModelLoader<GlideUrl, InputStream> okHttpUrlLoader , Context context) {
+    public ArtistArtModelLoader(LastFmService lastFmService, ModelLoader<GlideUrl, InputStream> okHttpUrlLoader, Context context) {
         this.lastFmService = lastFmService;
         this.okHttpUrlLoader = okHttpUrlLoader;
         this.context = context;
@@ -29,7 +29,7 @@ public class ArtistArtModelLoader implements ModelLoader<ArtistImage, InputStrea
     @Override
     public LoadData<InputStream> buildLoadData(@NonNull ArtistImage artistImage, int width, int height, @NonNull Options options) {
         return new LoadData<>(new ObjectKey(artistImage.toString()),
-                /*fetcher=*/ new ArtistArtDataFetcher(artistImage, lastFmService, okHttpUrlLoader, height, width, options , context));
+                /*fetcher=*/ new ArtistArtDataFetcher(artistImage, lastFmService, okHttpUrlLoader, height, width, options, context));
     }
 
     @Override

@@ -27,27 +27,27 @@ import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.r4sh33d.musicslam.GlideApp;
 import com.r4sh33d.musicslam.R;
-import com.r4sh33d.musicslam.utils.MusicUtils;
-import com.r4sh33d.musicslam.utils.SlamUtils;
-import com.r4sh33d.musicslam.fragments.AbsParallaxArtworkDetailsFragment;
 import com.r4sh33d.musicslam.customglide.audiocover.AudioCoverImage;
 import com.r4sh33d.musicslam.dataloaders.SongIdsLoader;
 import com.r4sh33d.musicslam.dataloaders.SongLoader;
 import com.r4sh33d.musicslam.dialogs.AddToPlaylistDialog;
-import com.r4sh33d.musicslam.playback.MusicPlayer;
+import com.r4sh33d.musicslam.fragments.AbsParallaxArtworkDetailsFragment;
 import com.r4sh33d.musicslam.models.Album;
 import com.r4sh33d.musicslam.models.Song;
+import com.r4sh33d.musicslam.playback.MusicPlayer;
+import com.r4sh33d.musicslam.utils.MusicUtils;
+import com.r4sh33d.musicslam.utils.SlamUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import timber.log.Timber;
 
 public class AlbumDetailsFragment extends AbsParallaxArtworkDetailsFragment
         implements LoaderManager.LoaderCallbacks<List<Song>> {
 
+    private static final String ARG_ALBUM = "album";
     @BindView(R.id.backdrop)
     ImageView albumArt;
     @BindView(R.id.toolbar)
@@ -60,29 +60,20 @@ public class AlbumDetailsFragment extends AbsParallaxArtworkDetailsFragment
     CoordinatorLayout rootView;
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
-
     @BindView(R.id.song_count)
     TextView songCountTextView;
-
     @BindView(R.id.year)
     TextView yearTextView;
-
     @BindView(R.id.duration)
     TextView durationTextView;
-
     @BindView(R.id.album_details_background)
     LinearLayout albumDetailContainer;
-
     @BindView(R.id.first_album_detail_separator)
     TextView firstAlbumDetailSeparatorTextView;
-
     @BindView(R.id.calender_imageview)
     ImageView calenderImageView;
-
     Album mAlbum;
     SongsInAlbumAdapter mSongsInAlbumAdapter;
-
-    private static final String ARG_ALBUM = "album";
 
     public AlbumDetailsFragment() {
     }

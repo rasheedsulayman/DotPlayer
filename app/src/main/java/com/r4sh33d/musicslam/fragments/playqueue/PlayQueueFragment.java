@@ -66,7 +66,7 @@ public class PlayQueueFragment extends BaseListenerFragment implements SongsInPl
     }
 
 
-    void setUpToolBar(){
+    void setUpToolBar() {
         toolbar.setTitle(R.string.play_queue);
         toolbar.setNavigationIcon(R.drawable.ic_arrow_white_24dp);
         toolbar.setNavigationOnClickListener(v -> getActivity().onBackPressed());

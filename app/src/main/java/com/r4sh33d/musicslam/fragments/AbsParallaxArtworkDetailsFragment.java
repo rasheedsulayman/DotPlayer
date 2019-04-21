@@ -25,14 +25,10 @@ import com.r4sh33d.musicslam.utils.ColorHelper;
 import com.r4sh33d.musicslam.utils.SlamUtils;
 
 import butterknife.BindView;
-import timber.log.Timber;
 
 
 public abstract class AbsParallaxArtworkDetailsFragment extends BaseListenerFragment
         implements Toolbar.OnMenuItemClickListener {
-
-    boolean isExpanded = true;
-    protected int currentColor;
 
     @BindView(R.id.upper_black_shade)
     public FrameLayout upperBlackShade;
@@ -40,6 +36,8 @@ public abstract class AbsParallaxArtworkDetailsFragment extends BaseListenerFrag
     public FrameLayout lowerBlackShade;
     @BindView(R.id.parallax_color_view)
     public FrameLayout parallaxColorView;
+    protected int currentColor;
+    boolean isExpanded = true;
     @Nullable
     @BindView(R.id.empty_data_textview)
     TextView emptyDataTextView;

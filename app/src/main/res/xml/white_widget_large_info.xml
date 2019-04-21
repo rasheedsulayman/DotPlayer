@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
+    android:initialLayout="@layout/white_widget_large"
     android:minWidth="@dimen/app_widget_standard_min_width"
     android:minHeight="@dimen/app_widget_standard_min_height"
     android:resizeMode="horizontal"
-    android:updatePeriodMillis="0"
-    android:initialLayout="@layout/white_widget_large">
-</appwidget-provider>
+    android:updatePeriodMillis="0"></appwidget-provider>

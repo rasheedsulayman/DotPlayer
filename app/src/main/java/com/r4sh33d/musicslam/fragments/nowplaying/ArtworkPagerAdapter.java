@@ -25,14 +25,14 @@ import timber.log.Timber;
 public class ArtworkPagerAdapter extends FragmentStatePagerAdapter {
     private List<Song> nowPlayingQueue;
 
-    public void updateData(List<Song> nowPlayingQueue) {
-        this.nowPlayingQueue = nowPlayingQueue;
-        notifyDataSetChanged();
-    }
-
     public ArtworkPagerAdapter(FragmentManager fm, List<Song> nowPlayingQueue) {
         super(fm);
         this.nowPlayingQueue = nowPlayingQueue;
+    }
+
+    public void updateData(List<Song> nowPlayingQueue) {
+        this.nowPlayingQueue = nowPlayingQueue;
+        notifyDataSetChanged();
     }
 
     @Override
@@ -53,16 +53,16 @@ public class ArtworkPagerAdapter extends FragmentStatePagerAdapter {
         SquareImageView albumArtImageView;
         private int artWorkImageSizeDP;
 
+        public ArtworkFragment() {
+            // Required empty public constructor
+        }
+
         public static ArtworkFragment newInstance(Song song) {
             Bundle args = new Bundle();
             args.putParcelable(KEY_SONG, song);
             ArtworkFragment fragment = new ArtworkFragment();
             fragment.setArguments(args);
             return fragment;
-        }
-
-        public ArtworkFragment() {
-            // Required empty public constructor
         }
 
         @Override

@@ -15,9 +15,9 @@ import android.view.View;
 import com.r4sh33d.musicslam.R;
 import com.r4sh33d.musicslam.dataloaders.PagerLoaderIDs;
 import com.r4sh33d.musicslam.dataloaders.SongLoader;
-import com.r4sh33d.musicslam.playback.MusicPlayer;
 import com.r4sh33d.musicslam.fragments.pager.PagerFragment;
 import com.r4sh33d.musicslam.models.Song;
+import com.r4sh33d.musicslam.playback.MusicPlayer;
 
 import java.util.Collections;
 import java.util.List;

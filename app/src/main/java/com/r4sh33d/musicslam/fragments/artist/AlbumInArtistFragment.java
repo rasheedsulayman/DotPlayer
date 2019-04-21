@@ -12,14 +12,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.r4sh33d.musicslam.fragments.album.AlbumGridAdapter;
 import com.r4sh33d.musicslam.R;
-import com.r4sh33d.musicslam.utils.GridSpacingItemDecoration;
-import com.r4sh33d.musicslam.utils.SlamUtils;
 import com.r4sh33d.musicslam.dataloaders.AlbumLoader;
 import com.r4sh33d.musicslam.fragments.BaseListenerFragment;
+import com.r4sh33d.musicslam.fragments.album.AlbumGridAdapter;
 import com.r4sh33d.musicslam.models.Album;
 import com.r4sh33d.musicslam.models.Artist;
+import com.r4sh33d.musicslam.utils.GridSpacingItemDecoration;
+import com.r4sh33d.musicslam.utils.SlamUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,10 +33,9 @@ import butterknife.ButterKnife;
 public class AlbumInArtistFragment extends BaseListenerFragment
         implements LoaderManager.LoaderCallbacks<List<Album>> {
 
+    private static final String ARG_ARTIST = "artist";
     @BindView(R.id.recyclerview)
     RecyclerView recyclerView;
-
-    private static final String ARG_ARTIST = "artist";
     private Artist mArtist;
     private AlbumGridAdapter mAlbumsInArtistAdapter;
 

@@ -19,7 +19,6 @@ import com.r4sh33d.musicslam.utils.PrefsUtils;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import timber.log.Timber;
 
 public class SleepTimerDialog extends DialogFragment implements SleepTimer.SleepTimerListener {
     public static final String SLEEP_DIALOG_ARG = "ADD_TO_PLAY_LIST";
@@ -41,7 +40,7 @@ public class SleepTimerDialog extends DialogFragment implements SleepTimer.Sleep
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         if (PrefsUtils.getInstance(getContext()).isAlbumArtTheme()) {
             builder = new AlertDialog
-                    .Builder(new ContextThemeWrapper(getContext(), R.style.AlbumArtWhiteDialog) );
+                    .Builder(new ContextThemeWrapper(getContext(), R.style.AlbumArtWhiteDialog));
         }
         View view = LayoutInflater.from(builder.getContext()).inflate(R.layout.layout_sleep_timer_dialog, null);
         ButterKnife.bind(this, view);

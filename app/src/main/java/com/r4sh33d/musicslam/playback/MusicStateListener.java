@@ -1,4 +1,3 @@
-
 package com.r4sh33d.musicslam.playback;
 
 public interface MusicStateListener {

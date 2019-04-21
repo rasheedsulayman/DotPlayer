@@ -12,12 +12,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.r4sh33d.musicslam.R;
-import com.r4sh33d.musicslam.utils.GridSpacingItemDecoration;
-import com.r4sh33d.musicslam.utils.SlamUtils;
 import com.r4sh33d.musicslam.dataloaders.ArtistLoader;
 import com.r4sh33d.musicslam.dataloaders.PagerLoaderIDs;
 import com.r4sh33d.musicslam.fragments.pager.PagerFragment;
 import com.r4sh33d.musicslam.models.Artist;
+import com.r4sh33d.musicslam.utils.GridSpacingItemDecoration;
+import com.r4sh33d.musicslam.utils.SlamUtils;
 
 import java.util.ArrayList;
 import java.util.List;

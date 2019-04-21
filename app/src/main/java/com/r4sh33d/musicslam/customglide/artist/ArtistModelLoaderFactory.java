@@ -18,8 +18,8 @@ import okhttp3.OkHttpClient;
 public class ArtistModelLoaderFactory implements ModelLoaderFactory<ArtistImage, InputStream> {
 
     private static final long TIMEOUT = 5000;
-    LastFmService lastFmService;
     private final OkHttpUrlLoader.Factory okHttpFactory;
+    LastFmService lastFmService;
     Context context;
 
     public ArtistModelLoaderFactory(Context context) {
@@ -35,7 +35,7 @@ public class ArtistModelLoaderFactory implements ModelLoaderFactory<ArtistImage,
     @NonNull
     @Override
     public ModelLoader<ArtistImage, InputStream> build(@NonNull MultiModelLoaderFactory multiFactory) {
-        return new ArtistArtModelLoader(lastFmService, okHttpFactory.build(multiFactory) , context);
+        return new ArtistArtModelLoader(lastFmService, okHttpFactory.build(multiFactory), context);
     }
 
     @Override

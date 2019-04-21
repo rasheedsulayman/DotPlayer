@@ -69,29 +69,28 @@ import timber.log.Timber;
 
 public class MusicService extends Service {
 
-    List<Song> playingQueue = new ArrayList<>();
-    List<Song> playingQueueBackup = new ArrayList<>();
-
-    private final IBinder mBinder = new MusicBinder();
-
     private static final String TAG = "MusicPlaybackService";
-
     private static final int IDLE_DELAY = 5 * 60 * 1000;
     private static final long REWIND_INSTEAD_PREVIOUS_THRESHOLD = 3000;
-
+    private final IBinder mBinder = new MusicBinder();
     private final TransparentWidgetLarge mTransparentAppWidget = TransparentWidgetLarge.getInstance();
     private final WhiteWidgetLargeWidgetLarge mWhiteAppWidget = WhiteWidgetLargeWidgetLarge.getInstance();
     private final TransparentWidgetSmall mTransparentWidgetSmall = TransparentWidgetSmall.getInstance();
-
-    private MediaSessionCompat mediaSessionCompat;
+    List<Song> playingQueue = new ArrayList<>();
+    List<Song> playingQueueBackup = new ArrayList<>();
     NotificationHelper notificationHelper;
-
+    IntentFilter audioBecomingNoisyIntentFilter = new IntentFilter(AudioManager.ACTION_AUDIO_BECOMING_NOISY);
+    long playBackStateActions = PlaybackStateCompat.ACTION_PLAY |
+            PlaybackStateCompat.ACTION_PLAY_PAUSE |
+            PlaybackStateCompat.ACTION_PAUSE |
+            PlaybackStateCompat.ACTION_SKIP_TO_NEXT |
+            PlaybackStateCompat.ACTION_SKIP_TO_PREVIOUS |
+            PlaybackStateCompat.ACTION_STOP;
+    private MediaSessionCompat mediaSessionCompat;
     private AudioManager mAudioManager;
     private AlarmManager mAlarmManager;
-
     private PendingIntent mShutdownIntent;
     private boolean mShutdownScheduled;
-
     private MultiPlayer mPlayer;
     private String mFileToPlay;
     private int mCardId;
@@ -99,33 +98,67 @@ public class MusicService extends Service {
     private PrefsUtils prefsUtils;
     private int mMediaMountedCount = 0;
     private boolean mReadGranted = false;
-
     private RecentStore mRecentsCache;
     private SongPlayCount mSongPlayCountCache;
     private MusicPlaybackQueueStore mPlaybackStateStore;
-
     private boolean mServiceInUse = false;
     private boolean mIsSupposedToBePlaying = false;
     private long mLastPlayedTime;
-
     private boolean mPausedByTransientLossOfFocus = false;
-
     private int mPlayPos = -1;
     private int mNextPlayPos = -1;
     private int mOpenFailedCounter = 0;
     private int mShuffleMode = Constants.SHUFFLE_NONE;
     private int mRepeatMode = Constants.REPEAT_NONE;
     private int mServiceStartId = -1;
-
     private MusicPlayerHandler mPlayerHandler;
+    private final OnAudioFocusChangeListener mAudioFocusListener = new OnAudioFocusChangeListener() {
+
+        @Override
+        public void onAudioFocusChange(final int focusChange) {
+            mPlayerHandler.obtainMessage(Constants.FOCUSCHANGE, focusChange, 0).sendToTarget();
+        }
+    };
     private HandlerThread mHandlerThread;
     private Handler uiHandler;
     private PlayingQueueSaverHandler playingQueueSaverHandler;
     private HandlerThread playingQueueSaverHandlerThread;
-
     private SleepTimer sleepTimer;
     private Point displaySize;
     private BroadcastReceiver mUnmountReceiver = null;
+    private BroadcastReceiver audioBecomingNoisyBroadcastReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            asyncPause();
+            mPausedByTransientLossOfFocus = false;
+        }
+    };
+    private boolean audioBecomingNoisyReceiverRegistered;
+    private BroadcastReceiver appwidgetUpdatesBroadcastReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            final String command = intent.getStringExtra(Constants.EXTRA_WIDGET_TYPE);
+            switch (command) {
+                case TransparentWidgetLarge.TYPE:
+                    final int[] transparentWidgetIds = intent.getIntArrayExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS);
+                    mTransparentAppWidget.performUpdate(MusicService.this, transparentWidgetIds);
+                    break;
+                case WhiteWidgetLargeWidgetLarge.TYPE:
+                    final int[] wightLargeWidgetIds = intent
+                            .getIntArrayExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS);
+                    mWhiteAppWidget.performUpdate(MusicService.this, wightLargeWidgetIds);
+                    break;
+                case TransparentWidgetSmall.TYPE:
+                    final int[] smallWidgetIds = intent
+                            .getIntArrayExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS);
+                    mTransparentWidgetSmall.performUpdate(MusicService.this, smallWidgetIds);
+                    break;
+            }
+        }
+    };
+    private String PREF_KEY_PLAY_POSITION = "PREF_KEY_PLAY_POSITION";
+    private String PREF_KEY_SEEK_POSITION = "PREF_KEY_SEEK_POSITION";
+    private ContentObserver mMediaStoreObserver;
 
     @Override
     public IBinder onBind(final Intent intent) {
@@ -357,7 +390,6 @@ public class MusicService extends Service {
         mWhiteAppWidget.notifyChange(this, what);
     }
 
-
     private void sendExternalBroadcast(String what) {
         //Wanna fake this broadcast as if it is coming from the stock music player
         String action = what.replace(Constants.MUSIC_SLAM_PACKAGE_NAME, Constants.MUSIC_PACKAGE_NAME);
@@ -380,40 +412,6 @@ public class MusicService extends Service {
         bundle.putBoolean("playing", isPlaying());
         return bundle;
     }
-
-    private BroadcastReceiver audioBecomingNoisyBroadcastReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            asyncPause();
-            mPausedByTransientLossOfFocus = false;
-        }
-    };
-
-    IntentFilter audioBecomingNoisyIntentFilter = new IntentFilter(AudioManager.ACTION_AUDIO_BECOMING_NOISY);
-    private boolean audioBecomingNoisyReceiverRegistered;
-
-    private BroadcastReceiver appwidgetUpdatesBroadcastReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            final String command = intent.getStringExtra(Constants.EXTRA_WIDGET_TYPE);
-            switch (command) {
-                case TransparentWidgetLarge.TYPE:
-                    final int[] transparentWidgetIds = intent.getIntArrayExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS);
-                    mTransparentAppWidget.performUpdate(MusicService.this, transparentWidgetIds);
-                    break;
-                case WhiteWidgetLargeWidgetLarge.TYPE:
-                    final int[] wightLargeWidgetIds = intent
-                            .getIntArrayExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS);
-                    mWhiteAppWidget.performUpdate(MusicService.this, wightLargeWidgetIds);
-                    break;
-                case TransparentWidgetSmall.TYPE:
-                    final int[] smallWidgetIds = intent
-                            .getIntArrayExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS);
-                    mTransparentWidgetSmall.performUpdate(MusicService.this, smallWidgetIds);
-                    break;
-            }
-        }
-    };
 
     private void setUpMediaSession() {
         mediaSessionCompat = new MediaSessionCompat(this, "MusicSlam");
@@ -472,7 +470,6 @@ public class MusicService extends Service {
     public void runOnUiThread(Runnable runnable) {
         uiHandler.post(runnable);
     }
-
 
     public void closeExternalStorageFiles(final String storagePath) {
         stop(true);
@@ -596,7 +593,6 @@ public class MusicService extends Service {
         }
     }
 
-
     public List<Song> getPlayingQueue() {
         return playingQueue;
     }
@@ -613,7 +609,6 @@ public class MusicService extends Service {
     public Song getCurrentSong() {
         return getSongAt(mPlayPos);
     }
-
 
     private void openCurrentAndNext() {
         openCurrentAndMaybeNext(true);
@@ -710,13 +705,6 @@ public class MusicService extends Service {
         }
     }
 
-    long playBackStateActions = PlaybackStateCompat.ACTION_PLAY |
-            PlaybackStateCompat.ACTION_PLAY_PAUSE |
-            PlaybackStateCompat.ACTION_PAUSE |
-            PlaybackStateCompat.ACTION_SKIP_TO_NEXT |
-            PlaybackStateCompat.ACTION_SKIP_TO_PREVIOUS |
-            PlaybackStateCompat.ACTION_STOP;
-
     private void updateMediaSession(final String what) {
         switch (what) {
             case Constants.PLAY_STATE_CHANGED:
@@ -798,9 +786,6 @@ public class MusicService extends Service {
         prefsUtils.putInt("shufflemode", mShuffleMode);
     }
 
-    private String PREF_KEY_PLAY_POSITION = "PREF_KEY_PLAY_POSITION";
-    private String PREF_KEY_SEEK_POSITION = "PREF_KEY_SEEK_POSITION";
-
     private void reloadQueue() {
         int id = mCardId;
         if (prefsUtils.contains("cardid")) {
@@ -854,9 +839,32 @@ public class MusicService extends Service {
         return mMediaMountedCount;
     }
 
-
     public int getShuffleMode() {
         return mShuffleMode;
+    }
+
+    public void setShuffleMode(final int shuffleMode) {
+        switch (shuffleMode) {
+            case Constants.SHUFFLE_NORMAL:
+                this.mShuffleMode = shuffleMode;
+                makeShuffleList(this.getPlayingQueue(), getQueuePosition());
+                mPlayPos = 0;
+                break;
+            case Constants.SHUFFLE_NONE:
+                this.mShuffleMode = shuffleMode;
+                long currentSongId = getCurrentSong().id;
+                playingQueue = new ArrayList<>(playingQueueBackup);
+                int newPosition = 0;
+                for (Song song : getPlayingQueue()) {
+                    if (song.id == currentSongId) {
+                        newPosition = getPlayingQueue().indexOf(song);
+                    }
+                }
+                mPlayPos = newPosition;
+                break;
+        }
+        notifyChange(Constants.SHUFFLE_MODE_CHANGED);
+        notifyChange(Constants.QUEUE_CHANGED);
     }
 
     public SleepTimer getSleepTimer() {
@@ -865,6 +873,15 @@ public class MusicService extends Service {
 
     public int getRepeatMode() {
         return mRepeatMode;
+    }
+
+    public void setRepeatMode(final int repeatmode) {
+        synchronized (this) {
+            mRepeatMode = repeatmode;
+            setNextTrack();
+            saveQueue(false);
+            notifyChange(Constants.REPEAT_MODE_CHANGED);
+        }
     }
 
     /**
@@ -1194,7 +1211,6 @@ public class MusicService extends Service {
         }
     }
 
-
     public void prev(boolean forcePrevious) {
         synchronized (this) {
             // if we aren't repeating 1, and we are either early in the song
@@ -1252,7 +1268,6 @@ public class MusicService extends Service {
         openCurrentAndMaybeNext(false);
     }
 
-
     public void moveQueueItem(int from, int to) {
         if (from == to) return;
         final int currentPosition = getQueuePosition();
@@ -1272,42 +1287,9 @@ public class MusicService extends Service {
         notifyChange(Constants.QUEUE_CHANGED);
     }
 
-    public void setRepeatMode(final int repeatmode) {
-        synchronized (this) {
-            mRepeatMode = repeatmode;
-            setNextTrack();
-            saveQueue(false);
-            notifyChange(Constants.REPEAT_MODE_CHANGED);
-        }
-    }
-
     public void setShuffleModeLight(int shuffleMode) {
         this.mShuffleMode = shuffleMode;
         notifyChange(Constants.SHUFFLE_MODE_CHANGED);
-    }
-
-    public void setShuffleMode(final int shuffleMode) {
-        switch (shuffleMode) {
-            case Constants.SHUFFLE_NORMAL:
-                this.mShuffleMode = shuffleMode;
-                makeShuffleList(this.getPlayingQueue(), getQueuePosition());
-                mPlayPos = 0;
-                break;
-            case Constants.SHUFFLE_NONE:
-                this.mShuffleMode = shuffleMode;
-                long currentSongId = getCurrentSong().id;
-                playingQueue = new ArrayList<>(playingQueueBackup);
-                int newPosition = 0;
-                for (Song song : getPlayingQueue()) {
-                    if (song.id == currentSongId) {
-                        newPosition = getPlayingQueue().indexOf(song);
-                    }
-                }
-                mPlayPos = newPosition;
-                break;
-        }
-        notifyChange(Constants.SHUFFLE_MODE_CHANGED);
-        notifyChange(Constants.QUEUE_CHANGED);
     }
 
     public void playSongAt(int index) {
@@ -1400,43 +1382,110 @@ public class MusicService extends Service {
         notifyChange(Constants.PLAYLIST_CHANGED);
     }
 
-
-    private ContentObserver mMediaStoreObserver;
-
-
-    private class MediaStoreObserver extends ContentObserver implements Runnable {
-        private static final long REFRESH_DELAY = 500;
-        private Handler mHandler;
-
-        public MediaStoreObserver(Handler handler) {
-            super(handler);
-            mHandler = handler;
-        }
-
-        @Override
-        public void onChange(boolean selfChange) {
-            mHandler.removeCallbacks(this);
-            mHandler.postDelayed(this, REFRESH_DELAY);
-        }
-
-        @Override
-        public void run() {
-            refresh();
-        }
+    public void asyncTogglePlayPause() {
+        mPlayerHandler.obtainMessage(Constants.TOGGLE_PLAY_PAUSE_ASYNC).sendToTarget();
     }
 
-    private final OnAudioFocusChangeListener mAudioFocusListener = new OnAudioFocusChangeListener() {
+    public void asyncNext(boolean force) {
+        mPlayerHandler.removeMessages(Constants.GOTO_NEXT_ASYNC, force);
+        mPlayerHandler.obtainMessage(Constants.GOTO_NEXT_ASYNC, force).sendToTarget();
+    }
 
-        @Override
-        public void onAudioFocusChange(final int focusChange) {
-            mPlayerHandler.obtainMessage(Constants.FOCUSCHANGE, focusChange, 0).sendToTarget();
-        }
-    };
+    public void asyncPrevious(boolean force) {
+        mPlayerHandler.obtainMessage(Constants.GOTO_PREVIOUS_ASYNC, force).sendToTarget();
+    }
 
-    public class MusicBinder extends Binder {
-        public MusicService getMusicService() {
-            return MusicService.this;
-        }
+    public void asyncPlay() {
+        mPlayerHandler.removeMessages(Constants.PLAY_ASYNC);
+        mPlayerHandler.obtainMessage(Constants.PLAY_ASYNC).sendToTarget();
+    }
+
+    public void asyncPause() {
+        mPlayerHandler.obtainMessage(Constants.PAUSE_ASYNC).sendToTarget();
+    }
+
+    public void asyncSetRepeatMode(final int repeatmode) {
+        mPlayerHandler.obtainMessage(Constants.SET_REPEAT_MODE_ASYNC, repeatmode, 0).sendToTarget();
+    }
+
+    public void asyncSetShuffleMode(final int shufflemode) {
+        mPlayerHandler.obtainMessage(Constants.SET_SHUFFLE_MODE_ASYNC, shufflemode, 0).sendToTarget();
+    }
+
+    public void asyncStop(final boolean goToIdle) {
+        mPlayerHandler.obtainMessage(Constants.STOP_ASYNC).sendToTarget();
+    }
+
+    public void asyncOpenFile(String filename) {
+        mPlayerHandler.obtainMessage(Constants.SET_SHUFFLE_MODE_ASYNC, filename).sendToTarget();
+    }
+
+    public void asyncOpen(List<Song> list, int position, boolean forceShuffle) {
+        mPlayerHandler.removeMessages(Constants.OPEN_ASYNC);
+        PlaylistForPlayback playListForPlayback = new PlaylistForPlayback(
+                list, position, 0, forceShuffle);
+        mPlayerHandler.obtainMessage(Constants.OPEN_ASYNC, playListForPlayback).sendToTarget();
+    }
+
+    public void asyncEnqueue(List<Song> list, int action) {
+        PlaylistForPlayback playListForPlayback = new PlaylistForPlayback(list, 0, action, false);
+        mPlayerHandler.obtainMessage(Constants.ENQUEUE_ASYNC, playListForPlayback).sendToTarget();
+    }
+
+    public void asyncMoveQueueItem(int index1, int index2) {
+        mPlayerHandler.obtainMessage(Constants.MOVE_QUEUE_ITEM_ASYNC, index1, index2).sendToTarget();
+    }
+
+    public void asyncRefresh() {
+        mPlayerHandler.obtainMessage(Constants.REFRESH_ASYNC).sendToTarget();
+    }
+
+    public void asyncPlaylistChanged() {
+        mPlayerHandler.obtainMessage(Constants.PLAYLIST_CHANGED_ASYNC).sendToTarget();
+    }
+
+    public void asyncSeek(long position) {
+        mPlayerHandler.obtainMessage(Constants.SEEK_ASYNC, position).sendToTarget();
+    }
+
+    public void asyncSeekRelative(long deltaInMs) {
+        mPlayerHandler.obtainMessage(Constants.SEEK_RELATIVE_ASYNC, deltaInMs).sendToTarget();
+    }
+
+    public void asyncPlaySongAt(int position) {
+        mPlayerHandler.obtainMessage(Constants.PLAY_SONG_AT_ASYNC, position, 0).sendToTarget();
+    }
+
+    public void asyncPlaySongsFromUri(ArrayList<Song> songs) {
+        mPlayerHandler.obtainMessage(Constants.PLAY_SONG_FROM_URI_ASYNC, songs).sendToTarget();
+    }
+
+    public void asyncCycleShuffle() {
+        mPlayerHandler.obtainMessage(Constants.CYCLE_SHUFFLE_ASYNC).sendToTarget();
+    }
+
+    public void asyncCycleRepeat() {
+        mPlayerHandler.obtainMessage(Constants.CYCLE_REPEAT_ASYNC).sendToTarget();
+    }
+
+    public void asyncSetShuffleModeLight(int shuffleMode) {
+        mPlayerHandler.obtainMessage(Constants.SET_SHUFFLE_MODE_LIGHT_ASYNC, shuffleMode,
+                0).sendToTarget();
+    }
+
+    public void asyncPrepareAndPlay() {
+        mPlayerHandler.removeMessages(Constants.PREPARE_AND_PLAY_ASYNC);
+        mPlayerHandler.obtainMessage(Constants.PREPARE_AND_PLAY_ASYNC).sendToTarget();
+    }
+
+    public void asyncSaveQueues() {
+        playingQueueSaverHandler.removeMessages(Constants.SAVE_QUEUES);
+        playingQueueSaverHandler.obtainMessage(Constants.SAVE_QUEUES).sendToTarget();
+    }
+
+    public void asyncSetNextTrack() {
+        mPlayerHandler.removeMessages(Constants.SET_NEXT_TRACK);
+        mPlayerHandler.obtainMessage(Constants.SET_NEXT_TRACK).sendToTarget();
     }
 
     private static final class MusicPlayerHandler extends Handler {
@@ -1626,109 +1675,30 @@ public class MusicService extends Service {
         }
     }
 
-    public void asyncTogglePlayPause() {
-        mPlayerHandler.obtainMessage(Constants.TOGGLE_PLAY_PAUSE_ASYNC).sendToTarget();
+    private class MediaStoreObserver extends ContentObserver implements Runnable {
+        private static final long REFRESH_DELAY = 500;
+        private Handler mHandler;
+
+        public MediaStoreObserver(Handler handler) {
+            super(handler);
+            mHandler = handler;
+        }
+
+        @Override
+        public void onChange(boolean selfChange) {
+            mHandler.removeCallbacks(this);
+            mHandler.postDelayed(this, REFRESH_DELAY);
+        }
+
+        @Override
+        public void run() {
+            refresh();
+        }
     }
 
-    public void asyncNext(boolean force) {
-        mPlayerHandler.removeMessages(Constants.GOTO_NEXT_ASYNC, force);
-        mPlayerHandler.obtainMessage(Constants.GOTO_NEXT_ASYNC, force).sendToTarget();
-    }
-
-    public void asyncPrevious(boolean force) {
-        mPlayerHandler.obtainMessage(Constants.GOTO_PREVIOUS_ASYNC, force).sendToTarget();
-    }
-
-    public void asyncPlay() {
-        mPlayerHandler.removeMessages(Constants.PLAY_ASYNC);
-        mPlayerHandler.obtainMessage(Constants.PLAY_ASYNC).sendToTarget();
-    }
-
-    public void asyncPause() {
-        mPlayerHandler.obtainMessage(Constants.PAUSE_ASYNC).sendToTarget();
-    }
-
-    public void asyncSetRepeatMode(final int repeatmode) {
-        mPlayerHandler.obtainMessage(Constants.SET_REPEAT_MODE_ASYNC, repeatmode, 0).sendToTarget();
-    }
-
-    public void asyncSetShuffleMode(final int shufflemode) {
-        mPlayerHandler.obtainMessage(Constants.SET_SHUFFLE_MODE_ASYNC, shufflemode, 0).sendToTarget();
-    }
-
-    public void asyncStop(final boolean goToIdle) {
-        mPlayerHandler.obtainMessage(Constants.STOP_ASYNC).sendToTarget();
-    }
-
-    public void asyncOpenFile(String filename) {
-        mPlayerHandler.obtainMessage(Constants.SET_SHUFFLE_MODE_ASYNC, filename).sendToTarget();
-    }
-
-    public void asyncOpen(List<Song> list, int position, boolean forceShuffle) {
-        mPlayerHandler.removeMessages(Constants.OPEN_ASYNC);
-        PlaylistForPlayback playListForPlayback = new PlaylistForPlayback(
-                list, position, 0, forceShuffle);
-        mPlayerHandler.obtainMessage(Constants.OPEN_ASYNC, playListForPlayback).sendToTarget();
-    }
-
-    public void asyncEnqueue(List<Song> list, int action) {
-        PlaylistForPlayback playListForPlayback = new PlaylistForPlayback(list, 0, action, false);
-        mPlayerHandler.obtainMessage(Constants.ENQUEUE_ASYNC, playListForPlayback).sendToTarget();
-    }
-
-    public void asyncMoveQueueItem(int index1, int index2) {
-        mPlayerHandler.obtainMessage(Constants.MOVE_QUEUE_ITEM_ASYNC, index1, index2).sendToTarget();
-    }
-
-    public void asyncRefresh() {
-        mPlayerHandler.obtainMessage(Constants.REFRESH_ASYNC).sendToTarget();
-    }
-
-    public void asyncPlaylistChanged() {
-        mPlayerHandler.obtainMessage(Constants.PLAYLIST_CHANGED_ASYNC).sendToTarget();
-    }
-
-    public void asyncSeek(long position) {
-        mPlayerHandler.obtainMessage(Constants.SEEK_ASYNC, position).sendToTarget();
-    }
-
-    public void asyncSeekRelative(long deltaInMs) {
-        mPlayerHandler.obtainMessage(Constants.SEEK_RELATIVE_ASYNC, deltaInMs).sendToTarget();
-    }
-
-    public void asyncPlaySongAt(int position) {
-        mPlayerHandler.obtainMessage(Constants.PLAY_SONG_AT_ASYNC, position, 0).sendToTarget();
-    }
-
-    public void asyncPlaySongsFromUri(ArrayList<Song> songs) {
-        mPlayerHandler.obtainMessage(Constants.PLAY_SONG_FROM_URI_ASYNC, songs).sendToTarget();
-    }
-
-    public void asyncCycleShuffle() {
-        mPlayerHandler.obtainMessage(Constants.CYCLE_SHUFFLE_ASYNC).sendToTarget();
-    }
-
-    public void asyncCycleRepeat() {
-        mPlayerHandler.obtainMessage(Constants.CYCLE_REPEAT_ASYNC).sendToTarget();
-    }
-
-    public void asyncSetShuffleModeLight(int shuffleMode) {
-        mPlayerHandler.obtainMessage(Constants.SET_SHUFFLE_MODE_LIGHT_ASYNC, shuffleMode,
-                0).sendToTarget();
-    }
-
-    public void asyncPrepareAndPlay() {
-        mPlayerHandler.removeMessages(Constants.PREPARE_AND_PLAY_ASYNC);
-        mPlayerHandler.obtainMessage(Constants.PREPARE_AND_PLAY_ASYNC).sendToTarget();
-    }
-
-    public void asyncSaveQueues() {
-        playingQueueSaverHandler.removeMessages(Constants.SAVE_QUEUES);
-        playingQueueSaverHandler.obtainMessage(Constants.SAVE_QUEUES).sendToTarget();
-    }
-
-    public void asyncSetNextTrack() {
-        mPlayerHandler.removeMessages(Constants.SET_NEXT_TRACK);
-        mPlayerHandler.obtainMessage(Constants.SET_NEXT_TRACK).sendToTarget();
+    public class MusicBinder extends Binder {
+        public MusicService getMusicService() {
+            return MusicService.this;
+        }
     }
 }

@@ -37,6 +37,17 @@ public class RecentStore {
         mMusicDatabase = MusicDB.getInstance(context);
     }
 
+    /**
+     * @param context The {@link Context} to use
+     * @return A new instance of this class.
+     */
+    public static final synchronized RecentStore getInstance(final Context context) {
+        if (sInstance == null) {
+            sInstance = new RecentStore(context.getApplicationContext());
+        }
+        return sInstance;
+    }
+
     public void onCreate(final SQLiteDatabase db) {
         db.execSQL("CREATE TABLE IF NOT EXISTS " + RecentStoreColumns.NAME + " ("
                 + RecentStoreColumns.ID + " LONG NOT NULL," + RecentStoreColumns.TIMEPLAYED
@@ -51,17 +62,6 @@ public class RecentStore {
         // If we ever have downgrade, drop the table to be safe
         db.execSQL("DROP TABLE IF EXISTS " + RecentStoreColumns.NAME);
         onCreate(db);
-    }
-
-    /**
-     * @param context The {@link Context} to use
-     * @return A new instance of this class.
-     */
-    public static final synchronized RecentStore getInstance(final Context context) {
-        if (sInstance == null) {
-            sInstance = new RecentStore(context.getApplicationContext());
-        }
-        return sInstance;
     }
 
     /**

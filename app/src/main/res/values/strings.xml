@@ -122,7 +122,6 @@
     <string name="auto_download_artwork_pref_summary">Allow the app to automatically fetch artworks from the internet</string>
     <string name="auto_download_artwork_pref_title">Automatically download Artworks</string>
     <string name="artwork_on_wifi_only_pref_summary">Artworks will only be downloaded via Wi-Fi</string>
-    <string name="artwork_on_wifi_only_pref_title">Wi-Fi only</string>
     <string name="app_info_pref_summary">Licences, Feedback, build info etc</string>
     <string name="app_info_pref_title">App info</string>
 

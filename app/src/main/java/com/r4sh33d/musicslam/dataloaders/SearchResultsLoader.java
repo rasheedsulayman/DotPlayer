@@ -49,7 +49,7 @@ public class SearchResultsLoader extends WrappedAsyncTaskLoader<List<Object>> {
                 arrayList.add(getContext().getString(R.string.songs));
                 arrayList.addAll(songs);
             }
-        } 
+        }
         return arrayList;
     }
 }

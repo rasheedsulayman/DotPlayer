@@ -6,8 +6,8 @@ import android.support.v4.app.DialogFragment;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.r4sh33d.musicslam.R;
-import com.r4sh33d.musicslam.utils.PlayListHelper;
 import com.r4sh33d.musicslam.models.Playlist;
+import com.r4sh33d.musicslam.utils.PlayListHelper;
 
 public class DeletePlaylistDialog extends DialogFragment {
     public static final String PLAYLIST_ARGS = "playlist_arg";

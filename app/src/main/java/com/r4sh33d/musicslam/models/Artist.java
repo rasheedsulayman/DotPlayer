@@ -5,10 +5,22 @@ import android.os.Parcelable;
 
 public class Artist implements Parcelable {
 
+    public static final Creator<Artist> CREATOR = new Creator<Artist>() {
+        @Override
+        public Artist createFromParcel(Parcel in) {
+            return new Artist(in);
+        }
+
+        @Override
+        public Artist[] newArray(int size) {
+            return new Artist[size];
+        }
+    };
     public int albumCount;
     public long id;
     public String name;
     public int songCount;
+
 
     public Artist(int albumCount, long id, String name, int songCount) {
         this.albumCount = albumCount;
@@ -16,7 +28,6 @@ public class Artist implements Parcelable {
         this.name = name;
         this.songCount = songCount;
     }
-
 
     public Artist() {
 
@@ -41,18 +52,6 @@ public class Artist implements Parcelable {
     public int describeContents() {
         return 0;
     }
-
-    public static final Creator<Artist> CREATOR = new Creator<Artist>() {
-        @Override
-        public Artist createFromParcel(Parcel in) {
-            return new Artist(in);
-        }
-
-        @Override
-        public Artist[] newArray(int size) {
-            return new Artist[size];
-        }
-    };
 
     @Override
     public String toString() {

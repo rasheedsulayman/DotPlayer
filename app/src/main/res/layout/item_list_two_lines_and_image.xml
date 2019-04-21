@@ -5,8 +5,8 @@
     android:layout_height="wrap_content"
     android:layout_marginLeft="16dp"
     android:layout_marginRight="16dp"
-    android:orientation="vertical"
     android:background="?android:attr/selectableItemBackground"
+    android:orientation="vertical"
     android:paddingTop="8dp">
 
     <LinearLayout
@@ -15,11 +15,11 @@
         android:orientation="horizontal">
 
         <ImageView
-            android:background="@drawable/round_stroke_small_radius_background"
-            android:src="@drawable/default_artwork_small"
             android:id="@+id/album_art"
             android:layout_width="56dp"
-            android:layout_height="56dp" />
+            android:layout_height="56dp"
+            android:background="@drawable/round_stroke_small_radius_background"
+            android:src="@drawable/default_artwork_small" />
 
         <LinearLayout
             android:layout_width="0dp"
@@ -50,11 +50,11 @@
         </LinearLayout>
 
         <com.r4sh33d.musicslam.customviews.BlackAndWhiteImageView
-            android:background="@drawable/circular_ripple"
             android:id="@+id/overflow_menu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
+            android:background="@drawable/circular_ripple"
             android:padding="5dp"
             android:src="@drawable/ic_more_vert_black_24dp" />
     </LinearLayout>
@@ -63,7 +63,7 @@
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
         android:layout_marginStart="72dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginTop="8dp" />
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="10dp" />
 
 </LinearLayout>

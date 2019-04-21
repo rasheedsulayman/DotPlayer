@@ -119,7 +119,7 @@ public class ColorHelper {
                 res = R.style.AppThemeBlue;
                 break;
             case BlackTheme:
-                res =R.style.AppThemeBlack;
+                res = R.style.AppThemeBlack;
                 break;
             case LightTheme:
                 res = R.style.AppThemeLight;

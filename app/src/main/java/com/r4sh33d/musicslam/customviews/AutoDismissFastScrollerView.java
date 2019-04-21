@@ -14,9 +14,12 @@ import org.jetbrains.annotations.Nullable;
 import kotlin.jvm.functions.Function1;
 
 public class AutoDismissFastScrollerView extends FastScrollerView {
-    private int mAutoHideDelay = 1500;
-
     boolean isShown;
+    private int mAutoHideDelay = 1500;
+    private Runnable mHideRunnable = () -> {
+        setVisibility(View.GONE);
+        isShown = false;
+    };
 
     public AutoDismissFastScrollerView(@NotNull Context context, @Nullable AttributeSet attrs,
                                        int defStyleAttr, int defStyleRes) {
@@ -49,19 +52,12 @@ public class AutoDismissFastScrollerView extends FastScrollerView {
         });
     }
 
-
     void show() {
         if (!isShown) {
             setVisibility(View.VISIBLE);
             isShown = true;
         }
     }
-
-    private Runnable mHideRunnable = () -> {
-        setVisibility(View.GONE);
-        isShown = false;
-    };
-
 
     protected void postAutoHideDelayed() {
         if (getRecyclerView() != null) {

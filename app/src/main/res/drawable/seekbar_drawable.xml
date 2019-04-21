@@ -3,13 +3,12 @@
         <shape>
             <corners android:radius="0dip" />
             <gradient
-                android:startColor="#4bf5f4f4"
-                android:centerColor="#4bf5f4f4"
-                android:centerY="0.5"
-                android:centerX="0.5"
-                android:endColor="#4bf5f4f4"
                 android:angle="270"
-                />
+                android:centerColor="#4bf5f4f4"
+                android:centerX="0.5"
+                android:centerY="0.5"
+                android:endColor="#4bf5f4f4"
+                android:startColor="#4bf5f4f4" />
         </shape>
     </item>
 
@@ -18,12 +17,11 @@
             <shape>
                 <corners android:radius="0dip" />
                 <gradient
-                    android:startColor="#80ffd300"
+                    android:angle="270"
                     android:centerColor="#80ffb600"
                     android:centerY="0.75"
                     android:endColor="#a0ffcb00"
-                    android:angle="270"
-                    />
+                    android:startColor="#80ffd300" />
             </shape>
         </clip>
     </item>
@@ -31,16 +29,14 @@
     <item android:id="@android:id/progress">
         <clip>
             <shape>
-                <corners
-                    android:radius="0dip" />
+                <corners android:radius="0dip" />
                 <gradient
-                    android:centerY="0.9"
-                    android:centerX="0.9"
-                    android:startColor="@color/colorAccent"
-                    android:centerColor="@color/white"
-                    android:endColor="@color/colorAccent"
                     android:angle="0"
-                    />
+                    android:centerColor="@color/white"
+                    android:centerX="0.9"
+                    android:centerY="0.9"
+                    android:endColor="@color/colorAccent"
+                    android:startColor="@color/colorAccent" />
             </shape>
         </clip>
     </item>

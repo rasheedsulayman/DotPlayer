@@ -1,4 +1,3 @@
-
 package com.r4sh33d.musicslam.activities;
 
 import android.content.BroadcastReceiver;
@@ -11,8 +10,8 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.view.View;
 
-import com.r4sh33d.musicslam.playback.MusicStateListener;
 import com.r4sh33d.musicslam.playback.MusicPlayer;
+import com.r4sh33d.musicslam.playback.MusicStateListener;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
@@ -107,49 +106,6 @@ public abstract class MusicEventsListenerActivity extends BaseActivity implement
         musicStateListenersList.clear();
     }
 
-    private final static class MusicEventsBroadcastReceiver extends BroadcastReceiver {
-
-        private final WeakReference<MusicEventsListenerActivity> mReference;
-
-        public MusicEventsBroadcastReceiver(final MusicEventsListenerActivity activity) {
-            mReference = new WeakReference<>(activity);
-        }
-
-        @Override
-        public void onReceive(final Context context, final Intent intent) {
-            final String action = intent.getAction();
-            MusicEventsListenerActivity musicEventsListenerActivity = mReference.get();
-            if (musicEventsListenerActivity != null) {
-                //noinspection ConstantConditions
-                switch (action) {
-                    case QUEUE_CHANGED:
-                        musicEventsListenerActivity.onQueueChanged();
-                    case META_CHANGED:
-                        musicEventsListenerActivity.onMetaChanged();
-                        break;
-                    case PLAY_STATE_CHANGED:
-                        musicEventsListenerActivity.onPlayStateChanged();
-                        break;
-                    case REFRESH:
-                        musicEventsListenerActivity.onMediaStoreRefreshed();
-                        break;
-                    case PLAYLIST_CHANGED:
-                        musicEventsListenerActivity.onPlaylistChanged();
-                        break;
-                    case SHUFFLE_MODE_CHANGED:
-                        musicEventsListenerActivity.onShuffleModeChanged();
-                        break;
-                    case REPEAT_MODE_CHANGED:
-                        musicEventsListenerActivity.onRepeatModeChanged();
-                        break;
-                    case TRACK_ERROR:
-                        Timber.d("Track error");
-                        break;
-                }
-            }
-        }
-    }
-
     @Override
     public void onQueueChanged() {
         for (final MusicStateListener listener : musicStateListenersList) {
@@ -226,6 +182,49 @@ public abstract class MusicEventsListenerActivity extends BaseActivity implement
     public void unSubscribeFromMusicEvents(final MusicStateListener listener) {
         if (listener != null) {
             musicStateListenersList.remove(listener);
+        }
+    }
+
+    private final static class MusicEventsBroadcastReceiver extends BroadcastReceiver {
+
+        private final WeakReference<MusicEventsListenerActivity> mReference;
+
+        public MusicEventsBroadcastReceiver(final MusicEventsListenerActivity activity) {
+            mReference = new WeakReference<>(activity);
+        }
+
+        @Override
+        public void onReceive(final Context context, final Intent intent) {
+            final String action = intent.getAction();
+            MusicEventsListenerActivity musicEventsListenerActivity = mReference.get();
+            if (musicEventsListenerActivity != null) {
+                //noinspection ConstantConditions
+                switch (action) {
+                    case QUEUE_CHANGED:
+                        musicEventsListenerActivity.onQueueChanged();
+                    case META_CHANGED:
+                        musicEventsListenerActivity.onMetaChanged();
+                        break;
+                    case PLAY_STATE_CHANGED:
+                        musicEventsListenerActivity.onPlayStateChanged();
+                        break;
+                    case REFRESH:
+                        musicEventsListenerActivity.onMediaStoreRefreshed();
+                        break;
+                    case PLAYLIST_CHANGED:
+                        musicEventsListenerActivity.onPlaylistChanged();
+                        break;
+                    case SHUFFLE_MODE_CHANGED:
+                        musicEventsListenerActivity.onShuffleModeChanged();
+                        break;
+                    case REPEAT_MODE_CHANGED:
+                        musicEventsListenerActivity.onRepeatModeChanged();
+                        break;
+                    case TRACK_ERROR:
+                        Timber.d("Track error");
+                        break;
+                }
+            }
         }
     }
 }

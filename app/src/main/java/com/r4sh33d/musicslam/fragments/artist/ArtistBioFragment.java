@@ -76,7 +76,7 @@ public class ArtistBioFragment extends Fragment {
                         } else {
                             setEmptyState();
                         }
-                    }else {
+                    } else {
                         setEmptyState();
                     }
                 }

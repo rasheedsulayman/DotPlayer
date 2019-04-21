@@ -43,30 +43,21 @@ import butterknife.ButterKnife;
 
 public class ArtistsDetailsFragment extends AbsParallaxArtworkDetailsFragment {
 
+    private static final String ARG_ARTIST = "artist";
     @BindView(R.id.detail_tabs)
     TabLayout tabLayout;
-
     @BindView(R.id.backdrop)
     ImageView artistArt;
-
     @BindView(R.id.toolbar)
     Toolbar toolbar;
-
     @BindView(R.id.collapsing_toolbar)
     CollapsingToolbarLayout collapsingToolbarLayout;
-
     @BindView(R.id.appbar)
     AppBarLayout appBarLayout;
-
     @BindView(R.id.viewpager)
     ViewPager viewPager;
-
-
     Artist mArtist;
-
     String[] tabTitles;
-
-    private static final String ARG_ARTIST = "artist";
 
     public ArtistsDetailsFragment() {
         // Required empty public constructor

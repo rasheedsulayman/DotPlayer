@@ -68,7 +68,8 @@ public class ArtistResponse {
         public Bio bio;
 
 
-        public @Nullable  String getLargestImageUrl() {
+        public @Nullable
+        String getLargestImageUrl() {
             if (images != null) {
                 HashMap<String, String> imagesSizeMap = new HashMap<>();
                 for (Image image : images) {

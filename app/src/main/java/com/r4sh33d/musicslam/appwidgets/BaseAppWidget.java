@@ -12,8 +12,6 @@ import com.r4sh33d.musicslam.playback.Constants;
 import com.r4sh33d.musicslam.playback.MusicPlayer;
 import com.r4sh33d.musicslam.playback.MusicService;
 
-import timber.log.Timber;
-
 import static com.r4sh33d.musicslam.playback.Constants.ACTION_UPDATE_APP_WIDGETS;
 import static com.r4sh33d.musicslam.playback.Constants.EXTRA_WIDGET_TYPE;
 import static com.r4sh33d.musicslam.playback.Constants.PLAY_STATE_CHANGED;

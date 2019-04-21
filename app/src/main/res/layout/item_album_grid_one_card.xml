@@ -16,16 +16,16 @@
         android:orientation="vertical">
 
         <com.r4sh33d.musicslam.customviews.WidthFitSquareImageView
-            android:src="@drawable/default_artwork_large"
             android:id="@+id/album_art"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:scaleType="centerCrop"/>
+            android:scaleType="centerCrop"
+            android:src="@drawable/default_artwork_large" />
 
         <LinearLayout
-            android:background="?android:colorBackground"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="?android:colorBackground"
             android:orientation="horizontal">
 
             <LinearLayout
@@ -42,8 +42,8 @@
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
                     android:maxLines="1"
-                    android:textSize="13sp"
                     android:textColor="?android:textColorPrimary"
+                    android:textSize="13sp"
                     tools:text="Test Header" />
 
 
@@ -58,9 +58,9 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="2dp"
                         android:layout_weight="1"
-                        android:textColor="?android:textColorSecondary"
                         android:ellipsize="end"
                         android:maxLines="1"
+                        android:textColor="?android:textColorSecondary"
                         android:textSize="11sp"
                         tools:text="test" />
 
@@ -69,8 +69,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="2dp"
-                        android:textColor="?android:textColorSecondary"
                         android:maxLines="1"
+                        android:textColor="?android:textColorSecondary"
                         android:textSize="11sp"
                         tools:text="(2)" />
                 </LinearLayout>

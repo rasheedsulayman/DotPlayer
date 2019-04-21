@@ -48,10 +48,10 @@
         android:title="@string/delete"
         app:showAsAction="never" />
 
-    <item android:id="@+id/settings"
+    <item
+        android:id="@+id/settings"
         android:title="@string/settings"
-        app:showAsAction="never"/>
-
+        app:showAsAction="never" />
 
 
 </menu>

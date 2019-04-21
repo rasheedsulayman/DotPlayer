@@ -19,8 +19,10 @@
         <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
         <item name="searchViewStyle">@style/MySearchViewStyle</item>
         <item name="autoCompleteTextViewStyle">@style/SearchAutoCompleteTextView</item>
-        <item name="android:textAppearanceLargePopupMenu">@style/BlackTextAppearanceLargePopup</item>
-        <item name="android:textAppearanceSmallPopupMenu">@style/BlackTextAppearanceSmallPopup</item>
+        <item name="android:textAppearanceLargePopupMenu">@style/BlackTextAppearanceLargePopup
+        </item>
+        <item name="android:textAppearanceSmallPopupMenu">@style/BlackTextAppearanceSmallPopup
+        </item>
         <item name="android:popupMenuStyle">@style/WhiteBackgroundPopupMenu</item>
         <item name="android:windowBackground">@color/white_theme_windows_bg</item>
         <item name="android:colorBackground">@color/white_theme_windows_bg</item>

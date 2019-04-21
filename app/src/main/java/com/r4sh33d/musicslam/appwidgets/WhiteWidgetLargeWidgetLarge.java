@@ -4,8 +4,8 @@ import com.r4sh33d.musicslam.R;
 import com.r4sh33d.musicslam.playback.MusicService;
 
 public class WhiteWidgetLargeWidgetLarge extends TransparentWidgetLarge {
-    private static WhiteWidgetLargeWidgetLarge sInstance;
     public static final String TYPE = "white_widget_large_info";
+    private static WhiteWidgetLargeWidgetLarge sInstance;
 
     public static synchronized WhiteWidgetLargeWidgetLarge getInstance() {
         if (sInstance == null) {

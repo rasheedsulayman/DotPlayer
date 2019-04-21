@@ -1,11 +1,9 @@
 package com.r4sh33d.musicslam.utils;
 
 import android.animation.Animator;
-import android.animation.ValueAnimator;
 import android.os.Build;
 import android.view.View;
 import android.view.ViewAnimationUtils;
-import android.view.animation.AccelerateInterpolator;
 import android.view.animation.LinearInterpolator;
 
 public class AnimationUtils {

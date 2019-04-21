@@ -54,84 +54,6 @@ public class SongLoader {
             MediaStore.Audio.Media.SIZE
     };
 
-
-    public static class SongsAsyncTaskLoader extends WrappedAsyncTaskLoader<List<Song>> {
-        private String selection;
-        private final String[] selectionArgs;
-        private String sortOrder;
-
-        /**
-         * Constructor of <code>WrappedAsyncTaskLoader</code>
-         *
-         * @param context The {@link Context} to use.
-         */
-        public SongsAsyncTaskLoader(Context context) {
-            this(context, null, null, null);
-            Timber.d("Creating SongsAsynctaskloader");
-        }
-
-        public SongsAsyncTaskLoader(Context context, String selection, String[] selectionArgs, String sortOrder) {
-            super(context);
-            this.selection = selection;
-            this.selectionArgs = selectionArgs;
-            this.sortOrder = sortOrder;
-        }
-
-        @Override
-        public List<Song> loadInBackground() {
-            ArrayList<Song> songs = getSongsListFromCursor(makeSongsCursor(selection, selectionArgs,
-                    sortOrder, getContext()));
-            if (selection == null && songs.size() == 0) {
-                //No song on the device.
-                //Delete our NowPlaying queue store as well
-                MusicPlaybackQueueStore.getInstance(getContext()).deleteAllEntries();
-            }
-            return songs;
-        }
-    }
-
-    public static class GenresSongAsyncTaskLoader extends WrappedAsyncTaskLoader<List<Song>> {
-        private String selection;
-        private String sortOrder;
-        private final long genresId;
-
-        /**
-         * Constructor of <code>WrappedAsyncTaskLoader</code>
-         *
-         * @param context The {@link Context} to use.
-         */
-        public GenresSongAsyncTaskLoader(Context context, long genresId) {
-            this(context, genresId, null, null);
-        }
-
-        public GenresSongAsyncTaskLoader(Context context, long genresId, String selection, String sortOrder) {
-            super(context);
-            this.genresId = genresId;
-            this.selection = selection;
-            this.sortOrder = sortOrder;
-        }
-
-        @Override
-        public List<Song> loadInBackground() {
-            return getSongsListFromCursor(makeGenresSongCusor(getContext(), genresId, sortOrder, selection));
-        }
-    }
-
-    public static class PlayListSongAsysnctaskLoader extends WrappedAsyncTaskLoader<List<Song>> {
-
-        private final long playListId;
-
-        public PlayListSongAsysnctaskLoader(Context context, long playListId) {
-            super(context);
-            this.playListId = playListId;
-        }
-
-        @Override
-        public List<Song> loadInBackground() {
-            return SongLoader.getSongsInPlaylist(playListId, getContext());
-        }
-    }
-
     public static List<Song> getSongsInPlaylist(long playListId, Context context) {
         if (playListId < 0) {
             //noinspection ConstantConditions
@@ -180,7 +102,6 @@ public class SongLoader {
         }
     }
 
-
     public static Cursor makeGenresSongCusor(Context context, long genresId, String sortOrder, String selection) {
         Uri uri = MediaStore.Audio.Genres.Members.getContentUri("external", genresId);
         String selectionStatement = MUSIC_ONLY_SELECTION;
@@ -213,7 +134,6 @@ public class SongLoader {
                 )
         );
     }
-
 
     public static ArrayList<Song> getSongsForArtist(long artistId, Context context) {
         return getSongsListFromCursor(
@@ -298,7 +218,6 @@ public class SongLoader {
         return result;
     }
 
-
     @SuppressWarnings("ConstantConditions")
     @Nullable
     public static ArrayList<Song> getSongFromLocalUri(Uri uri, Context context) {
@@ -364,5 +283,82 @@ public class SongLoader {
             cursor.close();
         }
         return arrayList;
+    }
+
+    public static class SongsAsyncTaskLoader extends WrappedAsyncTaskLoader<List<Song>> {
+        private final String[] selectionArgs;
+        private String selection;
+        private String sortOrder;
+
+        /**
+         * Constructor of <code>WrappedAsyncTaskLoader</code>
+         *
+         * @param context The {@link Context} to use.
+         */
+        public SongsAsyncTaskLoader(Context context) {
+            this(context, null, null, null);
+            Timber.d("Creating SongsAsynctaskloader");
+        }
+
+        public SongsAsyncTaskLoader(Context context, String selection, String[] selectionArgs, String sortOrder) {
+            super(context);
+            this.selection = selection;
+            this.selectionArgs = selectionArgs;
+            this.sortOrder = sortOrder;
+        }
+
+        @Override
+        public List<Song> loadInBackground() {
+            ArrayList<Song> songs = getSongsListFromCursor(makeSongsCursor(selection, selectionArgs,
+                    sortOrder, getContext()));
+            if (selection == null && songs.size() == 0) {
+                //No song on the device.
+                //Delete our NowPlaying queue store as well
+                MusicPlaybackQueueStore.getInstance(getContext()).deleteAllEntries();
+            }
+            return songs;
+        }
+    }
+
+    public static class GenresSongAsyncTaskLoader extends WrappedAsyncTaskLoader<List<Song>> {
+        private final long genresId;
+        private String selection;
+        private String sortOrder;
+
+        /**
+         * Constructor of <code>WrappedAsyncTaskLoader</code>
+         *
+         * @param context The {@link Context} to use.
+         */
+        public GenresSongAsyncTaskLoader(Context context, long genresId) {
+            this(context, genresId, null, null);
+        }
+
+        public GenresSongAsyncTaskLoader(Context context, long genresId, String selection, String sortOrder) {
+            super(context);
+            this.genresId = genresId;
+            this.selection = selection;
+            this.sortOrder = sortOrder;
+        }
+
+        @Override
+        public List<Song> loadInBackground() {
+            return getSongsListFromCursor(makeGenresSongCusor(getContext(), genresId, sortOrder, selection));
+        }
+    }
+
+    public static class PlayListSongAsysnctaskLoader extends WrappedAsyncTaskLoader<List<Song>> {
+
+        private final long playListId;
+
+        public PlayListSongAsysnctaskLoader(Context context, long playListId) {
+            super(context);
+            this.playListId = playListId;
+        }
+
+        @Override
+        public List<Song> loadInBackground() {
+            return SongLoader.getSongsInPlaylist(playListId, getContext());
+        }
     }
 }

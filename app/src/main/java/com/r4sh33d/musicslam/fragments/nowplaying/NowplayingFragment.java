@@ -113,15 +113,15 @@ public class NowplayingFragment extends BaseListenerFragment implements
 
     @BindView(R.id.npc_song_progressbar)
     ProgressBar bcProgressbar;
-
-    private Disposable colorAccentSubscription;
-
-    private Unbinder unbinder;
     NowPlayingControlsCallback mActivityCallback;
     int currentPaletteColor;
-
+    private Disposable colorAccentSubscription;
+    private Unbinder unbinder;
     private ProgressUpdateHelper progressUpdateHelper;
 
+
+    public NowplayingFragment() {
+    }
 
     @OnClick(R.id.buttom_controller_container)
     public void buttomContainerControllerClicked() {
@@ -135,10 +135,6 @@ public class NowplayingFragment extends BaseListenerFragment implements
                     bcPlayPause.setColor(color);
                     NowPlayingHelper.changeProgressBarColor(color, bcProgressbar);
                 });
-    }
-
-
-    public NowplayingFragment() {
     }
 
     @Override

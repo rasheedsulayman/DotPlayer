@@ -11,20 +11,20 @@ import com.bumptech.glide.load.Options;
 import com.bumptech.glide.load.data.DataFetcher;
 import com.bumptech.glide.load.model.GlideUrl;
 import com.bumptech.glide.load.model.ModelLoader;
-import com.r4sh33d.musicslam.utils.SlamUtils;
 import com.r4sh33d.musicslam.network.LastFmService;
+import com.r4sh33d.musicslam.utils.SlamUtils;
 
 import java.io.InputStream;
 
 
 public class ArtistArtDataFetcher implements DataFetcher<InputStream> {
 
-    private ArtistImage artistImage;
-    private LastFmService lastFmService;
-    private ModelLoader<GlideUrl, InputStream> okHttpUrlLoader;
     private final int height;
     private final int width;
     private final Options options;
+    private ArtistImage artistImage;
+    private LastFmService lastFmService;
+    private ModelLoader<GlideUrl, InputStream> okHttpUrlLoader;
     private Context context;
     private boolean isCancelled = false;
     private DataFetcher<InputStream> okHttpUrlFetcher;

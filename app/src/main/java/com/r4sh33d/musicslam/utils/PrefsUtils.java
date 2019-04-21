@@ -11,21 +11,19 @@ public class PrefsUtils {
 
     private static final String LAST_PAGER_PAGE_KEY = "pager_start_page";
     private static final String CURRENT_THEME_KEY = "current_theme_key";
-
+    private static PrefsUtils sPrefsUtilsInstance;
     private SharedPreferences sharedPref;
 
-    private static PrefsUtils sPrefsUtilsInstance;
 
+    private PrefsUtils(Context context) {
+        sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
+    }
 
     public static PrefsUtils getInstance(Context context) {
         if (sPrefsUtilsInstance == null) {
             sPrefsUtilsInstance = new PrefsUtils(context);
         }
         return sPrefsUtilsInstance;
-    }
-
-    private PrefsUtils(Context context) {
-        sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
     }
 
     public void putString(String key, String value) {
@@ -36,7 +34,7 @@ public class PrefsUtils {
         return sharedPref.getString(key, defaultValue);
     }
 
-    public boolean contains(String key){
+    public boolean contains(String key) {
         return sharedPref.contains(key);
     }
 
@@ -68,11 +66,6 @@ public class PrefsUtils {
 
     public int getLastViewPagerPage() {
         return getInt(LAST_PAGER_PAGE_KEY, 0);
-    }
-
-    @SuppressLint("ApplySharedPref")
-    public void setCurrentTheme(int theme) {
-        sharedPref.edit().putInt(CURRENT_THEME_KEY, theme).commit();
     }
 
     public boolean enableLockScreenArtWork() {
@@ -112,6 +105,11 @@ public class PrefsUtils {
 
     public int getCurrentTheme() {
         return getInt(CURRENT_THEME_KEY, ThemesTypes.LightTheme);
+    }
+
+    @SuppressLint("ApplySharedPref")
+    public void setCurrentTheme(int theme) {
+        sharedPref.edit().putInt(CURRENT_THEME_KEY, theme).commit();
     }
 
     public interface ThemesTypes {
