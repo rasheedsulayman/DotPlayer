@@ -25,6 +25,8 @@ public class AudioCoverImage {
 
     @Override
     public int hashCode() {
+        //We are probably wasting lot of cache memory by verifying this with just filepath
+        //TODO: - Verify with album ID. or album name
         return filePath.hashCode();
     }
 }

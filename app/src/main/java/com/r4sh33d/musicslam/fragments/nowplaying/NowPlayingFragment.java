@@ -19,12 +19,9 @@ import android.widget.TextView;
 
 import com.afollestad.aesthetic.Aesthetic;
 import com.afollestad.aesthetic.Util;
-import com.bumptech.glide.load.resource.bitmap.BitmapTransitionOptions;
-import com.r4sh33d.musicslam.GlideApp;
 import com.r4sh33d.musicslam.R;
 import com.r4sh33d.musicslam.activities.SettingsActivity;
 import com.r4sh33d.musicslam.blurtransition.BlurImageView;
-import com.r4sh33d.musicslam.customglide.audiocover.AudioCoverImage;
 import com.r4sh33d.musicslam.customviews.playpause.PlayIconDrawable;
 import com.r4sh33d.musicslam.customviews.playpause.PlayIconView;
 import com.r4sh33d.musicslam.dialogs.AddToPlaylistDialog;
@@ -52,7 +49,7 @@ import butterknife.OnClick;
 import butterknife.Unbinder;
 import io.reactivex.disposables.Disposable;
 
-public class NowplayingFragment extends BaseListenerFragment implements
+public class NowPlayingFragment extends BaseListenerFragment implements
         Toolbar.OnMenuItemClickListener, SlidingPanelEventsListener, PaletteListener,
         ProgressUpdateHelper.OnProgressUpdateListener {
 
@@ -63,19 +60,19 @@ public class NowplayingFragment extends BaseListenerFragment implements
     BlurImageView blurImageView;
 
     @BindView(R.id.song_artist)
-    TextView songartist;
+    TextView songArtistTextView;
 
     @BindView(R.id.song_duration)
-    TextView songduration;
+    TextView songDurationTextView;
 
     @BindView(R.id.song_elapsed_time)
-    TextView elapsedtime;
+    TextView elapsedTimeTextView;
 
     @BindView(R.id.song_progress)
     SeekBar mSeekBar;
 
     @BindView(R.id.song_title)
-    TextView songtitle;
+    TextView songTitleTextView;
 
     @BindView(R.id.play_pause_view)
     PlayIconView playPauseView;
@@ -84,17 +81,16 @@ public class NowplayingFragment extends BaseListenerFragment implements
     Toolbar toolbar;
 
     @BindView(R.id.shuffle)
-    ImageView shuffle;
+    ImageView shuffleImageView;
 
     @BindView(R.id.repeat)
-    ImageView repeat;
+    ImageView repeatImageView;
 
     @BindView(R.id.buttom_controller_container)
     LinearLayout bcControllerContainer;
 
     @BindView(R.id.toggle_favourite)
     ImageView toggleFavourite;
-
 
     @BindView(R.id.open_equalizer)
     ImageView menuEqualizer;
@@ -113,18 +109,19 @@ public class NowplayingFragment extends BaseListenerFragment implements
 
     @BindView(R.id.npc_song_progressbar)
     ProgressBar bcProgressbar;
-    NowPlayingControlsCallback mActivityCallback;
-    int currentPaletteColor;
+
+    private NowPlayingControlsCallback mActivityCallback;
+    private int currentPaletteColor;
     private Disposable colorAccentSubscription;
     private Unbinder unbinder;
     private ProgressUpdateHelper progressUpdateHelper;
+    private NowPlayingHelper nowPlayingHelper;
 
-
-    public NowplayingFragment() {
+    public NowPlayingFragment() {
     }
 
     @OnClick(R.id.buttom_controller_container)
-    public void buttomContainerControllerClicked() {
+    public void bottomContainerControllerClicked() {
         mActivityCallback.setPanelState(PanelState.EXPANDED);
     }
 
@@ -133,7 +130,7 @@ public class NowplayingFragment extends BaseListenerFragment implements
                 .colorAccent()
                 .subscribe(color -> {
                     bcPlayPause.setColor(color);
-                    NowPlayingHelper.changeProgressBarColor(color, bcProgressbar);
+                    nowPlayingHelper.changeProgressBarColor(color);
                 });
     }
 
@@ -154,9 +151,9 @@ public class NowplayingFragment extends BaseListenerFragment implements
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_now_playing3, container, false);
         unbinder = ButterKnife.bind(this, view);
+        nowPlayingHelper = new NowPlayingHelper(mSeekBar, bcProgressbar, bcAlbumart);
         return view;
     }
-
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
@@ -165,8 +162,8 @@ public class NowplayingFragment extends BaseListenerFragment implements
         currentPaletteColor = getResources().getColor(R.color.transparent);
         progressUpdateHelper = new ProgressUpdateHelper(this);
         setUpToolbar();
-        songtitle.setSelected(true);
-        songartist.setSelected(true);
+        songTitleTextView.setSelected(true);
+        songArtistTextView.setSelected(true);
         if (isAlbumArtTheme) {
             blurImageView.setVisibility(View.GONE);
             albumartShadeBlack.setVisibility(View.GONE);
@@ -176,7 +173,6 @@ public class NowplayingFragment extends BaseListenerFragment implements
         }
         setSeekBarChangeListener();
     }
-
 
     void setUpToolbar() {
         if (prefsUtils.isDarkTheme()) {
@@ -207,8 +203,7 @@ public class NowplayingFragment extends BaseListenerFragment implements
             }
 
         });
-        mSeekBar.setOnClickListener(v -> {
-        });
+        mSeekBar.setOnClickListener(v -> {});
     }
 
 
@@ -280,13 +275,13 @@ public class NowplayingFragment extends BaseListenerFragment implements
         updateShuffleState();
         updatePlayPauseButton();
         updateAddFavourite();
-        updateImage();
-        songduration.setText(SlamUtils.makeShortTimeString(getContext(),
+        nowPlayingHelper.updateBottomControllerArt( this);
+        songDurationTextView.setText(SlamUtils.makeShortTimeString(getContext(),
                 MusicPlayer.getCurrentSongDuration() / 1000));
         Song song = MusicPlayer.getCurrentSong();
-        songtitle.setText(song.title);
+        songTitleTextView.setText(song.title);
         bcSongTitle.setText(song.title);
-        songartist.setText(song.artistName);
+        songArtistTextView.setText(song.artistName);
         bcSongArtist.setText(song.artistName);
         mSeekBar.setMax((int) MusicPlayer.getCurrentSongDuration() / 1000);
         bcProgressbar.setMax((int) MusicPlayer.getCurrentSongDuration() / 1000);
@@ -295,37 +290,27 @@ public class NowplayingFragment extends BaseListenerFragment implements
     private void updateRepeatState() {
         switch (MusicPlayer.getRepeatMode()) {
             case Constants.REPEAT_ALL:
-                repeat.setImageResource(R.drawable.ic_repeat_white_24dp);
-                repeat.setColorFilter(currentPaletteColor);
+                repeatImageView.setImageResource(R.drawable.ic_repeat_white_24dp);
+                repeatImageView.setColorFilter(currentPaletteColor);
                 break;
             case Constants.REPEAT_CURRENT:
-                repeat.setImageResource(R.drawable.ic_repeat_one_white_24dp);
-                repeat.setColorFilter(currentPaletteColor);
+                repeatImageView.setImageResource(R.drawable.ic_repeat_one_white_24dp);
+                repeatImageView.setColorFilter(currentPaletteColor);
                 break;
             case Constants.REPEAT_NONE:
-                repeat.setImageResource(R.drawable.ic_repeat_white_24dp);
-                repeat.setColorFilter(ContextCompat.getColor(getContext(), R.color.material_white));
+                repeatImageView.setImageResource(R.drawable.ic_repeat_white_24dp);
+                repeatImageView.setColorFilter(ContextCompat.getColor(getContext(), R.color.material_white));
                 break;
         }
-    }
-
-    void updateImage() {
-        AudioCoverImage audioCoverImage = new AudioCoverImage(MusicPlayer.getCurrentSong().data);
-        GlideApp.with(this)
-                .asBitmap()
-                .load(audioCoverImage)
-                .transition(BitmapTransitionOptions.withCrossFade())
-                .placeholder(getContext().getDrawable(R.drawable.default_artwork_small))
-                .into(bcAlbumart);
     }
 
     public void updateShuffleState() {
         switch (MusicPlayer.getShuffleMode()) {
             case Constants.SHUFFLE_NORMAL:
-                shuffle.setColorFilter(currentPaletteColor);
+                shuffleImageView.setColorFilter(currentPaletteColor);
                 break;
             case Constants.SHUFFLE_NONE:
-                shuffle.setColorFilter(ContextCompat.getColor(getContext(), R.color.material_white));
+                shuffleImageView.setColorFilter(ContextCompat.getColor(getContext(), R.color.material_white));
                 break;
         }
     }
@@ -453,12 +438,12 @@ public class NowplayingFragment extends BaseListenerFragment implements
     @Override
     public void onPaletteReady(int color) {
         currentPaletteColor = color;
-        NowPlayingHelper.changeSeekBarColor(color, mSeekBar);
+        nowPlayingHelper.changeSeekBarColor(color);
         updateAddFavourite();
         updateShuffleState();
         updateRepeatState();
         if (isAlbumArtTheme) {
-            NowPlayingHelper.changeProgressBarColor(color, bcProgressbar);
+            nowPlayingHelper.changeProgressBarColor(color);
         }
     }
 
@@ -488,7 +473,7 @@ public class NowplayingFragment extends BaseListenerFragment implements
     public void onProgressUpdate(int currentTimeInSecs, int totalDurationInSecs) {
         mSeekBar.setProgress(currentTimeInSecs);
         bcProgressbar.setProgress(currentTimeInSecs);
-        elapsedtime.setText(MusicUtils.makeShortTimeString(getContext(), currentTimeInSecs));
+        elapsedTimeTextView.setText(MusicUtils.makeShortTimeString(getContext(), currentTimeInSecs));
     }
 
     public interface NowPlayingControlsCallback {

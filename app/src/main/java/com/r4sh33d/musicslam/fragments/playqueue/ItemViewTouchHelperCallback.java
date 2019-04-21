@@ -16,13 +16,11 @@ public class ItemViewTouchHelperCallback extends ItemTouchHelper.Callback {
     }
 
     public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
-
         if (viewHolder.getItemViewType() != target.getItemViewType()) {
             return false;
         }
         int fromPosition = viewHolder.getAdapterPosition();
         int toPosition = target.getAdapterPosition();
-
         if (dragFrom == -1) {
             dragFrom = fromPosition;
         }

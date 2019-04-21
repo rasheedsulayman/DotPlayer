@@ -62,7 +62,6 @@ public class ProgressUpdateHelper extends Handler {
         removeMessages(UPDATE_PROGRESS_COMMAND);
     }
 
-
     public interface OnProgressUpdateListener {
         void onProgressUpdate(int currentTimeInSecs, int totalDurationInSecs);
     }

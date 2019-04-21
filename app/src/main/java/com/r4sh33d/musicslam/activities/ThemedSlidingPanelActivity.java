@@ -83,7 +83,6 @@ public abstract class ThemedSlidingPanelActivity extends MusicEventsListenerActi
         if (paletteListener != null) {
             mPlaletteListeners.add(paletteListener);
             //still need to notify the newly added listener
-            Timber.d("Palette listener added: " + paletteListener.getClass().getSimpleName());
             paletteListener.onPaletteReady(currentPaletteColor);
         }
     }

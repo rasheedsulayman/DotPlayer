@@ -15,7 +15,7 @@ import com.afollestad.aesthetic.AutoSwitchMode;
 import com.afollestad.aesthetic.Util;
 import com.r4sh33d.musicslam.R;
 import com.r4sh33d.musicslam.blurtransition.BlurImageView;
-import com.r4sh33d.musicslam.fragments.nowplaying.NowplayingFragment;
+import com.r4sh33d.musicslam.fragments.nowplaying.NowPlayingFragment;
 import com.r4sh33d.musicslam.fragments.pager.MainViewFragment;
 import com.r4sh33d.musicslam.sleeptimer.SleepTimerDialog;
 import com.r4sh33d.musicslam.utils.NavigationUtil;
@@ -28,7 +28,7 @@ import io.reactivex.disposables.Disposable;
 
 
 public class MainActivity extends ThemedSlidingPanelActivity implements
-        NowplayingFragment.NowPlayingControlsCallback {
+        NowPlayingFragment.NowPlayingControlsCallback {
     @BindView(R.id.blurImage)
     BlurImageView blurImageView;
     @BindView(R.id.bg_black_shade)
@@ -103,7 +103,7 @@ public class MainActivity extends ThemedSlidingPanelActivity implements
 
     void initSlidingFragment() {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.dragView, new NowplayingFragment());
+        transaction.replace(R.id.dragView, new NowPlayingFragment());
         transaction.commit();
     }
 
