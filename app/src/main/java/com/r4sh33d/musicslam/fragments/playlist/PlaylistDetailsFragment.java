@@ -146,7 +146,6 @@ public class PlaylistDetailsFragment extends AbsParallaxArtworkDetailsFragment
     public void loadAlbumArt(Song song) {
         GlideApp.with(this).asBitmap()
                 .load(new AudioCoverImage(song.data))
-                //.override(SlamUtils.dpToPx(200, getContext()))
                 .into(new BitmapImageViewTarget(albumArt) {
                     @Override
                     public void onLoadFailed(@Nullable Drawable errorDrawable) {

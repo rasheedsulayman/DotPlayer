@@ -138,7 +138,6 @@ final class InflationInterceptor implements LayoutInflaterFactory {
     }
 
     if (view != null && view.getTag() != null && ":aesthetic_ignore".equals(view.getTag())) {
-      // Set view back to null so we can let AppCompat handle this view instead.
       view = null;
     }
 

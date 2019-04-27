@@ -116,7 +116,6 @@ public class ArtistsDetailsFragment extends AbsParallaxArtworkDetailsFragment {
         GlideApp.with(this).asBitmap()
                 .load(new ArtistImage(mArtist.name))
                 .transition(BitmapTransitionOptions.withCrossFade(150))
-                //.override(SlamUtils.dpToPx(200, getContext()))
                 .fitCenter()
                 .into(new BitmapImageViewTarget(artistArt) {
                     @Override

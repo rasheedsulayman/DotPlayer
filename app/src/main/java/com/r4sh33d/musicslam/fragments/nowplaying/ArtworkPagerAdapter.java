@@ -1,6 +1,5 @@
 package com.r4sh33d.musicslam.fragments.nowplaying;
 
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -11,10 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.bumptech.glide.load.DataSource;
-import com.bumptech.glide.load.engine.GlideException;
-import com.bumptech.glide.request.RequestListener;
-import com.bumptech.glide.request.target.Target;
 import com.r4sh33d.musicslam.GlideApp;
 import com.r4sh33d.musicslam.R;
 import com.r4sh33d.musicslam.customglide.audiocover.AudioCoverImage;
@@ -56,7 +51,6 @@ public class ArtworkPagerAdapter extends FragmentStatePagerAdapter {
 
         @BindView(R.id.album_art)
         SquareImageView albumArtImageView;
-        private int artWorkImageSizeDP;
 
         public ArtworkFragment() {
             // Required empty public constructor
@@ -89,14 +83,8 @@ public class ArtworkPagerAdapter extends FragmentStatePagerAdapter {
         }
 
         public void loadAlbumArt(Song currentSong) {
-            if (artWorkImageSizeDP == 0) {
-                artWorkImageSizeDP = getContext().getResources().getDimensionPixelSize
-                        (R.dimen.now_playing_album_art_size);
-            }
-
             GlideApp.with(getContext().getApplicationContext())
                     .load(new AudioCoverImage(currentSong.data))
-                   // .override(artWorkImageSizeDP, artWorkImageSizeDP)
                     .placeholder(getContext().getDrawable(R.drawable.default_artwork_dark))
                     .into(albumArtImageView);
         }
