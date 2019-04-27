@@ -15,12 +15,18 @@ import android.support.v4.media.app.NotificationCompat;
 import android.text.TextUtils;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.DataSource;
+import com.bumptech.glide.load.engine.GlideException;
+import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.SimpleTarget;
+import com.bumptech.glide.request.target.Target;
 import com.bumptech.glide.request.transition.Transition;
 import com.r4sh33d.musicslam.R;
 import com.r4sh33d.musicslam.activities.MainActivity;
 import com.r4sh33d.musicslam.customglide.audiocover.AudioCoverImage;
 import com.r4sh33d.musicslam.utils.SlamUtils;
+
+import timber.log.Timber;
 
 import static android.content.Context.NOTIFICATION_SERVICE;
 import static com.r4sh33d.musicslam.playback.Constants.NEXT_ACTION;
@@ -91,6 +97,7 @@ public class NotificationHelper {
                 Glide.with(service).clear(target);
             }
             int imageSize = SlamUtils.dpToPx(128, service);
+            Timber.d("Image size is: " + imageSize);
             target = Glide.with(service)
                     .asBitmap()
                     .load(new AudioCoverImage(service.getCurrentSongPath()))

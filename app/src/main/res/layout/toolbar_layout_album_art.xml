@@ -22,7 +22,7 @@
         android:layout_height="?actionBarSize"
         android:layout_marginStart="16dp"
         android:gravity="start|center_vertical"
-        android:text="@string/music_slam"
+        android:text="@string/my_music"
         android:textAppearance="@style/AppTheme.TextAppearance.Title"
         android:textColor="@color/white" />
 </FrameLayout>

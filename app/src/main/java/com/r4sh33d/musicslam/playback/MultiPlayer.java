@@ -18,6 +18,8 @@ import static com.r4sh33d.musicslam.playback.Constants.TRACK_WENT_TO_NEXT;
 class MultiPlayer implements MediaPlayer.OnErrorListener,
         MediaPlayer.OnCompletionListener {
 
+    private static final int ILLEGAL_STATE_ERROR_CODE = -38;
+
     private final WeakReference<MusicService> mService;
 
     private MediaPlayer mCurrentMediaPlayer = new MediaPlayer();
@@ -230,6 +232,10 @@ class MultiPlayer implements MediaPlayer.OnErrorListener,
                 Message msg = mHandler.obtainMessage(SERVER_DIED, errorInfo);
                 mHandler.sendMessageDelayed(msg, 2000);
                 return true;
+            case ILLEGAL_STATE_ERROR_CODE:
+                //TODO this is a bad hack. We are probably calling a method on the media player in an inappropriate state.
+                //TODO find the real cause of this error, instead of "faking" that we handled it.
+                return true; //Prevents call to onFinished.
             default:
                 break;
         }

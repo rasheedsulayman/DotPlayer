@@ -35,6 +35,7 @@ import com.r4sh33d.musicslam.fragments.AbsParallaxArtworkDetailsFragment;
 import com.r4sh33d.musicslam.models.Artist;
 import com.r4sh33d.musicslam.models.Song;
 import com.r4sh33d.musicslam.playback.MusicPlayer;
+import com.r4sh33d.musicslam.utils.SlamUtils;
 
 import java.util.List;
 
@@ -111,11 +112,11 @@ public class ArtistsDetailsFragment extends AbsParallaxArtworkDetailsFragment {
         fadeInView(lowerBlackShade, 1000);
     }
 
-
     public void loadArtistArt() {
         GlideApp.with(this).asBitmap()
                 .load(new ArtistImage(mArtist.name))
                 .transition(BitmapTransitionOptions.withCrossFade(150))
+                //.override(SlamUtils.dpToPx(200, getContext()))
                 .fitCenter()
                 .into(new BitmapImageViewTarget(artistArt) {
                     @Override

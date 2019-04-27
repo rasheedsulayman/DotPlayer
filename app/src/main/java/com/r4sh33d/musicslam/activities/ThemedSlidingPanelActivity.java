@@ -11,7 +11,6 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
-import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.r4sh33d.musicslam.GlideApp;
@@ -29,7 +28,6 @@ import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import timber.log.Timber;
 
 
 public abstract class ThemedSlidingPanelActivity extends MusicEventsListenerActivity implements
@@ -38,13 +36,10 @@ public abstract class ThemedSlidingPanelActivity extends MusicEventsListenerActi
     @BindView(R.id.sliding_layout)
     public SlidingUpPanelLayout mSlidingUpPanelLayout;
 
-    //We can have more than one listener
     private int currentPaletteColor;
-    private ArrayList<SlidingPanelEventsListener> mslidingPanelEventsListeners = new ArrayList<>();
-    private ArrayList<PaletteListener> mPlaletteListeners = new ArrayList<>();
+    private ArrayList<SlidingPanelEventsListener> slidingPanelEventsListeners = new ArrayList<>();
+    private ArrayList<PaletteListener> paletteListeners = new ArrayList<>();
     private String paletteKey = "no_key";
-    private SimpleTarget<Bitmap> target;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +63,7 @@ public abstract class ThemedSlidingPanelActivity extends MusicEventsListenerActi
 
     //---> Color palette
     private void notifyPaletteListeners(int color) {
-        for (final PaletteListener listener : mPlaletteListeners) {
+        for (final PaletteListener listener : paletteListeners) {
             if (listener != null) {
                 listener.onPaletteReady(color);
             }
@@ -81,7 +76,7 @@ public abstract class ThemedSlidingPanelActivity extends MusicEventsListenerActi
 
     public void subscribeToPaletteColors(final PaletteListener paletteListener) {
         if (paletteListener != null) {
-            mPlaletteListeners.add(paletteListener);
+            paletteListeners.add(paletteListener);
             //still need to notify the newly added listener
             paletteListener.onPaletteReady(currentPaletteColor);
         }
@@ -89,14 +84,14 @@ public abstract class ThemedSlidingPanelActivity extends MusicEventsListenerActi
 
     public void unsubscribeToPaletteColors(final PaletteListener paletteListener) {
         if (paletteListener != null) {
-            mPlaletteListeners.remove(paletteListener);
+            paletteListeners.remove(paletteListener);
         }
     }
 
     //---> Sliding Panel
     @Override
     public void onPanelSlide(View panel, float slideOffset) {
-        for (final SlidingPanelEventsListener listener : mslidingPanelEventsListeners) {
+        for (final SlidingPanelEventsListener listener : slidingPanelEventsListeners) {
             if (listener != null) {
                 listener.onPanelSlide(panel, slideOffset);
             }
@@ -113,7 +108,7 @@ public abstract class ThemedSlidingPanelActivity extends MusicEventsListenerActi
     @Override
     public void onPanelStateChanged(View panel, SlidingUpPanelLayout.PanelState previousState,
                                     SlidingUpPanelLayout.PanelState newState) {
-        for (final SlidingPanelEventsListener listener : mslidingPanelEventsListeners) {
+        for (final SlidingPanelEventsListener listener : slidingPanelEventsListeners) {
             if (listener != null) {
                 listener.onPanelStateChanged(panel, previousState, newState);
             }
@@ -125,7 +120,7 @@ public abstract class ThemedSlidingPanelActivity extends MusicEventsListenerActi
 
     public void setPanelEventListenerListener(final SlidingPanelEventsListener panelEventsListener) {
         if (panelEventsListener != null) {
-            mslidingPanelEventsListeners.add(panelEventsListener);
+            slidingPanelEventsListeners.add(panelEventsListener);
             //We still want to update newly added listeners immediately
             panelEventsListener.onPanelStateChanged(mSlidingUpPanelLayout, null,
                     mSlidingUpPanelLayout.getPanelState());
@@ -134,7 +129,7 @@ public abstract class ThemedSlidingPanelActivity extends MusicEventsListenerActi
 
     public void removePanelEventListenerListener(final SlidingPanelEventsListener panelEventsListener) {
         if (panelEventsListener != null) {
-            mslidingPanelEventsListeners.remove(panelEventsListener);
+            slidingPanelEventsListeners.remove(panelEventsListener);
         }
     }
 
@@ -163,9 +158,9 @@ public abstract class ThemedSlidingPanelActivity extends MusicEventsListenerActi
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        slidingPanelEventsListeners.clear();
+        paletteListeners.clear();
         mSlidingUpPanelLayout.removePanelSlideListener(this);
-        mslidingPanelEventsListeners.clear();
-        mPlaletteListeners.clear();
     }
 
     private void loadAlbumArtAndExtractPalette() {
@@ -174,13 +169,10 @@ public abstract class ThemedSlidingPanelActivity extends MusicEventsListenerActi
             return;
         }
         paletteKey = key;
-        if (target != null) {
-            Glide.with(getApplicationContext()).clear(target);
-        }
-        target = GlideApp.with(getApplicationContext())
+        GlideApp.with(this)
                 .asBitmap()
                 .load(new AudioCoverImage(MusicPlayer.getCurrentSong().data))
-                .into(new SimpleTarget<Bitmap>(64, 64) {
+                .into(new SimpleTarget<Bitmap>(40, 40) {
                     @Override
                     public void onResourceReady(@NonNull Bitmap bitmap,
                                                 Transition<? super Bitmap> transition) {

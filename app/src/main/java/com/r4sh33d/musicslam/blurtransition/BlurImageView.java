@@ -7,7 +7,6 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 
-import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.r4sh33d.musicslam.GlideApp;
@@ -19,7 +18,6 @@ public class BlurImageView extends android.support.v7.widget.AppCompatImageView 
     String albumArtKey = "no_key";
     private boolean isUsingDefaultBlur;
     private boolean isCurrentlyOnScreen;
-    private SimpleTarget<Bitmap> target;
 
     public BlurImageView(Context context) {
         super(context);
@@ -82,10 +80,7 @@ public class BlurImageView extends android.support.v7.widget.AppCompatImageView 
             return;
         }
         albumArtKey = key;
-        if (target != null) {
-            Glide.with(getContext().getApplicationContext()).clear(target);
-        }
-        target = GlideApp.with(getContext().getApplicationContext()).
+        GlideApp.with(getContext().getApplicationContext()).
                 asBitmap().
                 centerCrop().
                 load(new AudioCoverImage(MusicPlayer.getCurrentSong().data))

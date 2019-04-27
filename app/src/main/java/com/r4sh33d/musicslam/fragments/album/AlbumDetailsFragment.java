@@ -22,8 +22,12 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.load.DataSource;
+import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.load.resource.bitmap.BitmapTransitionOptions;
+import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
+import com.bumptech.glide.request.target.Target;
 import com.bumptech.glide.request.transition.Transition;
 import com.r4sh33d.musicslam.GlideApp;
 import com.r4sh33d.musicslam.R;
@@ -166,19 +170,18 @@ public class AlbumDetailsFragment extends AbsParallaxArtworkDetailsFragment
                 .transition(BitmapTransitionOptions.withCrossFade(150))
                 .into(new BitmapImageViewTarget(albumArt) {
                     @Override
+                    public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
+                        super.onResourceReady(resource, transition);
+                        fadeInViews();
+                        onArtworkLoaded(resource);
+                    }
+
+                    @Override
                     public void onLoadFailed(@Nullable Drawable errorDrawable) {
                         super.onLoadFailed(errorDrawable);
                         albumArt.setScaleType(ImageView.ScaleType.CENTER);
                         albumArt.setImageResource(R.drawable.ic_music_note_24dp);
                         fadeInViews();
-                    }
-
-                    @Override
-                    public void onResourceReady(@NonNull Bitmap resource,
-                                                @Nullable Transition<? super Bitmap> transition) {
-                        super.onResourceReady(resource, transition);
-                        fadeInViews();
-                        onArtworkLoaded(resource);
                     }
                 });
     }

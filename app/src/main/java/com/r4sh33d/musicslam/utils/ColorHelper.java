@@ -1,14 +1,24 @@
 package com.r4sh33d.musicslam.utils;
 
+import android.app.Fragment;
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.ColorInt;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.annotation.StyleRes;
 import android.support.v7.graphics.Palette;
 
+import com.bumptech.glide.request.target.SimpleTarget;
+import com.bumptech.glide.request.transition.Transition;
+import com.r4sh33d.musicslam.GlideApp;
 import com.r4sh33d.musicslam.R;
+import com.r4sh33d.musicslam.customglide.audiocover.AudioCoverImage;
+import com.r4sh33d.musicslam.interfaces.PaletteListener;
+import com.r4sh33d.musicslam.playback.MusicPlayer;
 
 import static com.r4sh33d.musicslam.utils.PrefsUtils.ThemesTypes.AlbumArtTheme;
 import static com.r4sh33d.musicslam.utils.PrefsUtils.ThemesTypes.BlackTheme;
@@ -126,5 +136,26 @@ public class ColorHelper {
                 break;
         }
         return res;
+    }
+
+    public static void getPaletteColorFromBitmap(Fragment scope, PaletteListener paletteListener) {
+        GlideApp.with(scope)
+                .asBitmap()
+                .load(new AudioCoverImage(MusicPlayer.getCurrentSong().data))
+                .into(new SimpleTarget<Bitmap>(40, 40) {
+                    @Override
+                    public void onResourceReady(@NonNull Bitmap bitmap,
+                                                Transition<? super Bitmap> transition) {
+                        Palette.from(bitmap).generate(p -> {
+                            paletteListener.onPaletteReady(ColorHelper.extractColorsFromPalette(p));
+
+                        });
+                    }
+
+                    @Override
+                    public void onLoadFailed(@Nullable Drawable errorDrawable) {
+                        paletteListener.onPaletteReady(Color.parseColor(ColorHelper.DEFAULT_COLOR_ACCENT));
+                    }
+                });
     }
 }

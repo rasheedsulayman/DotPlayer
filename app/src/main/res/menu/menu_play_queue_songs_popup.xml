@@ -23,7 +23,7 @@
 
     <item
         android:id="@+id/menu_song_ringtone"
-        android:title="@string/use_ase_ringtone" />
+        android:title="@string/use_as_ringtone" />
     <item
         android:id="@+id/menu_song_share"
         android:title="@string/share" />

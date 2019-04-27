@@ -43,7 +43,6 @@ public class ArtworkPagerFragment extends BaseListenerFragment implements ViewPa
         super.onViewCreated(view, savedInstanceState);
         pagerAdapter = new ArtworkPagerAdapter(getChildFragmentManager(), MusicPlayer.getNowPlayingQueue());
         viewPager.setAdapter(pagerAdapter);
-        viewPager.setOffscreenPageLimit(2);
         viewPager.addOnPageChangeListener(this);
         viewPager.setCurrentItem(MusicPlayer.getQueuePosition());
         setUpScroller();

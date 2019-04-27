@@ -1,5 +1,5 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="app_name">Music Slam</string>
+    <string name="app_name" translatable="false">Dot Music Player</string>
 
     <string name="playlist_last_added">Last added</string>
     <string name="playlist_recently_played">Recently played</string>
@@ -13,7 +13,7 @@
     <string name="go_to_artist">Go to Artist</string>
     <string name="play">Play</string>
     <string name="play_next">Play Next</string>
-    <string name="use_ase_ringtone">Use as Ringtone</string>
+    <string name="use_as_ringtone">Use as Ringtone</string>
     <string name="dequeue">Dequeue</string>
     <string name="rename">Rename</string>
     <string name="color_primary">Color Primary</string>
@@ -55,7 +55,7 @@
     <string name="no_songs">No Songs</string>
     <string name="prev">Prev</string>
     <string name="next">Next</string>
-    <string name="notification_channel_name">Music Slam Playing Notification</string>
+    <string name="notification_channel_name">Dot Music Player Playing Notification</string>
     <string name="notification_channel_description">The playing notification provides shortcut for quick playback actions like pause, play, next etc.</string>
     <string name="reset_ongoing_timer">Please reset an ongoing timer to start a new one</string>
     <string name="set_a_valid_duration">Please set a valid duration</string>
@@ -66,11 +66,11 @@
     <string name="no_equalizer_found">No Equalizer found on your phone</string>
     <string name="playlist_successfully_removed">Playlist successfully removed</string>
     <string name="share_music">Share Music</string>
-    <string name="music_slam_music_player">Music Slam Music Player</string>
+    <string name="music_slam_music_player">Dot Player</string>
     <string name="send__feedback">Send Feedback</string>
     <string name="licences">Licences</string>
     <string name="rate_on_playstore">Rate on PlayStore</string>
-    <string name="open_music_slam">Open Music Slam</string>
+    <string name="open_music_slam">Open Dot Player</string>
     <string name="no_data">No data</string>
     <string name="sleep_timer">Sleep Timer</string>
     <string name="hours">Hours</string>
@@ -124,6 +124,7 @@
     <string name="artwork_on_wifi_only_pref_summary">Artworks will only be downloaded via Wi-Fi</string>
     <string name="app_info_pref_summary">Licences, Feedback, build info etc</string>
     <string name="app_info_pref_title">App info</string>
+    <string name="my_music">My Music</string>
 
     <string-array name="main_pager_tab_titles">
         <item>SONGS</item>

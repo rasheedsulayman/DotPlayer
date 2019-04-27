@@ -63,7 +63,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="16dp"
                 android:tag=":aesthetic_ignore"
-                android:text="@string/music_slam_music_player"
+                android:text="@string/app_name"
                 android:textAppearance="@style/AppTheme.TextAppearance.Title"
                 android:textColor="?android:textColorPrimary" />
 
