@@ -15,6 +15,7 @@ import com.r4sh33d.musicslam.R;
 import com.r4sh33d.musicslam.customglide.audiocover.AudioCoverImage;
 import com.r4sh33d.musicslam.customviews.SquareImageView;
 import com.r4sh33d.musicslam.models.Song;
+import com.r4sh33d.musicslam.utils.SlamUtils;
 
 import java.util.List;
 
@@ -86,6 +87,7 @@ public class ArtworkPagerAdapter extends FragmentStatePagerAdapter {
             GlideApp.with(getContext().getApplicationContext())
                     .load(new AudioCoverImage(currentSong.data))
                     .placeholder(getContext().getDrawable(R.drawable.default_artwork_dark))
+                    .signature(SlamUtils.getMediaStoreSignature(currentSong))
                     .into(albumArtImageView);
         }
     }

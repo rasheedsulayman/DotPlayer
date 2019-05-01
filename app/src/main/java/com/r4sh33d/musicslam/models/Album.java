@@ -4,24 +4,14 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class Album implements Parcelable {
-    public static final Creator<Album> CREATOR = new Creator<Album>() {
-        @Override
-        public Album createFromParcel(Parcel in) {
-            return new Album(in);
-        }
-
-        @Override
-        public Album[] newArray(int size) {
-            return new Album[size];
-        }
-    };
     //public final long artistId;
     public String artistName;
     public long id;
     public int songCount;
     public String title;
     public int year;
-    public String firstSongPath = "";
+  //  public String firstSongPath = "";
+    public Song firstSong = Song.EMPTY_SONG;
 
 
     public Album() {
@@ -41,7 +31,7 @@ public class Album implements Parcelable {
         songCount = in.readInt();
         title = in.readString();
         year = in.readInt();
-        firstSongPath = in.readString();
+        firstSong = in.readParcelable(Song.class.getClassLoader());
     }
 
     @Override
@@ -51,11 +41,23 @@ public class Album implements Parcelable {
         dest.writeInt(songCount);
         dest.writeString(title);
         dest.writeInt(year);
-        dest.writeString(firstSongPath);
+        dest.writeParcelable(firstSong, flags);
     }
 
     @Override
     public int describeContents() {
         return 0;
     }
+
+    public static final Creator<Album> CREATOR = new Creator<Album>() {
+        @Override
+        public Album createFromParcel(Parcel in) {
+            return new Album(in);
+        }
+
+        @Override
+        public Album[] newArray(int size) {
+            return new Album[size];
+        }
+    };
 }

@@ -166,8 +166,9 @@ public class AlbumDetailsFragment extends AbsParallaxArtworkDetailsFragment
 
     public void loadAlbumArt() {
         GlideApp.with(this).asBitmap()
-                .load(new AudioCoverImage(mAlbum.firstSongPath))
+                .load(new AudioCoverImage(mAlbum.firstSong.data))
                 .transition(BitmapTransitionOptions.withCrossFade(150))
+                .signature(SlamUtils.getMediaStoreSignature(mAlbum.firstSong))
                 .into(new BitmapImageViewTarget(albumArt) {
                     @Override
                     public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {

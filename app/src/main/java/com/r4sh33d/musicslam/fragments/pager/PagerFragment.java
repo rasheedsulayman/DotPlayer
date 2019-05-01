@@ -104,8 +104,8 @@ public abstract class PagerFragment extends BaseListenerFragment {
 
     @Override
     public void onDestroyView() {
-        super.onDestroyView();
         fastScrollerThumbView.cancelColorSubs();
+        super.onDestroyView();
     }
 
 }

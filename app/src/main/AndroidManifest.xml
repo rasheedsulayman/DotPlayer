@@ -6,10 +6,10 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /> <!-- Used to keep the service running when the phone sleeps -->
-    <uses-permission android:name="android.permission.WAKE_LOCK" /> <!-- The main service uses a sticky broadcast -->
-    <uses-permission android:name="android.permission.BROADCAST_STICKY" /> <!-- Lower or raise the music based on the phone state -->
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" /> <!-- Used to set the devices's ringtone -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.BROADCAST_STICKY" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission
         android:name="android.permission.WRITE_SETTINGS"
         tools:ignore="ProtectedPermissions" /> <!-- Used to create launcher shortcuts -->
@@ -24,7 +24,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppThemeLight"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".activities.AboutActivity"></activity>
+
+        <activity android:name=".activities.AboutActivity" />
 
         <provider
             android:name="android.support.v4.content.FileProvider"

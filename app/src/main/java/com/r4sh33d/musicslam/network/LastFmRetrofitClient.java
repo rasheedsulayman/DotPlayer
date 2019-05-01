@@ -2,7 +2,10 @@ package com.r4sh33d.musicslam.network;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.support.annotation.Nullable;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.Cache;
@@ -12,6 +15,7 @@ import okhttp3.Request;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import timber.log.Timber;
 
 public class LastFmRetrofitClient {
     public static String API_KEY = "0bc709225c814b576681ff35ca7ea054";
@@ -58,13 +62,34 @@ public class LastFmRetrofitClient {
                 .build();
     }
 
+    @Nullable
+    private static Cache getCache(Context context) {
+        int cacheSize = 10 * 1024 * 1024; // 10 MiB
+        File cacheDirectory = new File(context.getCacheDir().getAbsolutePath(), "/okhttp_cache/");
+        if (cacheDirectory.mkdirs() || cacheDirectory.isDirectory()) {
+            return new Cache(cacheDirectory, cacheSize);
+        }
+        return null;
+    }
+
+    public static void clearCache(Context context) {
+        Cache cache = getCache(context);
+        if (cache == null) {
+            return;
+        }
+        try {
+            cache.evictAll();
+        } catch (IOException e) {
+            Timber.d(e);
+        }
+    }
+
     private OkHttpClient getCacheEnabledHttClient(Context context, long networkTimeOut) {
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-        int cacheSize = 10 * 1024 * 1024; // 10 MiB
-        Cache cache = new Cache(context.getCacheDir(), cacheSize);
+
         @SuppressLint("DefaultLocale") OkHttpClient.Builder builder = new OkHttpClient.Builder()
-                .cache(cache)
+                .cache(getCache(context))
                 .addInterceptor(interceptor)
                 .addInterceptor(chain -> {
                     Request original = chain.request();
@@ -73,7 +98,6 @@ public class LastFmRetrofitClient {
                             .addQueryParameter("api_key", API_KEY)
                             .addQueryParameter("format", "json")
                             .build();
-
                     Request.Builder requestBuilder = original.newBuilder().url(url);
                     requestBuilder.addHeader("Cache-Control", String.format("public, max-stale=%d, max-age=%d",
                             VALID_CACHE_DURATION, VALID_CACHE_DURATION));
@@ -84,7 +108,6 @@ public class LastFmRetrofitClient {
             builder.readTimeout(networkTimeOut, TimeUnit.MILLISECONDS)
                     .writeTimeout(networkTimeOut, TimeUnit.MILLISECONDS)
                     .connectTimeout(networkTimeOut, TimeUnit.MILLISECONDS);
-
         }
         return builder.build();
     }

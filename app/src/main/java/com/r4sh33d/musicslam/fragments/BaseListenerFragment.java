@@ -83,10 +83,10 @@ public abstract class BaseListenerFragment extends Fragment implements MusicStat
 
     @Override
     public void onDestroyView() {
-        super.onDestroyView();
         if (mActivity != null) {
             mActivity.unSubscribeFromMusicEvents(this);
             mActivity.unsubscribeToPaletteColors(this);
         }
+        super.onDestroyView();
     }
 }

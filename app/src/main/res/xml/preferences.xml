@@ -59,6 +59,11 @@
             android:summary="@string/album_on_lock_screen_pref_summary"
             android:title="@string/album_on_lock_screen_pref_title" />
 
+        <android.support.v7.preference.Preference
+            android:key="pref_key_delete_cached_contents"
+            android:summary="@string/delete_cached_content_summary"
+            android:title="@string/delete_cached_contents_title" />
+
     </android.support.v7.preference.PreferenceCategory>
 
     <android.support.v7.preference.PreferenceCategory

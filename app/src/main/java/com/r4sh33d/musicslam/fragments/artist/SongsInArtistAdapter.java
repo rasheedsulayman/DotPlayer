@@ -56,6 +56,7 @@ public class SongsInArtistAdapter extends RecyclerView.Adapter<SongsInArtistAdap
         GlideApp.with(context)
                 .load(new AudioCoverImage(tempSong.data))
                 .placeholder(context.getDrawable(R.drawable.default_artwork_small))
+                .signature(SlamUtils.getMediaStoreSignature(tempSong))
                 .transition(DrawableTransitionOptions.withCrossFade())
                 .into(holder.albumArtImageView);
     }

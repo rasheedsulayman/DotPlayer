@@ -40,7 +40,7 @@ public class SongIdsLoader {
 
     private static long[] getSongIdsListForNormalPlaylist(final Context context, final long playlistId) {
         Uri uri = MediaStore.Audio.Playlists.Members.getContentUri("external", playlistId);
-        final String[] projection = {String.valueOf(MediaStore.Audio.Playlists.Members.AUDIO_ID)};
+        final String[] projection = {MediaStore.Audio.Playlists.Members.AUDIO_ID};
         Cursor cursor = context.getContentResolver().query(uri, projection, null, null, null);
         long[] list = new long[0];
         if (cursor != null) {

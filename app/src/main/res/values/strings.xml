@@ -124,7 +124,13 @@
     <string name="artwork_on_wifi_only_pref_summary">Artworks will only be downloaded via Wi-Fi</string>
     <string name="app_info_pref_summary">Licences, Feedback, build info etc</string>
     <string name="app_info_pref_title">App info</string>
+
+    <string name="delete_cached_contents_title">Delete cached contents</string>
+    <string name="delete_cached_content_summary">This will delete all cached images. Use this if you are seeing wrong/outdated Artworks associated with Songs, Albums or Artists. You can also use this to force update for the contents gotten from the internet</string>
+
     <string name="my_music">My Music</string>
+    <string name="clear_cache_question">Clear Cache?</string>
+    <string name="delete_cache_new_content_will_be_created">Delete cache, new contents will be created</string>
 
     <string-array name="main_pager_tab_titles">
         <item>SONGS</item>

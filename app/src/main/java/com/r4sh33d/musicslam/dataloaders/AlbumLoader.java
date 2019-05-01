@@ -17,7 +17,7 @@ public class AlbumLoader {
             MediaStore.Audio.Albums.ARTIST,
             MediaStore.Audio.Media.ARTIST_ID,
             MediaStore.Audio.Albums.NUMBER_OF_SONGS,
-            MediaStore.Audio.Albums.FIRST_YEAR
+            MediaStore.Audio.Albums.FIRST_YEAR,
     };
 
     public static ArrayList<Album> getAlbumsFromCursor(Context context, Cursor cursor) {
@@ -36,7 +36,7 @@ public class AlbumLoader {
                         cursor.getString(titleColumn),
                         cursor.getInt(albumYearColumn)
                 );
-                album.firstSongPath = SongLoader.getArtworkPathForAlbum(context, album.id);
+                album.firstSong = SongLoader.getFirstSongInAlbum(context, album.id);
                 arrayList.add(album);
             }
             cursor.close();
@@ -82,7 +82,7 @@ public class AlbumLoader {
                         cursor.getInt(songCountColumn),
                         cursor.getString(titleColumn),
                         cursor.getInt(albumYearColumn));
-                album.firstSongPath = SongLoader.getArtworkPathForAlbum(context, album.id);
+                album.firstSong = SongLoader.getFirstSongInAlbum(context, album.id);
             }
             cursor.close();
         }

@@ -59,6 +59,7 @@ public class SongsInPlayQueueAdapter extends RecyclerView.Adapter<SongsInPlayQue
                 .load(new AudioCoverImage(localSong.data))
                 .placeholder(context.getDrawable(R.drawable.default_artwork_small))
                 .transition(DrawableTransitionOptions.withCrossFade())
+                .signature(SlamUtils.getMediaStoreSignature(localSong))
                 .into(holder.albumArtImageView);
     }
 

@@ -56,6 +56,7 @@ public class SongsInGenresAdapter extends RecyclerView.Adapter<SongsInGenresAdap
                 .load(new AudioCoverImage(tempSong.data))
                 .placeholder(context.getDrawable(R.drawable.default_artwork_small))
                 .transition(DrawableTransitionOptions.withCrossFade())
+                .signature(SlamUtils.getMediaStoreSignature(tempSong))
                 .into(holder.albumArtImageView);
     }
 

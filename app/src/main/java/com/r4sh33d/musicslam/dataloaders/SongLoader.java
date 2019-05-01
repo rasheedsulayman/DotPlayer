@@ -27,8 +27,8 @@ public class SongLoader {
     public static String ALBUM_SELECTION = MediaStore.Audio.Media.ALBUM_ID + " = ?";
 
     public static String[] projection = {
-            MediaStore.Audio.Media.TITLE,
             MediaStore.Audio.Media._ID,
+            MediaStore.Audio.Media.TITLE,
             MediaStore.Audio.Media.ALBUM,
             MediaStore.Audio.Media.ALBUM_ID,
             MediaStore.Audio.Media.ARTIST,
@@ -37,12 +37,13 @@ public class SongLoader {
             MediaStore.Audio.Media.TRACK,
             MediaStore.Audio.Media.DATA,
             MediaStore.Audio.Media.MIME_TYPE,
-            MediaStore.Audio.Media.SIZE
+            MediaStore.Audio.Media.SIZE,
+            MediaStore.Audio.Media.DATE_MODIFIED
     };
 
     public static String[] playlistProjection = new String[]{
-            MediaStore.Audio.Media.TITLE,
             MediaStore.Audio.Playlists.Members.AUDIO_ID,
+            MediaStore.Audio.Media.TITLE,
             MediaStore.Audio.Media.ALBUM,
             MediaStore.Audio.Media.ALBUM_ID,
             MediaStore.Audio.Media.ARTIST,
@@ -51,7 +52,9 @@ public class SongLoader {
             MediaStore.Audio.Media.TRACK,
             MediaStore.Audio.Media.DATA,
             MediaStore.Audio.Media.MIME_TYPE,
-            MediaStore.Audio.Media.SIZE
+            MediaStore.Audio.Media.SIZE,
+            MediaStore.Audio.Media.DATE_MODIFIED
+
     };
 
     public static List<Song> getSongsInPlaylist(long playListId, Context context) {
@@ -201,6 +204,26 @@ public class SongLoader {
         ));
     }
 
+
+    public static Song getFirstSongInAlbum(Context context, long albumId) {
+        Song song = Song.getEmptySong();
+        final String[] projection = new String[]{MediaStore.Audio.Media.DATA, MediaStore.Audio.Media.DATE_MODIFIED};
+        String[] selectionArgs = {String.valueOf(albumId)};
+        Cursor cursor = context.getContentResolver().query(
+                MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, projection, SongLoader.ALBUM_SELECTION, selectionArgs,
+                DEFAULT_ALBUM_SORT_ORDER);
+        if (cursor != null) {
+            int dataColumn = cursor.getColumnIndex(MediaStore.Audio.Media.DATA);
+            int dateModifiedColumn = cursor.getColumnIndex(MediaStore.Audio.Media.DATE_MODIFIED);
+            if (cursor.moveToNext()) {
+                song.data = cursor.getString(dataColumn);
+                song.dateModified = cursor.getLong(dateModifiedColumn);
+            }
+            cursor.close();
+        }
+        return song;
+    }
+
     public static String getArtworkPathForAlbum(Context context, long albumId) {
         String result = "";
         final String[] projection = new String[]{MediaStore.Audio.Media.DATA};
@@ -257,6 +280,7 @@ public class SongLoader {
             int dataColumn = cursor.getColumnIndex(MediaStore.Audio.Media.DATA);
             int mimeTypeColumn = cursor.getColumnIndex(MediaStore.Audio.Media.MIME_TYPE);
             int songFileSizeColumn = cursor.getColumnIndex(MediaStore.Audio.Media.SIZE);
+            int dateModifiedColumn = cursor.getColumnIndex(MediaStore.Audio.Media.DATE_MODIFIED);
 
             try {
                 idColumn = cursor.getColumnIndexOrThrow(MediaStore.Audio.Media._ID);
@@ -277,8 +301,9 @@ public class SongLoader {
                 String data = cursor.getString(dataColumn);
                 String mimeType = cursor.getString(mimeTypeColumn);
                 long fileSize = cursor.getLong(songFileSizeColumn);
-                arrayList.add(new Song(albumId, album, artistId,
-                        artist, duration, id, title, trackNumber, data, mimeType, fileSize));
+                long dateModified = cursor.getLong(dateModifiedColumn);
+                arrayList.add(new Song(albumId, album, artistId, artist, duration, id, title,
+                        trackNumber, data, mimeType, fileSize, dateModified));
             }
             cursor.close();
         }

@@ -244,6 +244,7 @@ public class SearchResultsAdapter extends RecyclerView.Adapter<RecyclerView.View
                     .load(new AudioCoverImage(song.data))
                     .placeholder(context.getDrawable(R.drawable.default_artwork_small))
                     .transition(DrawableTransitionOptions.withCrossFade(100))
+                    .signature(SlamUtils.getMediaStoreSignature(song))
                     .into(albumArtImageView);
         }
 
@@ -328,8 +329,9 @@ public class SearchResultsAdapter extends RecyclerView.Adapter<RecyclerView.View
             albumNameTextView.setText(album.title);
             artistNameTextView.setText(album.artistName);
             GlideApp.with(context)
-                    .load(new AudioCoverImage(album.firstSongPath))
+                    .load(new AudioCoverImage(album.firstSong.data))
                     .centerCrop()
+                    .signature(SlamUtils.getMediaStoreSignature(album.firstSong))
                     .transition(DrawableTransitionOptions.withCrossFade(100))
                     .placeholder(context.getDrawable(R.drawable.default_artwork_small))
                     .into(albumArtImageView);

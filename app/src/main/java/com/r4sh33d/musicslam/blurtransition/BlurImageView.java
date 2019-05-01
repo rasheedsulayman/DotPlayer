@@ -13,6 +13,7 @@ import com.r4sh33d.musicslam.GlideApp;
 import com.r4sh33d.musicslam.R;
 import com.r4sh33d.musicslam.customglide.audiocover.AudioCoverImage;
 import com.r4sh33d.musicslam.playback.MusicPlayer;
+import com.r4sh33d.musicslam.utils.SlamUtils;
 
 public class BlurImageView extends android.support.v7.widget.AppCompatImageView {
     String albumArtKey = "no_key";
@@ -84,6 +85,7 @@ public class BlurImageView extends android.support.v7.widget.AppCompatImageView 
                 asBitmap().
                 centerCrop().
                 load(new AudioCoverImage(MusicPlayer.getCurrentSong().data))
+                .signature(SlamUtils.getMediaStoreSignature(MusicPlayer.getCurrentSong()))
                 .into(new SimpleTarget<Bitmap>(500, 500) {
 
                     @Override

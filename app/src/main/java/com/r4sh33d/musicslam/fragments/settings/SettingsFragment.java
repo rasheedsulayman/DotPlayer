@@ -13,6 +13,7 @@ import com.afollestad.aesthetic.Aesthetic;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.afollestad.materialdialogs.color.ColorChooserDialog;
 import com.r4sh33d.musicslam.R;
+import com.r4sh33d.musicslam.dialogs.ClearCacheDialog;
 import com.r4sh33d.musicslam.utils.NavigationUtil;
 import com.r4sh33d.musicslam.utils.PrefsUtils;
 
@@ -31,6 +32,8 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
     public static final String PREF_KEY_START_PAGE = "pref_key_start_page";
     public static final String PREF_KEY_APP_INFO = "pref_key_app_info";
     public static final String PREF_KEY_EQUALIZER = "pref_key_equalizer";
+    public static final String PREF_KEY_DELETE_CACHED_CONTENTS = "pref_key_delete_cached_contents";
+
     public static final String PREF_THEME_VALUE_WHITE = "light";
     public static final String PREF_THEME_VALUE_DARK = "dark";
     public static final String PREF_THEME_VALUE_BlACK = "black";
@@ -184,6 +187,12 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
         Preference appInfoPreference = findPreference(PREF_KEY_APP_INFO);
         appInfoPreference.setOnPreferenceClickListener(preference -> {
             NavigationUtil.navigateToAboutPage(getContext());
+            return true;
+        });
+
+        Preference deleteCachedContentsPreference = findPreference(PREF_KEY_DELETE_CACHED_CONTENTS);
+        deleteCachedContentsPreference.setOnPreferenceClickListener(preference -> {
+            new ClearCacheDialog().show(getFragmentManager(), ClearCacheDialog.CLEAR_CACHE_FRAG_TAG);
             return true;
         });
     }

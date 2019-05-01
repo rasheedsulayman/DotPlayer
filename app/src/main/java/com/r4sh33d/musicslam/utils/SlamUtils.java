@@ -19,6 +19,8 @@ import android.view.Display;
 import android.view.View;
 import android.view.WindowManager;
 
+import com.bumptech.glide.load.Key;
+import com.bumptech.glide.signature.MediaStoreSignature;
 import com.r4sh33d.musicslam.R;
 import com.r4sh33d.musicslam.models.Song;
 
@@ -27,6 +29,10 @@ import java.io.File;
 import timber.log.Timber;
 
 public class SlamUtils {
+
+    public static Key getMediaStoreSignature(Song song) {
+        return new MediaStoreSignature("", song.dateModified, 0);
+    }
 
     public static Uri getAlbumArtUri(long albumId) {
         return ContentUris.withAppendedId(Uri.parse("content://media/external/audio/albumart"), albumId);

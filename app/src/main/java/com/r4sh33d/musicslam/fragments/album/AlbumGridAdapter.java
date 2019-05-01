@@ -28,6 +28,7 @@ import com.r4sh33d.musicslam.models.Song;
 import com.r4sh33d.musicslam.playback.MusicPlayer;
 import com.r4sh33d.musicslam.utils.NavigationUtil;
 import com.r4sh33d.musicslam.utils.PrefsUtils;
+import com.r4sh33d.musicslam.utils.SlamUtils;
 
 import java.util.List;
 
@@ -63,10 +64,11 @@ public class AlbumGridAdapter extends RecyclerView.Adapter<AlbumGridAdapter.MyVi
         holder.songCountTextView.setText(String.format(context.getString(R.string.number_in_parentheses_format), album.songCount));
 
         GlideApp.with(context)
-                .load(new AudioCoverImage(album.firstSongPath))
+                .load(new AudioCoverImage(album.firstSong.data))
                 .centerCrop()
                 .placeholder(context.getDrawable(R.drawable.default_artwork_large))
                 .transition(DrawableTransitionOptions.withCrossFade(100))
+                .signature(SlamUtils.getMediaStoreSignature(album.firstSong))
                 .into(holder.albumArtImageView);
     }
 

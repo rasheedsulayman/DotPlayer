@@ -22,6 +22,7 @@ import com.r4sh33d.musicslam.interfaces.PaletteListener;
 import com.r4sh33d.musicslam.interfaces.SlidingPanelEventsListener;
 import com.r4sh33d.musicslam.playback.MusicPlayer;
 import com.r4sh33d.musicslam.utils.ColorHelper;
+import com.r4sh33d.musicslam.utils.SlamUtils;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
 import java.util.ArrayList;
@@ -172,6 +173,7 @@ public abstract class ThemedSlidingPanelActivity extends MusicEventsListenerActi
         GlideApp.with(this)
                 .asBitmap()
                 .load(new AudioCoverImage(MusicPlayer.getCurrentSong().data))
+                .signature(SlamUtils.getMediaStoreSignature(MusicPlayer.getCurrentSong()))
                 .into(new SimpleTarget<Bitmap>(40, 40) {
                     @Override
                     public void onResourceReady(@NonNull Bitmap bitmap,

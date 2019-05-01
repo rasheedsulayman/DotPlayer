@@ -109,6 +109,9 @@ public class MusicPlaybackQueueStore extends SQLiteOpenHelper {
         builder.append(AudioColumns.SIZE);
         builder.append(" INT NOT NULL,");
 
+        builder.append(AudioColumns.DATE_MODIFIED);
+        builder.append(" LONG NOT NULL,");
+
         builder.append(AudioColumns.MIME_TYPE);
         builder.append(" STRING NOT NULL);");
 
@@ -161,7 +164,7 @@ public class MusicPlaybackQueueStore extends SQLiteOpenHelper {
             try {
                 for (int i = position; i < queue.size() && i < position + NUM_PROCESS; i++) {
                     Song song = queue.get(i);
-                    ContentValues values = new ContentValues(12);
+                    ContentValues values = new ContentValues(13);
 
                     values.put(BaseColumns._ID, song.id);
                     values.put(AudioColumns.TITLE, song.title);
@@ -174,7 +177,7 @@ public class MusicPlaybackQueueStore extends SQLiteOpenHelper {
                     values.put(AudioColumns.ARTIST, song.artistName);
                     values.put(AudioColumns.MIME_TYPE, song.mimeType);
                     values.put(AudioColumns.SIZE, song.fileSize);
-
+                    values.put(AudioColumns.DATE_MODIFIED, song.dateModified);
                     database.insert(tableName, null, values);
                 }
                 database.setTransactionSuccessful();

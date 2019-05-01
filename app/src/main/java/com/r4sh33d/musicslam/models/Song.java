@@ -7,19 +7,8 @@ import java.util.Locale;
 
 public class Song implements Parcelable {
 
-    public static final Creator<Song> CREATOR = new Creator<Song>() {
-        @Override
-        public Song createFromParcel(Parcel in) {
-            return new Song(in);
-        }
-
-        @Override
-        public Song[] newArray(int size) {
-            return new Song[size];
-        }
-    };
     public static Song EMPTY_SONG = new Song(-1, "", -1, "",
-            -1, -1, "", -1, "", "", -1);
+            -1, -1, "", -1, "", "", -1, -1);
     public String data;
     public long albumId;
     public String albumName;
@@ -31,9 +20,11 @@ public class Song implements Parcelable {
     public int trackNumber;
     public String mimeType;
     public long fileSize;
+    public long dateModified;
 
     public Song(long albumId, String albumName, long artistId, String artistName, long duration,
-                long id, String title, int trackNumber, String data, String mimeType, long fileSize) {
+                long id, String title, int trackNumber, String data, String mimeType, long fileSize,
+                long dateModified) {
         this.albumId = albumId;
         this.albumName = albumName;
         this.artistId = artistId;
@@ -45,6 +36,15 @@ public class Song implements Parcelable {
         this.data = data;
         this.mimeType = mimeType;
         this.fileSize = fileSize;
+        this.dateModified = dateModified;
+    }
+
+    public Song() {
+    }
+
+    public static Song getEmptySong() {
+        return new Song(-1, "", -1, "",
+                -1, -1, "", -1, "", "", -1, -1);
     }
 
     protected Song(Parcel in) {
@@ -59,14 +59,7 @@ public class Song implements Parcelable {
         trackNumber = in.readInt();
         mimeType = in.readString();
         fileSize = in.readLong();
-    }
-
-    public Song() {
-    }
-
-    public String getSongSizeLabel() {
-        double size = fileSize / (1024.0 * 1024.0);
-        return String.format(Locale.getDefault(), "%.2f %s", size, "MB");
+        dateModified = in.readLong();
     }
 
     @Override
@@ -82,6 +75,7 @@ public class Song implements Parcelable {
         dest.writeInt(trackNumber);
         dest.writeString(mimeType);
         dest.writeLong(fileSize);
+        dest.writeLong(dateModified);
     }
 
     @Override
@@ -89,24 +83,24 @@ public class Song implements Parcelable {
         return 0;
     }
 
-    public String getTrackNumberString() {
-        return trackNumber > 0 ? String.valueOf(trackNumber) : "-";
+    public static final Creator<Song> CREATOR = new Creator<Song>() {
+        @Override
+        public Song createFromParcel(Parcel in) {
+            return new Song(in);
+        }
+
+        @Override
+        public Song[] newArray(int size) {
+            return new Song[size];
+        }
+    };
+
+    public String getSongSizeLabel() {
+        double size = fileSize / (1024.0 * 1024.0);
+        return String.format(Locale.getDefault(), "%.2f %s", size, "MB");
     }
 
-    @Override
-    public String toString() {
-        return "Song{" +
-                "data='" + data + '\'' +
-                ", albumId=" + albumId +
-                ", albumName='" + albumName + '\'' +
-                ", artistId=" + artistId +
-                ", artistName='" + artistName + '\'' +
-                ", duration=" + duration +
-                ", id=" + id +
-                ", title='" + title + '\'' +
-                ", trackNumber=" + trackNumber +
-                ", mimeType='" + mimeType + '\'' +
-                ", fileSize=" + fileSize +
-                '}';
+    public String getTrackNumberString() {
+        return trackNumber > 0 ? String.valueOf(trackNumber) : "-";
     }
 }
