@@ -160,11 +160,12 @@ public class SearchResultsAdapter extends RecyclerView.Adapter<RecyclerView.View
             String albums = context.getResources().getQuantityString(R.plurals.n_albums, artist.albumCount, artist.albumCount);
             String songs = context.getResources().getQuantityString(R.plurals.n_songs, artist.songCount, artist.songCount);
             albumsAndSongsTextView.setText(String.format("%s • %s", albums, songs));
-            GlideApp.with(context)
+            //Temporarily disabled till we find alternative to last fm API
+           /* GlideApp.with(context)
                     .load(new ArtistImage(artist.name))
                     .transition(DrawableTransitionOptions.withCrossFade(100))
                     .placeholder(context.getDrawable(R.drawable.default_artwork_small))
-                    .into(artistArtImageView);
+                    .into(artistArtImageView);*/
         }
 
         private List<Song> getSongsForArtist() {

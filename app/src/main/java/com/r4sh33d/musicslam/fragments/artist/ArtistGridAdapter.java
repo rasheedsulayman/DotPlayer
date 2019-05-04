@@ -59,11 +59,12 @@ public class ArtistGridAdapter extends RecyclerView.Adapter<ArtistGridAdapter.My
         holder.artistNameTextView.setText(artist.name);
         holder.albumCountTextView.setText(context.getResources().getQuantityString(R.plurals.n_albums, artist.albumCount, artist.albumCount));
         holder.songCounttextView.setText(String.format(context.getString(R.string.number_in_parentheses_format), artist.songCount));
-        GlideApp.with(context)
+        //Temporarily disabled till we find alternative to last fm API
+        /*   GlideApp.with(context)
                 .load(new ArtistImage(artist.name))
                 .transition(DrawableTransitionOptions.withCrossFade(100))
                 .placeholder(context.getDrawable(R.drawable.default_artwork_large))
-                .into(holder.albumArtImageView);
+                .into(holder.albumArtImageView);*/
     }
 
     @Override

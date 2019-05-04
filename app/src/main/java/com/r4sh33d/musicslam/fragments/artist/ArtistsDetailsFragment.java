@@ -84,7 +84,7 @@ public class ArtistsDetailsFragment extends AbsParallaxArtworkDetailsFragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_artists_info, container, false);
         ButterKnife.bind(this, view);
-        loadArtistArt();
+        //loadArtistArt();
         return view;
     }
 
@@ -93,7 +93,6 @@ public class ArtistsDetailsFragment extends AbsParallaxArtworkDetailsFragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         tabTitles = getResources().getStringArray(R.array.artist_details_tab_titles);
-        postponeEnterTransition();
         PagerAdapter pagerAdapter = new PagerAdapter(getChildFragmentManager(), getContext());
         viewPager.setAdapter(pagerAdapter);
         viewPager.setOffscreenPageLimit(3);
@@ -112,6 +111,9 @@ public class ArtistsDetailsFragment extends AbsParallaxArtworkDetailsFragment {
         fadeInView(lowerBlackShade, 1000);
     }
 
+    //This is temporarily disabled because of the last fm API Artist image shutdown.
+    //The layout is now temporarily changed to a fixed on (from a scrollable one used in album and playlist details screens)
+    //TODO find and integrate another API to fetch artists arts
     public void loadArtistArt() {
         GlideApp.with(this).asBitmap()
                 .load(new ArtistImage(mArtist.name))

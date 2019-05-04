@@ -78,5 +78,5 @@
         android:layout_marginStart="45dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
-        android:background="@color/line_seperator_color" />
+        android:background="@color/line_separator_color" />
 </LinearLayout>
