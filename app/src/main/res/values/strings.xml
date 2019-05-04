@@ -1,5 +1,4 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="app_name" translatable="false">Dot Music Player</string>
 
     <string name="playlist_last_added">Last added</string>
     <string name="playlist_recently_played">Recently played</string>
@@ -131,6 +130,7 @@
     <string name="my_music">My Music</string>
     <string name="clear_cache_question">Clear Cache?</string>
     <string name="delete_cache_new_content_will_be_created">Delete cache, new contents will be created</string>
+    <string name="unable_to_play_file">Unable to play file</string>
 
     <string-array name="main_pager_tab_titles">
         <item>SONGS</item>

@@ -10,7 +10,6 @@ public class Album implements Parcelable {
     public int songCount;
     public String title;
     public int year;
-  //  public String firstSongPath = "";
     public Song firstSong = Song.EMPTY_SONG;
 
 

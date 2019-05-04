@@ -77,7 +77,8 @@ public class SlamUtils {
             shareIntent.setAction(Intent.ACTION_SEND);
             shareIntent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
             shareIntent.setType("audio/*");
-            Uri fileUri = FileProvider.getUriForFile(context, context.getPackageName(), new File(song.data));
+            Timber.d("The context: " + context.getPackageName());
+            Uri fileUri = FileProvider.getUriForFile(context, context.getPackageName() + ".contentprovider", new File(song.data));
             shareIntent.putExtra(Intent.EXTRA_STREAM, fileUri);
             context.startActivity(Intent.createChooser(shareIntent, context.getString(R.string.share_music)));
         } catch (IllegalArgumentException e) {
@@ -104,7 +105,6 @@ public class SlamUtils {
         }
         return false;
     }
-
 
     public static void hideViews(View... views) {
         for (View view : views) {

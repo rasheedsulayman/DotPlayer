@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.r4sh33d.musicslam.GlideApp;
@@ -100,16 +101,22 @@ public class MusicPreviewActivity extends MusicEventsListenerActivity implements
         Uri uri = intent.getData();
         if (uri == null) {
             Timber.d("No uri data");
+            showErrorMessage();
             finish();
             return;
         }
         ArrayList<Song> songs = SongLoader.getSongFromLocalUri(uri, this);
         if (songs.size() <= 0) {
             finish();
+            showErrorMessage();
             return;
         }
         MusicPlayer.playSongsFromUri(songs);
         setIntent(new Intent());
+    }
+
+    public void showErrorMessage(){
+        Toast.makeText(this, R.string.unable_to_play_file, Toast.LENGTH_SHORT).show();
     }
 
     @Override

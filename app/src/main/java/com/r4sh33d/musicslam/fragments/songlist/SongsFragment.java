@@ -27,7 +27,6 @@ public class SongsFragment extends PagerFragment implements LoaderManager.Loader
     private SongsListAdapter mSongListAdapter;
 
     public SongsFragment() {
-        // Required empty public constructor
     }
 
     @Override

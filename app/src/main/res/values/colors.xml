@@ -7,8 +7,8 @@
 
     <color name="material_white">#ffffff</color>
     <color name="black">#000000</color>
-    <color name="line_seperator_color_album_art">#3ce9e3e3</color>
-    <color name="line_seperator_color">#a7d4d3d3</color>
+    <color name="line_separator_color_album_art">#3ce9e3e3</color>
+    <color name="line_separator_color">#a7d4d3d3</color>
     <color name="overflow_white">#fafafa</color>
     <color name="grey_800">#757575</color>
 

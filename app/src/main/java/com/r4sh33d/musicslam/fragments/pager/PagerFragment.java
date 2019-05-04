@@ -74,8 +74,7 @@ public abstract class PagerFragment extends BaseListenerFragment {
         fastScrollerThumbView.setupWithFastScroller(fastScrollerView);
         fastScrollerView.setUseDefaultScroller(false);
         fastScrollerView.getItemIndicatorSelectedCallbacks().add(
-                (indicator, indicatorCenterY, itemPosition) -> recyclerView.scrollToPosition(itemPosition)
-        );
+                (indicator, indicatorCenterY, itemPosition) -> recyclerView.scrollToPosition(itemPosition));
         addAdapterDataObserver();
     }
 

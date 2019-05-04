@@ -245,25 +245,33 @@ public class SongLoader {
     @Nullable
     public static ArrayList<Song> getSongFromLocalUri(Uri uri, Context context) {
         Cursor cursor = null;
-        switch (uri.getScheme()) {
-            case Constants.SCHEME_CONTENT:
-                cursor = makeSongsCursor(
-                        uri,
-                        null,
-                        null,
-                        null,
-                        context
-                );
-                break;
-            case Constants.SCHEME_FILE:
-                cursor = makeSongsCursor(
-                        MediaStore.Audio.Media.DATA + " = ?",
-                        new String[]{uri.getPath()},
-                        null, context
-                );
-                break;
+        try {
+            switch (uri.getScheme()) {
+                case Constants.SCHEME_CONTENT:
+                    Timber.d("Scheme content");
+                    cursor = makeSongsCursor(
+                            uri,
+                            null,
+                            null,
+                            null,
+                            context
+                    );
+                    break;
+                case Constants.SCHEME_FILE:
+                    cursor = makeSongsCursor(
+                            MediaStore.Audio.Media.DATA + " = ?",
+                            new String[]{uri.getPath()},
+                            null, context
+                    );
+                    Timber.d("Scheme file");
+                    break;
+            }
+            return getSongsListFromCursor(cursor);
+        } catch (IllegalArgumentException ignored) {
+            //TODO find why _id column is missing for SCHEME_CONTENT on some devices
+            //TODO usually when a song is copied to another location on newer samsung devices
+            return new ArrayList<>();
         }
-        return getSongsListFromCursor(cursor);
     }
 
     public static ArrayList<Song> getSongsListFromCursor(Cursor cursor) {
@@ -322,7 +330,6 @@ public class SongLoader {
          */
         public SongsAsyncTaskLoader(Context context) {
             this(context, null, null, null);
-            Timber.d("Creating SongsAsynctaskloader");
         }
 
         public SongsAsyncTaskLoader(Context context, String selection, String[] selectionArgs, String sortOrder) {

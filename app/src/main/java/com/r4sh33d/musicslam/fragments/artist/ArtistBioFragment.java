@@ -13,7 +13,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.r4sh33d.musicslam.R;
-import com.r4sh33d.musicslam.network.ArtistResponse;
+import com.r4sh33d.musicslam.network.retrofitmodels.ArtistResponse;
 import com.r4sh33d.musicslam.network.LastFmRetrofitClient;
 import com.r4sh33d.musicslam.network.LastFmService;
 

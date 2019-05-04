@@ -1,1 +1,56 @@
-{}
+{
+  "artist": {
+    "name": "Travis Scott ft Drake | Talkmuzik.com",
+    "url": "https://www.last.fm/music/Travis+Scott+ft+Drake+%7C+Talkmuzik.com",
+    "image": [
+      {
+        "#text": "",
+        "size": "small"
+      },
+      {
+        "#text": "",
+        "size": "medium"
+      },
+      {
+        "#text": "",
+        "size": "large"
+      },
+      {
+        "#text": "",
+        "size": "extralarge"
+      },
+      {
+        "#text": "",
+        "size": "mega"
+      },
+      {
+        "#text": "",
+        "size": ""
+      }
+    ],
+    "streamable": "0",
+    "ontour": "0",
+    "stats": {
+      "listeners": "1",
+      "playcount": "31"
+    },
+    "similar": {
+      "artist": []
+    },
+    "tags": {
+      "tag": []
+    },
+    "bio": {
+      "links": {
+        "link": {
+          "#text": "",
+          "rel": "original",
+          "href": "https://last.fm/music/Travis+Scott+ft+Drake+%7C+Talkmuzik.com/+wiki"
+        }
+      },
+      "published": "01 Jan 1970, 00:00",
+      "summary": " <a href=\"https://www.last.fm/music/Travis+Scott+ft+Drake+%7C+Talkmuzik.com\">Read more on Last.fm</a>",
+      "content": ""
+    }
+  }
+}

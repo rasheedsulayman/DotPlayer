@@ -1,5 +1,7 @@
 package com.r4sh33d.musicslam.network;
 
+import com.r4sh33d.musicslam.network.retrofitmodels.ArtistResponse;
+
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;

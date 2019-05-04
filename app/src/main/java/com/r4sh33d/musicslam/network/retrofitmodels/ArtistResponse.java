@@ -1,4 +1,4 @@
-package com.r4sh33d.musicslam.network;
+package com.r4sh33d.musicslam.network.retrofitmodels;
 
 import android.support.annotation.Nullable;
 
@@ -8,11 +8,11 @@ import com.google.gson.annotations.SerializedName;
 import java.util.HashMap;
 import java.util.List;
 
-import static com.r4sh33d.musicslam.network.ArtistResponse.ArtistInfo.ImageSize.EXTRA_LARGE;
-import static com.r4sh33d.musicslam.network.ArtistResponse.ArtistInfo.ImageSize.LARGE;
-import static com.r4sh33d.musicslam.network.ArtistResponse.ArtistInfo.ImageSize.MEDIUM;
-import static com.r4sh33d.musicslam.network.ArtistResponse.ArtistInfo.ImageSize.MEGA;
-import static com.r4sh33d.musicslam.network.ArtistResponse.ArtistInfo.ImageSize.SMALL;
+import static com.r4sh33d.musicslam.network.retrofitmodels.ArtistResponse.ArtistInfo.ImageSize.EXTRA_LARGE;
+import static com.r4sh33d.musicslam.network.retrofitmodels.ArtistResponse.ArtistInfo.ImageSize.LARGE;
+import static com.r4sh33d.musicslam.network.retrofitmodels.ArtistResponse.ArtistInfo.ImageSize.MEDIUM;
+import static com.r4sh33d.musicslam.network.retrofitmodels.ArtistResponse.ArtistInfo.ImageSize.MEGA;
+import static com.r4sh33d.musicslam.network.retrofitmodels.ArtistResponse.ArtistInfo.ImageSize.SMALL;
 
 public class ArtistResponse {
 

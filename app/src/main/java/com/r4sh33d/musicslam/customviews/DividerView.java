@@ -35,9 +35,9 @@ public class DividerView extends View {
 
     void applyColor() {
         if (PrefsUtils.getInstance(getContext()).isLightTheme()) {
-            setBackgroundColor(getResources().getColor(R.color.line_seperator_color));
+            setBackgroundColor(getResources().getColor(R.color.line_separator_color));
         } else {
-            setBackgroundColor(getResources().getColor(R.color.line_seperator_color_album_art));
+            setBackgroundColor(getResources().getColor(R.color.line_separator_color_album_art));
         }
     }
 }

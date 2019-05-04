@@ -1,3 +1,7 @@
+apply from: '../dependencies.gradle'
+apply plugin: 'com.android.application'
+apply plugin: 'io.fabric'
+
 buildscript {
     repositories {
         maven { url 'https://maven.fabric.io/public' }
@@ -7,14 +11,24 @@ buildscript {
         classpath 'io.fabric.tools:gradle:1.+'
     }
 }
-apply plugin: 'com.android.application'
-apply plugin: 'io.fabric'
+
+
+static def gitBranch() {
+    def branch = ""
+    try {
+        def proc = "git rev-parse --abbrev-ref HEAD".execute()
+        proc.in.eachLine { line -> branch = line }
+        proc.err.eachLine { line -> println line }
+        proc.waitFor()
+    }catch (Exception ignored) {
+        // Do nothing
+    }
+    branch
+}
 
 repositories {
     maven { url 'https://maven.fabric.io/public' }
 }
-
-apply from: '../dependencies.gradle'
 
 android {
     compileSdkVersion 27
@@ -24,7 +38,7 @@ android {
         minSdkVersion 21
         targetSdkVersion 27
         versionCode 1
-        versionName "1.0"
+        versionName "0.0.1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
         renderscriptTargetApi 18
@@ -33,16 +47,34 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            resValue "string", "app_name", "Dot Music Player"
+
+        }
+        debug {
+            applicationIdSuffix '.debug'
+            versionNameSuffix ' debug [' + gitBranch() + ']'
+            resValue "string", "app_name", "Dot Player DEBUG"
         }
     }
+
+    applicationVariants.all {
+        variant ->
+            variant.outputs.all {
+                output ->
+                    def apkReleasePrefix = "Dot Music Player"
+                    outputFileName = "${apkReleasePrefix}-${variant.versionName}.apk"
+            }
+    }
+
+
     compileOptions {
         targetCompatibility 1.8
         sourceCompatibility 1.8
     }
 }
-
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
@@ -54,7 +86,6 @@ dependencies {
     repositories {
         mavenCentral()
     }
-
 
     implementation project(':aesthetic')
     implementation files('libs/jaudiotagger-2.2.6-SNAPSHOT.jar')

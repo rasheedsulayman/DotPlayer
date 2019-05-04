@@ -15,3 +15,31 @@
 #-keepclassmembers class fqcn.of.javascript.interface.for.webview {
 #   public *;
 #}
+
+-dontwarn
+-ignorewarnings
+
+#Glide
+-keep public class * implements com.bumptech.glide.module.GlideModule
+-keep public class * extends com.bumptech.glide.module.AppGlideModule
+-keep public enum com.bumptech.glide.load.ImageHeaderParser$** {
+  **[] $VALUES;
+  public *;
+}
+
+# ButterKnife
+-keep class butterknife.*
+-keepclasseswithmembernames class * { @butterknife.* <methods>; }
+-keepclasseswithmembernames class * { @butterknife.* <fields>; }
+
+# RetroFit
+-dontwarn retrofit.**
+-keep class retrofit.** { *; }
+-keepattributes Signature
+-keepattributes Exceptions
+-keep class com.r4sh33d.musicslam.network.retrofitmodels.** { *; }
+
+#RenderScript
+-keep class android.support.v8.renderscript.** { *; }
+
+-keep class !android.support.v7.internal.view.menu.**,android.support.** {*;}

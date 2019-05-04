@@ -9,7 +9,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import static com.r4sh33d.musicslam.network.ArtistResponse.ArtistInfoContainer;
+import static com.r4sh33d.musicslam.network.retrofitmodels.ArtistResponse.ArtistInfoContainer;
 
 public class ArtistImageUtil {
 

@@ -17,7 +17,7 @@ public class AlbumLoader {
             MediaStore.Audio.Albums.ARTIST,
             MediaStore.Audio.Media.ARTIST_ID,
             MediaStore.Audio.Albums.NUMBER_OF_SONGS,
-            MediaStore.Audio.Albums.FIRST_YEAR,
+            MediaStore.Audio.Albums.FIRST_YEAR
     };
 
     public static ArrayList<Album> getAlbumsFromCursor(Context context, Cursor cursor) {
