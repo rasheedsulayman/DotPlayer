@@ -161,8 +161,8 @@ public class NavigationUtil {
 
     public static Intent getFeedbackEmailIntent() {
         Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
-                "mailto", "sulaymanraheed@gmail.com", null));
-        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Music Slam Feedback");
+                "mailto", "dotplayerteam@gmail.com", null));
+        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Dot Music Player Feedback");
         emailIntent.putExtra(Intent.EXTRA_TEXT, "");
         return emailIntent;
     }
