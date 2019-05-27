@@ -31,7 +31,7 @@ public abstract class BaseListenerFragment extends Fragment implements MusicStat
     }
 
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mActivity.subscribeToMusicEvents(this);
         mActivity.subscribeToPaletteColors(this);
