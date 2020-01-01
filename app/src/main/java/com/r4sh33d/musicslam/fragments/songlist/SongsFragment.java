@@ -100,4 +100,6 @@ public class SongsFragment extends PagerFragment implements LoaderManager.Loader
     @Override
     public void onLoaderReset(@NonNull Loader<List<Song>> loader) {
     }
+
+
 }

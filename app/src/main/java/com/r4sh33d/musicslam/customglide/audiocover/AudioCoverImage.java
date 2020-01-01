@@ -3,6 +3,9 @@ package com.r4sh33d.musicslam.customglide.audiocover;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 
+/**
+ * @author Rasheed Sualayman (@r4sh33d)
+ */
 public class AudioCoverImage {
     String filePath;
 

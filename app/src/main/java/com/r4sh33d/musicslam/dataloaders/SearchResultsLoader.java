@@ -8,7 +8,9 @@ import com.r4sh33d.musicslam.R;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * @author Rasheed Sualayman (@r4sh33d)
+ */
 public class SearchResultsLoader extends WrappedAsyncTaskLoader<List<Object>> {
 
 

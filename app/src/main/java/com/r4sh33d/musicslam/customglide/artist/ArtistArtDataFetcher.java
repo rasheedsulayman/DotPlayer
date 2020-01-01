@@ -16,7 +16,9 @@ import com.r4sh33d.musicslam.utils.SlamUtils;
 
 import java.io.InputStream;
 
-
+/**
+ * @author Rasheed Sualayman (@r4sh33d)
+ */
 public class ArtistArtDataFetcher implements DataFetcher<InputStream> {
 
     private final int height;

@@ -11,10 +11,10 @@ import com.bumptech.glide.signature.ObjectKey;
 import com.r4sh33d.musicslam.network.LastFmService;
 
 import java.io.InputStream;
-
+/**
+ * @author Rasheed Sualayman (@r4sh33d)
+ */
 public class ArtistArtModelLoader implements ModelLoader<ArtistImage, InputStream> {
-
-
     private final LastFmService lastFmService;
     private final ModelLoader<GlideUrl, InputStream> okHttpUrlLoader;
     private Context context;

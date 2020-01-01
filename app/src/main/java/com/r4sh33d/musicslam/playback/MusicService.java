@@ -63,10 +63,6 @@ import java.util.List;
 
 import timber.log.Timber;
 
-//TODO rewrite the background playing service. Too many hacky solutions..
-//TODO use only one Background Thread Handler.
-//TODO remove unnecessary asyncxxx - methods
-
 public class MusicService extends Service {
 
     private static final String TAG = "MusicPlaybackService";
@@ -321,9 +317,7 @@ public class MusicService extends Service {
     }
 
     private void releaseServiceUiAndStop() {
-        if (isPlaying()
-                || mPausedByTransientLossOfFocus
-                || mPlayerHandler.hasMessages(Constants.TRACK_ENDED)) {
+        if (isPlaying() || mPausedByTransientLossOfFocus || mPlayerHandler.hasMessages(Constants.TRACK_ENDED)) {
             return;
         }
         notificationHelper.cancelNotification();
@@ -1060,7 +1054,6 @@ public class MusicService extends Service {
     private void setIsSupposedToBePlaying(boolean value, boolean notify) {
         if (mIsSupposedToBePlaying != value) {
             mIsSupposedToBePlaying = value;
-
             // Update mLastPlayed time first and notify afterwards, as
             // the notification listener method needs the up-to-date value
             // for the recentlyPlayed() method to work

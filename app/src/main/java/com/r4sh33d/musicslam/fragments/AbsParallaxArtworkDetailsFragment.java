@@ -121,7 +121,6 @@ public abstract class AbsParallaxArtworkDetailsFragment extends BaseListenerFrag
             case R.id.settings:
                 startActivity(new Intent(getContext(), SettingsActivity.class));
                 return true;
-
         }
         return false;
     }

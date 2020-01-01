@@ -14,7 +14,9 @@ import com.r4sh33d.musicslam.utils.PlayListHelper;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * @author Rasheed Sualayman (@r4sh33d)
+ */
 public class PlaylistLoader {
 
     public static String[] projection = {

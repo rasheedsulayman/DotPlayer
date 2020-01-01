@@ -17,7 +17,9 @@ import com.r4sh33d.musicslam.utils.PrefsUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-
+/**
+ * @author Rasheed Sualayman (@r4sh33d)
+ */
 public class SongDetailsDialog extends DialogFragment {
     public static final String SONG_DETAILS_DIALOG = "SONG_DETAILS_DIALOG";
     private static final String SONG_KEY = "SONG_KEY";

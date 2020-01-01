@@ -20,7 +20,9 @@ import com.r4sh33d.musicslam.utils.SlamUtils;
 
 import java.util.Collections;
 import java.util.List;
-
+/**
+ * @author Rasheed Sualayman (@r4sh33d)
+ */
 public class AlbumsFragment extends PagerFragment implements LoaderManager.LoaderCallbacks<List<Album>> {
 
     private AlbumGridAdapter mAlbumGridAdapter;
@@ -41,8 +43,7 @@ public class AlbumsFragment extends PagerFragment implements LoaderManager.Loade
         super.onViewCreated(view, savedInstanceState);
         RecyclerView recyclerView = getRecyclerView();
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 3));
-        recyclerView.addItemDecoration(new GridSpacingItemDecoration(3,
-                SlamUtils.dpToPx(12, getActivity()), true));
+        recyclerView.addItemDecoration(new GridSpacingItemDecoration(3, SlamUtils.dpToPx(12, getActivity()), true));
         recyclerView.setAdapter(mAlbumGridAdapter);
     }
 

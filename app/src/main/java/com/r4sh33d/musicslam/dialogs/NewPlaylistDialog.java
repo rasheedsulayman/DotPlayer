@@ -11,7 +11,9 @@ import android.widget.Toast;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.r4sh33d.musicslam.R;
 import com.r4sh33d.musicslam.utils.PlayListHelper;
-
+/**
+ * @author Rasheed Sualayman (@r4sh33d)
+ */
 public class NewPlaylistDialog extends DialogFragment {
     public final static String NEW_PLAYLIST_FRAG_TAG = "NEW_PLAY_LIST";
 

@@ -2,6 +2,9 @@ package com.r4sh33d.musicslam.customglide.artist;
 
 import io.reactivex.annotations.NonNull;
 
+/**
+ * @author Rasheed Sualayman (@r4sh33d)
+ */
 public class ArtistImage {
     String artistName;
 

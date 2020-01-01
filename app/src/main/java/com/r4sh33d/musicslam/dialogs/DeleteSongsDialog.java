@@ -10,7 +10,9 @@ import com.r4sh33d.musicslam.R;
 import com.r4sh33d.musicslam.utils.MusicUtils;
 
 import java.util.Locale;
-
+/**
+ * @author Rasheed Sualayman (@r4sh33d)
+ */
 public class DeleteSongsDialog extends DialogFragment {
     public static final String DELETE_FRAG_TAG = "delete_dialog_frag";
     private static final String ARG_SONG_IDS = "song_ids";

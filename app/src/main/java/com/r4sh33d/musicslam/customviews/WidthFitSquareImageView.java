@@ -3,7 +3,9 @@ package com.r4sh33d.musicslam.customviews;
 import android.content.Context;
 import android.support.v7.widget.AppCompatImageView;
 import android.util.AttributeSet;
-
+/**
+ * @author Rasheed Sualayman (@r4sh33d)
+ */
 public class WidthFitSquareImageView extends AppCompatImageView {
 
     public WidthFitSquareImageView(Context context, AttributeSet attrs) {

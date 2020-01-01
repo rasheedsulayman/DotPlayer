@@ -9,7 +9,9 @@ import com.bumptech.glide.load.model.ModelLoader;
 import com.bumptech.glide.signature.ObjectKey;
 
 import java.io.InputStream;
-
+/**
+ * @author Rasheed Sualayman (@r4sh33d)
+ */
 public class AudioCoverModelLoader implements ModelLoader<AudioCoverImage, InputStream> {
 
 

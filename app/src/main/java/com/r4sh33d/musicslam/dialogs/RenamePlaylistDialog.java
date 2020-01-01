@@ -10,7 +10,9 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import com.r4sh33d.musicslam.R;
 import com.r4sh33d.musicslam.models.Playlist;
 import com.r4sh33d.musicslam.utils.PlayListHelper;
-
+/**
+ * @author Rasheed Sualayman (@r4sh33d)
+ */
 public class RenamePlaylistDialog extends DialogFragment {
     public final static String RENAME_PLAYLIST_FRAG_TAG = "RENAME_PLAYLIST";
 

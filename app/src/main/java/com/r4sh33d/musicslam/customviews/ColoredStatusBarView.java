@@ -12,7 +12,9 @@ import com.afollestad.aesthetic.Util;
 import com.r4sh33d.musicslam.utils.PrefsUtils;
 
 import io.reactivex.disposables.Disposable;
-
+/**
+ * @author Rasheed Sualayman (@r4sh33d)
+ */
 public class ColoredStatusBarView extends View {
     Disposable subscription;
     boolean isAlbumArtTheme;

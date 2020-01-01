@@ -15,6 +15,9 @@ import static com.r4sh33d.musicslam.playback.Constants.SERVER_DIED;
 import static com.r4sh33d.musicslam.playback.Constants.TRACK_ENDED;
 import static com.r4sh33d.musicslam.playback.Constants.TRACK_WENT_TO_NEXT;
 
+/**
+ * @author Andrew Neal, Karim Abou Zeid (kabouzeid), Rasheed Sulayman (r4sh33d)
+ */
 class MultiPlayer implements MediaPlayer.OnErrorListener,
         MediaPlayer.OnCompletionListener {
 

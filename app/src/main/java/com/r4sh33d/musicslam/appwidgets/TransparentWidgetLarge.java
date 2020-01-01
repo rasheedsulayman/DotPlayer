@@ -21,7 +21,9 @@ import com.r4sh33d.musicslam.playback.MusicService;
 import static com.r4sh33d.musicslam.playback.Constants.NEXT_ACTION;
 import static com.r4sh33d.musicslam.playback.Constants.PREVIOUS_ACTION;
 import static com.r4sh33d.musicslam.playback.Constants.TOGGLEPAUSE_ACTION;
-
+/**
+ * @author Rasheed Sualayman (@r4sh33d)
+ */
 public class TransparentWidgetLarge extends BaseAppWidget {
     public static final String TYPE = "transparent_widget";
     private static TransparentWidgetLarge sInstance;

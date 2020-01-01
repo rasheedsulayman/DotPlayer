@@ -8,7 +8,9 @@ import android.provider.MediaStore;
 
 import com.r4sh33d.musicslam.db.SmartPlaylistType;
 import com.r4sh33d.musicslam.models.Playlist;
-
+/**
+ * @author Rasheed Sualayman (@r4sh33d)
+ */
 public class SongIdsLoader {
 
     private static long[] sEmptyList = {};

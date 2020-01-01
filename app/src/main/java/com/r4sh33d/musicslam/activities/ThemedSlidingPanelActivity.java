@@ -30,7 +30,9 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-
+/**
+ * @author Rasheed Sualayman (@r4sh33d)
+ */
 public abstract class ThemedSlidingPanelActivity extends MusicEventsListenerActivity implements
         SlidingUpPanelLayout.PanelSlideListener {
 

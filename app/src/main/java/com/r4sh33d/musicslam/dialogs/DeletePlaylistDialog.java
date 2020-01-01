@@ -8,7 +8,9 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import com.r4sh33d.musicslam.R;
 import com.r4sh33d.musicslam.models.Playlist;
 import com.r4sh33d.musicslam.utils.PlayListHelper;
-
+/**
+ * @author Rasheed Sualayman (@r4sh33d)
+ */
 public class DeletePlaylistDialog extends DialogFragment {
     public static final String PLAYLIST_ARGS = "playlist_arg";
     public static final String DELETE_PLAYLIST_FRAG_TAG = "delete_playlist_dialog_tag";

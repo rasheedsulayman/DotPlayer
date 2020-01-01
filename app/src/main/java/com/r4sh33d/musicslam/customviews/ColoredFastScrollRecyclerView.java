@@ -10,7 +10,9 @@ import com.r4sh33d.musicslam.utils.PrefsUtils;
 import com.simplecityapps.recyclerview_fastscroll.views.FastScrollRecyclerView;
 
 import io.reactivex.disposables.Disposable;
-
+/**
+ * @author Rasheed Sualayman (@r4sh33d)
+ */
 public class ColoredFastScrollRecyclerView extends FastScrollRecyclerView implements PaletteListener {
     Disposable subscription;
     boolean isAlbumArtTheme;

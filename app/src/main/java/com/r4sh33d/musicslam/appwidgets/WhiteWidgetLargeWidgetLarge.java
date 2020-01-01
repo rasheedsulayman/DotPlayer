@@ -3,6 +3,9 @@ package com.r4sh33d.musicslam.appwidgets;
 import com.r4sh33d.musicslam.R;
 import com.r4sh33d.musicslam.playback.MusicService;
 
+/**
+ * @author Rasheed Sualayman (@r4sh33d)
+ */
 public class WhiteWidgetLargeWidgetLarge extends TransparentWidgetLarge {
     public static final String TYPE = "white_widget_large_info";
     private static WhiteWidgetLargeWidgetLarge sInstance;

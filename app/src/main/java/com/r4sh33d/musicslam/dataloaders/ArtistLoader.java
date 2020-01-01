@@ -9,7 +9,9 @@ import com.r4sh33d.musicslam.models.Artist;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * @author Rasheed Sualayman (@r4sh33d)
+ */
 public class ArtistLoader {
     public static String[] projection = new String[]{
             MediaStore.Audio.Albums._ID,

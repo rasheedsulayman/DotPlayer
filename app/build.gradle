@@ -31,14 +31,14 @@ repositories {
 }
 
 android {
-    compileSdkVersion 27
-    buildToolsVersion '28.0.3'
+    compileSdkVersion 29
+    //buildToolsVersion '28.0.3'
     defaultConfig {
         applicationId "com.r4sh33d.musicslam"
         minSdkVersion 21
-        targetSdkVersion 27
-        versionCode 3
-        versionName "0.0.3"
+        targetSdkVersion 29
+        versionCode 4
+        versionName "0.0.4"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
         renderscriptTargetApi 18
@@ -68,7 +68,6 @@ android {
                     outputFileName = "${apkReleasePrefix}-${variant.versionName}.apk"
             }
     }
-
 
     compileOptions {
         targetCompatibility 1.8
@@ -124,7 +123,7 @@ dependencies {
     implementation 'com.android.support.constraint:constraint-layout:1.1.2'
 
     implementation('com.crashlytics.sdk.android:crashlytics:2.9.8@aar') {
-        transitive = true;
+        transitive = true
     }
 
 }

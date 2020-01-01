@@ -8,7 +8,9 @@ import android.util.AttributeSet;
 import com.r4sh33d.musicslam.R;
 import com.r4sh33d.musicslam.utils.PrefsUtils;
 
-
+/**
+ * @author Rasheed Sualayman (@r4sh33d)
+ */
 public class BlackAndWhiteImageView extends AppCompatImageView {
 
     public BlackAndWhiteImageView(Context context) {

@@ -1,5 +1,7 @@
 package com.r4sh33d.musicslam.dataloaders;
-
+/**
+ * @author Rasheed Sualayman (@r4sh33d)
+ */
 public interface PagerLoaderIDs {
     int SONGS_FRAGMENT = 1;
     int ALBUMS_FRAGMENT = 2;

@@ -12,7 +12,9 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import kotlin.jvm.functions.Function1;
-
+/**
+ * @author Rasheed Sualayman (@r4sh33d)
+ */
 public class AutoDismissFastScrollerView extends FastScrollerView {
     boolean isShown;
     private int mAutoHideDelay = 1500;

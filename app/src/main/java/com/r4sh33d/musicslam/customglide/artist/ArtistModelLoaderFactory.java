@@ -15,6 +15,9 @@ import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
 
+/**
+ * @author Rasheed Sualayman (@r4sh33d)
+ */
 public class ArtistModelLoaderFactory implements ModelLoaderFactory<ArtistImage, InputStream> {
 
     private static final long TIMEOUT = 5000;

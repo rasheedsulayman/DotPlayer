@@ -6,7 +6,9 @@ import android.util.AttributeSet;
 
 import com.r4sh33d.musicslam.utils.PrefsUtils;
 import com.r4sh33d.musicslam.utils.SlamUtils;
-
+/**
+ * @author Rasheed Sualayman (@r4sh33d)
+ */
 public class FixedMinimumHeightCollapsingToolBar extends CollapsingToolbarLayout {
 
     public FixedMinimumHeightCollapsingToolBar(Context context) {

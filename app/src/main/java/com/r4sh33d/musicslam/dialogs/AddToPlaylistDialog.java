@@ -13,7 +13,9 @@ import com.r4sh33d.musicslam.models.Playlist;
 import com.r4sh33d.musicslam.utils.PlayListHelper;
 
 import java.util.ArrayList;
-
+/**
+ * @author Rasheed Sualayman (@r4sh33d)
+ */
 public class AddToPlaylistDialog extends DialogFragment {
     public static final String ADD_TO_PLAYLIST_ARG = "ADD_TO_PLAY_LIST";
     private static final String ARG_SONG_IDS = "song_ids";

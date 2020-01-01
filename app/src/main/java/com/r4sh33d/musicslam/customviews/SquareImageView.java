@@ -1,9 +1,12 @@
 package com.r4sh33d.musicslam.customviews;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.support.v7.widget.AppCompatImageView;
 import android.util.AttributeSet;
-
+/**
+ * @author Rasheed Sualayman (@r4sh33d)
+ */
 public class SquareImageView extends AppCompatImageView {
 
     public SquareImageView(Context context, AttributeSet attrs) {
@@ -17,6 +20,7 @@ public class SquareImageView extends AppCompatImageView {
         setMeasuredDimension(mSize, mSize);
     }
 
+    @SuppressLint("MissingSuperCall")
     @Override
     public void requestLayout() {
         forceLayout();

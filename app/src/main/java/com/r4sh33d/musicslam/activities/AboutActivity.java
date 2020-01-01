@@ -22,6 +22,9 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import io.reactivex.disposables.Disposable;
 
+/**
+ * @author Rasheed Sualayman (@r4sh33d)
+ */
 public class AboutActivity extends AestheticActivity {
     @BindView(R.id.toolbar)
     Toolbar toolbar;

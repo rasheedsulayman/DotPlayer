@@ -33,7 +33,7 @@ import java.lang.ref.WeakReference;
 
 public class BlurBitmapWorkerTask extends AsyncTask<Bitmap, Void, Bitmap> {
     // if the image is too small, the blur will look bad post scale up so we use the min size
-    // to scale up before bluring
+    // to scale up before blurring
     private static final int MIN_BITMAP_SIZE = 500;
     private static final int NUM_BLUR_RUNS = 8;
     private static final float BLUR_RADIUS = 25f;

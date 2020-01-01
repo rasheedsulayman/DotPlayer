@@ -47,7 +47,9 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-
+/**
+ * @author Rasheed Sualayman (@r4sh33d)
+ */
 public class AlbumDetailsFragment extends AbsParallaxArtworkDetailsFragment
         implements LoaderManager.LoaderCallbacks<List<Song>> {
 

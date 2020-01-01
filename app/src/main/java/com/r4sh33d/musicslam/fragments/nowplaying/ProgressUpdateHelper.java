@@ -21,25 +21,23 @@ public class ProgressUpdateHelper extends Handler {
 
     @Override
     public void handleMessage(final Message msg) {
-        switch (msg.what) {
-            case UPDATE_PROGRESS_COMMAND:
-                final long next = refreshCurrentTime();
-                queueNextRefresh(next);
-                break;
+        if (msg.what == UPDATE_PROGRESS_COMMAND) {
+            final long next = refreshCurrentTime();
+            queueNextRefresh(next);
         }
     }
 
     private void queueNextRefresh(final long delay) {
-        final Message message = obtainMessage(UPDATE_PROGRESS_COMMAND);
+        Message message = obtainMessage(UPDATE_PROGRESS_COMMAND);
         removeMessages(UPDATE_PROGRESS_COMMAND);
         sendMessageDelayed(message, delay);
     }
-
 
     private long refreshCurrentTime() {
         long currentTime = MusicPlayer.position();
         long totalDuration = MusicPlayer.getCurrentSongDuration();
         OnProgressUpdateListener listener = onProgressUpdateListener.get();
+
         if (listener != null) {
             listener.onProgressUpdate((int) currentTime / 1000,
                     (int) totalDuration / 1000);

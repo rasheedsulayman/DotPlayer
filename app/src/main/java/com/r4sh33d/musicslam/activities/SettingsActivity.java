@@ -15,6 +15,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.reactivex.disposables.Disposable;
 
+/**
+ * @author Rasheed Sualayman (@r4sh33d)
+ */
 public class SettingsActivity extends AestheticActivity {
     @BindView(R.id.toolbar)
     Toolbar toolbar;

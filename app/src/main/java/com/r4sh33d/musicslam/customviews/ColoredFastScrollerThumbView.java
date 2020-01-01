@@ -15,6 +15,9 @@ import org.jetbrains.annotations.Nullable;
 
 import io.reactivex.disposables.Disposable;
 
+/**
+ * @author Rasheed Sualayman (@r4sh33d)
+ */
 public class ColoredFastScrollerThumbView extends FastScrollerThumbView implements PaletteListener {
 
     Disposable subscription;

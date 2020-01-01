@@ -9,6 +9,9 @@ import com.bumptech.glide.load.model.MultiModelLoaderFactory;
 
 import java.io.InputStream;
 
+/**
+ * @author Rasheed Sualayman (@r4sh33d)
+ */
 public class AudioCoverLoaderFactory implements ModelLoaderFactory<AudioCoverImage, InputStream> {
 
     private Context context;

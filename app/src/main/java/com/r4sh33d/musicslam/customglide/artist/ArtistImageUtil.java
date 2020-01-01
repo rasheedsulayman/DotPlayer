@@ -11,6 +11,9 @@ import retrofit2.Response;
 
 import static com.r4sh33d.musicslam.network.retrofitmodels.ArtistResponse.ArtistInfoContainer;
 
+/**
+ * @author Rasheed Sualayman (@r4sh33d)
+ */
 public class ArtistImageUtil {
 
     public static void fetchArtistImageUrl(LastFmService lastFmService,

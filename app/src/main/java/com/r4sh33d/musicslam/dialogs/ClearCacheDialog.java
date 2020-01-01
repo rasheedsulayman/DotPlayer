@@ -15,7 +15,9 @@ import com.r4sh33d.musicslam.R;
 import com.r4sh33d.musicslam.network.LastFmRetrofitClient;
 
 import java.lang.ref.WeakReference;
-
+/**
+ * @author Rasheed Sualayman (@r4sh33d)
+ */
 public class ClearCacheDialog extends DialogFragment {
     public static final String CLEAR_CACHE_FRAG_TAG = "delete_playlist_dialog_tag";
 

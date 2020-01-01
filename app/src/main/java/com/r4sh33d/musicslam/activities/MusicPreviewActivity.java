@@ -39,6 +39,9 @@ import timber.log.Timber;
 
 import static com.r4sh33d.musicslam.fragments.nowplaying.ProgressUpdateHelper.OnProgressUpdateListener;
 
+/**
+ * @author Rasheed Sualayman (@r4sh33d)
+ */
 public class MusicPreviewActivity extends MusicEventsListenerActivity implements
         OnProgressUpdateListener, View.OnTouchListener {
 
@@ -87,8 +90,7 @@ public class MusicPreviewActivity extends MusicEventsListenerActivity implements
 
     void setContentLinearLayoutWidth() {
         Point size = SlamUtils.getDefaultDisplaySize(this);
-        contentLinearLayout.getLayoutParams().width =
-                Math.min(size.x, size.y) - SlamUtils.dpToPx(40, this);
+        contentLinearLayout.getLayoutParams().width = Math.min(size.x, size.y) - SlamUtils.dpToPx(40, this);
     }
 
     @SuppressWarnings("ConstantConditions")

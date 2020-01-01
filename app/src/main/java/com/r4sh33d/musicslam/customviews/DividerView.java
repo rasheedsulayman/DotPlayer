@@ -9,7 +9,9 @@ import android.view.View;
 
 import com.r4sh33d.musicslam.R;
 import com.r4sh33d.musicslam.utils.PrefsUtils;
-
+/**
+ * @author Rasheed Sualayman (@r4sh33d)
+ */
 public class DividerView extends View {
 
     public DividerView(Context context) {

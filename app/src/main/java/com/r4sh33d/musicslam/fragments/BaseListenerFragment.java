@@ -14,7 +14,6 @@ import com.r4sh33d.musicslam.utils.PrefsUtils;
 
 public abstract class BaseListenerFragment extends Fragment implements MusicStateListener, PaletteListener {
     public boolean isAlbumArtTheme;
-    public boolean isStoragePermissionGranted;
     protected MainActivity mActivity;
     protected PrefsUtils prefsUtils;
 

@@ -16,7 +16,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import timber.log.Timber;
-
+/**
+ * @author Rasheed Sualayman (@r4sh33d)
+ */
 public class SongLoader {
 
     public static final String MUSIC_ONLY_SELECTION = MediaStore.Audio.AudioColumns.IS_MUSIC + "=1"

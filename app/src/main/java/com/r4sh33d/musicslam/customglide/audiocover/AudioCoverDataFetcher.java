@@ -24,7 +24,9 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 
-
+/**
+ * @author Rasheed Sualayman (@r4sh33d)
+ */
 public class AudioCoverDataFetcher implements DataFetcher<InputStream> {
     private static final String[] FALLBACKS = {"cover.jpg", "album.jpg", "folder.jpg",
             "cover.jpeg", "album.jpeg", "folder.jpeg", "cover.png", "album.png", "folder.png"};

@@ -33,7 +33,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author Andrew Neal, Karim Abou Zeid, r4sh33d
+ * @author Andrew Neal, Karim Abou Zeid, Rasheed Sulayman (r4sh33d)
  * <p/>
  * This keeps track of the music playback and history state of the playback service
  */

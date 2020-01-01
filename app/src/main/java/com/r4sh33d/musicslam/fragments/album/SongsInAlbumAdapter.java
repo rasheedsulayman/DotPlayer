@@ -25,7 +25,9 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-
+/**
+ * @author Rasheed Sualayman (@r4sh33d)
+ */
 public class SongsInAlbumAdapter extends RecyclerView.Adapter<SongsInAlbumAdapter.MyHolder> {
     private List<Song> songsInAlbumArrayList;
     private Context context;

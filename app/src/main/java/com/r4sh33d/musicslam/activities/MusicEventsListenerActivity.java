@@ -27,6 +27,9 @@ import static com.r4sh33d.musicslam.playback.Constants.REPEAT_MODE_CHANGED;
 import static com.r4sh33d.musicslam.playback.Constants.SHUFFLE_MODE_CHANGED;
 import static com.r4sh33d.musicslam.playback.Constants.TRACK_ERROR;
 
+/**
+ * @author Rasheed Sualayman (@r4sh33d)
+ */
 public abstract class MusicEventsListenerActivity extends BaseActivity implements ServiceConnection,
         MusicStateListener {
 

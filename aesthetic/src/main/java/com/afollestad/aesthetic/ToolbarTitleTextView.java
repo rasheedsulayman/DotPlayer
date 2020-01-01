@@ -14,7 +14,7 @@ import static com.afollestad.aesthetic.Rx.onErrorLogAndRethrow;
 
 /**
  * @author Aidan Follestad (afollestad)
- * Modified for ToolbarTitleTextView by r4sh33d
+ * Modified for ToolbarTitleTextView by Rasheed Sulayman (r4sh33d)
  */
 public class ToolbarTitleTextView extends android.support.v7.widget.AppCompatTextView {
 
@@ -58,6 +58,7 @@ public class ToolbarTitleTextView extends android.support.v7.widget.AppCompatTex
         }
         onColorUpdated = PublishSubject.create();
 
+        // Extracted from Shuttle Music
         // Need to invalidate the colors as early as possible. When subscribing to the continuous observable
         // below (subscription = ...), we're using distinctToMainThread(), which introduces a slight delay. During
         // this delay, we see the original colors, which are then swapped once the emission is consumed.

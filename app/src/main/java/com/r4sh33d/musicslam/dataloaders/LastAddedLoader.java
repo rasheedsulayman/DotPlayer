@@ -8,7 +8,9 @@ import android.provider.MediaStore.Audio.AudioColumns;
 import com.r4sh33d.musicslam.models.Song;
 
 import java.util.ArrayList;
-
+/**
+ * @author Rasheed Sualayman (@r4sh33d)
+ */
 public class LastAddedLoader {
 
     public static final int CUT_OFF = 6 * 4 * 7 * 24 * 60 * 60; // 6 months

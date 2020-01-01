@@ -5,8 +5,11 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.widget.FrameLayout;
-
+/**
+ * @author Rasheed Sualayman (@r4sh33d)
+ */
 public class WidthFitFrameLayout extends FrameLayout {
+
     public WidthFitFrameLayout(@NonNull Context context) {
         super(context);
     }

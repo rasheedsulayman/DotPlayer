@@ -4,7 +4,9 @@ import android.content.Context;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 
-
+/**
+ * @author Rasheed Sualayman (@r4sh33d)
+ */
 public class AutoScrollTextView extends android.support.v7.widget.AppCompatTextView {
 
     public AutoScrollTextView(Context context) {
@@ -28,6 +30,5 @@ public class AutoScrollTextView extends android.support.v7.widget.AppCompatTextV
         setSelected(true);
         setHorizontallyScrolling(true);
         setFocusableInTouchMode(true);
-        // setMarqueeRepeatLimit(1);
     }
 }

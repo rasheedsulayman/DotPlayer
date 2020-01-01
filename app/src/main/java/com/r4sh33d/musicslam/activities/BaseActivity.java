@@ -20,6 +20,9 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import com.r4sh33d.musicslam.R;
 import com.r4sh33d.musicslam.utils.PrefsUtils;
 
+/**
+ * @author Rasheed Sualayman (@r4sh33d)
+ */
 public abstract class BaseActivity extends AppCompatActivity {
     private static final int PERMISSION_CODE = 500;
     private static final int REQUEST_APP_SETTINGS = 600;

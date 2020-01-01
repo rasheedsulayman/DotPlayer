@@ -2,20 +2,20 @@ package com.r4sh33d.musicslam.playback;
 
 public interface MusicStateListener {
 
-    public void onMediaStoreRefreshed();
+    void onMediaStoreRefreshed();
 
-    public void onPlaylistChanged();
+    void onPlaylistChanged();
 
-    public void onMetaChanged();
+    void onMetaChanged();
 
-    public void onRepeatModeChanged();
+    void onRepeatModeChanged();
 
-    public void onPlayStateChanged();
+    void onPlayStateChanged();
 
-    public void onShuffleModeChanged();
+    void onShuffleModeChanged();
 
-    public void onServiceConnected();
+    void onServiceConnected();
 
-    public void onQueueChanged();
+    void onQueueChanged();
 
 }
