@@ -1,6 +1,5 @@
 package com.r4sh33d.musicslam.fragments.artist;
 
-
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.LoaderManager;
@@ -19,7 +18,9 @@ import com.r4sh33d.musicslam.models.Song;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * @author Rasheed Sualayman (@r4sh33d)
+ */
 public class SongsInArtistFragment extends BaseListenerFragment implements
         LoaderManager.LoaderCallbacks<List<Song>> {
 

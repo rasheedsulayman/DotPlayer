@@ -31,7 +31,9 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-
+/**
+ * @author Rasheed Sualayman (@r4sh33d)
+ */
 public class ArtistGridAdapter extends RecyclerView.Adapter<ArtistGridAdapter.MyViewHolder>
         implements FastScrollerAdapter {
 

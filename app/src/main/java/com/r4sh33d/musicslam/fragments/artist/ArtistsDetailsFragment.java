@@ -41,7 +41,9 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-
+/**
+ * @author Rasheed Sualayman (@r4sh33d)
+ */
 public class ArtistsDetailsFragment extends AbsParallaxArtworkDetailsFragment {
 
     private static final String ARG_ARTIST = "artist";

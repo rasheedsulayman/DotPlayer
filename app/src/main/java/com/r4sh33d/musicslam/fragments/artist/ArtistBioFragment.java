@@ -25,6 +25,9 @@ import retrofit2.Response;
 
 import static com.r4sh33d.musicslam.network.LastFmService.ARTIST_METHOD;
 
+/**
+ * @author Rasheed Sualayman (@r4sh33d)
+ */
 public class ArtistBioFragment extends Fragment {
     private static final String ARG_ARTIST_NAME = "artistName";
     @BindView(R.id.artist_bio)

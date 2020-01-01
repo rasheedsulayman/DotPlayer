@@ -23,7 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * A simple {@link Fragment} subclass.
+ * @author Rasheed Sualayman (@r4sh33d)
  */
 public class ArtistsFragment extends PagerFragment implements LoaderManager.LoaderCallbacks<List<Artist>> {
 

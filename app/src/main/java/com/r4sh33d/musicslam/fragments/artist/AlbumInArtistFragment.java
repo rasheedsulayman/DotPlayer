@@ -28,7 +28,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
- * A simple {@link Fragment} subclass.
+ * @author Rasheed Sualayman (@r4sh33d)
  */
 public class AlbumInArtistFragment extends BaseListenerFragment
         implements LoaderManager.LoaderCallbacks<List<Album>> {
