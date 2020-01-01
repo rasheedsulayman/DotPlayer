@@ -20,7 +20,9 @@ import com.r4sh33d.musicslam.playback.MusicPlayer;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-
+/**
+ * @author Rasheed Sualayman (@r4sh33d)
+ */
 public class PlayQueueFragment extends BaseListenerFragment implements SongsInPlayQueueAdapter.OnStartDragListener {
 
     @BindView(R.id.recyclerview)

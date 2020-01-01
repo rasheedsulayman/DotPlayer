@@ -3,7 +3,9 @@ package com.r4sh33d.musicslam.fragments.playqueue;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 
-
+/**
+ * @author Rasheed Sualayman (@r4sh33d)
+ */
 public class ItemViewTouchHelperCallback extends ItemTouchHelper.Callback {
 
     private int dragFrom = -1;

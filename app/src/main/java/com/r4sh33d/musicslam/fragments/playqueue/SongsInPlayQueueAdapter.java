@@ -29,7 +29,9 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-
+/**
+ * @author Rasheed Sualayman (@r4sh33d)
+ */
 public class SongsInPlayQueueAdapter extends RecyclerView.Adapter<SongsInPlayQueueAdapter.MyHolder>
         implements ItemViewTouchHelperCallback.OnItemMovedListener {
     private List<Song> songsInQueueArrayList;
