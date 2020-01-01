@@ -37,7 +37,9 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-
+/**
+ * @author Rasheed Sualayman (@r4sh33d)
+ */
 public class SearchResultsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private static final int TYPE_LABEL = 1;
