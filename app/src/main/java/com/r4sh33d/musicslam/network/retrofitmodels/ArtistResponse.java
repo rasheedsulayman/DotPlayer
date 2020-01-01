@@ -13,7 +13,9 @@ import static com.r4sh33d.musicslam.network.retrofitmodels.ArtistResponse.Artist
 import static com.r4sh33d.musicslam.network.retrofitmodels.ArtistResponse.ArtistInfo.ImageSize.MEDIUM;
 import static com.r4sh33d.musicslam.network.retrofitmodels.ArtistResponse.ArtistInfo.ImageSize.MEGA;
 import static com.r4sh33d.musicslam.network.retrofitmodels.ArtistResponse.ArtistInfo.ImageSize.SMALL;
-
+/**
+ * @author Rasheed Sualayman (@r4sh33d)
+ */
 public class ArtistResponse {
 
     public static class ArtistInfoContainer {

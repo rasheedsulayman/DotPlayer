@@ -16,7 +16,9 @@ import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import timber.log.Timber;
-
+/**
+ * @author Rasheed Sualayman (@r4sh33d)
+ */
 public class LastFmRetrofitClient {
     public static String API_KEY = "0bc709225c814b576681ff35ca7ea054";
     public static String Base_URL = "http://ws.audioscrobbler.com/";

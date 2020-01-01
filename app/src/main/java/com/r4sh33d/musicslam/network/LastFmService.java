@@ -6,7 +6,9 @@ import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 
-
+/**
+ * @author Rasheed Sualayman (@r4sh33d)
+ */
 public interface LastFmService {
     String ARTIST_METHOD = "artist.getinfo";
 
