@@ -42,7 +42,9 @@ import java.util.Random;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-
+/**
+ * @author Rasheed Sualayman (@r4sh33d)
+ */
 public class PlaylistDetailsFragment extends AbsParallaxArtworkDetailsFragment
         implements LoaderManager.LoaderCallbacks<List<Song>> {
     private static final String ARG_PLAYLIST = "playlist";

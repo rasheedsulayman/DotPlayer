@@ -22,7 +22,9 @@ import com.r4sh33d.musicslam.models.Playlist;
 import java.util.Collections;
 import java.util.List;
 
-
+/**
+ * @author Rasheed Sualayman (@r4sh33d)
+ */
 public class PlaylistsFragment extends PagerFragment implements LoaderManager.LoaderCallbacks<List<Playlist>> {
 
     private PlaylistAdapter mPlayListAdapter;
