@@ -21,7 +21,7 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * A simple {@link Fragment} subclass.
+ * @author Rasheed Sualayman (@r4sh33d)
  */
 public class GenresFragment extends PagerFragment implements LoaderManager.LoaderCallbacks<List<Genres>> {
 

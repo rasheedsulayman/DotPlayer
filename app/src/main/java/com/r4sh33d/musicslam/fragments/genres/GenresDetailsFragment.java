@@ -28,7 +28,9 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-
+/**
+ * @author Rasheed Sualayman (@r4sh33d)
+ */
 public class GenresDetailsFragment extends BaseListenerFragment
         implements LoaderManager.LoaderCallbacks<List<Song>>, Toolbar.OnMenuItemClickListener {
     private static final String ARG_GENRES = "genres";
