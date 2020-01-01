@@ -11,7 +11,9 @@ import com.r4sh33d.musicslam.activities.MainActivity;
 import com.r4sh33d.musicslam.interfaces.PaletteListener;
 import com.r4sh33d.musicslam.playback.MusicStateListener;
 import com.r4sh33d.musicslam.utils.PrefsUtils;
-
+/**
+ * @author Rasheed Sualayman (@r4sh33d)
+ */
 public abstract class BaseListenerFragment extends Fragment implements MusicStateListener, PaletteListener {
     public boolean isAlbumArtTheme;
     protected MainActivity mActivity;

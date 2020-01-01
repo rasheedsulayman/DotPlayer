@@ -26,7 +26,9 @@ import com.r4sh33d.musicslam.utils.SlamUtils;
 
 import butterknife.BindView;
 
-
+/**
+ * @author Rasheed Sualayman (@r4sh33d)
+ */
 public abstract class AbsParallaxArtworkDetailsFragment extends BaseListenerFragment
         implements Toolbar.OnMenuItemClickListener {
 

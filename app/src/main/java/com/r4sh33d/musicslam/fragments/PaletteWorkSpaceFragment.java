@@ -18,7 +18,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
- * A simple {@link Fragment} subclass.
+ * Not part of the app... Just using this for testing color palette extraction from images
  */
 public class PaletteWorkSpaceFragment extends BaseListenerFragment {
     @BindView(R.id.light_muted)
