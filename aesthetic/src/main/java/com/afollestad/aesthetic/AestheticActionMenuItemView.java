@@ -16,7 +16,6 @@ import io.reactivex.functions.Consumer;
 /** @author Aidan Follestad (afollestad) */
 @SuppressWarnings("RestrictedApi")
 final class AestheticActionMenuItemView extends ActionMenuItemView {
-
   private Drawable icon;
   private Disposable subscription;
 
