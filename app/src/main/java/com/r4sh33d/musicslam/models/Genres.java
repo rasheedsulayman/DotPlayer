@@ -2,7 +2,9 @@ package com.r4sh33d.musicslam.models;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-
+/**
+ * @author Rasheed Sualayman (@r4sh33d)
+ */
 public class Genres implements Parcelable {
 
     public static final Creator<Genres> CREATOR = new Creator<Genres>() {

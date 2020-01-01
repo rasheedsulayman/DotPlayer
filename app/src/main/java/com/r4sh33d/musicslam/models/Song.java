@@ -4,7 +4,9 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import java.util.Locale;
-
+/**
+ * @author Rasheed Sualayman (@r4sh33d)
+ */
 public class Song implements Parcelable {
 
     public static Song EMPTY_SONG = new Song(-1, "", -1, "",
