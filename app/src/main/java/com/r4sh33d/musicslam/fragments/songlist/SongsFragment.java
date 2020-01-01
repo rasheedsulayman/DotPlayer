@@ -21,7 +21,9 @@ import com.r4sh33d.musicslam.playback.MusicPlayer;
 
 import java.util.Collections;
 import java.util.List;
-
+/**
+ * @author Rasheed Sualayman (@r4sh33d)
+ */
 public class SongsFragment extends PagerFragment implements LoaderManager.LoaderCallbacks<List<Song>> {
 
     private SongsListAdapter mSongListAdapter;

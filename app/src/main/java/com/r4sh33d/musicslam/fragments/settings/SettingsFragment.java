@@ -19,7 +19,9 @@ import com.r4sh33d.musicslam.utils.PrefsUtils;
 
 import static com.r4sh33d.musicslam.utils.PrefsUtils.ThemesTypes;
 import static com.r4sh33d.musicslam.utils.PrefsUtils.getInstance;
-
+/**
+ * @author Rasheed Sualayman (@r4sh33d)
+ */
 public class SettingsFragment extends PreferenceFragmentCompat implements
         SharedPreferences.OnSharedPreferenceChangeListener, ColorChooserDialog.ColorCallback {
     public static final String PREF_KEY_THEME = "pref_key_theme";

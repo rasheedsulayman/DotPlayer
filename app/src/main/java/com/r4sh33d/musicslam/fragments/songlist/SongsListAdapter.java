@@ -32,7 +32,9 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-
+/**
+ * @author Rasheed Sualayman (@r4sh33d)
+ */
 public class SongsListAdapter extends RecyclerView.Adapter<SongsListAdapter.Holder>
         implements FastScrollerAdapter {
     private Context context;
