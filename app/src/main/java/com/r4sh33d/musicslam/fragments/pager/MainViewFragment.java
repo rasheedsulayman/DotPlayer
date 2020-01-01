@@ -28,7 +28,9 @@ import com.r4sh33d.musicslam.fragments.songlist.SongsFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-
+/**
+ * @author Rasheed Sualayman (@r4sh33d)
+ */
 public class MainViewFragment extends BaseListenerFragment {
     @BindView(R.id.tab_layout)
     TabLayout mTabLayout;

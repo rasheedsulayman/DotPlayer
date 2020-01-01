@@ -22,7 +22,9 @@ import com.reddit.indicatorfastscroll.FastScrollItemIndicator;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-
+/**
+ * @author Rasheed Sualayman (@r4sh33d)
+ */
 public abstract class PagerFragment extends BaseListenerFragment {
     @BindView(R.id.fastscroller)
     AutoDismissFastScrollerView fastScrollerView;
