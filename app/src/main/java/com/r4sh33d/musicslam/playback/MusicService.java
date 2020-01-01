@@ -64,7 +64,7 @@ import java.util.List;
 import timber.log.Timber;
 
 /**
- * @author Rasheed Sulayman (r4sh33d), Andrew Neal
+ * @author Rasheed Sulayman (r4sh33d), Andrew Neal, Karim Abou Zeid (kabouzeid)
  */
 public class MusicService extends Service {
 

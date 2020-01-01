@@ -27,7 +27,9 @@ import com.r4sh33d.musicslam.models.Song;
 import java.io.File;
 
 import timber.log.Timber;
-
+/**
+ * @author Rasheed Sualayman (@r4sh33d)
+ */
 public class SlamUtils {
 
     public static Key getMediaStoreSignature(Song song) {

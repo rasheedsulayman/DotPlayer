@@ -6,7 +6,9 @@ import com.crashlytics.android.Crashlytics;
 
 import io.fabric.sdk.android.Fabric;
 import timber.log.Timber;
-
+/**
+ * @author Rasheed Sualayman (@r4sh33d)
+ */
 public class MusicSlamApplication extends Application {
 
     @Override

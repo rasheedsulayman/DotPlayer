@@ -15,7 +15,9 @@ import com.r4sh33d.musicslam.customglide.audiocover.AudioCoverImage;
 import com.r4sh33d.musicslam.customglide.audiocover.AudioCoverLoaderFactory;
 
 import java.io.InputStream;
-
+/**
+ * @author Rasheed Sualayman (@r4sh33d)
+ */
 @GlideModule
 public final class MusicSlamAppGlideModule extends AppGlideModule {
 

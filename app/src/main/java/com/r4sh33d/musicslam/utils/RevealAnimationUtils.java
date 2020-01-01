@@ -5,7 +5,9 @@ import android.os.Build;
 import android.view.View;
 import android.view.ViewAnimationUtils;
 import android.view.animation.LinearInterpolator;
-
+/**
+ * @author Rasheed Sualayman (@r4sh33d)
+ */
 public class RevealAnimationUtils {
 
     public static void revealAnimation(View myView, OnAnimationEndListener listener) {

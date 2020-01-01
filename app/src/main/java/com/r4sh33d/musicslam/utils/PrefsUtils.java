@@ -6,7 +6,9 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
 import com.r4sh33d.musicslam.fragments.settings.SettingsFragment;
-
+/**
+ * @author Rasheed Sualayman (@r4sh33d)
+ */
 public class PrefsUtils {
 
     private static final String LAST_PAGER_PAGE_KEY = "pager_start_page";

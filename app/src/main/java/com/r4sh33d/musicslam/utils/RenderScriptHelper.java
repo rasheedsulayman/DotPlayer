@@ -2,7 +2,9 @@ package com.r4sh33d.musicslam.utils;
 
 import android.content.Context;
 import android.support.v8.renderscript.RenderScript;
-
+/**
+ * @author Rasheed Sualayman (@r4sh33d)
+ */
 public class RenderScriptHelper {
     private static RenderScript sRenderScript;
 
