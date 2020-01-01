@@ -32,7 +32,9 @@ import static android.content.Context.NOTIFICATION_SERVICE;
 import static com.r4sh33d.musicslam.playback.Constants.NEXT_ACTION;
 import static com.r4sh33d.musicslam.playback.Constants.PREVIOUS_ACTION;
 import static com.r4sh33d.musicslam.playback.Constants.TOGGLEPAUSE_ACTION;
-
+/**
+ * @author Rasheed Sualayman (@r4sh33d)
+ */
 public class NotificationHelper {
 
     private static final int NOTIFY_MODE_NONE = 0;

@@ -1,5 +1,8 @@
 package com.r4sh33d.musicslam.playback;
 
+/**
+ * @author Rasheed Sualayman (@r4sh33d)
+ */
 public interface Constants {
 
     String SCHEME_CONTENT = "content";

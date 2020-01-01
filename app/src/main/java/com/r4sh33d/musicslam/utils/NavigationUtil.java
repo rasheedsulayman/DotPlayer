@@ -30,7 +30,9 @@ import com.r4sh33d.musicslam.models.Artist;
 import com.r4sh33d.musicslam.models.Genres;
 import com.r4sh33d.musicslam.models.Playlist;
 import com.r4sh33d.musicslam.playback.MusicPlayer;
-
+/**
+ * @author Rasheed Sualayman (@r4sh33d)
+ */
 public class NavigationUtil {
 
     public static final int OPEN_EQUALIZER_REQUEST = 100;

@@ -32,7 +32,7 @@ import com.r4sh33d.musicslam.fragments.AbsParallaxArtworkDetailsFragment;
 import com.r4sh33d.musicslam.models.Playlist;
 import com.r4sh33d.musicslam.models.Song;
 import com.r4sh33d.musicslam.playback.MusicPlayer;
-import com.r4sh33d.musicslam.utils.AnimationUtils;
+import com.r4sh33d.musicslam.utils.RevealAnimationUtils;
 import com.r4sh33d.musicslam.utils.MusicUtils;
 import com.r4sh33d.musicslam.utils.SlamUtils;
 
@@ -155,13 +155,13 @@ public class PlaylistDetailsFragment extends AbsParallaxArtworkDetailsFragment
                         super.onLoadFailed(errorDrawable);
                         albumArt.setScaleType(ImageView.ScaleType.CENTER);
                         albumArt.setImageResource(R.drawable.ic_music_note_24dp);
-                        AnimationUtils.revealAnimation(albumArt, animation -> fadeInViews());
+                        RevealAnimationUtils.revealAnimation(albumArt, animation -> fadeInViews());
                     }
 
                     @Override
                     public void onResourceReady(Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
                         super.onResourceReady(resource, transition);
-                        AnimationUtils.revealAnimation(albumArt, animation -> fadeInViews());
+                        RevealAnimationUtils.revealAnimation(albumArt, animation -> fadeInViews());
                         onArtworkLoaded(resource);
                     }
                 });

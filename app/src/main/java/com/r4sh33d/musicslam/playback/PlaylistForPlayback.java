@@ -3,7 +3,9 @@ package com.r4sh33d.musicslam.playback;
 import com.r4sh33d.musicslam.models.Song;
 
 import java.util.List;
-
+/**
+ * @author Rasheed Sualayman (@r4sh33d)
+ */
 public class PlaylistForPlayback {
     public List<Song> list;
     public int position; // Specifies  position to start

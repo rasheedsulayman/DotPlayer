@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.ViewAnimationUtils;
 import android.view.animation.LinearInterpolator;
 
-public class AnimationUtils {
+public class RevealAnimationUtils {
 
     public static void revealAnimation(View myView, OnAnimationEndListener listener) {
         // previously invisible view

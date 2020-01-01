@@ -63,6 +63,9 @@ import java.util.List;
 
 import timber.log.Timber;
 
+/**
+ * @author Rasheed Sulayman (r4sh33d), Andrew Neal
+ */
 public class MusicService extends Service {
 
     private static final String TAG = "MusicPlaybackService";

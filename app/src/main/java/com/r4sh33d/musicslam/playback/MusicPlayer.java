@@ -25,7 +25,9 @@ import static com.r4sh33d.musicslam.playback.Constants.LAST;
 import static com.r4sh33d.musicslam.playback.Constants.NEXT;
 import static com.r4sh33d.musicslam.playback.Constants.SHUFFLE_NONE;
 import static com.r4sh33d.musicslam.playback.Constants.SHUFFLE_NORMAL;
-
+/**
+ * @author Rasheed Sualayman (@r4sh33d)
+ */
 public final class MusicPlayer {
 
     private static final WeakHashMap<Context, ServiceBinder> mConnectionMap;

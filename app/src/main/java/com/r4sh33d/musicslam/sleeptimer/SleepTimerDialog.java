@@ -19,7 +19,9 @@ import com.r4sh33d.musicslam.utils.PrefsUtils;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-
+/**
+ * @author Rasheed Sualayman (@r4sh33d)
+ */
 public class SleepTimerDialog extends DialogFragment implements SleepTimer.SleepTimerListener {
     public static final String SLEEP_DIALOG_ARG = "ADD_TO_PLAY_LIST";
     @BindView(R.id.hours_editText)

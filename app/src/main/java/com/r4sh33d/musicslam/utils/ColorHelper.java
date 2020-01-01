@@ -25,7 +25,9 @@ import static com.r4sh33d.musicslam.utils.PrefsUtils.ThemesTypes.BlackTheme;
 import static com.r4sh33d.musicslam.utils.PrefsUtils.ThemesTypes.BlueTheme;
 import static com.r4sh33d.musicslam.utils.PrefsUtils.ThemesTypes.DarkTheme;
 import static com.r4sh33d.musicslam.utils.PrefsUtils.ThemesTypes.LightTheme;
-
+/**
+ * @author Rasheed Sualayman (@r4sh33d)
+ */
 public class ColorHelper {
     public static final String DEFAULT_COLOR_ACCENT = "#FF42A5F5";
 
