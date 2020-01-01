@@ -6,3 +6,4 @@ Dot player is a beautifully designed music player that strictly follows Google's
 <img src="https://raw.githubusercontent.com/r4sh33d/musicslam/master/screenshots/music_slam_screen_b.png" width="1400"/>
 
 
+<a href='https://play.google.com/store/apps/details?id=com.r4sh33d.musicslam&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png' height="90px"/></a>
