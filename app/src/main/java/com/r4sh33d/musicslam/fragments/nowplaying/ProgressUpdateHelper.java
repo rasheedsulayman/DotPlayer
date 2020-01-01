@@ -6,7 +6,9 @@ import android.os.Message;
 import com.r4sh33d.musicslam.playback.MusicPlayer;
 
 import java.lang.ref.WeakReference;
-
+/**
+ * @author Rasheed Sualayman (@r4sh33d)
+ */
 public class ProgressUpdateHelper extends Handler {
     private static final int UPDATE_PROGRESS_COMMAND = 1;
     private static final long PAUSED_UPDATE_FREQUENCY = 500;

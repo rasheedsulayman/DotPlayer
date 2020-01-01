@@ -19,7 +19,9 @@ import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-
+/**
+ * @author Rasheed Sualayman (@r4sh33d)
+ */
 public class ArtworkPagerFragment extends BaseListenerFragment implements ViewPager.OnPageChangeListener {
     @BindView(R.id.viewpager)
     ViewPager viewPager;

@@ -3,7 +3,9 @@ package com.r4sh33d.musicslam.fragments.nowplaying;
 import android.content.Context;
 import android.view.animation.Interpolator;
 import android.widget.Scroller;
-
+/**
+ * @author Rasheed Sualayman (@r4sh33d)
+ */
 public class FixedSpeedScroller extends Scroller {
 
     private int mDuration = 500;

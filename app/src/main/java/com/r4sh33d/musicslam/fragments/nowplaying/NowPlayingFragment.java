@@ -48,7 +48,9 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 import io.reactivex.disposables.Disposable;
-
+/**
+ * @author Rasheed Sualayman (@r4sh33d)
+ */
 public class NowPlayingFragment extends BaseListenerFragment implements
         Toolbar.OnMenuItemClickListener, SlidingPanelEventsListener, PaletteListener,
         ProgressUpdateHelper.OnProgressUpdateListener {

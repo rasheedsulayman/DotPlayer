@@ -22,7 +22,9 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import timber.log.Timber;
-
+/**
+ * @author Rasheed Sualayman (@r4sh33d)
+ */
 public class ArtworkPagerAdapter extends FragmentStatePagerAdapter {
     private List<Song> nowPlayingQueue;
 

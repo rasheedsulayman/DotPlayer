@@ -21,7 +21,9 @@ import com.r4sh33d.musicslam.R;
 import com.r4sh33d.musicslam.customglide.audiocover.AudioCoverImage;
 import com.r4sh33d.musicslam.playback.MusicPlayer;
 import com.r4sh33d.musicslam.utils.SlamUtils;
-
+/**
+ * @author Rasheed Sualayman (@r4sh33d)
+ */
 public class NowPlayingHelper {
 
     private final SeekBar seekBar;
