@@ -129,9 +129,6 @@
         </receiver>
 
         <meta-data
-            android:name="io.fabric.ApiKey"
-            android:value="b1c51299a357bc913d170137c80a2295bdb4e65b" />
-        <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
     </application>
