@@ -80,7 +80,6 @@ public class PlaylistsFragment extends PagerFragment implements LoaderManager.Lo
         mPlayListAdapter.updateData(data);
     }
 
-
     @Override
     public void onPrepareOptionsMenu(Menu menu) {
         menu.findItem(R.id.menu_new_playlist).setVisible(true).setEnabled(true);

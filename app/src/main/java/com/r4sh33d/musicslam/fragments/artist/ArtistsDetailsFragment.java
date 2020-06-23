@@ -187,7 +187,6 @@ public class ArtistsDetailsFragment extends AbsParallaxArtworkDetailsFragment {
     public void addToQueue() {
         MusicPlayer.addToQueue(getContext(),
                 getSongsForArtist());
-
     }
 
     @Override
